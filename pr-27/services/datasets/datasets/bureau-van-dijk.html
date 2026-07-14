@@ -1,0 +1,596 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" data-theme="light">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Bureau van Dijk (Moody’s) &#8212; Kellogg School of Management
+Research Support
+Northwestern University</title>
+<script data-cfasync="false">
+  localStorage.setItem("mode", "light");
+  localStorage.setItem("theme", "light");
+</script>
+
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/kellogg-rs-docs.css?v=9c3e1ba6" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'services/datasets/datasets/bureau-van-dijk';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = true;</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="CA Hospital Financial Data" href="ca-hospital-financial-data.html" />
+    <link rel="prev" title="BoardEx" href="boardex.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../../../_static/searchtools.js"></script>
+    <script src="../../../_static/language_data.js"></script>
+    <script src="../../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="light">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+<aside class="bd-header-announcement" aria-label="Announcement">
+  <div class="bd-header-announcement__content">⚠️This documentation is a prototype and is under active development.⚠️</div>
+</aside>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+    
+    <img src="../../../_static/kellogg_logo.png" class="logo__image only-light" alt="Kellogg School of Management
+Research Support
+Northwestern University - Home"/>
+    <img src="../../../_static/kellogg_logo.png" class="logo__image only-dark pst-js-only" alt="Kellogg School of Management
+Research Support
+Northwestern University - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../start/getting-help.html">Getting Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../start/services-overview.html">What Does KRS Offer?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../start/klc/klc-intro.html">Introduction to Kellogg Linux Cluster</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../start/workshop-doc.html">Research the Right Way Workshop</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Computing and Datasets</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../klc/klc.html">Kellogg Linux Cluster</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference external" href="https://www.kellogg.northwestern.edu/academics-research/research-support/computing/kellogg-linux-cluster/" target="_blank">Kellogg Linux Cluster Overview <svg aria-hidden="true" height="1.0em" style="display: inline-block; vertical-align: middle; fill: currentColor;" version="1.1" viewbox="0 0 16 16" width="1.0em"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../klc/user-guide/klc-user-guide.html">KLC User Guide</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../klc/user-guide/klc-accessing.html">Access KLC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../klc/user-guide/klc-ssh.html">SSH</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../klc/user-guide/klc-fastx.html">FastX</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../klc/user-guide/klc-vscode.html">VS Code Workflow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../klc/user-guide/klc-ondemand.html">KLC OnDemand</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../klc/user-guide/klc-files.html">KLC Filesystem</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../klc/user-guide/klc-transferfiles.html">Data Transfer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../klc/user-guide/klc-editor.html">Edit Files on KLC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../klc/user-guide/klc-git.html">Using Git on KLC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../klc/user-guide/klc-conda.html">Conda Environments on KLC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../klc/user-guide/klc-software.html">Launching Jobs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../klc/user-guide/klc-slurm.html">Interactive vs. SLURM Batch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../klc/user-guide/klc-tmux.html">Using tmux</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../klc/user-guide/klc-profiling.html">Monitoring Jobs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../klc/user-guide/klc-gpu.html">Using GPUs on Quest and KLC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../klc/user-guide/llm-api.html">LLM API Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../klc/user-guide/llm-klc.html">Open Source LLMs</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference external" href="https://rcdsdocs.it.northwestern.edu/systems/quest/quest.html" target="_blank">Quest Documentation <svg aria-hidden="true" height="1.0em" style="display: inline-block; vertical-align: middle; fill: currentColor;" version="1.1" viewbox="0 0 16 16" width="1.0em"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a></li>
+<li class="toctree-l2"><a class="reference external" href="https://www.it.northwestern.edu/departments/it-services-support/research/computing/quest/data-security-guidance.html" target="_blank">Quest Data Security Guidance <svg aria-hidden="true" height="1.0em" style="display: inline-block; vertical-align: middle; fill: currentColor;" version="1.1" viewbox="0 0 16 16" width="1.0em"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../kellogg-data-cloud/kdc.html">Kellogg Data Cloud</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../kellogg-data-cloud/athena/athena.html">Athena DB (AWS)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../kellogg-data-cloud/redivis/redivis.html">Redivis</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../datasets.html">Kellogg Datasets</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../by-platform.html">Find Data by Platform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="aha-annual-survey.html">AHA Annual Survey</a></li>
+<li class="toctree-l2"><a class="reference internal" href="arca.html">Arca</a></li>
+<li class="toctree-l2"><a class="reference internal" href="audit-analytics.html">Audit Analytics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bank-regulatory.html">Bank Regulatory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="blockholders.html">Blockholders</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bloomberg.html">Bloomberg</a></li>
+<li class="toctree-l2"><a class="reference internal" href="boardex.html">BoardEx</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Bureau van Dijk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ca-hospital-financial-data.html">CA Hospital Financial Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ca-hospital-inpatient-utilization.html">CA Hospital Inpatient Utilization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cboe-indexes.html">CBOE Indexes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cbot-treasury-package.html">CBOT Treasury Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cme.html">CME</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cord-19.html">CORD-19</a></li>
+<li class="toctree-l2"><a class="reference internal" href="crsp.html">CRSP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="capital-iq.html">Capital IQ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="census-data.html">Census Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chicago-research-data-center.html">Chicago Research Data Center</a></li>
+<li class="toctree-l2"><a class="reference internal" href="compustat-global.html">Compustat Global</a></li>
+<li class="toctree-l2"><a class="reference internal" href="compustat-north-america.html">Compustat North America</a></li>
+<li class="toctree-l2"><a class="reference internal" href="comscore.html">Comscore</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cotality.html">Cotality (formerly CoreLogic)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datastream.html">Datastream</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dealscan--lsta-lpc-.html">DealScan (LSTA/LPC)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="direct-marketing-educational-foundation--dmef-.html">Direct Marketing Educational Foundation (DMEF)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dow-jones-averages-%26-total-return-indexes.html">Dow Jones Averages &amp; Total Return Indexes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="edgar.html">EDGAR</a></li>
+<li class="toctree-l2"><a class="reference internal" href="edgar-online.html">EDGAR Online</a></li>
+<li class="toctree-l2"><a class="reference internal" href="economatica.html">Economatica</a></li>
+<li class="toctree-l2"><a class="reference internal" href="emerging-markets-database.html">Emerging Markets Database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="equifax.html">Equifax</a></li>
+<li class="toctree-l2"><a class="reference internal" href="execucomp.html">ExecuComp</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ftse-russell.html">FTSE/Russell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="factset.html">FactSet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fama-french-portfolios-and-factors.html">Fama-French Portfolios and Factors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="federal-reserve-bank-reports.html">Federal Reserve Bank Reports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="first-call-historical-database.html">First Call Historical Database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="florida-ahca-inpatient-discharge-data.html">Florida AHCA Inpatient Discharge Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="forrester-research.html">Forrester Research</a></li>
+<li class="toctree-l2"><a class="reference internal" href="global-financial-database.html">Global Financial Database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hcup-nis.html">HCUP NIS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hcup-sid.html">HCUP SID</a></li>
+<li class="toctree-l2"><a class="reference internal" href="health-and-retirement-study.html">Health and Retirement Study</a></li>
+<li class="toctree-l2"><a class="reference internal" href="i-b-e-s-earnings-estimate-history.html">I/B/E/S Earnings Estimate History</a></li>
+<li class="toctree-l2"><a class="reference internal" href="icpsr.html">ICPSR</a></li>
+<li class="toctree-l2"><a class="reference internal" href="imf-international-financial-statistics.html">IMF International Financial Statistics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="iri-marketing-factbook.html">IRI Marketing FactBook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="iss-dilution-data.html">ISS Dilution Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="iss-directors-data.html">ISS Directors Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="iss-governance-data.html">ISS Governance Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="iss-securities-class-action-services.html">ISS Securities Class Action Services</a></li>
+<li class="toctree-l2"><a class="reference internal" href="iss-shareholder-proposals.html">ISS Shareholder Proposals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="iss-voting-analytics.html">ISS Voting Analytics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issm-transactions-file-database.html">ISSM Transactions File Database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="institute-for-financial-markets.html">Institute for Financial Markets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="liffe-tick-data.html">LIFFE Tick Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="levin-associates-health-care-acquisition-reports.html">Levin Associates Health Care Acquisition Reports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="l2-vm2-uniform.html">L2 VM2 Uniform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lipper-hedge-fund.html">Lipper Hedge Fund</a></li>
+<li class="toctree-l2"><a class="reference internal" href="msci--formerly-klc-and-gmi-ratings-.html">MSCI (formerly KLC and GMI Ratings)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="msrb--municipal-securities-transaction-data-.html">MSRB (Municipal Securities Transaction Data)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mergent-fisd.html">Mergent FISD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mergent-investext.html">Mergent Investext</a></li>
+<li class="toctree-l2"><a class="reference internal" href="naic-financial-statement-data.html">NAIC Financial Statement Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="naic-health-insurance-data.html">NAIC Health Insurance Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="naic-property-casualty-insurance-data.html">NAIC Property/Casualty Insurance Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="new-york-sparcs-inpatient-databases.html">New York SPARCS Inpatient Databases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nielsen-marketing-data.html">Nielsen Marketing Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="numerator.html">Numerator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="otc-markets.html">OTC Markets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="openalex.html">OpenAlex</a></li>
+<li class="toctree-l2"><a class="reference internal" href="optionmetrics-ivy-db.html">OptionMetrics Ivy DB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="patstat.html">PATSTAT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="philadelphia-stock-exchange--phlx-.html">Philadelphia Stock Exchange (PHLX)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="proxycurl.html">Proxycurl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="r%26c-futures-data.html">R&amp;C Futures Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rca.html">RCA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ravenpack-news-analytics.html">RavenPack News Analytics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="refinitiv-esg.html">Refinitiv ESG</a></li>
+<li class="toctree-l2"><a class="reference internal" href="research-quotient.html">Research Quotient</a></li>
+<li class="toctree-l2"><a class="reference internal" href="riskmetrics-cepd.html">RiskMetrics CEPD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="riskmetrics-intangible-value-assessment.html">RiskMetrics Intangible Value Assessment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sdc-platinum.html">SDC Platinum</a></li>
+<li class="toctree-l2"><a class="reference internal" href="snl.html">SNL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="social-science-research-network.html">Social Science Research Network</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trace.html">TRACE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="taxi.html">Taxi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="thomson-institutional--13f--and-mutual-fund--s12--holdings.html">Thomson Institutional (13F) and Mutual Fund (S12) Holdings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trade-and-quote-database.html">Trade and Quote Database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="value-line.html">Value Line</a></li>
+<li class="toctree-l2"><a class="reference internal" href="web-of-science.html">Web of Science</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zacks.html">Zacks</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../tutorials/ocr/ocr.html">Optical Character Recognition</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/ocr/tutorial1.html">OCR Tutorial 1</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../tutorials/nlp/nlp.html">Natural Language Processing</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/nlp/tutorial1.html">Deterministic Extraction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/nlp/tutorial2.html">Quantifying Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/nlp/tutorial3.html">Paid LLMs for Text Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/nlp/tutorial4.html">Open-Source LLMs for Text Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/nlp/tutorial5.html">Validation and Rigor</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Resource Guides</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../guides/openai/openai.html">OpenAI and LLMs</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../guides/openai/llm-intro.html">Understanding LLMs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../guides/openai/openai-api.html">OpenAI API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../guides/openai/openai-copilot.html">GitHub Copilot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../guides/openai/openai-workflow.html">Application Workflow</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../guides/llm/llm.html">Open Source LLMs</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Bureau van Dijk (Moody’s)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#at-a-glance">At a Glance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#description">Description</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#access">Access</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-coverage-key-identifiers">Data Coverage &amp; Key Identifiers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#documentation">Documentation</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="bureau-van-dijk-moody-s">
+<h1>Bureau van Dijk (Moody’s)<a class="headerlink" href="#bureau-van-dijk-moody-s" title="Link to this heading">#</a></h1>
+<section id="at-a-glance">
+<h2>At a Glance<a class="headerlink" href="#at-a-glance" title="Link to this heading">#</a></h2>
+<p>Find information <a class="reference external" href="https://wrds-www.wharton.upenn.edu/pages/about/data-vendors/bureau-van-dijk-bvd/" target="_blank">here <svg version="1.1" width="1.0em" height="1.0em" viewBox="0 0 16 16" aria-hidden="true" style="display: inline-block; vertical-align: middle; fill: currentColor;"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a>.</p>
+<p>If you have questions, reach out to <a class="reference external" href="mailto:rs&#37;&#52;&#48;kellogg&#46;northwestern&#46;edu" target="_blank">rs<span>&#64;</span>kellogg<span>&#46;</span>northwestern<span>&#46;</span>edu <svg version="1.1" width="1.0em" height="1.0em" viewBox="0 0 16 16" aria-hidden="true" style="display: inline-block; vertical-align: middle; fill: currentColor;"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a>.</p>
+</section>
+<section id="description">
+<h2>Description<a class="headerlink" href="#description" title="Link to this heading">#</a></h2>
+<p>Kellogg provides collective access to three Bureau van Dijk databases:</p>
+<p><strong>AMADEUS:</strong> Amadeus from Bureau Van Dijk contains financials, stock prices, ownership, and subsidiaries information for approximately 19 million public and private companies in 34 European countries.</p>
+<p><strong>ORBIS:</strong> Orbis contains information on as many companies as possible, across all countries, and focuses on private companies. Moody’s sources the information from over 170 different providers and standardized formats to accommodate regional variations in filing regulations and accountancy practices.</p>
+<p>Orbis contains information on approximately 650 million private and public companies and entities across more than 200 countries and territories. Of these, 54 million companies have detailed financial information, and more than 99% are private companies.</p>
+<p><strong>OSIRIS:</strong> Osiris has information on listed, and major unlisted/delisted, companies around the world. The information is very detailed and includes a lot more than financial reports. Different templates are used to show accounts in the correct formats for their company type and location. It covers around 80,000 companies.</p>
+</section>
+<section id="access">
+<h2>Access<a class="headerlink" href="#access" title="Link to this heading">#</a></h2>
+<p>These datasets are available via <a class="reference external" href="https://wrds-www.wharton.upenn.edu/" target="_blank">Wharton Research Data Services (WRDS) <svg version="1.1" width="1.0em" height="1.0em" viewBox="0 0 16 16" aria-hidden="true" style="display: inline-block; vertical-align: middle; fill: currentColor;"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a>. WRDS offers both a web interface for small interactive queries and the WRDS Cloud for running batch programs. Faculty may request a temporary class account for course use.</p>
+<p>The Northwestern Library also provides access to the <a class="reference external" href="http://libguides.northwestern.edu/go.php?c=4023376" target="_blank">ORBIS web interface <svg version="1.1" width="1.0em" height="1.0em" viewBox="0 0 16 16" aria-hidden="true" style="display: inline-block; vertical-align: middle; fill: currentColor;"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a>, which may include items not available in the WRDS files and covers data up to the present (as opposed to the end of the last calendar year on WRDS).</p>
+</section>
+<section id="data-coverage-key-identifiers">
+<h2>Data Coverage &amp; Key Identifiers<a class="headerlink" href="#data-coverage-key-identifiers" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Attribute</p></th>
+<th class="head"><p>Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Time period</strong></p></td>
+<td><p>Varies by product (up to 20 years historical)</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Geographic coverage</strong></p></td>
+<td><p>Global (41+ countries for AMADEUS; 190+ countries for OSIRIS; worldwide for ORBIS)</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Unit of observation</strong></p></td>
+<td><p>Company-year</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Primary identifier</strong></p></td>
+<td><p>National identification number (varies by country)</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Commonly linked via</strong></p></td>
+<td><p>TBD</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Key variables</strong></p></td>
+<td><p>Balance sheet items, profit and loss items, financial ratios, company descriptors, executive information, industry codes</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="documentation">
+<h2>Documentation<a class="headerlink" href="#documentation" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://wrds-www.wharton.upenn.edu/pages/support/support-articles/bvd/" target="_blank">Bureau van Dijk Support Articles <svg version="1.1" width="1.0em" height="1.0em" viewBox="0 0 16 16" aria-hidden="true" style="display: inline-block; vertical-align: middle; fill: currentColor;"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a></p></li>
+<li><p><a class="reference external" href="https://wrds-www.wharton.upenn.edu/pages/support/manuals-and-overviews/bureau-van-dijk/amadeus/" target="_blank">Amadeus Manuals and Overviews <svg version="1.1" width="1.0em" height="1.0em" viewBox="0 0 16 16" aria-hidden="true" style="display: inline-block; vertical-align: middle; fill: currentColor;"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a></p></li>
+<li><p><a class="reference external" href="https://wrds-www.wharton.upenn.edu/pages/support/manuals-and-overviews/bureau-van-dijk/orbis/" target="_blank">Orbis Manuals and Overviews <svg version="1.1" width="1.0em" height="1.0em" viewBox="0 0 16 16" aria-hidden="true" style="display: inline-block; vertical-align: middle; fill: currentColor;"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a></p></li>
+<li><p><a class="reference external" href="https://wrds-www.wharton.upenn.edu/pages/support/manuals-and-overviews/bureau-van-dijk/osiris/" target="_blank">Osiris Manuals and Overviews <svg version="1.1" width="1.0em" height="1.0em" viewBox="0 0 16 16" aria-hidden="true" style="display: inline-block; vertical-align: middle; fill: currentColor;"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a></p></li>
+</ul>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="boardex.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">BoardEx</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="ca-hospital-financial-data.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">CA Hospital Financial Data</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#at-a-glance">At a Glance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#description">Description</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#access">Access</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-coverage-key-identifiers">Data Coverage &amp; Key Identifiers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#documentation">Documentation</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+
+
+<div id="footer-bottom">
+<div class="contain-1120">
+<span class="copyright" style="color:white">©
+<script>// <![CDATA[
+document.write(new Date().getFullYear())
+// ]]></script>
+Kellogg School of Management | <a href="https://www.kellogg.northwestern.edu/academics-research/research-support/">Kellogg Research Support</a></span>
+<!--
+<ul>
+<li><a href="https://www.facebook.com/NorthwesternU"> <span class="social facebook">Facebook</span> </a></li>
+<li><a href="https://www.twitter.com/northwesternu"> <span class="social twitter">Twitter</span> </a></li>
+<li><a href="https://www.instagram.com/northwesternu"> <span class="social instagram">Instagram</span> </a></li>
+<li><a href="https://www.youtube.com/user/NorthwesternU"> <span class="social youtube">YouTube</span> </a></li>
+<li><a href="https://www.tiktok.com/@northwestern.u"> <span class="social tiktok">TikTok</span> </a></li>
+<li><a href="https://www.linkedin.com/school/northwestern-university/"> <span class="social linkedin">LinkedIn</span> </a></li>
+</ul>
+-->
+<span class="right" style="color:white"><a style="color:white" href="https://www.northwestern.edu/disclaimer.html">Disclaimer</a></span>
+</div>
+</div>
+  </footer>
+  </body>
+</html>
