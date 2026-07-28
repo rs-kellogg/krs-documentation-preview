@@ -196,19 +196,15 @@ Northwestern University - Home"/>
 <li class="toctree-l3"><a class="reference internal" href="klc-transferfiles.html">Data Transfer</a></li>
 <li class="toctree-l3"><a class="reference internal" href="klc-editor.html">Edit Files on KLC</a></li>
 <li class="toctree-l3"><a class="reference internal" href="klc-git.html">Using Git on KLC</a></li>
-<li class="toctree-l3"><a class="reference internal" href="klc-conda.html">Conda Environments on KLC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="klc-conda.html">Conda/Mamba Environments</a></li>
 <li class="toctree-l3"><a class="reference internal" href="klc-software.html">Launching Jobs</a></li>
 <li class="toctree-l3"><a class="reference internal" href="klc-tmux.html">Using tmux</a></li>
-<li class="toctree-l3"><a class="reference internal" href="klc-profiling.html">Monitoring Jobs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="klc-profiling.html">Monitoring &amp; Managing Jobs</a></li>
 <li class="toctree-l3"><a class="reference internal" href="llm-api.html">LLM API Usage</a></li>
 <li class="toctree-l3"><a class="reference internal" href="llm-klc.html">Open Source LLMs</a></li>
 </ul>
 </details></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../klc-datasets.html">Datasets on KLC</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../datasets/datasets/cme.html">CME</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../datasets/datasets/nielsen-marketing-data.html">Nielsen Marketing Data</a></li>
-</ul>
-</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../klc-datasets.html">Datasets on KLC</a></li>
 <li class="toctree-l2"><a class="reference external" href="https://rcdsdocs.it.northwestern.edu/systems/quest/quest.html" target="_blank">Quest Documentation <svg aria-hidden="true" height="1.0em" style="display: inline-block; vertical-align: middle; fill: currentColor;" version="1.1" viewbox="0 0 16 16" width="1.0em"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a></li>
 <li class="toctree-l2"><a class="reference external" href="https://www.it.northwestern.edu/departments/it-services-support/research/computing/quest/data-security-guidance.html" target="_blank">Quest Data Security Guidance <svg aria-hidden="true" height="1.0em" style="display: inline-block; vertical-align: middle; fill: currentColor;" version="1.1" viewbox="0 0 16 16" width="1.0em"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a></li>
 </ul>
@@ -434,7 +430,7 @@ Northwestern University - Home"/>
 <ol class="arabic simple">
 <li><p>Create a <a class="reference external" href="https://github.com/" target="_blank">GitHub account <svg version="1.1" width="1.0em" height="1.0em" viewBox="0 0 16 16" aria-hidden="true" style="display: inline-block; vertical-align: middle; fill: currentColor;"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a> if you don’t have one.</p></li>
 <li><p>Sign up for <a class="reference external" href="https://github.com/features/copilot" target="_blank">GitHub Copilot <svg version="1.1" width="1.0em" height="1.0em" viewBox="0 0 16 16" aria-hidden="true" style="display: inline-block; vertical-align: middle; fill: currentColor;"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a> — a free tier is available.</p></li>
-<li><p>Set up SSH keys for KLC following the <a class="reference internal" href="klc-accessing.html"><span class="std std-doc">passwordless SSH instructions</span></a>.</p></li>
+<li><p>Set up SSH keys for KLC following the <a class="reference internal" href="klc-ssh.html"><span class="std std-doc">passwordless SSH instructions</span></a>.</p></li>
 </ol>
 </section>
 <section id="connecting-vs-code-to-klc">
@@ -446,7 +442,7 @@ Northwestern University - Home"/>
 </ol>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>Once connected, use VS Code’s integrated terminal (<code class="docutils literal notranslate"><span class="pre">Ctrl+\``)</span> <span class="pre">to</span> <span class="pre">run</span> <span class="pre">commands</span> <span class="pre">on</span> <span class="pre">KLC</span> <span class="pre">—</span> </code>module load<code class="docutils literal notranslate"><span class="pre">,</span> </code>mamba activate`, job scripts, etc.</p>
+<p>Once connected, use VS Code’s integrated terminal (<code class="docutils literal notranslate"><span class="pre">Ctrl+`</span></code>) to run commands on KLC — <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">load</span></code>, <code class="docutils literal notranslate"><span class="pre">mamba</span> <span class="pre">activate</span></code>, job scripts, etc.</p>
 </div>
 </section>
 <section id="github-copilot-in-vs-code">
@@ -454,7 +450,7 @@ Northwestern University - Home"/>
 <p>Once the Copilot extension is installed and you’re signed in with your GitHub account:</p>
 <ul class="simple">
 <li><p><strong>Inline suggestions</strong> appear automatically as you type — press <code class="docutils literal notranslate"><span class="pre">Tab</span></code> to accept</p></li>
-<li><p><strong>Copilot Chat</strong> (<code class="docutils literal notranslate"><span class="pre">Ctrl+Alt+I</span></code>) lets you describe what you want in plain English and Copilot writes or explains code</p></li>
+<li><p><strong>Copilot Chat</strong> (<code class="docutils literal notranslate"><span class="pre">Ctrl+Shift+I</span></code>) lets you describe what you want in plain English and Copilot writes or explains code</p></li>
 </ul>
 <p>Copilot is especially useful for:</p>
 <ul class="simple">

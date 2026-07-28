@@ -90,6 +90,13 @@ python sample_sql.py
 
 The dataset pages below document each Kellogg-licensed dataset available on the Redivis platform.
 
+| Dataset | Brief Description |
+|---|---|
+| [L2 VM2 Uniform](../../datasets/datasets/l2-vm2-uniform) | National voter file from all 50 states, enhanced with consumer and demographic data, standardized into a single schema |
+| [Numerator](../../datasets/datasets/numerator) | Consumer panel data on purchases, promotions, and shopping behavior |
+| [OpenAlex](../../datasets/datasets/openalex) | Open catalog of scholarly works, authors, institutions, sources, topics, and funders, and their connections |
+| [ProxyCurl](../../datasets/datasets/proxycurl) | Snapshot of ~170 million public LinkedIn profiles with professional attributes |
+
 ```{toctree}
 :maxdepth: 1
 :hidden:

@@ -196,19 +196,15 @@ Northwestern University - Home"/>
 <li class="toctree-l3"><a class="reference internal" href="klc-transferfiles.html">Data Transfer</a></li>
 <li class="toctree-l3"><a class="reference internal" href="klc-editor.html">Edit Files on KLC</a></li>
 <li class="toctree-l3"><a class="reference internal" href="klc-git.html">Using Git on KLC</a></li>
-<li class="toctree-l3"><a class="reference internal" href="klc-conda.html">Conda Environments on KLC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="klc-conda.html">Conda/Mamba Environments</a></li>
 <li class="toctree-l3"><a class="reference internal" href="klc-software.html">Launching Jobs</a></li>
 <li class="toctree-l3"><a class="reference internal" href="klc-tmux.html">Using tmux</a></li>
-<li class="toctree-l3 current active"><a class="current reference internal" href="#">Monitoring Jobs</a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">Monitoring &amp; Managing Jobs</a></li>
 <li class="toctree-l3"><a class="reference internal" href="llm-api.html">LLM API Usage</a></li>
 <li class="toctree-l3"><a class="reference internal" href="llm-klc.html">Open Source LLMs</a></li>
 </ul>
 </details></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../klc-datasets.html">Datasets on KLC</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../datasets/datasets/cme.html">CME</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../datasets/datasets/nielsen-marketing-data.html">Nielsen Marketing Data</a></li>
-</ul>
-</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../klc-datasets.html">Datasets on KLC</a></li>
 <li class="toctree-l2"><a class="reference external" href="https://rcdsdocs.it.northwestern.edu/systems/quest/quest.html" target="_blank">Quest Documentation <svg aria-hidden="true" height="1.0em" style="display: inline-block; vertical-align: middle; fill: currentColor;" version="1.1" viewbox="0 0 16 16" width="1.0em"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a></li>
 <li class="toctree-l2"><a class="reference external" href="https://www.it.northwestern.edu/departments/it-services-support/research/computing/quest/data-security-guidance.html" target="_blank">Quest Data Security Guidance <svg aria-hidden="true" height="1.0em" style="display: inline-block; vertical-align: middle; fill: currentColor;" version="1.1" viewbox="0 0 16 16" width="1.0em"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a></li>
 </ul>
@@ -366,9 +362,7 @@ Northwestern University - Home"/>
 <h1>Monitoring and Managing Jobs<a class="headerlink" href="#monitoring-and-managing-jobs" title="Link to this heading">#</a></h1>
 <section id="overall-node-usage">
 <h2>Overall Node Usage<a class="headerlink" href="#overall-node-usage" title="Link to this heading">#</a></h2>
-<p>You can find updated stats on memory and CPU usage per KLC node on our official KLC site here:</p>
-<p>https://www.kellogg.northwestern.edu/academics-research/research-support/computing/kellogg-linux-cluster.aspx</p>
-<p>This information is updated every 10 minutes.</p>
+<p>You can find updated stats on memory and CPU usage per KLC node on our <a class="reference external" href="https://www.kellogg.northwestern.edu/academics-research/research-support/computing/kellogg-linux-cluster.aspx" target="_blank">official KLC site <svg version="1.1" width="1.0em" height="1.0em" viewBox="0 0 16 16" aria-hidden="true" style="display: inline-block; vertical-align: middle; fill: currentColor;"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a>. This information is updated every 10 minutes.</p>
 <p>You can also determine how much memory is still available on a specific KLC node with:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>free<span class="w"> </span>-h
 </pre></div>
@@ -388,13 +382,25 @@ Northwestern University - Home"/>
 </pre></div>
 </div>
 </li>
-<li><p>Detailed view with process IDs:</p>
+<li><p>Interactive view of all running processes:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>top
 </pre></div>
 </div>
+<p>Once inside <code class="docutils literal notranslate"><span class="pre">top</span></code>:</p>
+<ul class="simple">
+<li><p>Press <code class="docutils literal notranslate"><span class="pre">u</span></code> and enter your NetID to filter to your processes only</p></li>
+<li><p>Press <code class="docutils literal notranslate"><span class="pre">M</span></code> to toggle the memory usage bar display</p></li>
+<li><p>Press <code class="docutils literal notranslate"><span class="pre">P</span></code> to sort processes by CPU usage</p></li>
+<li><p>Press <code class="docutils literal notranslate"><span class="pre">c</span></code> to toggle the full command path for each process</p></li>
+<li><p>Press <code class="docutils literal notranslate"><span class="pre">q</span></code> to quit</p></li>
+</ul>
 </li>
 <li><p><strong>Kill</strong> a job/process (use with caution):</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">kill</span><span class="w"> </span><span class="o">[</span>PID<span class="o">]</span>
+</pre></div>
+</div>
+<p>If the process does not respond to <code class="docutils literal notranslate"><span class="pre">kill</span></code>, force-terminate it with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">kill</span><span class="w"> </span>-9<span class="w"> </span><span class="o">[</span>PID<span class="o">]</span>
 </pre></div>
 </div>
 </li>
@@ -504,7 +510,7 @@ tmux<span class="w"> </span>new<span class="w"> </span>-s<span class="w"> </span
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># inside the tmux session</span>
 module<span class="w"> </span>load<span class="w"> </span>mamba
 <span class="nb">source</span><span class="w"> </span>activate<span class="w"> </span>/kellogg/software/envs/glances_env
-python<span class="w"> </span>memory_monitor.py<span class="w"> </span>--email<span class="w"> </span>&lt;your<span class="w"> </span>email&gt;<span class="w"> </span>--user-threshold<span class="w"> </span>&lt;amount<span class="w"> </span>you<span class="w"> </span><span class="k">select</span>&gt;<span class="w"> </span>--node-threshold<span class="w"> </span>&lt;amount<span class="w"> </span>you<span class="w"> </span><span class="k">select</span>&gt;
+<span class="c1"># python memory_monitor.py --email &lt;your email&gt; --user-threshold &lt;amount you select&gt; --node-threshold &lt;amount you select&gt;</span>
 python<span class="w"> </span>memory_monitor.py<span class="w"> </span>--email<span class="w"> </span>rs@kellogg.northwestern.edu<span class="w"> </span>--user-threshold<span class="w"> </span><span class="m">400</span>.0<span class="w"> </span>--node-threshold<span class="w"> </span><span class="m">200</span>.0
 </pre></div>
 </div>

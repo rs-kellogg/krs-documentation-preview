@@ -2,11 +2,7 @@
 
 ## Overall Node Usage
 
-You can find updated stats on memory and CPU usage per KLC node on our official KLC site here: 
-
-https://www.kellogg.northwestern.edu/academics-research/research-support/computing/kellogg-linux-cluster.aspx  
-
-This information is updated every 10 minutes.
+You can find updated stats on memory and CPU usage per KLC node on our [official KLC site](https://www.kellogg.northwestern.edu/academics-research/research-support/computing/kellogg-linux-cluster.aspx). This information is updated every 10 minutes.
 
 You can also determine how much memory is still available on a specific KLC node with: 
 
@@ -32,16 +28,29 @@ To check what’s running or consuming resources:
   ```
 
 
-* Detailed view with process IDs:
+* Interactive view of all running processes:
 
   ```bash
   top
   ```
 
+  Once inside `top`:
+  - Press `u` and enter your NetID to filter to your processes only
+  - Press `M` to toggle the memory usage bar display
+  - Press `P` to sort processes by CPU usage
+  - Press `c` to toggle the full command path for each process
+  - Press `q` to quit
+
 * **Kill** a job/process (use with caution):
 
   ```bash
   kill [PID]
+  ```
+
+  If the process does not respond to `kill`, force-terminate it with:
+
+  ```bash
+  kill -9 [PID]
   ```
 
 ## Check Memory
@@ -164,7 +173,7 @@ tmux new -s memory_monitor
 # inside the tmux session
 module load mamba
 source activate /kellogg/software/envs/glances_env
-python memory_monitor.py --email <your email> --user-threshold <amount you select> --node-threshold <amount you select>
+# python memory_monitor.py --email <your email> --user-threshold <amount you select> --node-threshold <amount you select>
 python memory_monitor.py --email rs@kellogg.northwestern.edu --user-threshold 400.0 --node-threshold 200.0
 ```
 

@@ -1,8 +1,8 @@
 # Submitting SLURM Jobs
 
-KLC Reserve jobs run on the **`kellogg` SLURM partition**. You submit a shell script that declares the resources your job needs; SLURM schedules the job and runs it on dedicated nodes whether you remain logged in or not.
+KLC Reserve jobs run on the **`kellogg` SLURM partition**. You submit a shell script that declares the resources your job needs; SLURM schedules the job and runs it on dedicated nodes whether you remain logged in or not. This page covers how to write, submit, monitor, and tune batch and interactive SLURM jobs.
 
-For the decision between interactive login work and scheduled jobs, see [When to Use KLC Reserve](when-to-use). For GPU-specific requests, see [GPU Jobs](gpu-jobs).
+For the decision between interactive login work and scheduled jobs, see [When to Use KLC Reserve](when-to-use). For GPU-specific requests, see [GPU Jobs](gpu-jobs). For comprehensive SLURM reference, see the [Quest SLURM documentation](https://rcdsdocs.it.northwestern.edu/systems/quest/user-guide/slurm/slurm.html).
 
 ## Prerequisites
 
@@ -17,13 +17,13 @@ Save this as `myjob.sh`:
 ```bash
 #!/bin/bash
 #SBATCH --account=kellogg                    ## Kellogg SLURM account
-#SBATCH --partition=kellogg               ## Kellogg Reserve partition
+#SBATCH --partition=kellogg                  ## Kellogg Reserve partition
 #SBATCH --job-name=my-analysis
 #SBATCH --nodes=1
-#SBATCH --ntasks=8                        ## CPU cores
-#SBATCH --mem=64G                         ## RAM (separate from GPU memory)
-#SBATCH --time=04:00:00                   ## Wall time limit HH:MM:SS
-#SBATCH --output=logs/slurm-%j.out        ## stdout/stderr; %j = job ID
+#SBATCH --ntasks=8                           ## CPU cores
+#SBATCH --mem=64G                            ## RAM; request ~110% of expected peak use
+#SBATCH --time=04:00:00                      ## Wall time limit HH:MM:SS
+#SBATCH --output=logs/slurm-%j.out           ## stdout/stderr; %j = job ID
 
 ## Load software
 module purge
@@ -42,13 +42,11 @@ Submit it:
 sbatch myjob.sh
 ```
 
-SLURM returns a job ID immediately:
+SLURM returns a job ID immediately and your job enters the queue:
 
 ```
 Submitted batch job 1234567
 ```
-
-Your job enters the queue and starts when the requested resources are available.
 
 ## Partition Limits (`kellogg`)
 
@@ -69,34 +67,85 @@ Request `--mem` explicitly when your job needs more than the per-core default.
 | `--partition` | Node pool; use `kellogg` for KLC Reserve |
 | `--nodes=1` | Physical machines; keep at 1 unless using MPI |
 | `--ntasks` | CPU cores; increase only if your code parallelizes |
-| `--mem` | RAM per node; request ~110% of expected peak use |
+| `--mem` | RAM per node |
 | `--time` | Maximum wall time; job is killed if it exceeds this |
 | `--output` | File for stdout and stderr (`%j` = job ID) |
+| `--gres=gpu:1` | Request one GPU (for GPU jobs; see [GPU Jobs](gpu-jobs)) |
 
 ```{warning}
 `--ntasks` without `--nodes=1` can spread cores across multiple machines. Unless your code uses MPI, always pair `--ntasks` with `--nodes=1`.
 ```
 
-## Interactive Sessions with `salloc`
+```{note}
+Run `groups` after logging into any KLC node to see the SLURM account names you belong to. Contact [rs@kellogg.northwestern.edu](mailto:rs@kellogg.northwestern.edu) if your jobs fail to submit.
+```
 
-Use an interactive allocation when you need a dedicated node for debugging but want to run commands at the prompt:
+## Interactive Sessions
+
+For interactive work on a reserved node — useful for debugging or testing resource-intensive steps — use `salloc`:
 
 ```bash
 salloc --account=kellogg \
        --partition=kellogg \
-       --nodes=1 \
-       --ntasks=8 \
-       --mem=64G \
-       --time=02:00:00
+       --nodes=1 --ntasks=4 --mem=32G \
+       --time=01:00:00
 ```
 
-When the allocation starts, run commands in that shell. Release the allocation with:
+Once the allocation is granted, SLURM sets `$SLURM_NODELIST` and similar environment variables in your shell. To open an interactive shell on the allocated compute node, run:
 
 ```bash
-exit
+srun --pty bash
 ```
 
-For GPU interactive sessions, add `--gres=gpu:1`. See [GPU Jobs](gpu-jobs).
+This launches a bash session directly on the assigned node. When you are done, type `exit` to leave the `srun` session, then `exit` again to release the `salloc` allocation.
+
+You can also use `srun` to run a single command on the allocated node without opening a full shell:
+
+```bash
+srun python my_script.py
+```
+
+To request a GPU interactively, add `--gres=gpu:1` to your `salloc` command:
+
+```bash
+salloc --account=kellogg \
+       --partition=kellogg \
+       --nodes=1 --ntasks=4 --mem=32G \
+       --gres=gpu:1 --time=01:00:00
+```
+
+Then connect to the node and verify the GPU is visible:
+
+```bash
+srun --pty bash
+nvidia-smi
+```
+
+For GPU setup and batch examples, see [GPU Jobs](gpu-jobs).
+
+### Using `srun` Directly (One-Step Alternative)
+
+You can skip `salloc` entirely and let `srun` handle both allocation and execution in a single command:
+
+```bash
+srun --account=kellogg \
+     --partition=kellogg \
+     --nodes=1 --ntasks=4 --mem=32G \
+     --time=01:00:00 \
+     --pty bash
+```
+
+For a GPU session:
+
+```bash
+srun --account=kellogg \
+     --partition=kellogg \
+     --nodes=1 --ntasks=4 --mem=32G \
+     --gres=gpu:1 --time=01:00:00 \
+     --pty bash
+```
+
+This is the simpler option for a quick one-off session. The tradeoff is that each `srun` call competes for resources independently — if you need to run several sequential steps and want them all to share the same allocation without requeuing, use `salloc` + `srun` instead.
 
 ## Job Arrays
 
@@ -146,7 +195,7 @@ seff <job-id>
 scancel <job-id>
 ```
 
-`seff` reports CPU efficiency and actual vs. requested memory — use it to tune future submissions.
+`seff` reports CPU efficiency and actual vs. requested memory — use it after each run to tighten your resource requests and reduce queue wait time.
 
 ## Common Pitfalls
 
@@ -154,9 +203,12 @@ scancel <job-id>
 |---|---|---|
 | `Invalid account` | Wrong `--account` or no partition access | Run `groups`; contact [rs@kellogg.northwestern.edu](mailto:rs@kellogg.northwestern.edu) |
 | Job stays `PD` (pending) | Cluster busy or request too large | Check `squeue -j <job-id> --start`; reduce `--mem`, `--ntasks`, or `--time` |
+| Job fails immediately | Missing `module load` or wrong conda path | Test the exact commands interactively first |
 | Job ends with `OUT_OF_MEMORY` | `--mem` too low | Increase `--mem`; use `seff` on a failed job to see actual use |
 | Job ends with `TIMEOUT` | `--time` too low | Increase `--time` and resubmit |
 | Empty or missing output file | Wrong `--output` path | Create the log directory before submitting; use an absolute path under `/kellogg/proj/` |
+| `--ntasks` spreads across nodes | Missing `--nodes=1` | Always add `--nodes=1` for non-MPI jobs |
+| GPU not visible in Python | CUDA environment not loaded | Load the correct CUDA module; see [GPU Jobs](gpu-jobs) |
 
 ## Practical Workflow
 
@@ -169,6 +221,8 @@ scancel <job-id>
 ## Further Reading
 
 - [Quest SLURM documentation](https://rcdsdocs.it.northwestern.edu/systems/quest/user-guide/slurm/slurm.html) — comprehensive `#SBATCH` reference
+- [When to Use KLC Reserve](when-to-use) — when to use SLURM vs. direct login
 - [Launching Jobs on KLC](/services/klc/user-guide/klc-software) — modules and environment setup
 - [Using tmux](/services/klc/user-guide/klc-tmux) — keeping interactive sessions alive on login nodes
 - [GPU Jobs](gpu-jobs) — GPU requests on the `kellogg` partition
+- [KLC Reserve overview](klc-reserve) — available hardware

@@ -196,19 +196,15 @@ Northwestern University - Home"/>
 <li class="toctree-l3"><a class="reference internal" href="klc-transferfiles.html">Data Transfer</a></li>
 <li class="toctree-l3"><a class="reference internal" href="klc-editor.html">Edit Files on KLC</a></li>
 <li class="toctree-l3"><a class="reference internal" href="klc-git.html">Using Git on KLC</a></li>
-<li class="toctree-l3"><a class="reference internal" href="klc-conda.html">Conda Environments on KLC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="klc-conda.html">Conda/Mamba Environments</a></li>
 <li class="toctree-l3"><a class="reference internal" href="klc-software.html">Launching Jobs</a></li>
 <li class="toctree-l3"><a class="reference internal" href="klc-tmux.html">Using tmux</a></li>
-<li class="toctree-l3"><a class="reference internal" href="klc-profiling.html">Monitoring Jobs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="klc-profiling.html">Monitoring &amp; Managing Jobs</a></li>
 <li class="toctree-l3"><a class="reference internal" href="llm-api.html">LLM API Usage</a></li>
 <li class="toctree-l3"><a class="reference internal" href="llm-klc.html">Open Source LLMs</a></li>
 </ul>
 </details></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../klc-datasets.html">Datasets on KLC</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../datasets/datasets/cme.html">CME</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../datasets/datasets/nielsen-marketing-data.html">Nielsen Marketing Data</a></li>
-</ul>
-</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../klc-datasets.html">Datasets on KLC</a></li>
 <li class="toctree-l2"><a class="reference external" href="https://rcdsdocs.it.northwestern.edu/systems/quest/quest.html" target="_blank">Quest Documentation <svg aria-hidden="true" height="1.0em" style="display: inline-block; vertical-align: middle; fill: currentColor;" version="1.1" viewbox="0 0 16 16" width="1.0em"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a></li>
 <li class="toctree-l2"><a class="reference external" href="https://www.it.northwestern.edu/departments/it-services-support/research/computing/quest/data-security-guidance.html" target="_blank">Quest Data Security Guidance <svg aria-hidden="true" height="1.0em" style="display: inline-block; vertical-align: middle; fill: currentColor;" version="1.1" viewbox="0 0 16 16" width="1.0em"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a></li>
 </ul>
@@ -348,7 +344,7 @@ Northwestern University - Home"/>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mac-instructions">Mac Instructions</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#windows-instructions">Windows Instructions</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#passwordless-ssh-login">Passwordless SSH Login</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bonus">Bonus</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#see-also">See Also</a></li>
 </ul>
             </nav>
         </div>
@@ -362,16 +358,16 @@ Northwestern University - Home"/>
                   
   <section id="ssh">
 <h1>SSH<a class="headerlink" href="#ssh" title="Link to this heading">#</a></h1>
-<p>A plain SSH connection is a text-based terminal session to a KLC node — the fastest of the connection options, and the one that pairs most naturally with scripts, scheduled jobs, and version-controlled code.</p>
+<p>A plain SSH connection is a text-based terminal session to a KLC node — the lightest-weight of the connection options, and the one that pairs most naturally with scripts, scheduled jobs, and version-controlled code.</p>
 <section id="mac-instructions">
 <h2>Mac Instructions<a class="headerlink" href="#mac-instructions" title="Link to this heading">#</a></h2>
 <p>Mac computers come with the <code class="docutils literal notranslate"><span class="pre">Terminal</span></code> program already installed as a standard program.</p>
-<p>To create a “plain” (not graphical) connection to a specific KLC node (for instance KLC0202), you would simply open <code class="docutils literal notranslate"><span class="pre">Terminal</span></code> and type:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ssh<span class="w"> </span>your-netid@klc0202.quest.northwestern.edu
+<p>To create a “plain” (not graphical) connection to a specific KLC node (for instance KLC0305), you would simply open <code class="docutils literal notranslate"><span class="pre">Terminal</span></code> and type:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ssh<span class="w"> </span>your-netid@klc0305.quest.northwestern.edu
 </pre></div>
 </div>
 <p>If you prefer a graphical (X11) interface, just add the <code class="docutils literal notranslate"><span class="pre">-Y</span></code> option:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ssh<span class="w"> </span>-Y<span class="w"> </span>your-netid@klc0202.quest.northwestern.edu
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ssh<span class="w"> </span>-Y<span class="w"> </span>your-netid@klc0305.quest.northwestern.edu
 </pre></div>
 </div>
 <p>Occasionally you might receive an error that says something like “host key verification failed.” Most of the time, you can fix these problems by deleting your host key file and trying again:</p>
@@ -386,7 +382,7 @@ Northwestern University - Home"/>
 <section id="windows-instructions">
 <h2>Windows Instructions<a class="headerlink" href="#windows-instructions" title="Link to this heading">#</a></h2>
 <p>Windows 10 and later come with an SSH client built in, so there’s nothing to install for a plain-text connection. Open <code class="docutils literal notranslate"><span class="pre">PowerShell</span></code> and type:</p>
-<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">ssh</span> <span class="n">your-netid</span><span class="nv">@klc0202</span><span class="p">.</span><span class="n">quest</span><span class="p">.</span><span class="n">northwestern</span><span class="p">.</span><span class="n">edu</span>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">ssh</span> <span class="n">your-netid</span><span class="nv">@klc0305</span><span class="p">.</span><span class="n">quest</span><span class="p">.</span><span class="n">northwestern</span><span class="p">.</span><span class="n">edu</span>
 </pre></div>
 </div>
 <p>Occasionally you might receive an error that says something like “host key verification failed.” Most of the time, you can fix these problems by deleting your host key file and trying again:</p>
@@ -401,7 +397,7 @@ Northwestern University - Home"/>
 <p>Common instructions for using these clients (may differ slightly for different clients):</p>
 <ul class="simple">
 <li><p>In the Sessions menu, select SSH.</p></li>
-<li><p>In Remote Host, give the address of the server (e.g. any KLC login node address: <code class="docutils literal notranslate"><span class="pre">klc0202.quest.northwestern.edu</span></code>)</p></li>
+<li><p>In Remote Host, give the address of the server (e.g. any KLC login node address: <code class="docutils literal notranslate"><span class="pre">klc0305.quest.northwestern.edu</span></code>)</p></li>
 <li><p>Specify your NetID as the username.</p></li>
 <li><p>Under Advanced SSH settings, check the box for X11-Forwarding if you want a graphical interface; leave it unchecked for a plain text interface.</p></li>
 <li><p>If you work on remote servers regularly, you will find it convenient to save and label a set of commonly used sessions.</p></li>
@@ -445,7 +441,7 @@ Northwestern University - Home"/>
 </li>
 <li><p>Copy the public key <code class="docutils literal notranslate"><span class="pre">id_rsa.pub</span></code> to KLC.</p>
 <p>On macOS or Linux, run the following command in the <strong>Terminal</strong>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ssh-copy-id<span class="w"> </span>your_netid@klc0202.quest.northwestern.edu
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ssh-copy-id<span class="w"> </span>your_netid@klc0305.quest.northwestern.edu
 </pre></div>
 </div>
 <p>To add it manually (works for all OS):</p>
@@ -472,8 +468,8 @@ chmod<span class="w"> </span><span class="m">600</span><span class="w"> </span>~
 </li>
 </ol>
 </section>
-<section id="bonus">
-<h2>Bonus<a class="headerlink" href="#bonus" title="Link to this heading">#</a></h2>
+<section id="see-also">
+<h2>See Also<a class="headerlink" href="#see-also" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><a class="reference internal" href="klc-vscode.html"><span class="doc std std-doc">VS Code with the Remote-SSH extension</span></a> builds a full graphical editor on top of this same SSH connection.</p></li>
 </ul>
@@ -530,7 +526,7 @@ chmod<span class="w"> </span><span class="m">600</span><span class="w"> </span>~
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mac-instructions">Mac Instructions</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#windows-instructions">Windows Instructions</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#passwordless-ssh-login">Passwordless SSH Login</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bonus">Bonus</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#see-also">See Also</a></li>
 </ul>
   </nav></div>
 

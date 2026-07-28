@@ -196,19 +196,15 @@ Northwestern University - Home"/>
 <li class="toctree-l3"><a class="reference internal" href="../../services/klc/user-guide/klc-transferfiles.html">Data Transfer</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../services/klc/user-guide/klc-editor.html">Edit Files on KLC</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../services/klc/user-guide/klc-git.html">Using Git on KLC</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../services/klc/user-guide/klc-conda.html">Conda Environments on KLC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../services/klc/user-guide/klc-conda.html">Conda/Mamba Environments</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../services/klc/user-guide/klc-software.html">Launching Jobs</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../services/klc/user-guide/klc-tmux.html">Using tmux</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../services/klc/user-guide/klc-profiling.html">Monitoring Jobs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../services/klc/user-guide/klc-profiling.html">Monitoring &amp; Managing Jobs</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../services/klc/user-guide/llm-api.html">LLM API Usage</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../services/klc/user-guide/llm-klc.html">Open Source LLMs</a></li>
 </ul>
 </details></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../../services/klc/klc-datasets.html">Datasets on KLC</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../services/datasets/datasets/cme.html">CME</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../services/datasets/datasets/nielsen-marketing-data.html">Nielsen Marketing Data</a></li>
-</ul>
-</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../../services/klc/klc-datasets.html">Datasets on KLC</a></li>
 <li class="toctree-l2"><a class="reference external" href="https://rcdsdocs.it.northwestern.edu/systems/quest/quest.html" target="_blank">Quest Documentation <svg aria-hidden="true" height="1.0em" style="display: inline-block; vertical-align: middle; fill: currentColor;" version="1.1" viewbox="0 0 16 16" width="1.0em"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a></li>
 <li class="toctree-l2"><a class="reference external" href="https://www.it.northwestern.edu/departments/it-services-support/research/computing/quest/data-security-guidance.html" target="_blank">Quest Data Security Guidance <svg aria-hidden="true" height="1.0em" style="display: inline-block; vertical-align: middle; fill: currentColor;" version="1.1" viewbox="0 0 16 16" width="1.0em"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a></li>
 </ul>
@@ -347,6 +343,7 @@ Northwestern University - Home"/>
                 <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-klc-offers">What KLC Offers</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#klc-architecture">KLC Architecture</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#klc-reserve">KLC Reserve</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started-step-by-step">Getting Started: Step by Step</a><ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-get-an-account">Step 1 — Get an Account</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-connect-to-klc">Step 2 — Connect to KLC</a></li>
@@ -406,6 +403,33 @@ Northwestern University - Home"/>
 </div>
 <p>All nodes share the same file systems, so a file saved on one node is accessible from any other.</p>
 <p><strong>Usage policy:</strong> Each user may use up to 24 CPU cores concurrently at normal priority. Going beyond this reduces priority for all your processes. Contact <a class="reference external" href="mailto:rs&#37;&#52;&#48;kellogg&#46;northwestern&#46;edu" target="_blank">rs<span>&#64;</span>kellogg<span>&#46;</span>northwestern<span>&#46;</span>edu <svg version="1.1" width="1.0em" height="1.0em" viewBox="0 0 16 16" aria-hidden="true" style="display: inline-block; vertical-align: middle; fill: currentColor;"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a> if your work regularly needs more than 24 cores.</p>
+</section>
+<section id="klc-reserve">
+<h2>KLC Reserve<a class="headerlink" href="#klc-reserve" title="Link to this heading">#</a></h2>
+<p><strong>KLC Reserve</strong> gives you access to dedicated GPU and high-core-count CPU nodes through the SLURM job scheduler — resources not available on the standard KLC login nodes.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Resource Type</p></th>
+<th class="head"><p>Best For</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>GPU — H100</p></td>
+<td><p>Large-scale LLM training and inference, deep learning</p></td>
+</tr>
+<tr class="row-odd"><td><p>GPU — A100</p></td>
+<td><p>GPU-accelerated computation, ML training</p></td>
+</tr>
+<tr class="row-even"><td><p>GPU — L40S</p></td>
+<td><p>LLM inference, rendering, general GPU workloads</p></td>
+</tr>
+<tr class="row-odd"><td><p>High-memory CPU</p></td>
+<td><p>Very large in-memory datasets, parallel batch jobs</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Jobs are submitted to the <code class="docutils literal notranslate"><span class="pre">kellogg</span></code> SLURM partition and run exclusively on allocated resources for the duration of your job. No additional account setup is needed if you already have KLC access. Full details: <a class="reference internal" href="../../services/klc-reserve/klc-reserve.html"><span class="doc std std-doc">KLC Reserve</span></a></p>
 </section>
 <section id="getting-started-step-by-step">
 <h2>Getting Started: Step by Step<a class="headerlink" href="#getting-started-step-by-step" title="Link to this heading">#</a></h2>
@@ -526,18 +550,6 @@ python<span class="w"> </span>my_analysis.py
 <tr class="row-even"><td><p>Use LLMs on KLC</p></td>
 <td><p><a class="reference internal" href="../../services/klc/user-guide/llm-klc.html"><span class="doc std std-doc">Open Source LLMs</span></a></p></td>
 </tr>
-<tr class="row-odd"><td><p>SLURM job scheduler (deep reference)</p></td>
-<td><p><a class="reference external" href="https://rcdsdocs.it.northwestern.edu/systems/quest/user-guide/slurm/slurm.html" target="_blank">Quest SLURM docs <svg version="1.1" width="1.0em" height="1.0em" viewBox="0 0 16 16" aria-hidden="true" style="display: inline-block; vertical-align: middle; fill: currentColor;"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a></p></td>
-</tr>
-<tr class="row-even"><td><p>Software modules reference</p></td>
-<td><p><a class="reference external" href="https://rcdsdocs.it.northwestern.edu/systems/quest/user-guide/modules/modules.html" target="_blank">Quest Modules docs <svg version="1.1" width="1.0em" height="1.0em" viewBox="0 0 16 16" aria-hidden="true" style="display: inline-block; vertical-align: middle; fill: currentColor;"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a></p></td>
-</tr>
-<tr class="row-odd"><td><p>Filesystem quotas and permissions</p></td>
-<td><p><a class="reference external" href="https://rcdsdocs.it.northwestern.edu/systems/quest/user-guide/filesystem/filesystem.html" target="_blank">Quest Filesystem docs <svg version="1.1" width="1.0em" height="1.0em" viewBox="0 0 16 16" aria-hidden="true" style="display: inline-block; vertical-align: middle; fill: currentColor;"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a></p></td>
-</tr>
-<tr class="row-even"><td><p>Login methods (SSH, FastX, OnDemand)</p></td>
-<td><p><a class="reference external" href="https://rcdsdocs.it.northwestern.edu/systems/quest/user-guide/login/login-quest.html" target="_blank">Quest Login docs <svg version="1.1" width="1.0em" height="1.0em" viewBox="0 0 16 16" aria-hidden="true" style="display: inline-block; vertical-align: middle; fill: currentColor;"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a></p></td>
-</tr>
 <tr class="row-odd"><td><p>Interactive vs. scheduled jobs</p></td>
 <td><p><a class="reference internal" href="../../services/klc-reserve/when-to-use.html"><span class="doc std std-doc">When to Use KLC Reserve</span></a></p></td>
 </tr>
@@ -546,6 +558,18 @@ python<span class="w"> </span>my_analysis.py
 </tr>
 <tr class="row-odd"><td><p>CPU vs. GPU concepts</p></td>
 <td><p><a class="reference internal" href="../../services/klc-reserve/gpu-concepts.html"><span class="doc std std-doc">GPU Concepts and Options</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p>SLURM job scheduler (deep reference)</p></td>
+<td><p><a class="reference external" href="https://rcdsdocs.it.northwestern.edu/systems/quest/user-guide/slurm/slurm.html" target="_blank">Quest SLURM docs <svg version="1.1" width="1.0em" height="1.0em" viewBox="0 0 16 16" aria-hidden="true" style="display: inline-block; vertical-align: middle; fill: currentColor;"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>Software modules reference</p></td>
+<td><p><a class="reference external" href="https://rcdsdocs.it.northwestern.edu/systems/quest/user-guide/modules/modules.html" target="_blank">Quest Modules docs <svg version="1.1" width="1.0em" height="1.0em" viewBox="0 0 16 16" aria-hidden="true" style="display: inline-block; vertical-align: middle; fill: currentColor;"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a></p></td>
+</tr>
+<tr class="row-even"><td><p>Filesystem quotas and permissions</p></td>
+<td><p><a class="reference external" href="https://rcdsdocs.it.northwestern.edu/systems/quest/user-guide/filesystem/filesystem.html" target="_blank">Quest Filesystem docs <svg version="1.1" width="1.0em" height="1.0em" viewBox="0 0 16 16" aria-hidden="true" style="display: inline-block; vertical-align: middle; fill: currentColor;"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>Login methods (SSH, FastX, OnDemand)</p></td>
+<td><p><a class="reference external" href="https://rcdsdocs.it.northwestern.edu/systems/quest/user-guide/login/login-quest.html" target="_blank">Quest Login docs <svg version="1.1" width="1.0em" height="1.0em" viewBox="0 0 16 16" aria-hidden="true" style="display: inline-block; vertical-align: middle; fill: currentColor;"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a></p></td>
 </tr>
 </tbody>
 </table>
@@ -602,6 +626,7 @@ python<span class="w"> </span>my_analysis.py
     <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-klc-offers">What KLC Offers</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#klc-architecture">KLC Architecture</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#klc-reserve">KLC Reserve</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started-step-by-step">Getting Started: Step by Step</a><ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-get-an-account">Step 1 — Get an Account</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-connect-to-klc">Step 2 — Connect to KLC</a></li>

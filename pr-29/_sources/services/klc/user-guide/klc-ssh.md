@@ -1,18 +1,18 @@
 # SSH
 
-A plain SSH connection is a text-based terminal session to a KLC node — the fastest of the connection options, and the one that pairs most naturally with scripts, scheduled jobs, and version-controlled code.
+A plain SSH connection is a text-based terminal session to a KLC node — the lightest-weight of the connection options, and the one that pairs most naturally with scripts, scheduled jobs, and version-controlled code.
 
 ## Mac Instructions
 
 Mac computers come with the `Terminal` program already installed as a standard program.
 
-To create a "plain" (not graphical) connection to a specific KLC node (for instance KLC0202), you would simply open `Terminal` and type:
+To create a "plain" (not graphical) connection to a specific KLC node (for instance KLC0305), you would simply open `Terminal` and type:
 ```bash
-ssh your-netid@klc0202.quest.northwestern.edu
+ssh your-netid@klc0305.quest.northwestern.edu
 ```
 If you prefer a graphical (X11) interface, just add the `-Y` option:
 ```bash
-ssh -Y your-netid@klc0202.quest.northwestern.edu
+ssh -Y your-netid@klc0305.quest.northwestern.edu
 ```
 Occasionally you might receive an error that says something like "host key verification failed." Most of the time, you can fix these problems by deleting your host key file and trying again:
 ```bash
@@ -27,7 +27,7 @@ Depending on the version of your Mac, you might need to install the free `XQuart
 
 Windows 10 and later come with an SSH client built in, so there's nothing to install for a plain-text connection. Open `PowerShell` and type:
 ```powershell
-ssh your-netid@klc0202.quest.northwestern.edu
+ssh your-netid@klc0305.quest.northwestern.edu
 ```
 Occasionally you might receive an error that says something like "host key verification failed." Most of the time, you can fix these problems by deleting your host key file and trying again:
 ```powershell
@@ -42,7 +42,7 @@ If you still want a graphical (X11) interface, a saved session manager, or other
 
 Common instructions for using these clients (may differ slightly for different clients):
 - In the Sessions menu, select SSH.
-- In Remote Host, give the address of the server (e.g. any KLC login node address: `klc0202.quest.northwestern.edu`)
+- In Remote Host, give the address of the server (e.g. any KLC login node address: `klc0305.quest.northwestern.edu`)
 - Specify your NetID as the username.
 - Under Advanced SSH settings, check the box for X11-Forwarding if you want a graphical interface; leave it unchecked for a plain text interface.
 - If you work on remote servers regularly, you will find it convenient to save and label a set of commonly used sessions.
@@ -79,7 +79,7 @@ Text instructions:
 
    On macOS or Linux, run the following command in the **Terminal**:
    ```bash
-   ssh-copy-id your_netid@klc0202.quest.northwestern.edu
+   ssh-copy-id your_netid@klc0305.quest.northwestern.edu
    ```
 
    To add it manually (works for all OS):
@@ -101,6 +101,6 @@ Text instructions:
    chmod 600 ~/.ssh/authorized_keys
    ```
 
-## Bonus
+## See Also
 
 - [VS Code with the Remote-SSH extension](klc-vscode) builds a full graphical editor on top of this same SSH connection.

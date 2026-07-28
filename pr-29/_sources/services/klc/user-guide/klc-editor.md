@@ -1,4 +1,4 @@
-#  Viewing and Editing Files 
+# Viewing and Editing Files
 
 
 
@@ -9,13 +9,13 @@ When working on research projects or data analysis in Linux, it's common to view
 These commands allow you to **view the contents** of a file without opening it in a full editor:
 
 * `cat filename` – Outputs the entire file to the terminal. Best for small files.
-* `less filename` – Opens the file in a scrollable view. Use arrow keys to navigate, `q` to quit. **Recommended** for long files.
+* `less filename` – Opens the file in a scrollable view. Use arrow keys to navigate, `/` to search, and `q` to quit. **Recommended** for long files.
 * `head filename` – Displays the **first 10 lines** of a file. Add `-n` to specify a different number (e.g., `head -n 20 filename`).
-* `tail filename` – Shows the **last 10 lines** of a file. Great for checking logs.
+* `tail filename` – Shows the **last 10 lines** of a file. Great for checking logs. Use `tail -f filename` to follow a log file in real time as it grows.
 
 ## Text Editors
 
-Text editors are important for writing batch scripts in high-performance computing environments. Users can choose between Nano (a beginner-friendly text editor) or Vim (a more powerful editor, especially in programming or large-scale text processing, but harder to learn) as their text editor on Quest.
+Text editors are important for writing batch scripts in high-performance computing environments. Users can choose between Nano (a beginner-friendly text editor) or Vim (a more powerful editor, especially in programming or large-scale text processing, but harder to learn) as their text editor on KLC.
 
 ## Editing Files with Nano
 :::{seealso}

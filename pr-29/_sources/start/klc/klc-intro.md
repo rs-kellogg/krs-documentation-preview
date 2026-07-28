@@ -25,6 +25,19 @@ All nodes share the same file systems, so a file saved on one node is accessible
 
 **Usage policy:** Each user may use up to 24 CPU cores concurrently at normal priority. Going beyond this reduces priority for all your processes. Contact [rs@kellogg.northwestern.edu](mailto:rs@kellogg.northwestern.edu) if your work regularly needs more than 24 cores.
 
+## KLC Reserve
+
+**KLC Reserve** gives you access to dedicated GPU and high-core-count CPU nodes through the SLURM job scheduler — resources not available on the standard KLC login nodes.
+
+| Resource Type | Best For |
+|---|---|
+| GPU — H100 | Large-scale LLM training and inference, deep learning |
+| GPU — A100 | GPU-accelerated computation, ML training |
+| GPU — L40S | LLM inference, rendering, general GPU workloads |
+| High-memory CPU | Very large in-memory datasets, parallel batch jobs |
+
+Jobs are submitted to the `kellogg` SLURM partition and run exclusively on allocated resources for the duration of your job. No additional account setup is needed if you already have KLC access. Full details: [KLC Reserve](/services/klc-reserve/klc-reserve)
+
 ## Getting Started: Step by Step
 
 ### Step 1 — Get an Account
@@ -124,10 +137,10 @@ Full details: [Launching Jobs](/services/klc/user-guide/klc-software) · [Using 
 | Full reference documentation | [KLC User Guide](/services/klc/user-guide/klc-user-guide) |
 | Use VS Code with KLC | [VS Code Workflow](/services/klc/user-guide/klc-vscode) |
 | Use LLMs on KLC | [Open Source LLMs](/services/klc/user-guide/llm-klc) |
+| Interactive vs. scheduled jobs | [When to Use KLC Reserve](/services/klc-reserve/when-to-use) |
+| Submit SLURM and GPU jobs | [KLC Reserve](/services/klc-reserve/klc-reserve) |
+| CPU vs. GPU concepts | [GPU Concepts and Options](/services/klc-reserve/gpu-concepts) |
 | SLURM job scheduler (deep reference) | [Quest SLURM docs](https://rcdsdocs.it.northwestern.edu/systems/quest/user-guide/slurm/slurm.html) |
 | Software modules reference | [Quest Modules docs](https://rcdsdocs.it.northwestern.edu/systems/quest/user-guide/modules/modules.html) |
 | Filesystem quotas and permissions | [Quest Filesystem docs](https://rcdsdocs.it.northwestern.edu/systems/quest/user-guide/filesystem/filesystem.html) |
 | Login methods (SSH, FastX, OnDemand) | [Quest Login docs](https://rcdsdocs.it.northwestern.edu/systems/quest/user-guide/login/login-quest.html) |
-| Interactive vs. scheduled jobs | [When to Use KLC Reserve](/services/klc-reserve/when-to-use) |
-| Submit SLURM and GPU jobs | [KLC Reserve](/services/klc-reserve/klc-reserve) |
-| CPU vs. GPU concepts | [GPU Concepts and Options](/services/klc-reserve/gpu-concepts) |

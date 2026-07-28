@@ -13,12 +13,12 @@ For comprehensive SLURM, filesystem, and software reference, see the [Quest User
 ---
 <h3>Connect to KLC</h3>
 
-[Overview](klc-accessing) {octicon}`dot-fill` [SSH](klc-ssh) {octicon}`dot-fill` [FastX](klc-fastx) {octicon}`dot-fill` [VS Code + Remote SSH Workflow](klc-vscode) {octicon}`dot-fill` [KLC OnDemand](klc-ondemand)
+[Logging In](klc-accessing) {octicon}`dot-fill` [SSH](klc-ssh) {octicon}`dot-fill` [FastX](klc-fastx) {octicon}`dot-fill` [VS Code + Remote SSH Workflow](klc-vscode) {octicon}`dot-fill` [KLC OnDemand](klc-ondemand)
 
 ---
 <h3>KLC Storage</h3>
 
-[Overview](klc-files) {octicon}`dot-fill` [Data Security Guidance](https://www.it.northwestern.edu/departments/it-services-support/research/computing/quest/)
+[Organizing Directories](klc-files) {octicon}`dot-fill` [Data Security Guidance](https://www.it.northwestern.edu/departments/it-services-support/research/computing/quest/)
 
 ---
 <h3>Data Transfer</h3>
@@ -33,12 +33,12 @@ For comprehensive SLURM, filesystem, and software reference, see the [Quest User
 ---
 <h3>Running Jobs</h3>
 
-[Launching Jobs](klc-software) {octicon}`dot-fill` [Conda Environments](klc-conda) {octicon}`dot-fill` [Using tmux](klc-tmux) {octicon}`dot-fill` [KLC Reserve](/services/klc-reserve/klc-reserve)
+[Launching Jobs](klc-software) {octicon}`dot-fill` [Conda/Mamba Environments](klc-conda) {octicon}`dot-fill` [Using tmux](klc-tmux) {octicon}`dot-fill` [KLC Reserve](/services/klc-reserve/klc-reserve)
 
 ---
-<h3>Monitoring Jobs</h3>
+<h3>Monitoring & Managing Jobs</h3>
 
-[Monitoring & Profiling](klc-profiling)
+[Monitoring & Managing Jobs](klc-profiling)
 
 ---
 <h3>GPUs</h3>
@@ -66,10 +66,10 @@ KLC Filesystem <klc-files>
 Data Transfer <klc-transferfiles>
 Edit Files on KLC <klc-editor>
 Using Git on KLC <klc-git>
-Conda Environments on KLC <klc-conda>
+Conda/Mamba Environments <klc-conda>
 Launching Jobs <klc-software>
 Using tmux <klc-tmux>
-Monitoring Jobs <klc-profiling>
+Monitoring & Managing Jobs <klc-profiling>
 LLM API Usage <llm-api>
 Open Source LLMs <llm-klc>
 ```

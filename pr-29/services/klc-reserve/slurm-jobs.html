@@ -196,19 +196,15 @@ Northwestern University - Home"/>
 <li class="toctree-l3"><a class="reference internal" href="../klc/user-guide/klc-transferfiles.html">Data Transfer</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../klc/user-guide/klc-editor.html">Edit Files on KLC</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../klc/user-guide/klc-git.html">Using Git on KLC</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../klc/user-guide/klc-conda.html">Conda Environments on KLC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../klc/user-guide/klc-conda.html">Conda/Mamba Environments</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../klc/user-guide/klc-software.html">Launching Jobs</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../klc/user-guide/klc-tmux.html">Using tmux</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../klc/user-guide/klc-profiling.html">Monitoring Jobs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../klc/user-guide/klc-profiling.html">Monitoring &amp; Managing Jobs</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../klc/user-guide/llm-api.html">LLM API Usage</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../klc/user-guide/llm-klc.html">Open Source LLMs</a></li>
 </ul>
 </details></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../klc/klc-datasets.html">Datasets on KLC</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="../datasets/datasets/cme.html">CME</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../datasets/datasets/nielsen-marketing-data.html">Nielsen Marketing Data</a></li>
-</ul>
-</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../klc/klc-datasets.html">Datasets on KLC</a></li>
 <li class="toctree-l2"><a class="reference external" href="https://rcdsdocs.it.northwestern.edu/systems/quest/quest.html" target="_blank">Quest Documentation <svg aria-hidden="true" height="1.0em" style="display: inline-block; vertical-align: middle; fill: currentColor;" version="1.1" viewbox="0 0 16 16" width="1.0em"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a></li>
 <li class="toctree-l2"><a class="reference external" href="https://www.it.northwestern.edu/departments/it-services-support/research/computing/quest/data-security-guidance.html" target="_blank">Quest Data Security Guidance <svg aria-hidden="true" height="1.0em" style="display: inline-block; vertical-align: middle; fill: currentColor;" version="1.1" viewbox="0 0 16 16" width="1.0em"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a></li>
 </ul>
@@ -349,7 +345,10 @@ Northwestern University - Home"/>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-minimal-batch-script">A Minimal Batch Script</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#partition-limits-kellogg">Partition Limits (<code class="docutils literal notranslate"><span class="pre">kellogg</span></code>)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-sbatch-options">Key <code class="docutils literal notranslate"><span class="pre">#SBATCH</span></code> Options</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interactive-sessions-with-salloc">Interactive Sessions with <code class="docutils literal notranslate"><span class="pre">salloc</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interactive-sessions">Interactive Sessions</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-srun-directly-one-step-alternative">Using <code class="docutils literal notranslate"><span class="pre">srun</span></code> Directly (One-Step Alternative)</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#job-arrays">Job Arrays</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#monitoring-and-cancelling-jobs">Monitoring and Cancelling Jobs</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#common-pitfalls">Common Pitfalls</a></li>
@@ -368,8 +367,8 @@ Northwestern University - Home"/>
                   
   <section id="submitting-slurm-jobs">
 <h1>Submitting SLURM Jobs<a class="headerlink" href="#submitting-slurm-jobs" title="Link to this heading">#</a></h1>
-<p>KLC Reserve jobs run on the <strong><code class="docutils literal notranslate"><span class="pre">kellogg</span></code> SLURM partition</strong>. You submit a shell script that declares the resources your job needs; SLURM schedules the job and runs it on dedicated nodes whether you remain logged in or not.</p>
-<p>For the decision between interactive login work and scheduled jobs, see <a class="reference internal" href="when-to-use.html"><span class="doc std std-doc">When to Use KLC Reserve</span></a>. For GPU-specific requests, see <a class="reference internal" href="gpu-jobs.html"><span class="doc std std-doc">GPU Jobs</span></a>.</p>
+<p>KLC Reserve jobs run on the <strong><code class="docutils literal notranslate"><span class="pre">kellogg</span></code> SLURM partition</strong>. You submit a shell script that declares the resources your job needs; SLURM schedules the job and runs it on dedicated nodes whether you remain logged in or not. This page covers how to write, submit, monitor, and tune batch and interactive SLURM jobs.</p>
+<p>For the decision between interactive login work and scheduled jobs, see <a class="reference internal" href="when-to-use.html"><span class="doc std std-doc">When to Use KLC Reserve</span></a>. For GPU-specific requests, see <a class="reference internal" href="gpu-jobs.html"><span class="doc std std-doc">GPU Jobs</span></a>. For comprehensive SLURM reference, see the <a class="reference external" href="https://rcdsdocs.it.northwestern.edu/systems/quest/user-guide/slurm/slurm.html" target="_blank">Quest SLURM documentation <svg version="1.1" width="1.0em" height="1.0em" viewBox="0 0 16 16" aria-hidden="true" style="display: inline-block; vertical-align: middle; fill: currentColor;"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a>.</p>
 <section id="prerequisites">
 <h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading">#</a></h2>
 <ul class="simple">
@@ -383,13 +382,13 @@ Northwestern University - Home"/>
 <p>Save this as <code class="docutils literal notranslate"><span class="pre">myjob.sh</span></code>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
 <span class="c1">#SBATCH --account=kellogg                    ## Kellogg SLURM account</span>
-<span class="c1">#SBATCH --partition=kellogg               ## Kellogg Reserve partition</span>
+<span class="c1">#SBATCH --partition=kellogg                  ## Kellogg Reserve partition</span>
 <span class="c1">#SBATCH --job-name=my-analysis</span>
 <span class="c1">#SBATCH --nodes=1</span>
-<span class="c1">#SBATCH --ntasks=8                        ## CPU cores</span>
-<span class="c1">#SBATCH --mem=64G                         ## RAM (separate from GPU memory)</span>
-<span class="c1">#SBATCH --time=04:00:00                   ## Wall time limit HH:MM:SS</span>
-<span class="c1">#SBATCH --output=logs/slurm-%j.out        ## stdout/stderr; %j = job ID</span>
+<span class="c1">#SBATCH --ntasks=8                           ## CPU cores</span>
+<span class="c1">#SBATCH --mem=64G                            ## RAM; request ~110% of expected peak use</span>
+<span class="c1">#SBATCH --time=04:00:00                      ## Wall time limit HH:MM:SS</span>
+<span class="c1">#SBATCH --output=logs/slurm-%j.out           ## stdout/stderr; %j = job ID</span>
 
 <span class="c1">## Load software</span>
 module<span class="w"> </span>purge
@@ -406,11 +405,10 @@ python<span class="w"> </span>analysis.py
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sbatch<span class="w"> </span>myjob.sh
 </pre></div>
 </div>
-<p>SLURM returns a job ID immediately:</p>
+<p>SLURM returns a job ID immediately and your job enters the queue:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Submitted</span> <span class="n">batch</span> <span class="n">job</span> <span class="mi">1234567</span>
 </pre></div>
 </div>
-<p>Your job enters the queue and starts when the requested resources are available.</p>
 </section>
 <section id="partition-limits-kellogg">
 <h2>Partition Limits (<code class="docutils literal notranslate"><span class="pre">kellogg</span></code>)<a class="headerlink" href="#partition-limits-kellogg" title="Link to this heading">#</a></h2>
@@ -460,13 +458,16 @@ python<span class="w"> </span>analysis.py
 <td><p>CPU cores; increase only if your code parallelizes</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--mem</span></code></p></td>
-<td><p>RAM per node; request ~110% of expected peak use</p></td>
+<td><p>RAM per node</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">--time</span></code></p></td>
 <td><p>Maximum wall time; job is killed if it exceeds this</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--output</span></code></p></td>
 <td><p>File for stdout and stderr (<code class="docutils literal notranslate"><span class="pre">%j</span></code> = job ID)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">--gres=gpu:1</span></code></p></td>
+<td><p>Request one GPU (for GPU jobs; see <a class="reference internal" href="gpu-jobs.html"><span class="doc std std-doc">GPU Jobs</span></a>)</p></td>
 </tr>
 </tbody>
 </table>
@@ -475,23 +476,62 @@ python<span class="w"> </span>analysis.py
 <p class="admonition-title">Warning</p>
 <p><code class="docutils literal notranslate"><span class="pre">--ntasks</span></code> without <code class="docutils literal notranslate"><span class="pre">--nodes=1</span></code> can spread cores across multiple machines. Unless your code uses MPI, always pair <code class="docutils literal notranslate"><span class="pre">--ntasks</span></code> with <code class="docutils literal notranslate"><span class="pre">--nodes=1</span></code>.</p>
 </div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Run <code class="docutils literal notranslate"><span class="pre">groups</span></code> after logging into any KLC node to see the SLURM account names you belong to. Contact <a class="reference external" href="mailto:rs&#37;&#52;&#48;kellogg&#46;northwestern&#46;edu" target="_blank">rs<span>&#64;</span>kellogg<span>&#46;</span>northwestern<span>&#46;</span>edu <svg version="1.1" width="1.0em" height="1.0em" viewBox="0 0 16 16" aria-hidden="true" style="display: inline-block; vertical-align: middle; fill: currentColor;"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a> if your jobs fail to submit.</p>
+</div>
 </section>
-<section id="interactive-sessions-with-salloc">
-<h2>Interactive Sessions with <code class="docutils literal notranslate"><span class="pre">salloc</span></code><a class="headerlink" href="#interactive-sessions-with-salloc" title="Link to this heading">#</a></h2>
-<p>Use an interactive allocation when you need a dedicated node for debugging but want to run commands at the prompt:</p>
+<section id="interactive-sessions">
+<h2>Interactive Sessions<a class="headerlink" href="#interactive-sessions" title="Link to this heading">#</a></h2>
+<p>For interactive work on a reserved node — useful for debugging or testing resource-intensive steps — use <code class="docutils literal notranslate"><span class="pre">salloc</span></code>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>salloc<span class="w"> </span>--account<span class="o">=</span>kellogg<span class="w"> </span><span class="se">\</span>
 <span class="w">       </span>--partition<span class="o">=</span>kellogg<span class="w"> </span><span class="se">\</span>
-<span class="w">       </span>--nodes<span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="se">\</span>
-<span class="w">       </span>--ntasks<span class="o">=</span><span class="m">8</span><span class="w"> </span><span class="se">\</span>
-<span class="w">       </span>--mem<span class="o">=</span>64G<span class="w"> </span><span class="se">\</span>
-<span class="w">       </span>--time<span class="o">=</span><span class="m">02</span>:00:00
+<span class="w">       </span>--nodes<span class="o">=</span><span class="m">1</span><span class="w"> </span>--ntasks<span class="o">=</span><span class="m">4</span><span class="w"> </span>--mem<span class="o">=</span>32G<span class="w"> </span><span class="se">\</span>
+<span class="w">       </span>--time<span class="o">=</span><span class="m">01</span>:00:00
 </pre></div>
 </div>
-<p>When the allocation starts, run commands in that shell. Release the allocation with:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">exit</span>
+<p>Once the allocation is granted, SLURM sets <code class="docutils literal notranslate"><span class="pre">$SLURM_NODELIST</span></code> and similar environment variables in your shell. To open an interactive shell on the allocated compute node, run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>srun<span class="w"> </span>--pty<span class="w"> </span>bash
 </pre></div>
 </div>
-<p>For GPU interactive sessions, add <code class="docutils literal notranslate"><span class="pre">--gres=gpu:1</span></code>. See <a class="reference internal" href="gpu-jobs.html"><span class="doc std std-doc">GPU Jobs</span></a>.</p>
+<p>This launches a bash session directly on the assigned node. When you are done, type <code class="docutils literal notranslate"><span class="pre">exit</span></code> to leave the <code class="docutils literal notranslate"><span class="pre">srun</span></code> session, then <code class="docutils literal notranslate"><span class="pre">exit</span></code> again to release the <code class="docutils literal notranslate"><span class="pre">salloc</span></code> allocation.</p>
+<p>You can also use <code class="docutils literal notranslate"><span class="pre">srun</span></code> to run a single command on the allocated node without opening a full shell:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>srun<span class="w"> </span>python<span class="w"> </span>my_script.py
+</pre></div>
+</div>
+<p>To request a GPU interactively, add <code class="docutils literal notranslate"><span class="pre">--gres=gpu:1</span></code> to your <code class="docutils literal notranslate"><span class="pre">salloc</span></code> command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>salloc<span class="w"> </span>--account<span class="o">=</span>kellogg<span class="w"> </span><span class="se">\</span>
+<span class="w">       </span>--partition<span class="o">=</span>kellogg<span class="w"> </span><span class="se">\</span>
+<span class="w">       </span>--nodes<span class="o">=</span><span class="m">1</span><span class="w"> </span>--ntasks<span class="o">=</span><span class="m">4</span><span class="w"> </span>--mem<span class="o">=</span>32G<span class="w"> </span><span class="se">\</span>
+<span class="w">       </span>--gres<span class="o">=</span>gpu:1<span class="w"> </span>--time<span class="o">=</span><span class="m">01</span>:00:00
+</pre></div>
+</div>
+<p>Then connect to the node and verify the GPU is visible:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>srun<span class="w"> </span>--pty<span class="w"> </span>bash
+nvidia-smi
+</pre></div>
+</div>
+<p>For GPU setup and batch examples, see <a class="reference internal" href="gpu-jobs.html"><span class="doc std std-doc">GPU Jobs</span></a>.</p>
+<section id="using-srun-directly-one-step-alternative">
+<h3>Using <code class="docutils literal notranslate"><span class="pre">srun</span></code> Directly (One-Step Alternative)<a class="headerlink" href="#using-srun-directly-one-step-alternative" title="Link to this heading">#</a></h3>
+<p>You can skip <code class="docutils literal notranslate"><span class="pre">salloc</span></code> entirely and let <code class="docutils literal notranslate"><span class="pre">srun</span></code> handle both allocation and execution in a single command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>srun<span class="w"> </span>--account<span class="o">=</span>kellogg<span class="w"> </span><span class="se">\</span>
+<span class="w">     </span>--partition<span class="o">=</span>kellogg<span class="w"> </span><span class="se">\</span>
+<span class="w">     </span>--nodes<span class="o">=</span><span class="m">1</span><span class="w"> </span>--ntasks<span class="o">=</span><span class="m">4</span><span class="w"> </span>--mem<span class="o">=</span>32G<span class="w"> </span><span class="se">\</span>
+<span class="w">     </span>--time<span class="o">=</span><span class="m">01</span>:00:00<span class="w"> </span><span class="se">\</span>
+<span class="w">     </span>--pty<span class="w"> </span>bash
+</pre></div>
+</div>
+<p>For a GPU session:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>srun<span class="w"> </span>--account<span class="o">=</span>kellogg<span class="w"> </span><span class="se">\</span>
+<span class="w">     </span>--partition<span class="o">=</span>kellogg<span class="w"> </span><span class="se">\</span>
+<span class="w">     </span>--nodes<span class="o">=</span><span class="m">1</span><span class="w"> </span>--ntasks<span class="o">=</span><span class="m">4</span><span class="w"> </span>--mem<span class="o">=</span>32G<span class="w"> </span><span class="se">\</span>
+<span class="w">     </span>--gres<span class="o">=</span>gpu:1<span class="w"> </span>--time<span class="o">=</span><span class="m">01</span>:00:00<span class="w"> </span><span class="se">\</span>
+<span class="w">     </span>--pty<span class="w"> </span>bash
+</pre></div>
+</div>
+<p>This is the simpler option for a quick one-off session. The tradeoff is that each <code class="docutils literal notranslate"><span class="pre">srun</span></code> call competes for resources independently — if you need to run several sequential steps and want them all to share the same allocation without requeuing, use <code class="docutils literal notranslate"><span class="pre">salloc</span></code> + <code class="docutils literal notranslate"><span class="pre">srun</span></code> instead.</p>
+</section>
 </section>
 <section id="job-arrays">
 <h2>Job Arrays<a class="headerlink" href="#job-arrays" title="Link to this heading">#</a></h2>
@@ -538,7 +578,7 @@ seff<span class="w"> </span>&lt;job-id&gt;
 scancel<span class="w"> </span>&lt;job-id&gt;
 </pre></div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">seff</span></code> reports CPU efficiency and actual vs. requested memory — use it to tune future submissions.</p>
+<p><code class="docutils literal notranslate"><span class="pre">seff</span></code> reports CPU efficiency and actual vs. requested memory — use it after each run to tighten your resource requests and reduce queue wait time.</p>
 </section>
 <section id="common-pitfalls">
 <h2>Common Pitfalls<a class="headerlink" href="#common-pitfalls" title="Link to this heading">#</a></h2>
@@ -558,17 +598,29 @@ scancel<span class="w"> </span>&lt;job-id&gt;
 <td><p>Cluster busy or request too large</p></td>
 <td><p>Check <code class="docutils literal notranslate"><span class="pre">squeue</span> <span class="pre">-j</span> <span class="pre">&lt;job-id&gt;</span> <span class="pre">--start</span></code>; reduce <code class="docutils literal notranslate"><span class="pre">--mem</span></code>, <code class="docutils literal notranslate"><span class="pre">--ntasks</span></code>, or <code class="docutils literal notranslate"><span class="pre">--time</span></code></p></td>
 </tr>
-<tr class="row-even"><td><p>Job ends with <code class="docutils literal notranslate"><span class="pre">OUT_OF_MEMORY</span></code></p></td>
+<tr class="row-even"><td><p>Job fails immediately</p></td>
+<td><p>Missing <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">load</span></code> or wrong conda path</p></td>
+<td><p>Test the exact commands interactively first</p></td>
+</tr>
+<tr class="row-odd"><td><p>Job ends with <code class="docutils literal notranslate"><span class="pre">OUT_OF_MEMORY</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">--mem</span></code> too low</p></td>
 <td><p>Increase <code class="docutils literal notranslate"><span class="pre">--mem</span></code>; use <code class="docutils literal notranslate"><span class="pre">seff</span></code> on a failed job to see actual use</p></td>
 </tr>
-<tr class="row-odd"><td><p>Job ends with <code class="docutils literal notranslate"><span class="pre">TIMEOUT</span></code></p></td>
+<tr class="row-even"><td><p>Job ends with <code class="docutils literal notranslate"><span class="pre">TIMEOUT</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">--time</span></code> too low</p></td>
 <td><p>Increase <code class="docutils literal notranslate"><span class="pre">--time</span></code> and resubmit</p></td>
 </tr>
-<tr class="row-even"><td><p>Empty or missing output file</p></td>
+<tr class="row-odd"><td><p>Empty or missing output file</p></td>
 <td><p>Wrong <code class="docutils literal notranslate"><span class="pre">--output</span></code> path</p></td>
 <td><p>Create the log directory before submitting; use an absolute path under <code class="docutils literal notranslate"><span class="pre">/kellogg/proj/</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--ntasks</span></code> spreads across nodes</p></td>
+<td><p>Missing <code class="docutils literal notranslate"><span class="pre">--nodes=1</span></code></p></td>
+<td><p>Always add <code class="docutils literal notranslate"><span class="pre">--nodes=1</span></code> for non-MPI jobs</p></td>
+</tr>
+<tr class="row-odd"><td><p>GPU not visible in Python</p></td>
+<td><p>CUDA environment not loaded</p></td>
+<td><p>Load the correct CUDA module; see <a class="reference internal" href="gpu-jobs.html"><span class="doc std std-doc">GPU Jobs</span></a></p></td>
 </tr>
 </tbody>
 </table>
@@ -588,9 +640,11 @@ scancel<span class="w"> </span>&lt;job-id&gt;
 <h2>Further Reading<a class="headerlink" href="#further-reading" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://rcdsdocs.it.northwestern.edu/systems/quest/user-guide/slurm/slurm.html" target="_blank">Quest SLURM documentation <svg version="1.1" width="1.0em" height="1.0em" viewBox="0 0 16 16" aria-hidden="true" style="display: inline-block; vertical-align: middle; fill: currentColor;"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a> — comprehensive <code class="docutils literal notranslate"><span class="pre">#SBATCH</span></code> reference</p></li>
+<li><p><a class="reference internal" href="when-to-use.html"><span class="doc std std-doc">When to Use KLC Reserve</span></a> — when to use SLURM vs. direct login</p></li>
 <li><p><a class="reference internal" href="../klc/user-guide/klc-software.html"><span class="doc std std-doc">Launching Jobs on KLC</span></a> — modules and environment setup</p></li>
 <li><p><a class="reference internal" href="../klc/user-guide/klc-tmux.html"><span class="doc std std-doc">Using tmux</span></a> — keeping interactive sessions alive on login nodes</p></li>
 <li><p><a class="reference internal" href="gpu-jobs.html"><span class="doc std std-doc">GPU Jobs</span></a> — GPU requests on the <code class="docutils literal notranslate"><span class="pre">kellogg</span></code> partition</p></li>
+<li><p><a class="reference internal" href="klc-reserve.html#klc-reserve"><span class="std std-ref">KLC Reserve overview</span></a> — available hardware</p></li>
 </ul>
 </section>
 </section>
@@ -646,7 +700,10 @@ scancel<span class="w"> </span>&lt;job-id&gt;
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-minimal-batch-script">A Minimal Batch Script</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#partition-limits-kellogg">Partition Limits (<code class="docutils literal notranslate"><span class="pre">kellogg</span></code>)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-sbatch-options">Key <code class="docutils literal notranslate"><span class="pre">#SBATCH</span></code> Options</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interactive-sessions-with-salloc">Interactive Sessions with <code class="docutils literal notranslate"><span class="pre">salloc</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interactive-sessions">Interactive Sessions</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-srun-directly-one-step-alternative">Using <code class="docutils literal notranslate"><span class="pre">srun</span></code> Directly (One-Step Alternative)</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#job-arrays">Job Arrays</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#monitoring-and-cancelling-jobs">Monitoring and Cancelling Jobs</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#common-pitfalls">Common Pitfalls</a></li>

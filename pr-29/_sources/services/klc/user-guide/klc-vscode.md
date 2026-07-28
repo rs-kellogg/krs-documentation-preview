@@ -43,7 +43,7 @@ Open the Extensions panel (`Ctrl+Shift+X` / `Cmd+Shift+X`) and install:
 
 1. Create a [GitHub account](https://github.com/) if you don't have one.
 2. Sign up for [GitHub Copilot](https://github.com/features/copilot) — a free tier is available.
-3. Set up SSH keys for KLC following the [passwordless SSH instructions](klc-accessing.md).
+3. Set up SSH keys for KLC following the [passwordless SSH instructions](klc-ssh.md).
 
 ## Connecting VS Code to KLC
 
@@ -52,7 +52,7 @@ Open the Extensions panel (`Ctrl+Shift+X` / `Cmd+Shift+X`) and install:
 3. VS Code opens a remote window connected to KLC. You can now open folders, edit files, and run terminals on KLC just as you would locally.
 
 ```{tip}
-Once connected, use VS Code's integrated terminal (`Ctrl+\``) to run commands on KLC — `module load`, `mamba activate`, job scripts, etc.
+Once connected, use VS Code's integrated terminal (`` Ctrl+` ``) to run commands on KLC — `module load`, `mamba activate`, job scripts, etc.
 ```
 
 ## GitHub Copilot in VS Code
@@ -60,7 +60,7 @@ Once connected, use VS Code's integrated terminal (`Ctrl+\``) to run commands on
 Once the Copilot extension is installed and you're signed in with your GitHub account:
 
 - **Inline suggestions** appear automatically as you type — press `Tab` to accept
-- **Copilot Chat** (`Ctrl+Alt+I`) lets you describe what you want in plain English and Copilot writes or explains code
+- **Copilot Chat** (`Ctrl+Shift+I`) lets you describe what you want in plain English and Copilot writes or explains code
 
 Copilot is especially useful for:
 - Writing boilerplate (file I/O, argument parsing, logging)
