@@ -28,28 +28,28 @@ Click **General Use Login** and authenticate with your Northwestern NetID.
 
 ```{image} images/aws-login-page.png
 :alt: NUIT AWS login page showing General Use Login and NIH-Funded Research Login buttons
-:width: 50%
+:scale: 50%
 ```
 
 After signing in, you will land on the **AWS access portal** showing the accounts you have access to.
 
 ```{image} images/aws-access-portal-accounts.png
 :alt: AWS access portal showing ksm-rch-data and ksm-rch-support accounts
-:width: 50%
+:scale: 50%
 ```
 
 Click the arrow next to **ksm-rch-data** to expand it. You will see one entry per database you have been granted access to (for example, `ksm-rch-data-comscore2`). Click **Management console** next to your database to open the AWS Console.
 
 ```{image} images/aws-access-portal-expanded.png
 :alt: ksm-rch-data expanded showing database roles such as ksm-rch-data-comscore2 and ksm-rch-data-fetchrewards
-:width: 50%
+:scale: 50%
 ```
 
 The AWS Console opens already scoped to your database account. Confirm the **Region** in the upper right is **US East (Ohio) (us-east-2)**.
 
 ```{image} images/aws-console-home.png
 :alt: AWS Console Home showing the correct region and account in the upper right
-:width: 50%
+:scale: 50%
 ```
 
 ### 2. Navigate to Athena
@@ -58,14 +58,14 @@ Type **Athena** in the search bar at the top of the console and select **Athena*
 
 ```{image} images/aws-console-search-athena.png
 :alt: AWS Console search bar with "athena" typed, showing the Athena service result
-:width: 50%
+:scale: 50%
 ```
 
 The Athena **Query editor** opens. The **Workgroup** (shown in the upper right of the editor) and **Database** (in the left panel) are set to the database you were granted access to. If either value is wrong, select the correct workgroup and database from the dropdown menus in the editor. The left panel lists all available tables.
 
 ```{image} images/athena-query-editor.png
 :alt: Athena Query Editor with workgroup set to comscore2, database set to comscore, and 8 tables listed
-:width: 50%
+:scale: 50%
 ```
 
 ```{tip}
@@ -74,7 +74,7 @@ Right-click any table name in the left panel to access shortcuts such as **Previ
 
 ```{image} images/athena-table-context-menu.png
 :alt: Table context menu showing options including Preview Table, Generate table DDL, Insert into editor, and View properties
-:width: 50%
+:scale: 50%
 ```
 
 ### 3. Query and Download Results
@@ -83,14 +83,14 @@ Type your SQL query in the editor and click **Run**. The status bar below the ed
 
 ```{image} images/athena-query-running.png
 :alt: Athena Query Editor with a SELECT query running, showing "Running" status and time in queue
-:width: 50%
+:scale: 50%
 ```
 
 When the query completes, results appear in the **Query results** panel. Click **Download results CSV** to save the output to your computer.
 
 ```{image} images/athena-query-results.png
 :alt: Athena Query Editor showing completed query results with 10 rows and the Download results CSV button
-:width: 50%
+:scale: 50%
 ```
 
 ## Accessing via KLC

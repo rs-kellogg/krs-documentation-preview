@@ -408,40 +408,40 @@ Northwestern University - Home"/>
 <h3>1. Log in to AWS<a class="headerlink" href="#log-in-to-aws" title="Link to this heading">#</a></h3>
 <p>Go to the <a class="reference external" href="https://www.it.northwestern.edu/support/login/aws.html" target="_blank">NUIT AWS login page <svg version="1.1" width="1.0em" height="1.0em" viewBox="0 0 16 16" aria-hidden="true" style="display: inline-block; vertical-align: middle; fill: currentColor;"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a> and sign in with your Northwestern NetID credentials.</p>
 <p>Click <strong>General Use Login</strong> and authenticate with your Northwestern NetID.</p>
-<a class="reference internal image-reference" href="../../../_images/aws-login-page.png"><img alt="NUIT AWS login page showing General Use Login and NIH-Funded Research Login buttons" src="../../../_images/aws-login-page.png" style="width: 50%;" />
+<a class="reference internal image-reference" href="../../../_images/aws-login-page.png"><img alt="NUIT AWS login page showing General Use Login and NIH-Funded Research Login buttons" src="../../../_images/aws-login-page.png" style="width: 838.0px; height: 486.5px;" />
 </a>
 <p>After signing in, you will land on the <strong>AWS access portal</strong> showing the accounts you have access to.</p>
-<a class="reference internal image-reference" href="../../../_images/aws-access-portal-accounts.png"><img alt="AWS access portal showing ksm-rch-data and ksm-rch-support accounts" src="../../../_images/aws-access-portal-accounts.png" style="width: 50%;" />
+<a class="reference internal image-reference" href="../../../_images/aws-access-portal-accounts.png"><img alt="AWS access portal showing ksm-rch-data and ksm-rch-support accounts" src="../../../_images/aws-access-portal-accounts.png" style="width: 838.5px; height: 488.5px;" />
 </a>
 <p>Click the arrow next to <strong>ksm-rch-data</strong> to expand it. You will see one entry per database you have been granted access to (for example, <code class="docutils literal notranslate"><span class="pre">ksm-rch-data-comscore2</span></code>). Click <strong>Management console</strong> next to your database to open the AWS Console.</p>
-<a class="reference internal image-reference" href="../../../_images/aws-access-portal-expanded.png"><img alt="ksm-rch-data expanded showing database roles such as ksm-rch-data-comscore2 and ksm-rch-data-fetchrewards" src="../../../_images/aws-access-portal-expanded.png" style="width: 50%;" />
+<a class="reference internal image-reference" href="../../../_images/aws-access-portal-expanded.png"><img alt="ksm-rch-data expanded showing database roles such as ksm-rch-data-comscore2 and ksm-rch-data-fetchrewards" src="../../../_images/aws-access-portal-expanded.png" style="width: 836.5px; height: 486.5px;" />
 </a>
 <p>The AWS Console opens already scoped to your database account. Confirm the <strong>Region</strong> in the upper right is <strong>US East (Ohio) (us-east-2)</strong>.</p>
-<a class="reference internal image-reference" href="../../../_images/aws-console-home.png"><img alt="AWS Console Home showing the correct region and account in the upper right" src="../../../_images/aws-console-home.png" style="width: 50%;" />
+<a class="reference internal image-reference" href="../../../_images/aws-console-home.png"><img alt="AWS Console Home showing the correct region and account in the upper right" src="../../../_images/aws-console-home.png" style="width: 836.5px; height: 487.0px;" />
 </a>
 </section>
 <section id="navigate-to-athena">
 <h3>2. Navigate to Athena<a class="headerlink" href="#navigate-to-athena" title="Link to this heading">#</a></h3>
 <p>Type <strong>Athena</strong> in the search bar at the top of the console and select <strong>Athena</strong> from the results.</p>
-<a class="reference internal image-reference" href="../../../_images/aws-console-search-athena.png"><img alt="AWS Console search bar with &quot;athena&quot; typed, showing the Athena service result" src="../../../_images/aws-console-search-athena.png" style="width: 50%;" />
+<a class="reference internal image-reference" href="../../../_images/aws-console-search-athena.png"><img alt="AWS Console search bar with &quot;athena&quot; typed, showing the Athena service result" src="../../../_images/aws-console-search-athena.png" style="width: 836.5px; height: 485.0px;" />
 </a>
 <p>The Athena <strong>Query editor</strong> opens. The <strong>Workgroup</strong> (shown in the upper right of the editor) and <strong>Database</strong> (in the left panel) are set to the database you were granted access to. If either value is wrong, select the correct workgroup and database from the dropdown menus in the editor. The left panel lists all available tables.</p>
-<a class="reference internal image-reference" href="../../../_images/athena-query-editor.png"><img alt="Athena Query Editor with workgroup set to comscore2, database set to comscore, and 8 tables listed" src="../../../_images/athena-query-editor.png" style="width: 50%;" />
+<a class="reference internal image-reference" href="../../../_images/athena-query-editor.png"><img alt="Athena Query Editor with workgroup set to comscore2, database set to comscore, and 8 tables listed" src="../../../_images/athena-query-editor.png" style="width: 836.0px; height: 485.5px;" />
 </a>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>Right-click any table name in the left panel to access shortcuts such as <strong>Preview Table</strong> (generates a <code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">*</span></code> query with a 10-row limit) and <strong>Generate table DDL</strong> (shows the table schema). Preview Table still scans data — see <a class="reference internal" href="#query-limits-and-reducing-data-scanned">Query Limits and Reducing Data Scanned</a> before previewing large tables.</p>
 </div>
-<a class="reference internal image-reference" href="../../../_images/athena-table-context-menu.png"><img alt="Table context menu showing options including Preview Table, Generate table DDL, Insert into editor, and View properties" src="../../../_images/athena-table-context-menu.png" style="width: 50%;" />
+<a class="reference internal image-reference" href="../../../_images/athena-table-context-menu.png"><img alt="Table context menu showing options including Preview Table, Generate table DDL, Insert into editor, and View properties" src="../../../_images/athena-table-context-menu.png" style="width: 864.0px; height: 559.0px;" />
 </a>
 </section>
 <section id="query-and-download-results">
 <h3>3. Query and Download Results<a class="headerlink" href="#query-and-download-results" title="Link to this heading">#</a></h3>
 <p>Type your SQL query in the editor and click <strong>Run</strong>. The status bar below the editor shows the query progress.</p>
-<a class="reference internal image-reference" href="../../../_images/athena-query-running.png"><img alt="Athena Query Editor with a SELECT query running, showing &quot;Running&quot; status and time in queue" src="../../../_images/athena-query-running.png" style="width: 50%;" />
+<a class="reference internal image-reference" href="../../../_images/athena-query-running.png"><img alt="Athena Query Editor with a SELECT query running, showing &quot;Running&quot; status and time in queue" src="../../../_images/athena-query-running.png" style="width: 835.5px; height: 487.5px;" />
 </a>
 <p>When the query completes, results appear in the <strong>Query results</strong> panel. Click <strong>Download results CSV</strong> to save the output to your computer.</p>
-<a class="reference internal image-reference" href="../../../_images/athena-query-results.png"><img alt="Athena Query Editor showing completed query results with 10 rows and the Download results CSV button" src="../../../_images/athena-query-results.png" style="width: 50%;" />
+<a class="reference internal image-reference" href="../../../_images/athena-query-results.png"><img alt="Athena Query Editor showing completed query results with 10 rows and the Download results CSV button" src="../../../_images/athena-query-results.png" style="width: 836.5px; height: 484.5px;" />
 </a>
 </section>
 </section>
