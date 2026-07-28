@@ -225,4 +225,4 @@ scancel <job-id>
 - [Launching Jobs on KLC](/services/klc/user-guide/klc-software) — modules and environment setup
 - [Using tmux](/services/klc/user-guide/klc-tmux) — keeping interactive sessions alive on login nodes
 - [GPU Jobs](gpu-jobs) — GPU requests on the `kellogg` partition
-- [KLC Reserve overview](klc-reserve) — available hardware
+- [KLC Reserve overview](/services/klc-reserve/klc-reserve) — available hardware

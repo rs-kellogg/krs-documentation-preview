@@ -26,6 +26,7 @@ CBOE Indexes <datasets/cboe-indexes>
 CBOT Treasury Package <datasets/cbot-treasury-package>
 Census Data <datasets/census-data>
 Chicago Research Data Center <datasets/chicago-research-data-center>
+CME <datasets/cme>
 Capital IQ <datasets/capital-iq>
 Compustat Global <datasets/compustat-global>
 Compustat North America <datasets/compustat-north-america>
@@ -74,6 +75,7 @@ NAIC Financial Statement Data <datasets/naic-financial-statement-data>
 NAIC Health Insurance Data <datasets/naic-health-insurance-data>
 NAIC Property/Casualty Insurance Data <datasets/naic-property-casualty-insurance-data>
 New York SPARCS Inpatient Databases <datasets/new-york-sparcs-inpatient-databases>
+Nielsen Marketing Data <datasets/nielsen-marketing-data>
 OTC Markets <datasets/otc-markets>
 OptionMetrics Ivy DB <datasets/optionmetrics-ivy-db>
 Philadelphia Stock Exchange (PHLX) <datasets/philadelphia-stock-exchange--phlx->
