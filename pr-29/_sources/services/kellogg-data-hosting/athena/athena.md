@@ -144,7 +144,7 @@ Copy the URL the CLI prints into a browser on your local machine, log in with yo
 
 ```{image} images/aws-cli-sso-allow-access.png
 :alt: AWS SSO authorization dialog asking Allow botocore-client-nu-sso to access your data with an Allow access button
-:scale: 25%
+:scale: 33%
 ```
 
 Back in the terminal, arrow-key through the accounts and select **ksm-rch-data**. Do not select any other AWS accounts that you may have access to.
