@@ -16,7 +16,7 @@ Once logged in to AWS, you only have access to Athena. This account does not gra
 | [AWS Console](#accessing-via-the-aws-console) | Exploring data, running ad-hoc SQL queries, downloading CSV results |
 | [KLC via ODBC](#accessing-via-klc) | Integrating Athena data into Python, R, or Stata workflows on the cluster |
 
-The AWS Console requires no local setup. The KLC path requires temporary AWS credentials that expire every few hours and must be refreshed.
+The AWS Console requires no local setup. The KLC path requires a one-time `aws configure sso` setup; in future sessions, refresh your SSO session with `aws sso login` (the default session length is 4 hours).
 
 ## Accessing via the AWS Console
 
@@ -101,57 +101,103 @@ Querying Athena from KLC lets you integrate Kellogg Data Hosting datasets into P
 
 - A [KLC account](../../klc/user-guide/klc-accessing) and an active terminal session on KLC
 - Access to a specific Athena database already granted by Kellogg Research Support
+- The `awscli/latest` module on KLC, which provides AWS CLI 2.22.7 (`aws configure sso` requires 2.9.0 or later)
 
 ```{note}
 **Where to run queries:** Short interactive queries are fine on a KLC login node. Do not pull large result sets on a login node — see [When to Use KLC Reserve](../../klc-reserve/when-to-use) for the 24-core policy and batch options. Use [tmux](../../klc/user-guide/klc-tmux) to keep sessions alive after disconnecting.
 ```
 
-### 1. Locate Your AWS Credentials
+### 1. Load the AWS CLI
 
-Go to the [NUIT AWS login page](https://www.it.northwestern.edu/support/login/aws.html):
+```bash
+module load awscli/latest
+```
 
-- Select **ksm-rch-data** → your database → **Command line and programmatic access**
-- Copy your temporary **AWS credentials file** from Option 2
+Optionally confirm the version:
 
-:::{dropdown} Video: Locate AWS credentials
+```bash
+aws --version
+```
 
-<iframe src="https://kellogg-northwestern.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=d71384f3-6714-4618-8ad7-b0a0011dde0e&autoplay=false&offerviewer=true&showtitle=true&showbrand=true&captions=false&interactivity=all" height="405" width="720" title="Video walkthrough: locate AWS credentials" allowfullscreen allow="autoplay"></iframe>
+### 2. Configure NetID Authentication
 
-:::
+KLC login nodes have no GUI browser. AWS CLI 2.22.0 and later also default to a PKCE authorization flow that cannot complete on a login node. Use `aws configure sso --no-browser --use-device-code` and enter the values below when prompted:
+
+| Prompt | Value |
+|---|---|
+| SSO session name | `nu-sso` |
+| SSO start URL | `https://nu-sso.awsapps.com/start` |
+| SSO region | `us-east-2` |
+| SSO registration scopes | Accept the default (`sso:account:access`) |
+
+```bash
+aws configure sso --no-browser --use-device-code
+```
 
 ```{note}
-These temporary credentials expire every few hours and must be refreshed.
+`--use-device-code` is required on AWS CLI 2.22.0 and later. On AWS CLI older than 2.22.0, `--use-device-code` is not recognized; those versions already use the device-code flow, so `--no-browser` alone is enough. 
+
+To avoid passing the `--use-device-code` flag on every SSO command, add `export AWS_CLI_SSO_RETRY_MODE=device-code` to `~/.bashrc`.
 ```
 
-### 2. Create a Credentials File on KLC
+Copy the URL the CLI prints into a browser on your local machine, log in with your NetID, and pass the Duo MFA challenge. The browser asks you to authorize `botocore-client-nu-sso`. Choose **Allow access**.
+
+```{image} images/aws-cli-sso-allow-access.png
+:alt: AWS SSO authorization dialog asking Allow botocore-client-nu-sso to access your data with an Allow access button
+:scale: 25%
+```
+
+Back in the terminal, arrow-key through the accounts and select **ksm-rch-data**. Do not select any other AWS accounts that you may have access to.
+
+```{image} images/aws-cli-sso-select-account.png
+:alt: Terminal account selection during aws configure sso with ksm-rch-data highlighted
+:scale: 33%
+```
+
+Select the role matching the database you were granted access to. Each role corresponds to one database, for example `ksm-rch-data-fetchrewards`.
+
+```{image} images/aws-cli-sso-select-role.png
+:alt: Terminal role selection during aws configure sso showing ksm-rch-data roles
+:scale: 33%
+```
+
+Enter `us-east-2` for the default region. Press Enter to accept the default for output format and profile name. The default profile name is `ksm-rch-data-<database>-<account-id>`.
+
+```{image} images/aws-cli-sso-cli-options.png
+:alt: Terminal prompts for CLI default region, output format, and profile name during aws configure sso
+:scale: 33%
+```
+
+```{warning}
+Note the exact profile name the CLI prints at the end of setup. You will pass this name to `--profile` and `AWS_PROFILE` in later steps.
+<!-- TODO(KRS): confirm whether the ODBC configuration in /kellogg/software/.odbc/<workgroup-name> expects a specific AWS profile name (previously ksm-rch-data-<database>). If so, users must name their SSO profile to match. -->
+```
+
+```{tip}
+If you have access to multiple accounts or roles, copy the profile block that `aws configure sso` writes to `~/.aws/config` for each additional account or role, reusing the same `sso_session` (`nu-sso`). You can then choose which profile to use for each AWS CLI command without re-authenticating.
+```
+
+```{note}
+The default SSO session length is 4 hours. In future sessions, if you are not prompted to log in automatically when running an AWS CLI command, run the command below.
+```
 
 ```bash
-mkdir -p ~/.aws
-nano ~/.aws/credentials
-# Paste the copied credentials, then save (Ctrl+X, Y, Enter)
+aws sso login --sso-session nu-sso --no-browser --use-device-code
 ```
 
-The credentials file contains one or more profile sections in square brackets (for example, `[ksm-rch-data-comscore2]`). You will use this profile name in step 3.
+For more details, see [Configuring IAM Identity Center authentication with the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-sso.html).
 
-:::{dropdown} Video: Create credentials file on KLC
+### 3. Verify Access
 
-<iframe src="https://kellogg-northwestern.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=e8943c0f-6d31-4ec6-8474-b09d01321104&autoplay=false&offerviewer=true&showtitle=true&showbrand=true&captions=false&interactivity=all" height="405" width="720" title="Video walkthrough: create credentials file on KLC" allowfullscreen allow="autoplay"></iframe>
-
-:::
-
-### 3. Load the AWS CLI
-
-```bash
-module load awscli/2
-```
-
-Verify your credentials work by listing accessible S3 buckets:
+Verify your SSO profile works by listing accessible S3 buckets:
 
 ```bash
 aws s3 ls --profile <account-profile>
 ```
 
-Replace `<account-profile>` with the profile name from the square-bracket header in your credentials file (for example, `ksm-rch-data-comscore2`).
+Replace `<account-profile>` with the profile name from step 2 (for example, `ksm-rch-data-comscore2-<account-id>`).
+
+<!-- TODO(KRS): re-record; this video shows the retired credentials-file workflow and the old awscli/2 module -->
 
 :::{dropdown} Video: Load AWS CLI and verify credentials
 
@@ -161,12 +207,26 @@ Replace `<account-profile>` with the profile name from the square-bracket header
 
 ### 4. Set Up the ODBC Environment
 
+The shared ODBC configuration at `/kellogg/software/.odbc/<workgroup-name>` must use `AuthenticationType=Default Credentials` so the driver reads the SSO token that `aws sso login` cached under `~/.aws/sso/cache`. Export your profile name alongside the ODBC paths:
+
 ```bash
 export ODBCSYSINI=/kellogg/software/.odbc/<workgroup-name>
 export ODBCINI=/kellogg/software/.odbc/<workgroup-name>
+export AWS_PROFILE=<account-profile>
 ```
 
-Replace `<workgroup-name>` with your Athena workgroup name (for example, `comscore2`). This is the workgroup shown in the upper right of the Athena Query editor, not the database name in the left panel.
+Replace `<workgroup-name>` with your Athena workgroup name (for example, `comscore2`). This is the workgroup shown in the upper right of the Athena Query editor, not the database name in the left panel. Replace `<account-profile>` with the profile name from step 2.
+
+<!-- TODO(KRS): confirm the driver version at /kellogg/software/.odbc/<workgroup-name> is the Athena ODBC v2 driver, and update AuthenticationType to Default Credentials. -->
+<!-- TODO(KRS): confirm the driver's bundled AWS SDK supports the sso_session config format that `aws configure sso` writes ([sso-session nu-sso]) rather than only the legacy inline sso_start_url format. -->
+
+If ODBC commands fail to pick up your SSO token, export static credentials from your active SSO session into the environment:
+
+```bash
+eval "$(aws configure export-credentials --profile <account-profile> --format env)"
+```
+
+Both `Default Credentials` and `IAM Profile` with `credential_source=Environment` accept these environment variables.
 
 :::{dropdown} Video: Set up ODBC environment
 
@@ -266,11 +326,21 @@ To stay under the limit:
 
 ## Troubleshooting
 
-**Expired credentials**
+**Expired SSO session**
 
-If AWS CLI or ODBC commands fail with an authentication or token error, your temporary credentials have expired. Return to the [NUIT AWS login page](https://www.it.northwestern.edu/support/login/aws.html), copy fresh credentials from Option 2, and update `~/.aws/credentials`.
+If AWS CLI or ODBC commands fail with an authentication or token error, your SSO session has expired. Run:
 
-<!-- TODO(KRS): confirm the exact error message users see when credentials expire -->
+```bash
+aws sso login --sso-session nu-sso --no-browser --use-device-code
+```
+
+<!-- TODO(KRS): confirm the exact error message users see when an SSO session expires -->
+
+**Unrecognized `aws configure sso` or `--no-browser`**
+
+If the CLI reports that `aws configure sso` or `--no-browser` is not recognized, an older `awscli` module is loaded. Run `module load awscli/latest` and try again.
+
+If the SSO flow hangs or reports a connection or callback error instead of printing a URL and code, device-code mode was not requested. Add `--use-device-code` to the command, or set `AWS_CLI_SSO_RETRY_MODE=device-code` in `~/.bashrc`.
 
 **Database missing from the access portal**
 
@@ -286,7 +356,8 @@ If a sample script fails to connect, verify all of the following:
 
 - The ODBC environment variables from step 4 are set in your current shell session
 - `<workgroup-name>` matches your Athena workgroup, not the database name
-- Your credentials file contains a current, unexpired profile
+- `AWS_PROFILE` matches the profile name from step 2
+- Your SSO session is active (`aws sso login --sso-session nu-sso --no-browser --use-device-code`)
 
 <!-- TODO(KRS): confirm common ODBC error messages and fixes -->
 
