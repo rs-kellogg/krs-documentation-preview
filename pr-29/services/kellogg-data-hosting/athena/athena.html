@@ -400,46 +400,79 @@ Northwestern University - Home"/>
 </section>
 <section id="accessing-via-the-aws-console">
 <h2>Accessing via the AWS Console<a class="headerlink" href="#accessing-via-the-aws-console" title="Link to this heading">#</a></h2>
+<p><strong>Prerequisites:</strong></p>
+<ul class="simple">
+<li><p>A Northwestern NetID</p></li>
+<li><p>Access to a specific Athena database already granted by Kellogg Research Support</p></li>
+<li><p>No local setup or software installation</p></li>
+</ul>
 <section id="log-in-to-aws">
 <h3>1. Log in to AWS<a class="headerlink" href="#log-in-to-aws" title="Link to this heading">#</a></h3>
-<p>Go to the <a class="reference external" href="https://www.it.northwestern.edu/support/login/aws.html" target="_blank">NUIT AWS login page <svg version="1.1" width="1.0em" height="1.0em" viewBox="0 0 16 16" aria-hidden="true" style="display: inline-block; vertical-align: middle; fill: currentColor;"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a> and sign in with your Northwestern NetID credentials.</p>
-<p>Click <strong>General Use Login</strong> and authenticate with your Northwestern NetID.</p>
+<ol class="arabic simple">
+<li><p>Go to the <a class="reference external" href="https://www.it.northwestern.edu/support/login/aws.html" target="_blank">NUIT AWS login page <svg version="1.1" width="1.0em" height="1.0em" viewBox="0 0 16 16" aria-hidden="true" style="display: inline-block; vertical-align: middle; fill: currentColor;"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a>, click <strong>General Use Login</strong>, and authenticate with your Northwestern NetID.</p></li>
+<li><p>On the <strong>AWS access portal</strong>, click the arrow next to <strong>ksm-rch-data</strong> to expand it.</p></li>
+<li><p>Click <strong>Management console</strong> next to your database, for example <code class="docutils literal notranslate"><span class="pre">ksm-rch-data-comscore2</span></code>.</p></li>
+<li><p>Confirm the <strong>Region</strong> in the upper right is <strong>US East (Ohio) (us-east-2)</strong>.</p></li>
+</ol>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Screenshots: Logging In to AWS</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text"><strong>1. NUIT AWS login page</strong></p>
 <a class="reference internal image-reference" href="../../../_images/aws-login-page.png"><img alt="NUIT AWS login page showing General Use Login and NIH-Funded Research Login buttons" src="../../../_images/aws-login-page.png" style="width: 838.0px; height: 486.5px;" />
 </a>
-<p>After signing in, you will land on the <strong>AWS access portal</strong> showing the accounts you have access to.</p>
+<p class="sd-card-text"><strong>2. AWS access portal</strong></p>
 <a class="reference internal image-reference" href="../../../_images/aws-access-portal-accounts.png"><img alt="AWS access portal showing ksm-rch-data and ksm-rch-support accounts" src="../../../_images/aws-access-portal-accounts.png" style="width: 838.5px; height: 488.5px;" />
 </a>
-<p>Click the arrow next to <strong>ksm-rch-data</strong> to expand it. You will see one entry per database you have been granted access to (for example, <code class="docutils literal notranslate"><span class="pre">ksm-rch-data-comscore2</span></code>). Click <strong>Management console</strong> next to your database to open the AWS Console.</p>
+<p class="sd-card-text"><strong>3. ksm-rch-data expanded</strong></p>
 <a class="reference internal image-reference" href="../../../_images/aws-access-portal-expanded.png"><img alt="ksm-rch-data expanded showing database roles such as ksm-rch-data-comscore2 and ksm-rch-data-fetchrewards" src="../../../_images/aws-access-portal-expanded.png" style="width: 836.5px; height: 486.5px;" />
 </a>
-<p>The AWS Console opens already scoped to your database account. Confirm the <strong>Region</strong> in the upper right is <strong>US East (Ohio) (us-east-2)</strong>.</p>
+<p class="sd-card-text"><strong>4. AWS Console Home</strong></p>
 <a class="reference internal image-reference" href="../../../_images/aws-console-home.png"><img alt="AWS Console Home showing the correct region and account in the upper right" src="../../../_images/aws-console-home.png" style="width: 836.5px; height: 487.0px;" />
 </a>
-</section>
+</div>
+</details></section>
 <section id="navigate-to-athena">
 <h3>2. Navigate to Athena<a class="headerlink" href="#navigate-to-athena" title="Link to this heading">#</a></h3>
-<p>Type <strong>Athena</strong> in the search bar at the top of the console and select <strong>Athena</strong> from the results.</p>
-<a class="reference internal image-reference" href="../../../_images/aws-console-search-athena.png"><img alt="AWS Console search bar with &quot;athena&quot; typed, showing the Athena service result" src="../../../_images/aws-console-search-athena.png" style="width: 836.5px; height: 485.0px;" />
-</a>
+<ol class="arabic simple">
+<li><p>Type <strong>Athena</strong> in the search bar at the top of the console and select <strong>Athena</strong> from the results.</p></li>
+<li><p>Right-click any table name in the left panel to access shortcuts such as <strong>Preview Table</strong> and <strong>Generate table DDL</strong>.</p></li>
+</ol>
 <p>The Athena <strong>Query editor</strong> opens. The <strong>Workgroup</strong> (shown in the upper right of the editor) and <strong>Database</strong> (in the left panel) are set to the database you were granted access to. If either value is wrong, select the correct workgroup and database from the dropdown menus in the editor. The left panel lists all available tables.</p>
-<a class="reference internal image-reference" href="../../../_images/athena-query-editor.png"><img alt="Athena Query Editor with workgroup set to comscore2, database set to comscore, and 8 tables listed" src="../../../_images/athena-query-editor.png" style="width: 836.0px; height: 485.5px;" />
-</a>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>Right-click any table name in the left panel to access shortcuts such as <strong>Preview Table</strong> (generates a <code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">*</span></code> query with a 10-row limit) and <strong>Generate table DDL</strong> (shows the table schema). Preview Table still scans data — see <a class="reference internal" href="#query-limits-and-reducing-data-scanned">Query Limits and Reducing Data Scanned</a> before previewing large tables.</p>
 </div>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Screenshots: Navigating to Athena</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text"><strong>1. Search for Athena</strong></p>
+<a class="reference internal image-reference" href="../../../_images/aws-console-search-athena.png"><img alt="AWS Console search bar with &quot;athena&quot; typed, showing the Athena service result" src="../../../_images/aws-console-search-athena.png" style="width: 836.5px; height: 485.0px;" />
+</a>
+<p class="sd-card-text"><strong>2. Athena Query editor</strong></p>
+<a class="reference internal image-reference" href="../../../_images/athena-query-editor.png"><img alt="Athena Query Editor with workgroup set to comscore2, database set to comscore, and 8 tables listed" src="../../../_images/athena-query-editor.png" style="width: 836.0px; height: 485.5px;" />
+</a>
+<p class="sd-card-text"><strong>3. Table context menu</strong></p>
 <a class="reference internal image-reference" href="../../../_images/athena-table-context-menu.png"><img alt="Table context menu showing options including Preview Table, Generate table DDL, Insert into editor, and View properties" src="../../../_images/athena-table-context-menu.png" style="width: 864.0px; height: 559.0px;" />
 </a>
-</section>
+</div>
+</details></section>
 <section id="query-and-download-results">
 <h3>3. Query and Download Results<a class="headerlink" href="#query-and-download-results" title="Link to this heading">#</a></h3>
-<p>Type your SQL query in the editor and click <strong>Run</strong>. The status bar below the editor shows the query progress.</p>
+<ol class="arabic simple">
+<li><p>Type your SQL query in the editor and click <strong>Run</strong>. The status bar below the editor shows the query progress.</p></li>
+<li><p>When the query completes, click <strong>Download results CSV</strong> in the <strong>Query results</strong> panel to save the output to your computer.</p></li>
+</ol>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Screenshots: Querying and Downloading Results</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text"><strong>1. Query running</strong></p>
 <a class="reference internal image-reference" href="../../../_images/athena-query-running.png"><img alt="Athena Query Editor with a SELECT query running, showing &quot;Running&quot; status and time in queue" src="../../../_images/athena-query-running.png" style="width: 835.5px; height: 487.5px;" />
 </a>
-<p>When the query completes, results appear in the <strong>Query results</strong> panel. Click <strong>Download results CSV</strong> to save the output to your computer.</p>
+<p class="sd-card-text"><strong>2. Query results</strong></p>
 <a class="reference internal image-reference" href="../../../_images/athena-query-results.png"><img alt="Athena Query Editor showing completed query results with 10 rows and the Download results CSV button" src="../../../_images/athena-query-results.png" style="width: 836.5px; height: 484.5px;" />
 </a>
-</section>
+</div>
+</details></section>
 </section>
 <section id="accessing-via-klc">
 <h2>Accessing via KLC<a class="headerlink" href="#accessing-via-klc" title="Link to this heading">#</a></h2>
@@ -497,19 +530,30 @@ Northwestern University - Home"/>
 <p><code class="docutils literal notranslate"><span class="pre">--use-device-code</span></code> is required on AWS CLI 2.22.0 and later. On AWS CLI older than 2.22.0, <code class="docutils literal notranslate"><span class="pre">--use-device-code</span></code> is not recognized; those versions already use the device-code flow, so <code class="docutils literal notranslate"><span class="pre">--no-browser</span></code> alone is enough.</p>
 <p>To avoid passing the <code class="docutils literal notranslate"><span class="pre">--use-device-code</span></code> flag on every SSO command, add <code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">AWS_CLI_SSO_RETRY_MODE=device-code</span></code> to <code class="docutils literal notranslate"><span class="pre">~/.bashrc</span></code>.</p>
 </div>
-<p>Copy the URL the CLI prints into a browser on your local machine, log in with your NetID, and pass the Duo MFA challenge. The browser asks you to authorize <code class="docutils literal notranslate"><span class="pre">botocore-client-nu-sso</span></code>. Choose <strong>Allow access</strong>.</p>
+<ol class="arabic simple">
+<li><p>Copy the URL the CLI prints into a browser on your local machine, sign in with your NetID, and pass the Duo MFA challenge.</p></li>
+<li><p>Choose <strong>Allow access</strong> when the browser asks to authorize <code class="docutils literal notranslate"><span class="pre">botocore-client-nu-sso</span></code>.</p></li>
+<li><p>Back in the terminal, arrow-key to <strong>ksm-rch-data</strong> and press Enter. Do not select any other AWS account.</p></li>
+<li><p>Select the role matching your database, for example <code class="docutils literal notranslate"><span class="pre">ksm-rch-data-fetchrewards</span></code>.</p></li>
+<li><p>Enter <code class="docutils literal notranslate"><span class="pre">us-east-2</span></code> for the default region, then press Enter to accept the defaults for output format and profile name. The default profile name is <code class="docutils literal notranslate"><span class="pre">ksm-rch-data-&lt;database&gt;-&lt;account-id&gt;</span></code>.</p></li>
+</ol>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Screenshots: Configuring NetID Authentication</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text"><strong>2. Allow access</strong></p>
 <a class="reference internal image-reference" href="../../../_images/aws-cli-sso-allow-access.png"><img alt="AWS SSO authorization dialog asking Allow botocore-client-nu-sso to access your data with an Allow access button" src="../../../_images/aws-cli-sso-allow-access.png" style="width: 502.92px; height: 316.14000000000004px;" />
 </a>
-<p>Back in the terminal, arrow-key through the accounts and select <strong>ksm-rch-data</strong>. Do not select any other AWS accounts that you may have access to.</p>
+<p class="sd-card-text"><strong>3. Select AWS account</strong></p>
 <a class="reference internal image-reference" href="../../../_images/aws-cli-sso-select-account.png"><img alt="Terminal account selection during aws configure sso with ksm-rch-data highlighted" src="../../../_images/aws-cli-sso-select-account.png" style="width: 958.32px; height: 139.92000000000002px;" />
 </a>
-<p>Select the role matching the database you were granted access to. Each role corresponds to one database, for example <code class="docutils literal notranslate"><span class="pre">ksm-rch-data-fetchrewards</span></code>.</p>
+<p class="sd-card-text"><strong>4. Select role</strong></p>
 <a class="reference internal image-reference" href="../../../_images/aws-cli-sso-select-role.png"><img alt="Terminal role selection during aws configure sso showing ksm-rch-data roles" src="../../../_images/aws-cli-sso-select-role.png" style="width: 387.42px; height: 107.58px;" />
 </a>
-<p>Enter <code class="docutils literal notranslate"><span class="pre">us-east-2</span></code> for the default region. Press Enter to accept the default for output format and profile name. The default profile name is <code class="docutils literal notranslate"><span class="pre">ksm-rch-data-&lt;database&gt;-&lt;account-id&gt;</span></code>.</p>
+<p class="sd-card-text"><strong>5. CLI options</strong></p>
 <a class="reference internal image-reference" href="../../../_images/aws-cli-sso-cli-options.png"><img alt="Terminal prompts for CLI default region, output format, and profile name during aws configure sso" src="../../../_images/aws-cli-sso-cli-options.png" style="width: 833.58px; height: 271.92px;" />
 </a>
-<div class="admonition warning">
+</div>
+</details><div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Note the exact profile name the CLI prints at the end of setup. You will pass this name to <code class="docutils literal notranslate"><span class="pre">--profile</span></code> and <code class="docutils literal notranslate"><span class="pre">AWS_PROFILE</span></code> in later steps.</p>
 <!-- TODO(KRS): confirm whether the ODBC configuration in /kellogg/software/.odbc/<workgroup-name> expects a specific AWS profile name (previously ksm-rch-data-<database>). If so, users must name their SSO profile to match. -->
@@ -549,7 +593,11 @@ Northwestern University - Home"/>
 <span class="nb">export</span><span class="w"> </span><span class="nv">AWS_PROFILE</span><span class="o">=</span>&lt;account-profile&gt;
 </pre></div>
 </div>
-<p>Replace <code class="docutils literal notranslate"><span class="pre">&lt;workgroup-name&gt;</span></code> with your Athena workgroup name (for example, <code class="docutils literal notranslate"><span class="pre">comscore2</span></code>). This is the workgroup shown in the upper right of the Athena Query editor, not the database name in the left panel. Replace <code class="docutils literal notranslate"><span class="pre">&lt;account-profile&gt;</span></code> with the profile name from step 2.</p>
+<p>Replace the placeholders in the commands above:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;workgroup-name&gt;</span></code> — your Athena workgroup, for example <code class="docutils literal notranslate"><span class="pre">comscore2</span></code>. This is the workgroup shown in the upper right of the Athena Query editor, not the database name in the left panel.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;account-profile&gt;</span></code> — the profile name from step 2</p></li>
+</ul>
 <!-- TODO(KRS): confirm the driver version at /kellogg/software/.odbc/<workgroup-name> is the Athena ODBC v2 driver, and update AuthenticationType to Default Credentials. -->
 <!-- TODO(KRS): confirm the driver's bundled AWS SDK supports the sso_session config format that `aws configure sso` writes ([sso-session nu-sso]) rather than only the legacy inline sso_start_url format. -->
 <p>If ODBC commands fail to pick up your SSO token, export static credentials from your active SSO session into the environment:</p>
@@ -638,29 +686,44 @@ Stata</label><div class="sd-tab-content docutils">
 </section>
 <section id="troubleshooting">
 <h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading">#</a></h2>
-<p><strong>Expired SSO session</strong></p>
-<p>If AWS CLI or ODBC commands fail with an authentication or token error, your SSO session has expired. Run:</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">AWS CLI or ODBC commands fail with an authentication or token error</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">If AWS CLI or ODBC commands fail with an authentication or token error, your SSO session has expired. Run:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>aws<span class="w"> </span>sso<span class="w"> </span>login<span class="w"> </span>--sso-session<span class="w"> </span>nu-sso<span class="w"> </span>--no-browser<span class="w"> </span>--use-device-code
 </pre></div>
 </div>
 <!-- TODO(KRS): confirm the exact error message users see when an SSO session expires -->
-<p><strong>Unrecognized <code class="docutils literal notranslate"><span class="pre">aws</span> <span class="pre">configure</span> <span class="pre">sso</span></code> or <code class="docutils literal notranslate"><span class="pre">--no-browser</span></code></strong></p>
-<p>If the CLI reports that <code class="docutils literal notranslate"><span class="pre">aws</span> <span class="pre">configure</span> <span class="pre">sso</span></code> or <code class="docutils literal notranslate"><span class="pre">--no-browser</span></code> is not recognized, an older <code class="docutils literal notranslate"><span class="pre">awscli</span></code> module is loaded. Run <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">load</span> <span class="pre">awscli/latest</span></code> and try again.</p>
-<p>If the SSO flow hangs or reports a connection or callback error instead of printing a URL and code, device-code mode was not requested. Add <code class="docutils literal notranslate"><span class="pre">--use-device-code</span></code> to the command, or set <code class="docutils literal notranslate"><span class="pre">AWS_CLI_SSO_RETRY_MODE=device-code</span></code> in <code class="docutils literal notranslate"><span class="pre">~/.bashrc</span></code>.</p>
-<p><strong>Database missing from the access portal</strong></p>
-<p>If your database does not appear under <strong>ksm-rch-data</strong> in the AWS access portal, access has not been granted yet. Email <a class="reference external" href="mailto:rs&#37;&#52;&#48;kellogg&#46;northwestern&#46;edu" target="_blank">rs<span>&#64;</span>kellogg<span>&#46;</span>northwestern<span>&#46;</span>edu <svg version="1.1" width="1.0em" height="1.0em" viewBox="0 0 16 16" aria-hidden="true" style="display: inline-block; vertical-align: middle; fill: currentColor;"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a> with the dataset name.</p>
-<p><strong>Wrong AWS region</strong></p>
-<p>Athena queries fail or return no tables when the region is not <strong>US East (Ohio) (us-east-2)</strong>. Confirm the region in the upper right of the AWS Console before opening the Query editor.</p>
-<p><strong>ODBC connection failure</strong></p>
-<p>If a sample script fails to connect, verify all of the following:</p>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text"><code class="docutils literal notranslate"><span class="pre">aws</span> <span class="pre">configure</span> <span class="pre">sso</span></code> or <code class="docutils literal notranslate"><span class="pre">--no-browser</span></code> is not recognized, or the SSO flow hangs</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">If the CLI reports that <code class="docutils literal notranslate"><span class="pre">aws</span> <span class="pre">configure</span> <span class="pre">sso</span></code> or <code class="docutils literal notranslate"><span class="pre">--no-browser</span></code> is not recognized, an older <code class="docutils literal notranslate"><span class="pre">awscli</span></code> module is loaded. Run <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">load</span> <span class="pre">awscli/latest</span></code> and try again.</p>
+<p class="sd-card-text">If the SSO flow hangs or reports a connection or callback error instead of printing a URL and code, device-code mode was not requested. Add <code class="docutils literal notranslate"><span class="pre">--use-device-code</span></code> to the command, or set <code class="docutils literal notranslate"><span class="pre">AWS_CLI_SSO_RETRY_MODE=device-code</span></code> in <code class="docutils literal notranslate"><span class="pre">~/.bashrc</span></code>.</p>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Your database does not appear under <strong>ksm-rch-data</strong></span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">If your database does not appear under <strong>ksm-rch-data</strong> in the AWS access portal, access has not been granted yet. Email <a class="reference external" href="mailto:rs&#37;&#52;&#48;kellogg&#46;northwestern&#46;edu" target="_blank">rs<span>&#64;</span>kellogg<span>&#46;</span>northwestern<span>&#46;</span>edu <svg version="1.1" width="1.0em" height="1.0em" viewBox="0 0 16 16" aria-hidden="true" style="display: inline-block; vertical-align: middle; fill: currentColor;"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a> with the dataset name.</p>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Athena returns no tables, or queries fail immediately</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">Athena queries fail or return no tables when the region is not <strong>US East (Ohio) (us-east-2)</strong>. Confirm the region in the upper right of the AWS Console before opening the Query editor.</p>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">A sample script cannot connect through ODBC</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">If a sample script fails to connect, verify all of the following:</p>
 <ul class="simple">
-<li><p>The ODBC environment variables from step 4 are set in your current shell session</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">&lt;workgroup-name&gt;</span></code> matches your Athena workgroup, not the database name</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">AWS_PROFILE</span></code> matches the profile name from step 2</p></li>
-<li><p>Your SSO session is active (<code class="docutils literal notranslate"><span class="pre">aws</span> <span class="pre">sso</span> <span class="pre">login</span> <span class="pre">--sso-session</span> <span class="pre">nu-sso</span> <span class="pre">--no-browser</span> <span class="pre">--use-device-code</span></code>)</p></li>
+<li><p class="sd-card-text">The ODBC environment variables from step 4 are set in your current shell session</p></li>
+<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">&lt;workgroup-name&gt;</span></code> matches your Athena workgroup, not the database name</p></li>
+<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">AWS_PROFILE</span></code> matches the profile name from step 2</p></li>
+<li><p class="sd-card-text">Your SSO session is active (<code class="docutils literal notranslate"><span class="pre">aws</span> <span class="pre">sso</span> <span class="pre">login</span> <span class="pre">--sso-session</span> <span class="pre">nu-sso</span> <span class="pre">--no-browser</span> <span class="pre">--use-device-code</span></code>)</p></li>
 </ul>
 <!-- TODO(KRS): confirm common ODBC error messages and fixes -->
-</section>
+</div>
+</details></section>
 <section id="datasets-on-athena">
 <h2>Datasets on Athena<a class="headerlink" href="#datasets-on-athena" title="Link to this heading">#</a></h2>
 <p>The dataset pages below document each Kellogg-licensed dataset hosted on the Athena platform:</p>

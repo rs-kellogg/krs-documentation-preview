@@ -20,78 +20,109 @@ The AWS Console requires no local setup. The KLC path requires a one-time `aws c
 
 ## Accessing via the AWS Console
 
+**Prerequisites:**
+
+- A Northwestern NetID
+- Access to a specific Athena database already granted by Kellogg Research Support
+- No local setup or software installation
+
 ### 1. Log in to AWS
 
-Go to the [NUIT AWS login page](https://www.it.northwestern.edu/support/login/aws.html) and sign in with your Northwestern NetID credentials.
+1. Go to the [NUIT AWS login page](https://www.it.northwestern.edu/support/login/aws.html), click **General Use Login**, and authenticate with your Northwestern NetID.
+2. On the **AWS access portal**, click the arrow next to **ksm-rch-data** to expand it.
+3. Click **Management console** next to your database, for example `ksm-rch-data-comscore2`.
+4. Confirm the **Region** in the upper right is **US East (Ohio) (us-east-2)**.
 
-Click **General Use Login** and authenticate with your Northwestern NetID.
+:::{dropdown} Screenshots: Logging In to AWS
+
+**1. NUIT AWS login page**
 
 ```{image} images/aws-login-page.png
 :alt: NUIT AWS login page showing General Use Login and NIH-Funded Research Login buttons
 :scale: 50%
 ```
 
-After signing in, you will land on the **AWS access portal** showing the accounts you have access to.
+**2. AWS access portal**
 
 ```{image} images/aws-access-portal-accounts.png
 :alt: AWS access portal showing ksm-rch-data and ksm-rch-support accounts
 :scale: 50%
 ```
 
-Click the arrow next to **ksm-rch-data** to expand it. You will see one entry per database you have been granted access to (for example, `ksm-rch-data-comscore2`). Click **Management console** next to your database to open the AWS Console.
+**3. ksm-rch-data expanded**
 
 ```{image} images/aws-access-portal-expanded.png
 :alt: ksm-rch-data expanded showing database roles such as ksm-rch-data-comscore2 and ksm-rch-data-fetchrewards
 :scale: 50%
 ```
 
-The AWS Console opens already scoped to your database account. Confirm the **Region** in the upper right is **US East (Ohio) (us-east-2)**.
+**4. AWS Console Home**
 
 ```{image} images/aws-console-home.png
 :alt: AWS Console Home showing the correct region and account in the upper right
 :scale: 50%
 ```
 
+:::
+
 ### 2. Navigate to Athena
 
-Type **Athena** in the search bar at the top of the console and select **Athena** from the results.
+1. Type **Athena** in the search bar at the top of the console and select **Athena** from the results.
+2. Right-click any table name in the left panel to access shortcuts such as **Preview Table** and **Generate table DDL**.
+
+The Athena **Query editor** opens. The **Workgroup** (shown in the upper right of the editor) and **Database** (in the left panel) are set to the database you were granted access to. If either value is wrong, select the correct workgroup and database from the dropdown menus in the editor. The left panel lists all available tables.
+
+```{tip}
+Right-click any table name in the left panel to access shortcuts such as **Preview Table** (generates a `SELECT *` query with a 10-row limit) and **Generate table DDL** (shows the table schema). Preview Table still scans data — see [Query Limits and Reducing Data Scanned](#query-limits-and-reducing-data-scanned) before previewing large tables.
+```
+
+:::{dropdown} Screenshots: Navigating to Athena
+
+**1. Search for Athena**
 
 ```{image} images/aws-console-search-athena.png
 :alt: AWS Console search bar with "athena" typed, showing the Athena service result
 :scale: 50%
 ```
 
-The Athena **Query editor** opens. The **Workgroup** (shown in the upper right of the editor) and **Database** (in the left panel) are set to the database you were granted access to. If either value is wrong, select the correct workgroup and database from the dropdown menus in the editor. The left panel lists all available tables.
+**2. Athena Query editor**
 
 ```{image} images/athena-query-editor.png
 :alt: Athena Query Editor with workgroup set to comscore2, database set to comscore, and 8 tables listed
 :scale: 50%
 ```
 
-```{tip}
-Right-click any table name in the left panel to access shortcuts such as **Preview Table** (generates a `SELECT *` query with a 10-row limit) and **Generate table DDL** (shows the table schema). Preview Table still scans data — see [Query Limits and Reducing Data Scanned](#query-limits-and-reducing-data-scanned) before previewing large tables.
-```
+**3. Table context menu**
 
 ```{image} images/athena-table-context-menu.png
 :alt: Table context menu showing options including Preview Table, Generate table DDL, Insert into editor, and View properties
 :scale: 50%
 ```
 
+:::
+
 ### 3. Query and Download Results
 
-Type your SQL query in the editor and click **Run**. The status bar below the editor shows the query progress.
+1. Type your SQL query in the editor and click **Run**. The status bar below the editor shows the query progress.
+2. When the query completes, click **Download results CSV** in the **Query results** panel to save the output to your computer.
+
+:::{dropdown} Screenshots: Querying and Downloading Results
+
+**1. Query running**
 
 ```{image} images/athena-query-running.png
 :alt: Athena Query Editor with a SELECT query running, showing "Running" status and time in queue
 :scale: 50%
 ```
 
-When the query completes, results appear in the **Query results** panel. Click **Download results CSV** to save the output to your computer.
+**2. Query results**
 
 ```{image} images/athena-query-results.png
 :alt: Athena Query Editor showing completed query results with 10 rows and the Download results CSV button
 :scale: 50%
 ```
+
+:::
 
 ## Accessing via KLC
 
@@ -140,33 +171,43 @@ aws configure sso --no-browser --use-device-code
 To avoid passing the `--use-device-code` flag on every SSO command, add `export AWS_CLI_SSO_RETRY_MODE=device-code` to `~/.bashrc`.
 ```
 
-Copy the URL the CLI prints into a browser on your local machine, log in with your NetID, and pass the Duo MFA challenge. The browser asks you to authorize `botocore-client-nu-sso`. Choose **Allow access**.
+1. Copy the URL the CLI prints into a browser on your local machine, sign in with your NetID, and pass the Duo MFA challenge.
+2. Choose **Allow access** when the browser asks to authorize `botocore-client-nu-sso`.
+3. Back in the terminal, arrow-key to **ksm-rch-data** and press Enter. Do not select any other AWS account.
+4. Select the role matching your database, for example `ksm-rch-data-fetchrewards`.
+5. Enter `us-east-2` for the default region, then press Enter to accept the defaults for output format and profile name. The default profile name is `ksm-rch-data-<database>-<account-id>`.
+
+:::{dropdown} Screenshots: Configuring NetID Authentication
+
+**2. Allow access**
 
 ```{image} images/aws-cli-sso-allow-access.png
 :alt: AWS SSO authorization dialog asking Allow botocore-client-nu-sso to access your data with an Allow access button
 :scale: 33%
 ```
 
-Back in the terminal, arrow-key through the accounts and select **ksm-rch-data**. Do not select any other AWS accounts that you may have access to.
+**3. Select AWS account**
 
 ```{image} images/aws-cli-sso-select-account.png
 :alt: Terminal account selection during aws configure sso with ksm-rch-data highlighted
 :scale: 33%
 ```
 
-Select the role matching the database you were granted access to. Each role corresponds to one database, for example `ksm-rch-data-fetchrewards`.
+**4. Select role**
 
 ```{image} images/aws-cli-sso-select-role.png
 :alt: Terminal role selection during aws configure sso showing ksm-rch-data roles
 :scale: 33%
 ```
 
-Enter `us-east-2` for the default region. Press Enter to accept the default for output format and profile name. The default profile name is `ksm-rch-data-<database>-<account-id>`.
+**5. CLI options**
 
 ```{image} images/aws-cli-sso-cli-options.png
 :alt: Terminal prompts for CLI default region, output format, and profile name during aws configure sso
 :scale: 33%
 ```
+
+:::
 
 ```{warning}
 Note the exact profile name the CLI prints at the end of setup. You will pass this name to `--profile` and `AWS_PROFILE` in later steps.
@@ -215,7 +256,10 @@ export ODBCINI=/kellogg/software/.odbc/<workgroup-name>
 export AWS_PROFILE=<account-profile>
 ```
 
-Replace `<workgroup-name>` with your Athena workgroup name (for example, `comscore2`). This is the workgroup shown in the upper right of the Athena Query editor, not the database name in the left panel. Replace `<account-profile>` with the profile name from step 2.
+Replace the placeholders in the commands above:
+
+- `<workgroup-name>` — your Athena workgroup, for example `comscore2`. This is the workgroup shown in the upper right of the Athena Query editor, not the database name in the left panel.
+- `<account-profile>` — the profile name from step 2
 
 <!-- TODO(KRS): confirm the driver version at /kellogg/software/.odbc/<workgroup-name> is the Athena ODBC v2 driver, and update AuthenticationType to Default Credentials. -->
 <!-- TODO(KRS): confirm the driver's bundled AWS SDK supports the sso_session config format that `aws configure sso` writes ([sso-session nu-sso]) rather than only the legacy inline sso_start_url format. -->
@@ -326,7 +370,7 @@ To stay under the limit:
 
 ## Troubleshooting
 
-**Expired SSO session**
+:::{dropdown} AWS CLI or ODBC commands fail with an authentication or token error
 
 If AWS CLI or ODBC commands fail with an authentication or token error, your SSO session has expired. Run:
 
@@ -336,21 +380,29 @@ aws sso login --sso-session nu-sso --no-browser --use-device-code
 
 <!-- TODO(KRS): confirm the exact error message users see when an SSO session expires -->
 
-**Unrecognized `aws configure sso` or `--no-browser`**
+:::
+
+:::{dropdown} `aws configure sso` or `--no-browser` is not recognized, or the SSO flow hangs
 
 If the CLI reports that `aws configure sso` or `--no-browser` is not recognized, an older `awscli` module is loaded. Run `module load awscli/latest` and try again.
 
 If the SSO flow hangs or reports a connection or callback error instead of printing a URL and code, device-code mode was not requested. Add `--use-device-code` to the command, or set `AWS_CLI_SSO_RETRY_MODE=device-code` in `~/.bashrc`.
 
-**Database missing from the access portal**
+:::
+
+:::{dropdown} Your database does not appear under **ksm-rch-data**
 
 If your database does not appear under **ksm-rch-data** in the AWS access portal, access has not been granted yet. Email [rs@kellogg.northwestern.edu](mailto:rs@kellogg.northwestern.edu) with the dataset name.
 
-**Wrong AWS region**
+:::
+
+:::{dropdown} Athena returns no tables, or queries fail immediately
 
 Athena queries fail or return no tables when the region is not **US East (Ohio) (us-east-2)**. Confirm the region in the upper right of the AWS Console before opening the Query editor.
 
-**ODBC connection failure**
+:::
+
+:::{dropdown} A sample script cannot connect through ODBC
 
 If a sample script fails to connect, verify all of the following:
 
@@ -360,6 +412,8 @@ If a sample script fails to connect, verify all of the following:
 - Your SSO session is active (`aws sso login --sso-session nu-sso --no-browser --use-device-code`)
 
 <!-- TODO(KRS): confirm common ODBC error messages and fixes -->
+
+:::
 
 ## Datasets on Athena
 
