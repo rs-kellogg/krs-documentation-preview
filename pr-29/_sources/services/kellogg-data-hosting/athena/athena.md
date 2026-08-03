@@ -124,6 +124,7 @@ Right-click any table name in the left panel to access shortcuts such as **Previ
 
 :::
 
+(accessing-via-klc)=
 ## Accessing via KLC
 
 Querying Athena from KLC lets you integrate Kellogg Data Hosting datasets into Python, R, or Stata workflows running on the cluster.
@@ -354,6 +355,7 @@ stata-mp -b athena_odbc.do
 
 :::
 
+(query-limits-and-reducing-data-scanned)=
 ## Query Limits and Reducing Data Scanned
 
 Most Athena databases have a daily query limit of **2 TB of data scanned**, whether you query from the AWS Console or from KLC. Contact [rs@kellogg.northwestern.edu](mailto:rs@kellogg.northwestern.edu) if you need this limit increased.
