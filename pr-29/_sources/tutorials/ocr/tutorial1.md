@@ -1,1 +1,0 @@
-# OCR: Tutorial 1
