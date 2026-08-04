@@ -67,7 +67,7 @@ Northwestern University</title>
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = true;</script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Athena (AWS)" href="../athena/athena.html" />
+    <link rel="next" title="CRSP Example: Cumulative Return from Monthly Stock File" href="examples/crsp-example.html" />
     <link rel="prev" title="Kellogg Data Hosting" href="../kdc.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -210,7 +210,12 @@ Northwestern University - Home"/>
 </ul>
 </details></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="../kdc.html">Kellogg Data Hosting</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">WRDS</a></li>
+<li class="toctree-l2 current active has-children"><a class="current reference internal" href="#">WRDS</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="examples/crsp-example.html">CRSP Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples/taq-example.html">TAQ Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples/revelio-example.html">Revelio Labs Example</a></li>
+</ul>
+</details></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../athena/athena.html">Athena (AWS)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../datasets/datasets/comscore.html">Comscore</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../datasets/datasets/cotality.html">Cotality (formerly CoreLogic)</a></li>
@@ -344,21 +349,15 @@ Northwestern University - Home"/>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gaining-access">Gaining Access</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#access-options">Access Options</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-credentials">Setting Up Credentials</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#connecting-from-klc">Connecting from KLC</a><ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python">Python</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#r">R</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-your-environment">Setting Up Your Environment</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#connecting-and-authenticating">Connecting and Authenticating</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exploring-libraries-and-tables">Exploring Libraries and Tables</a><ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Python</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">R</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#list-all-libraries">List All Libraries</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#list-all-datasets-in-a-library">List All Datasets in a Library</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#describe-a-table">Describe a Table</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#querying-data">Querying Data</a><ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Python</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">R</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#worked-examples">Worked Examples</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-note-on-reproducibility">A Note on Reproducibility</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#datasets-available-on-wrds">Datasets Available on WRDS</a></li>
 </ul>
@@ -374,13 +373,13 @@ Northwestern University - Home"/>
                   
   <section id="wrds">
 <h1>WRDS<a class="headerlink" href="#wrds" title="Link to this heading">#</a></h1>
-<p><a class="reference external" href="https://wrds-www.wharton.upenn.edu/" target="_blank">Wharton Research Data Services (WRDS) <svg version="1.1" width="1.0em" height="1.0em" viewBox="0 0 16 16" aria-hidden="true" style="display: inline-block; vertical-align: middle; fill: currentColor;"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a> is a research platform that provides access to a broad range of financial, economic, and marketing datasets — including CRSP, Compustat, Execucomp, and many others. WRDS is operated by the Wharton School of the University of Pennsylvania; Kellogg maintains a site license that gives all faculty, PhD students, and approved researchers access.</p>
+<p id="id1"><a class="reference external" href="https://wrds-www.wharton.upenn.edu/" target="_blank">Wharton Research Data Services (WRDS) <svg version="1.1" width="1.0em" height="1.0em" viewBox="0 0 16 16" aria-hidden="true" style="display: inline-block; vertical-align: middle; fill: currentColor;"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a> is a research platform that provides access to a broad range of financial, economic, and marketing datasets — including CRSP, Compustat, Execucomp, and many others. WRDS is operated by the Wharton School of the University of Pennsylvania; Kellogg maintains a site license that gives all faculty, PhD students, and approved researchers access.</p>
 <p>WRDS is one of three platforms under <a class="reference internal" href="../kdc.html"><span class="doc std std-doc">Kellogg Data Hosting</span></a>. Unlike Athena and Redivis, WRDS is operated by the Wharton School and accessed through their infrastructure directly.</p>
 <section id="gaining-access">
 <h2>Gaining Access<a class="headerlink" href="#gaining-access" title="Link to this heading">#</a></h2>
 <ol class="arabic simple">
 <li><p>Go to <a class="reference external" href="https://wrds-www.wharton.upenn.edu/" target="_blank">wrds-www.wharton.upenn.edu <svg version="1.1" width="1.0em" height="1.0em" viewBox="0 0 16 16" aria-hidden="true" style="display: inline-block; vertical-align: middle; fill: currentColor;"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a> and click <strong>Register</strong>.</p></li>
-<li><p>Register using your Northwestern email address (e.g., <code class="docutils literal notranslate"><span class="pre">netid&#64;u.northwestern.edu</span></code> or <code class="docutils literal notranslate"><span class="pre">name&#64;kellogg.northwestern.edu</span></code>).</p></li>
+<li><p>Register using your Northwestern email address (e.g., <code class="docutils literal notranslate"><span class="pre">name&#64;kellogg.northwestern.edu</span></code>).</p></li>
 <li><p>Your account will be reviewed before access is granted — allow a few business days. If your work is time-sensitive, contact <a class="reference external" href="mailto:rs&#37;&#52;&#48;kellogg&#46;northwestern&#46;edu" target="_blank">rs<span>&#64;</span>kellogg<span>&#46;</span>northwestern<span>&#46;</span>edu <svg version="1.1" width="1.0em" height="1.0em" viewBox="0 0 16 16" aria-hidden="true" style="display: inline-block; vertical-align: middle; fill: currentColor;"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a>.</p></li>
 </ol>
 <p>Once approved, you can log in to the WRDS web interface to browse datasets and run small interactive queries.</p>
@@ -420,7 +419,7 @@ Northwestern University - Home"/>
 </section>
 <section id="setting-up-credentials">
 <h2>Setting Up Credentials<a class="headerlink" href="#setting-up-credentials" title="Link to this heading">#</a></h2>
-<p>WRDS uses a PostgreSQL connection that requires a username and password. Rather than hardcoding credentials in scripts, save them to a <code class="docutils literal notranslate"><span class="pre">.pgpass</span></code> file in your home directory. Both the Python <code class="docutils literal notranslate"><span class="pre">wrds</span></code> package and R’s <code class="docutils literal notranslate"><span class="pre">RPostgres</span></code> read this file automatically.</p>
+<p id="id2">WRDS uses a PostgreSQL connection that requires a username and password. Rather than hardcoding credentials in scripts, save them to a <code class="docutils literal notranslate"><span class="pre">.pgpass</span></code> file in your home directory. Both the Python <code class="docutils literal notranslate"><span class="pre">wrds</span></code> package and R’s <code class="docutils literal notranslate"><span class="pre">RPostgres</span></code> read this file automatically.</p>
 <p>On KLC, open a terminal and create the file with <code class="docutils literal notranslate"><span class="pre">nano</span></code>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>nano<span class="w"> </span>~/.pgpass
 </pre></div>
@@ -435,11 +434,13 @@ Northwestern University - Home"/>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">chmod</span> <span class="pre">600</span></code> step is required — PostgreSQL will ignore the file if it is readable by other users.</p>
 </section>
-<section id="connecting-from-klc">
-<h2>Connecting from KLC<a class="headerlink" href="#connecting-from-klc" title="Link to this heading">#</a></h2>
-<section id="python">
-<h3>Python<a class="headerlink" href="#python" title="Link to this heading">#</a></h3>
-<p>KRS maintains a shared conda environment on KLC with the <code class="docutils literal notranslate"><span class="pre">wrds</span></code> package pre-installed. To use it:</p>
+<section id="setting-up-your-environment">
+<h2>Setting Up Your Environment<a class="headerlink" href="#setting-up-your-environment" title="Link to this heading">#</a></h2>
+<p>KRS maintains a shared conda environment on KLC with the <code class="docutils literal notranslate"><span class="pre">wrds</span></code> package pre-installed. Install the required R packages into your own R environment on KLC (only needed once).</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="python" for="sd-tab-item-0">
+Python</label><div class="sd-tab-content docutils">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>module<span class="w"> </span>load<span class="w"> </span>mamba
 <span class="nb">source</span><span class="w"> </span>activate<span class="w"> </span>/kellogg/software/envs/wrds25_env
 </pre></div>
@@ -449,30 +450,36 @@ Northwestern University - Home"/>
 <span class="c1"># or: pip install wrds</span>
 </pre></div>
 </div>
-<p>Connect to WRDS in Python:</p>
+</div>
+<input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="r" for="sd-tab-item-1">
+R</label><div class="sd-tab-content docutils">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">install.packages</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;DBI&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;RPostgres&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="connecting-and-authenticating">
+<h2>Connecting and Authenticating<a class="headerlink" href="#connecting-and-authenticating" title="Link to this heading">#</a></h2>
+<p id="connecting-from-klc">Open a connection to WRDS using your WRDS username. The <code class="docutils literal notranslate"><span class="pre">.pgpass</span></code> file supplies your password automatically.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-2" name="sd-tab-set-1" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="python" for="sd-tab-item-2">
+Python</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">wrds</span>
 
 <span class="n">conn</span> <span class="o">=</span> <span class="n">wrds</span><span class="o">.</span><span class="n">Connection</span><span class="p">(</span><span class="n">wrds_username</span><span class="o">=</span><span class="s2">&quot;your-wrds-username&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>The first time you connect, WRDS will send a <strong>Duo two-factor authentication push</strong> to your registered device. Follow the prompts to approve it. Subsequent connections using the <code class="docutils literal notranslate"><span class="pre">.pgpass</span></code> file will not prompt for a password, but may still require Duo depending on your session. See <a class="reference external" href="https://wrds-www.wharton.upenn.edu/pages/about/log-in-to-wrds-using-two-factor-authentication/" target="_blank">WRDS two-factor authentication setup <svg version="1.1" width="1.0em" height="1.0em" viewBox="0 0 16 16" aria-hidden="true" style="display: inline-block; vertical-align: middle; fill: currentColor;"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a> if you have not yet enrolled.</p>
-</div>
-<p>Test your connection by fetching a few rows:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">get_table</span><span class="p">(</span><span class="n">library</span><span class="o">=</span><span class="s2">&quot;crsp&quot;</span><span class="p">,</span> <span class="n">table</span><span class="o">=</span><span class="s2">&quot;dsf&quot;</span><span class="p">,</span> <span class="n">obs</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>
-<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">))</span>
+<p>Test your connection:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">conn</span><span class="o">.</span><span class="n">list_libraries</span><span class="p">()))</span>
 </pre></div>
 </div>
-</section>
-<section id="r">
-<h3>R<a class="headerlink" href="#r" title="Link to this heading">#</a></h3>
-<p>Install the required packages into your R environment on KLC (only needed once):</p>
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">install.packages</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;DBI&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;RPostgres&quot;</span><span class="p">))</span>
-</pre></div>
 </div>
-<p>Connect to WRDS in R:</p>
+<input id="sd-tab-item-3" name="sd-tab-set-1" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="r" for="sd-tab-item-3">
+R</label><div class="sd-tab-content docutils">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">DBI</span><span class="p">)</span>
 <span class="nf">library</span><span class="p">(</span><span class="n">RPostgres</span><span class="p">)</span>
 
@@ -486,99 +493,141 @@ Northwestern University - Home"/>
 <span class="p">)</span>
 </pre></div>
 </div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>The first time you connect, WRDS will send a <strong>Duo two-factor authentication push</strong> to your registered device. See <a class="reference external" href="https://wrds-www.wharton.upenn.edu/pages/about/log-in-to-wrds-using-two-factor-authentication/" target="_blank">WRDS two-factor authentication setup <svg version="1.1" width="1.0em" height="1.0em" viewBox="0 0 16 16" aria-hidden="true" style="display: inline-block; vertical-align: middle; fill: currentColor;"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a> if you have not yet enrolled.</p>
-</div>
-<p>Test your connection by fetching a few rows:</p>
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">res</span><span class="w">  </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">dbSendQuery</span><span class="p">(</span><span class="n">wrds</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;SELECT * FROM crsp.dsf LIMIT 10&quot;</span><span class="p">)</span>
-<span class="n">data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">dbFetch</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="nf">colnames</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
-<span class="nf">print</span><span class="p">(</span><span class="nf">nrow</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
-<span class="nf">dbClearResult</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+<p>Test your connection:</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">dbGetQuery</span><span class="p">(</span><span class="n">wrds</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;SELECT 1&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-</section>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The first time you connect, WRDS will send a <strong>Duo two-factor authentication push</strong> to your registered device. Follow the prompts to approve it. Subsequent connections using the <code class="docutils literal notranslate"><span class="pre">.pgpass</span></code> file will not prompt for a password, but may still require Duo depending on your session. See <a class="reference external" href="https://wrds-www.wharton.upenn.edu/pages/about/log-in-to-wrds-using-two-factor-authentication/" target="_blank">WRDS two-factor authentication setup <svg version="1.1" width="1.0em" height="1.0em" viewBox="0 0 16 16" aria-hidden="true" style="display: inline-block; vertical-align: middle; fill: currentColor;"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a> if you have not yet enrolled.</p>
+</div>
 </section>
 <section id="exploring-libraries-and-tables">
 <h2>Exploring Libraries and Tables<a class="headerlink" href="#exploring-libraries-and-tables" title="Link to this heading">#</a></h2>
 <p>Before writing a query, you often need to know the exact library name (called a “schema” in PostgreSQL) and table name. WRDS organizes data into libraries by vendor; for example, CRSP data lives in the <code class="docutils literal notranslate"><span class="pre">crsp</span></code> library and Compustat data lives in <code class="docutils literal notranslate"><span class="pre">comp</span></code>.</p>
 <p>You can also browse the <a class="reference external" href="https://wrds-www.wharton.upenn.edu/pages/about/data-vendors/" target="_blank">WRDS Data Vendors page <svg version="1.1" width="1.0em" height="1.0em" viewBox="0 0 16 16" aria-hidden="true" style="display: inline-block; vertical-align: middle; fill: currentColor;"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a> and <a class="reference external" href="https://wrds-www.wharton.upenn.edu/data-dictionary/" target="_blank">WRDS Data Dictionaries <svg version="1.1" width="1.0em" height="1.0em" viewBox="0 0 16 16" aria-hidden="true" style="display: inline-block; vertical-align: middle; fill: currentColor;"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a> in your browser.</p>
-<section id="id1">
-<h3>Python<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># List all libraries (schemas) your account can access</span>
-<span class="n">libs</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">list_libraries</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">libs</span><span class="p">)</span>
-
-<span class="c1"># List all tables in a library</span>
-<span class="n">tables</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">list_tables</span><span class="p">(</span><span class="n">library</span><span class="o">=</span><span class="s2">&quot;crsp&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">tables</span><span class="p">)</span>
-
-<span class="c1"># Describe the columns of a specific table</span>
-<span class="n">desc</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">describe_table</span><span class="p">(</span><span class="n">library</span><span class="o">=</span><span class="s2">&quot;crsp&quot;</span><span class="p">,</span> <span class="n">table</span><span class="o">=</span><span class="s2">&quot;dsf&quot;</span><span class="p">)</span>
+<section id="list-all-libraries">
+<h3>List All Libraries<a class="headerlink" href="#list-all-libraries" title="Link to this heading">#</a></h3>
+<p>A library refers to a database on WRDS (for example, <code class="docutils literal notranslate"><span class="pre">crsp</span></code>, <code class="docutils literal notranslate"><span class="pre">comp</span></code> for Compustat). Use <code class="docutils literal notranslate"><span class="pre">conn.list_libraries()</span></code> to retrieve a list of all databases your institution has access to. Sorting the results alphabetically makes them easier to browse.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-4" name="sd-tab-set-2" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="python" for="sd-tab-item-4">
+Python</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">libraries</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">list_libraries</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">libraries</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">libraries</span><span class="p">)[:</span><span class="mi">20</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-5" name="sd-tab-set-2" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="r" for="sd-tab-item-5">
+R</label><div class="sd-tab-content docutils">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">libs</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">dbGetQuery</span><span class="p">(</span>
+<span class="w">  </span><span class="n">wrds</span><span class="p">,</span>
+<span class="w">  </span><span class="s">&quot;SELECT schema_name FROM information_schema.schemata ORDER BY schema_name&quot;</span>
+<span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">libs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="list-all-datasets-in-a-library">
+<h3>List All Datasets in a Library<a class="headerlink" href="#list-all-datasets-in-a-library" title="Link to this heading">#</a></h3>
+<p>Each library contains many individual tables or datasets (for example, <code class="docutils literal notranslate"><span class="pre">company</span></code>, <code class="docutils literal notranslate"><span class="pre">funda</span></code>, <code class="docutils literal notranslate"><span class="pre">msf</span></code>). Use <code class="docutils literal notranslate"><span class="pre">conn.list_tables(library=...)</span></code> to list all available tables within a given library. Specify the library name as a string (for example, <code class="docutils literal notranslate"><span class="pre">'comp'</span></code> for Compustat).</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-6" name="sd-tab-set-3" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="python" for="sd-tab-item-6">
+Python</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">conn</span><span class="o">.</span><span class="n">list_tables</span><span class="p">(</span><span class="n">library</span><span class="o">=</span><span class="s2">&quot;comp&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-7" name="sd-tab-set-3" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="r" for="sd-tab-item-7">
+R</label><div class="sd-tab-content docutils">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">tables</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">dbGetQuery</span><span class="p">(</span>
+<span class="w">  </span><span class="n">wrds</span><span class="p">,</span>
+<span class="w">  </span><span class="s">&quot;SELECT table_name FROM information_schema.tables</span>
+<span class="s">   WHERE table_schema = &#39;comp&#39;</span>
+<span class="s">   ORDER BY table_name&quot;</span>
+<span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">tables</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="describe-a-table">
+<h3>Describe a Table<a class="headerlink" href="#describe-a-table" title="Link to this heading">#</a></h3>
+<p>Before querying, inspect the columns and data types of a specific table.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-8" name="sd-tab-set-4" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="python" for="sd-tab-item-8">
+Python</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">desc</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">describe_table</span><span class="p">(</span><span class="n">library</span><span class="o">=</span><span class="s2">&quot;crsp&quot;</span><span class="p">,</span> <span class="n">table</span><span class="o">=</span><span class="s2">&quot;dsf&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">desc</span><span class="p">)</span>
 </pre></div>
 </div>
-</section>
-<section id="id2">
-<h3>R<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># List all libraries (schemas)</span>
-<span class="n">libs</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">dbGetQuery</span><span class="p">(</span><span class="n">wrds</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;SELECT schema_name FROM information_schema.schemata ORDER BY schema_name&quot;</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="n">libs</span><span class="p">)</span>
-
-<span class="c1"># List tables in a specific library</span>
-<span class="n">tables</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">dbGetQuery</span><span class="p">(</span><span class="n">wrds</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;SELECT table_name FROM information_schema.tables WHERE table_schema = &#39;crsp&#39; ORDER BY table_name&quot;</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="n">tables</span><span class="p">)</span>
-
-<span class="c1"># Describe the columns of a specific table</span>
-<span class="n">desc</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">dbGetQuery</span><span class="p">(</span><span class="n">wrds</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;</span>
-<span class="s">  SELECT column_name, data_type, is_nullable</span>
-<span class="s">  FROM information_schema.columns</span>
-<span class="s">  WHERE table_schema = &#39;crsp&#39; AND table_name = &#39;dsf&#39;</span>
-<span class="s">  ORDER BY ordinal_position</span>
-<span class="s">&quot;</span><span class="p">)</span>
+</div>
+<input id="sd-tab-item-9" name="sd-tab-set-4" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="r" for="sd-tab-item-9">
+R</label><div class="sd-tab-content docutils">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">desc</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">dbGetQuery</span><span class="p">(</span>
+<span class="w">  </span><span class="n">wrds</span><span class="p">,</span>
+<span class="w">  </span><span class="s">&quot;SELECT column_name, data_type, is_nullable</span>
+<span class="s">   FROM information_schema.columns</span>
+<span class="s">   WHERE table_schema = &#39;crsp&#39; AND table_name = &#39;dsf&#39;</span>
+<span class="s">   ORDER BY ordinal_position&quot;</span>
+<span class="p">)</span>
 <span class="nf">print</span><span class="p">(</span><span class="n">desc</span><span class="p">)</span>
 </pre></div>
 </div>
-</section>
-</section>
-<section id="querying-data">
-<h2>Querying Data<a class="headerlink" href="#querying-data" title="Link to this heading">#</a></h2>
-<section id="id3">
-<h3>Python<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
-<p>Use <code class="docutils literal notranslate"><span class="pre">get_table()</span></code> to retrieve an entire table (with an optional row limit):</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">get_table</span><span class="p">(</span><span class="n">library</span><span class="o">=</span><span class="s2">&quot;crsp&quot;</span><span class="p">,</span> <span class="n">table</span><span class="o">=</span><span class="s2">&quot;dsf&quot;</span><span class="p">,</span> <span class="n">obs</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
-</pre></div>
 </div>
-<p>Use <code class="docutils literal notranslate"><span class="pre">raw_sql()</span></code> for filtered queries:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">raw_sql</span><span class="p">(</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    SELECT permno, date, ret</span>
-<span class="sd">    FROM crsp.dsf</span>
-<span class="sd">    WHERE date BETWEEN &#39;2023-01-01&#39; AND &#39;2023-12-31&#39;</span>
-<span class="sd">    &quot;&quot;&quot;</span><span class="p">,</span>
-    <span class="n">date_cols</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">],</span>
-<span class="p">)</span>
-<span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-</pre></div>
 </div>
+<p>For step-by-step workflows that pull and analyze data from specific datasets, see the worked examples below.</p>
 </section>
-<section id="id4">
-<h3>R<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">dbGetQuery</span><span class="p">(</span>
-<span class="w">  </span><span class="n">wrds</span><span class="p">,</span>
-<span class="w">  </span><span class="s">&quot;SELECT permno, date, ret</span>
-<span class="s">   FROM crsp.dsf</span>
-<span class="s">   WHERE date BETWEEN &#39;2023-01-01&#39; AND &#39;2023-12-31&#39;&quot;</span>
-<span class="p">)</span>
-<span class="nf">dbDisconnect</span><span class="p">(</span><span class="n">wrds</span><span class="p">)</span>
-</pre></div>
+</section>
+<section id="worked-examples">
+<h2>Worked Examples<a class="headerlink" href="#worked-examples" title="Link to this heading">#</a></h2>
+<p>Step-by-step examples for querying specific WRDS datasets from KLC. Each example covers a complete workflow in Python and R.</p>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-1 sd-row-cols-xs-1 sd-row-cols-sm-2 sd-row-cols-md-3 sd-row-cols-lg-3 sd-g-2 sd-g-xs-2 sd-g-sm-2 sd-g-md-2 sd-g-lg-2 docutils">
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-card-hover docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+CRSP</div>
+<p class="sd-card-text">Look up a stock by ticker, pull monthly returns from the CRSP monthly stock file, and plot cumulative return over time.</p>
 </div>
-</section>
+<a class="sd-stretched-link sd-hide-link-text reference internal" href="examples/crsp-example.html"><span class="doc">CRSP Example: Cumulative Return from Monthly Stock File</span></a></div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-card-hover docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+NYSE Trade and Quote (TAQ)</div>
+<p class="sd-card-text">Fetch intraday trade data for a single stock on one trading day, compute five-minute average prices, and graph the result.</p>
+</div>
+<a class="sd-stretched-link sd-hide-link-text reference internal" href="examples/taq-example.html"><span class="doc">TAQ Example: Intraday Trades and Five-Minute Averages</span></a></div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-card-hover docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+Revelio Labs</div>
+<p class="sd-card-text"><em>In development</em> — a worked example for Revelio Labs workforce data on WRDS will be added here.</p>
+</div>
+<a class="sd-stretched-link sd-hide-link-text reference internal" href="examples/revelio-example.html"><span class="doc">Revelio Labs Example</span></a></div>
+</div>
+</div>
+</div>
 </section>
 <section id="a-note-on-reproducibility">
 <h2>A Note on Reproducibility<a class="headerlink" href="#a-note-on-reproducibility" title="Link to this heading">#</a></h2>
-<p>WRDS datasets are updated and revised over time — data you pull today may differ from a pull made in six months. Save a local copy of any data you use in a project so your analysis is reproducible later:</p>
+<p id="id3">WRDS datasets are updated and revised over time — data you pull today may differ from a pull made in six months. Save a local copy of any data you use in a project so your analysis is reproducible later:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;/kellogg/proj/your-netid/data/crsp_dsf_2023.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -589,6 +638,8 @@ Northwestern University - Home"/>
 <section id="datasets-available-on-wrds">
 <h2>Datasets Available on WRDS<a class="headerlink" href="#datasets-available-on-wrds" title="Link to this heading">#</a></h2>
 <p>See <a class="reference internal" href="../../datasets/by-platform.html#platform-wrds"><span class="std std-ref">Find Data by Platform — WRDS</span></a> for the full list of Kellogg-licensed datasets available through WRDS. Dataset documentation pages are being added progressively.</p>
+<div class="toctree-wrapper compound">
+</div>
 </section>
 </section>
 
@@ -613,11 +664,11 @@ Northwestern University - Home"/>
       </div>
     </a>
     <a class="right-next"
-       href="../athena/athena.html"
+       href="examples/crsp-example.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Athena (AWS)</p>
+        <p class="prev-next-title">CRSP Example: Cumulative Return from Monthly Stock File</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -642,21 +693,15 @@ Northwestern University - Home"/>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gaining-access">Gaining Access</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#access-options">Access Options</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-credentials">Setting Up Credentials</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#connecting-from-klc">Connecting from KLC</a><ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python">Python</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#r">R</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-your-environment">Setting Up Your Environment</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#connecting-and-authenticating">Connecting and Authenticating</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exploring-libraries-and-tables">Exploring Libraries and Tables</a><ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Python</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">R</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#list-all-libraries">List All Libraries</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#list-all-datasets-in-a-library">List All Datasets in a Library</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#describe-a-table">Describe a Table</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#querying-data">Querying Data</a><ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Python</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">R</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#worked-examples">Worked Examples</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-note-on-reproducibility">A Note on Reproducibility</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#datasets-available-on-wrds">Datasets Available on WRDS</a></li>
 </ul>

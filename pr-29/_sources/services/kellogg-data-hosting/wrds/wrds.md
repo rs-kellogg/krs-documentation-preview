@@ -1,5 +1,7 @@
 # WRDS
 
+(wrds)=
+
 [Wharton Research Data Services (WRDS)](https://wrds-www.wharton.upenn.edu/) is a research platform that provides access to a broad range of financial, economic, and marketing datasets — including CRSP, Compustat, Execucomp, and many others. WRDS is operated by the Wharton School of the University of Pennsylvania; Kellogg maintains a site license that gives all faculty, PhD students, and approved researchers access.
 
 WRDS is one of three platforms under [Kellogg Data Hosting](../kdc). Unlike Athena and Redivis, WRDS is operated by the Wharton School and accessed through their infrastructure directly.
@@ -7,7 +9,7 @@ WRDS is one of three platforms under [Kellogg Data Hosting](../kdc). Unlike Athe
 ## Gaining Access
 
 1. Go to [wrds-www.wharton.upenn.edu](https://wrds-www.wharton.upenn.edu/) and click **Register**.
-2. Register using your Northwestern email address (e.g., `netid@u.northwestern.edu` or `name@kellogg.northwestern.edu`).
+2. Register using your Northwestern email address (e.g., `name@kellogg.northwestern.edu`).
 3. Your account will be reviewed before access is granted — allow a few business days. If your work is time-sensitive, contact [rs@kellogg.northwestern.edu](mailto:rs@kellogg.northwestern.edu).
 
 Once approved, you can log in to the WRDS web interface to browse datasets and run small interactive queries.
@@ -28,6 +30,8 @@ WRDS offers several ways to work with data:
 The rest of this page covers the programmatic Python and R options from KLC, which integrate directly into your research scripts.
 
 ## Setting Up Credentials
+
+(setting-up-credentials)=
 
 WRDS uses a PostgreSQL connection that requires a username and password. Rather than hardcoding credentials in scripts, save them to a `.pgpass` file in your home directory. Both the Python `wrds` package and R's `RPostgres` read this file automatically.
 
@@ -51,11 +55,14 @@ chmod 600 ~/.pgpass
 
 The `chmod 600` step is required — PostgreSQL will ignore the file if it is readable by other users.
 
-## Connecting from KLC
+## Setting Up Your Environment
 
-### Python
+KRS maintains a shared conda environment on KLC with the `wrds` package pre-installed. Install the required R packages into your own R environment on KLC (only needed once).
 
-KRS maintains a shared conda environment on KLC with the `wrds` package pre-installed. To use it:
+::::{tab-set}
+
+:::{tab-item} Python
+:sync: python
 
 ```bash
 module load mamba
@@ -69,7 +76,29 @@ mamba install -c conda-forge wrds
 # or: pip install wrds
 ```
 
-Connect to WRDS in Python:
+:::
+
+:::{tab-item} R
+:sync: r
+
+```r
+install.packages(c("DBI", "RPostgres"))
+```
+
+:::
+
+::::
+
+## Connecting and Authenticating
+
+(connecting-from-klc)=
+
+Open a connection to WRDS using your WRDS username. The `.pgpass` file supplies your password automatically.
+
+::::{tab-set}
+
+:::{tab-item} Python
+:sync: python
 
 ```python
 import wrds
@@ -77,27 +106,16 @@ import wrds
 conn = wrds.Connection(wrds_username="your-wrds-username")
 ```
 
-:::{note}
-The first time you connect, WRDS will send a **Duo two-factor authentication push** to your registered device. Follow the prompts to approve it. Subsequent connections using the `.pgpass` file will not prompt for a password, but may still require Duo depending on your session. See [WRDS two-factor authentication setup](https://wrds-www.wharton.upenn.edu/pages/about/log-in-to-wrds-using-two-factor-authentication/) if you have not yet enrolled.
-:::
-
-Test your connection by fetching a few rows:
+Test your connection:
 
 ```python
-df = conn.get_table(library="crsp", table="dsf", obs=10)
-print(df.columns.tolist())
-print(len(df))
+print(len(conn.list_libraries()))
 ```
 
-### R
+:::
 
-Install the required packages into your R environment on KLC (only needed once):
-
-```r
-install.packages(c("DBI", "RPostgres"))
-```
-
-Connect to WRDS in R:
+:::{tab-item} R
+:sync: r
 
 ```r
 library(DBI)
@@ -113,19 +131,19 @@ wrds <- dbConnect(
 )
 ```
 
-:::{note}
-The first time you connect, WRDS will send a **Duo two-factor authentication push** to your registered device. See [WRDS two-factor authentication setup](https://wrds-www.wharton.upenn.edu/pages/about/log-in-to-wrds-using-two-factor-authentication/) if you have not yet enrolled.
-:::
-
-Test your connection by fetching a few rows:
+Test your connection:
 
 ```r
-res  <- dbSendQuery(wrds, "SELECT * FROM crsp.dsf LIMIT 10")
-data <- dbFetch(res)
-print(colnames(data))
-print(nrow(data))
-dbClearResult(res)
+dbGetQuery(wrds, "SELECT 1")
 ```
+
+:::
+
+::::
+
+:::{note}
+The first time you connect, WRDS will send a **Duo two-factor authentication push** to your registered device. Follow the prompts to approve it. Subsequent connections using the `.pgpass` file will not prompt for a password, but may still require Duo depending on your session. See [WRDS two-factor authentication setup](https://wrds-www.wharton.upenn.edu/pages/about/log-in-to-wrds-using-two-factor-authentication/) if you have not yet enrolled.
+:::
 
 ## Exploring Libraries and Tables
 
@@ -133,80 +151,139 @@ Before writing a query, you often need to know the exact library name (called a 
 
 You can also browse the [WRDS Data Vendors page](https://wrds-www.wharton.upenn.edu/pages/about/data-vendors/) and [WRDS Data Dictionaries](https://wrds-www.wharton.upenn.edu/data-dictionary/) in your browser.
 
-### Python
+### List All Libraries
+
+A library refers to a database on WRDS (for example, `crsp`, `comp` for Compustat). Use `conn.list_libraries()` to retrieve a list of all databases your institution has access to. Sorting the results alphabetically makes them easier to browse.
+
+::::{tab-set}
+
+:::{tab-item} Python
+:sync: python
 
 ```python
-# List all libraries (schemas) your account can access
-libs = conn.list_libraries()
+libraries = conn.list_libraries()
+print(len(libraries))
+print(sorted(libraries)[:20])
+```
+
+:::
+
+:::{tab-item} R
+:sync: r
+
+```r
+libs <- dbGetQuery(
+  wrds,
+  "SELECT schema_name FROM information_schema.schemata ORDER BY schema_name"
+)
 print(libs)
+```
 
-# List all tables in a library
-tables = conn.list_tables(library="crsp")
+:::
+
+::::
+
+### List All Datasets in a Library
+
+Each library contains many individual tables or datasets (for example, `company`, `funda`, `msf`). Use `conn.list_tables(library=...)` to list all available tables within a given library. Specify the library name as a string (for example, `'comp'` for Compustat).
+
+::::{tab-set}
+
+:::{tab-item} Python
+:sync: python
+
+```python
+print(conn.list_tables(library="comp"))
+```
+
+:::
+
+:::{tab-item} R
+:sync: r
+
+```r
+tables <- dbGetQuery(
+  wrds,
+  "SELECT table_name FROM information_schema.tables
+   WHERE table_schema = 'comp'
+   ORDER BY table_name"
+)
 print(tables)
+```
 
-# Describe the columns of a specific table
+:::
+
+::::
+
+### Describe a Table
+
+Before querying, inspect the columns and data types of a specific table.
+
+::::{tab-set}
+
+:::{tab-item} Python
+:sync: python
+
+```python
 desc = conn.describe_table(library="crsp", table="dsf")
 print(desc)
 ```
 
-### R
+:::
+
+:::{tab-item} R
+:sync: r
 
 ```r
-# List all libraries (schemas)
-libs <- dbGetQuery(wrds, "SELECT schema_name FROM information_schema.schemata ORDER BY schema_name")
-print(libs)
-
-# List tables in a specific library
-tables <- dbGetQuery(wrds, "SELECT table_name FROM information_schema.tables WHERE table_schema = 'crsp' ORDER BY table_name")
-print(tables)
-
-# Describe the columns of a specific table
-desc <- dbGetQuery(wrds, "
-  SELECT column_name, data_type, is_nullable
-  FROM information_schema.columns
-  WHERE table_schema = 'crsp' AND table_name = 'dsf'
-  ORDER BY ordinal_position
-")
+desc <- dbGetQuery(
+  wrds,
+  "SELECT column_name, data_type, is_nullable
+   FROM information_schema.columns
+   WHERE table_schema = 'crsp' AND table_name = 'dsf'
+   ORDER BY ordinal_position"
+)
 print(desc)
 ```
 
-## Querying Data
+:::
 
-### Python
+::::
 
-Use `get_table()` to retrieve an entire table (with an optional row limit):
+For step-by-step workflows that pull and analyze data from specific datasets, see the worked examples below.
 
-```python
-df = conn.get_table(library="crsp", table="dsf", obs=1000)
-```
+## Worked Examples
 
-Use `raw_sql()` for filtered queries:
+Step-by-step examples for querying specific WRDS datasets from KLC. Each example covers a complete workflow in Python and R.
 
-```python
-df = conn.raw_sql(
-    """
-    SELECT permno, date, ret
-    FROM crsp.dsf
-    WHERE date BETWEEN '2023-01-01' AND '2023-12-31'
-    """,
-    date_cols=["date"],
-)
-conn.close()
-```
+:::::{grid} 1 2 3 3
+:gutter: 2
 
-### R
+::::{grid-item-card} CRSP
+:link: examples/crsp-example
+:link-type: doc
 
-```r
-df <- dbGetQuery(
-  wrds,
-  "SELECT permno, date, ret
-   FROM crsp.dsf
-   WHERE date BETWEEN '2023-01-01' AND '2023-12-31'"
-)
-dbDisconnect(wrds)
-```
+Look up a stock by ticker, pull monthly returns from the CRSP monthly stock file, and plot cumulative return over time.
+::::
+
+::::{grid-item-card} NYSE Trade and Quote (TAQ)
+:link: examples/taq-example
+:link-type: doc
+
+Fetch intraday trade data for a single stock on one trading day, compute five-minute average prices, and graph the result.
+::::
+
+::::{grid-item-card} Revelio Labs
+:link: examples/revelio-example
+:link-type: doc
+
+*In development* — a worked example for Revelio Labs workforce data on WRDS will be added here.
+::::
+
+:::::
 
 ## A Note on Reproducibility
+
+(a-note-on-reproducibility)=
 
 WRDS datasets are updated and revised over time — data you pull today may differ from a pull made in six months. Save a local copy of any data you use in a project so your analysis is reproducible later:
 
@@ -221,3 +298,12 @@ write.csv(df, "/kellogg/proj/your-netid/data/crsp_dsf_2023.csv", row.names = FAL
 ## Datasets Available on WRDS
 
 See [Find Data by Platform — WRDS](platform-wrds) for the full list of Kellogg-licensed datasets available through WRDS. Dataset documentation pages are being added progressively.
+
+```{toctree}
+:maxdepth: 2
+:hidden:
+
+CRSP Example <examples/crsp-example>
+TAQ Example <examples/taq-example>
+Revelio Labs Example <examples/revelio-example>
+```

@@ -22,6 +22,8 @@ Northwestern also subscribes to the TAQ Millisecond Intraday Indicators product,
 
 This dataset is available via [Wharton Research Data Services (WRDS)](https://wrds-www.wharton.upenn.edu/). WRDS offers both a web interface for small interactive queries and the WRDS Cloud for running batch programs. Faculty may request a temporary class account for course use.
 
+**Examples:** [TAQ intraday trades and five-minute averages from KLC](../../kellogg-data-hosting/wrds/examples/taq-example)
+
 ## Data Coverage & Key Identifiers
 
 | Attribute | Value |

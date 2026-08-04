@@ -22,6 +22,8 @@ Security identifiers such as name, CUSIP, and ticker are linked to unique CRSP i
 
 This dataset is available via [Wharton Research Data Services (WRDS)](https://wrds-www.wharton.upenn.edu/). WRDS offers both a web interface for small interactive queries and the WRDS Cloud for running batch programs. Faculty may request a temporary class account for course use.
 
+**Examples:** [CRSP cumulative return from KLC](../../kellogg-data-hosting/wrds/examples/crsp-example)
+
 ## Data Coverage & Key Identifiers
 
 | Attribute | Value |

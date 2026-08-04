@@ -2,6 +2,11 @@
 
 A series of workshops about applied research techniques, with attention paid to replication and Open Science issues.
 
+- Accessing WRDS Data Programmatically
+  - Date: <!-- TODO(KRS): confirm workshop date -->
+  - Workshop Materials: [Jupyter Book](https://rs-kellogg.github.io/wrds_workshop_public/workflow_p.html)
+  - Summary: Covers connecting to WRDS from KLC, exploring libraries and tables, and working through a TAQ intraday analysis in Python and R.
+
 - Code Like a Pro: Remote Python Development on KLC with VS Code, GitHub, & Copilot
   - Date: May 2025
   - Workshop Materials: [Jupyter Book](https://rs-kellogg.github.io/krs-KLCworkflow-cookbook/welcome.html)
