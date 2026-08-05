@@ -1,0 +1,762 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" data-theme="light">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Submitting SLURM Jobs &#8212; Kellogg School of Management
+Research Support
+Northwestern University</title>
+<script data-cfasync="false">
+  localStorage.setItem("mode", "light");
+  localStorage.setItem("theme", "light");
+</script>
+
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/kellogg-rs-docs.css?v=9c3e1ba6" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'services/klc-reserve/slurm-jobs';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = true;</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="GPU Jobs" href="gpu-jobs.html" />
+    <link rel="prev" title="GPU Concepts and Options" href="gpu-concepts.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../../_static/searchtools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="light">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+<aside class="bd-header-announcement" aria-label="Announcement">
+  <div class="bd-header-announcement__content">⚠️This documentation is a prototype and is under active development.⚠️</div>
+</aside>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+    
+    <img src="../../_static/kellogg_logo.png" class="logo__image only-light" alt="Kellogg School of Management
+Research Support
+Northwestern University - Home"/>
+    <img src="../../_static/kellogg_logo.png" class="logo__image only-dark pst-js-only" alt="Kellogg School of Management
+Research Support
+Northwestern University - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../start/getting-help.html">Getting Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../start/services-overview.html">What Does KRS Offer?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../start/klc/klc-intro.html">Introduction to Kellogg Linux Cluster</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../start/workshop-doc.html">Research the Right Way Workshop</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Computing and Datasets</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../klc/klc.html">Kellogg Linux Cluster</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference external" href="https://www.kellogg.northwestern.edu/academics-research/research-support/computing/kellogg-linux-cluster/" target="_blank">Kellogg Linux Cluster Overview <svg aria-hidden="true" height="1.0em" style="display: inline-block; vertical-align: middle; fill: currentColor;" version="1.1" viewbox="0 0 16 16" width="1.0em"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../klc/user-guide/klc-user-guide.html">KLC User Guide</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../klc/user-guide/klc-accessing.html">Access KLC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../klc/user-guide/klc-ssh.html">SSH</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../klc/user-guide/klc-fastx.html">FastX</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../klc/user-guide/klc-vscode.html">VS Code Workflow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../klc/user-guide/klc-ondemand.html">KLC OnDemand</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../klc/user-guide/klc-files.html">KLC Filesystem</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../klc/user-guide/klc-transferfiles.html">Data Transfer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../klc/user-guide/klc-editor.html">Edit Files on KLC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../klc/user-guide/klc-git.html">Using Git on KLC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../klc/user-guide/klc-conda.html">Conda/Mamba Environments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../klc/user-guide/klc-software.html">Launching Jobs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../klc/user-guide/klc-tmux.html">Using tmux</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../klc/user-guide/klc-profiling.html">Monitoring &amp; Managing Jobs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../klc/user-guide/llm-api.html">LLM API Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../klc/user-guide/llm-klc.html">Open Source LLMs</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../klc/klc-datasets.html">Datasets on KLC</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://rcdsdocs.it.northwestern.edu/systems/quest/quest.html" target="_blank">Quest Documentation <svg aria-hidden="true" height="1.0em" style="display: inline-block; vertical-align: middle; fill: currentColor;" version="1.1" viewbox="0 0 16 16" width="1.0em"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a></li>
+<li class="toctree-l2"><a class="reference external" href="https://www.it.northwestern.edu/departments/it-services-support/research/computing/quest/data-security-guidance.html" target="_blank">Quest Data Security Guidance <svg aria-hidden="true" height="1.0em" style="display: inline-block; vertical-align: middle; fill: currentColor;" version="1.1" viewbox="0 0 16 16" width="1.0em"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../kellogg-data-hosting/kdc.html">Kellogg Data Hosting</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../kellogg-data-hosting/wrds/wrds.html">WRDS</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../kellogg-data-hosting/wrds/examples/crsp-example.html">CRSP Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../kellogg-data-hosting/wrds/examples/taq-example.html">TAQ Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../kellogg-data-hosting/wrds/examples/revelio-example.html">Revelio Labs Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../kellogg-data-hosting/athena/athena.html">Athena (AWS)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../datasets/datasets/comscore.html">Comscore</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../datasets/datasets/cotality.html">Cotality (formerly CoreLogic)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../datasets/datasets/equifax.html">Equifax</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../datasets/datasets/patstat.html">PATSTAT</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../kellogg-data-hosting/redivis/redivis.html">Redivis</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../datasets/datasets/l2-vm2-uniform.html">L2 VM2 Uniform</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../datasets/datasets/numerator.html">Numerator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../datasets/datasets/openalex.html">OpenAlex</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../datasets/datasets/proxycurl.html">ProxyCurl</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="klc-reserve.html">Kellogg Linux Cluster Reserve</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="when-to-use.html">When to Use KLC Reserve</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gpu-concepts.html">GPU Concepts</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Submitting SLURM Jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gpu-jobs.html">GPU Jobs</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../tutorials/ocr/ocr.html">Optical Character Recognition</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/ocr/tutorial1.html">OCR Tutorial 1</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../tutorials/nlp/nlp.html">Natural Language Processing</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/nlp/tutorial1.html">Deterministic Extraction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/nlp/tutorial2.html">Quantifying Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/nlp/tutorial3.html">Paid LLMs for Text Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/nlp/tutorial4.html">Open-Source LLMs for Text Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/nlp/tutorial5.html">Validation and Rigor</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Resource Guides</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../guides/openai/openai.html">OpenAI and LLMs</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../guides/openai/llm-intro.html">Understanding LLMs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../guides/openai/openai-api.html">OpenAI API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../guides/openai/openai-copilot.html">GitHub Copilot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../guides/openai/openai-workflow.html">Application Workflow</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../guides/llm/llm.html">Open Source LLMs</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Submitting SLURM Jobs</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prerequisites">Prerequisites</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-minimal-batch-script">A Minimal Batch Script</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#partition-limits-kellogg">Partition Limits (<code class="docutils literal notranslate"><span class="pre">kellogg</span></code>)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-sbatch-options">Key <code class="docutils literal notranslate"><span class="pre">#SBATCH</span></code> Options</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interactive-sessions">Interactive Sessions</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-srun-directly-one-step-alternative">Using <code class="docutils literal notranslate"><span class="pre">srun</span></code> Directly (One-Step Alternative)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#job-arrays">Job Arrays</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#monitoring-and-cancelling-jobs">Monitoring and Cancelling Jobs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#common-pitfalls">Common Pitfalls</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-workflow">Practical Workflow</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#further-reading">Further Reading</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="submitting-slurm-jobs">
+<h1>Submitting SLURM Jobs<a class="headerlink" href="#submitting-slurm-jobs" title="Link to this heading">#</a></h1>
+<p>KLC Reserve jobs run on the <strong><code class="docutils literal notranslate"><span class="pre">kellogg</span></code> SLURM partition</strong>. You submit a shell script that declares the resources your job needs; SLURM schedules the job and runs it on dedicated nodes whether you remain logged in or not. This page covers how to write, submit, monitor, and tune batch and interactive SLURM jobs.</p>
+<p>For the decision between interactive login work and scheduled jobs, see <a class="reference internal" href="when-to-use.html"><span class="doc std std-doc">When to Use KLC Reserve</span></a>. For GPU-specific requests, see <a class="reference internal" href="gpu-jobs.html"><span class="doc std std-doc">GPU Jobs</span></a>. For comprehensive SLURM reference, see the <a class="reference external" href="https://rcdsdocs.it.northwestern.edu/systems/quest/user-guide/slurm/slurm.html" target="_blank">Quest SLURM documentation <svg version="1.1" width="1.0em" height="1.0em" viewBox="0 0 16 16" aria-hidden="true" style="display: inline-block; vertical-align: middle; fill: currentColor;"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a>.</p>
+<section id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>A KLC account and an active session on any KLC node</p></li>
+<li><p>A Kellogg SLURM account with access to the <code class="docutils literal notranslate"><span class="pre">kellogg</span></code> partition (verify with <code class="docutils literal notranslate"><span class="pre">groups</span></code>)</p></li>
+<li><p>Job scripts and output stored under <code class="docutils literal notranslate"><span class="pre">/kellogg/proj/&lt;your-netid&gt;/</span></code>, not your 80 GB home directory</p></li>
+</ul>
+</section>
+<section id="a-minimal-batch-script">
+<h2>A Minimal Batch Script<a class="headerlink" href="#a-minimal-batch-script" title="Link to this heading">#</a></h2>
+<p>Save this as <code class="docutils literal notranslate"><span class="pre">myjob.sh</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="c1">#SBATCH --account=kellogg                    ## Kellogg SLURM account</span>
+<span class="c1">#SBATCH --partition=kellogg                  ## Kellogg Reserve partition</span>
+<span class="c1">#SBATCH --job-name=my-analysis</span>
+<span class="c1">#SBATCH --nodes=1</span>
+<span class="c1">#SBATCH --ntasks=8                           ## CPU cores</span>
+<span class="c1">#SBATCH --mem=64G                            ## RAM; request ~110% of expected peak use</span>
+<span class="c1">#SBATCH --time=04:00:00                      ## Wall time limit HH:MM:SS</span>
+<span class="c1">#SBATCH --output=logs/slurm-%j.out           ## stdout/stderr; %j = job ID</span>
+
+<span class="c1">## Load software</span>
+module<span class="w"> </span>purge
+module<span class="w"> </span>use<span class="w"> </span>--append<span class="w"> </span>/kellogg/software/Modules/modulefiles
+module<span class="w"> </span>load<span class="w"> </span>mamba/latest
+<span class="nb">source</span><span class="w"> </span>activate<span class="w"> </span>/kellogg/proj/&lt;your-netid&gt;/envs/my-env
+
+<span class="c1">## Run your code</span>
+<span class="nb">cd</span><span class="w"> </span>/kellogg/proj/&lt;your-netid&gt;/project
+python<span class="w"> </span>analysis.py
+</pre></div>
+</div>
+<p>Submit it:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sbatch<span class="w"> </span>myjob.sh
+</pre></div>
+</div>
+<p>SLURM returns a job ID immediately and your job enters the queue:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Submitted</span> <span class="n">batch</span> <span class="n">job</span> <span class="mi">1234567</span>
+</pre></div>
+</div>
+</section>
+<section id="partition-limits-kellogg">
+<h2>Partition Limits (<code class="docutils literal notranslate"><span class="pre">kellogg</span></code>)<a class="headerlink" href="#partition-limits-kellogg" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Policy</p></th>
+<th class="head"><p>Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--account</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">kellogg</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Maximum wall time</p></td>
+<td><p>48 hours per job</p></td>
+</tr>
+<tr class="row-even"><td><p>Concurrent job limit</p></td>
+<td><p>None</p></td>
+</tr>
+<tr class="row-odd"><td><p>Default memory</p></td>
+<td><p>3 GB per core (if <code class="docutils literal notranslate"><span class="pre">--mem</span></code> is not specified)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Request <code class="docutils literal notranslate"><span class="pre">--mem</span></code> explicitly when your job needs more than the per-core default.</p>
+</section>
+<section id="key-sbatch-options">
+<h2>Key <code class="docutils literal notranslate"><span class="pre">#SBATCH</span></code> Options<a class="headerlink" href="#key-sbatch-options" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Option</p></th>
+<th class="head"><p>What it controls</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--account</span></code></p></td>
+<td><p>SLURM account to charge; required</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">--partition</span></code></p></td>
+<td><p>Node pool; use <code class="docutils literal notranslate"><span class="pre">kellogg</span></code> for KLC Reserve</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--nodes=1</span></code></p></td>
+<td><p>Physical machines; keep at 1 unless using MPI</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">--ntasks</span></code></p></td>
+<td><p>CPU cores; increase only if your code parallelizes</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--mem</span></code></p></td>
+<td><p>RAM per node</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">--time</span></code></p></td>
+<td><p>Maximum wall time; job is killed if it exceeds this</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--output</span></code></p></td>
+<td><p>File for stdout and stderr (<code class="docutils literal notranslate"><span class="pre">%j</span></code> = job ID)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">--gres=gpu:1</span></code></p></td>
+<td><p>Request one GPU (for GPU jobs; see <a class="reference internal" href="gpu-jobs.html"><span class="doc std std-doc">GPU Jobs</span></a>)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><code class="docutils literal notranslate"><span class="pre">--ntasks</span></code> without <code class="docutils literal notranslate"><span class="pre">--nodes=1</span></code> can spread cores across multiple machines. Unless your code uses MPI, always pair <code class="docutils literal notranslate"><span class="pre">--ntasks</span></code> with <code class="docutils literal notranslate"><span class="pre">--nodes=1</span></code>.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Run <code class="docutils literal notranslate"><span class="pre">groups</span></code> after logging into any KLC node to see the SLURM account names you belong to. Contact <a class="reference external" href="mailto:rs&#37;&#52;&#48;kellogg&#46;northwestern&#46;edu" target="_blank">rs<span>&#64;</span>kellogg<span>&#46;</span>northwestern<span>&#46;</span>edu <svg version="1.1" width="1.0em" height="1.0em" viewBox="0 0 16 16" aria-hidden="true" style="display: inline-block; vertical-align: middle; fill: currentColor;"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a> if your jobs fail to submit.</p>
+</div>
+</section>
+<section id="interactive-sessions">
+<h2>Interactive Sessions<a class="headerlink" href="#interactive-sessions" title="Link to this heading">#</a></h2>
+<p>For interactive work on a reserved node — useful for debugging or testing resource-intensive steps — use <code class="docutils literal notranslate"><span class="pre">salloc</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>salloc<span class="w"> </span>--account<span class="o">=</span>kellogg<span class="w"> </span><span class="se">\</span>
+<span class="w">       </span>--partition<span class="o">=</span>kellogg<span class="w"> </span><span class="se">\</span>
+<span class="w">       </span>--nodes<span class="o">=</span><span class="m">1</span><span class="w"> </span>--ntasks<span class="o">=</span><span class="m">4</span><span class="w"> </span>--mem<span class="o">=</span>32G<span class="w"> </span><span class="se">\</span>
+<span class="w">       </span>--time<span class="o">=</span><span class="m">01</span>:00:00
+</pre></div>
+</div>
+<p>Once the allocation is granted, SLURM sets <code class="docutils literal notranslate"><span class="pre">$SLURM_NODELIST</span></code> and similar environment variables in your shell. To open an interactive shell on the allocated compute node, run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>srun<span class="w"> </span>--pty<span class="w"> </span>bash
+</pre></div>
+</div>
+<p>This launches a bash session directly on the assigned node. When you are done, type <code class="docutils literal notranslate"><span class="pre">exit</span></code> to leave the <code class="docutils literal notranslate"><span class="pre">srun</span></code> session, then <code class="docutils literal notranslate"><span class="pre">exit</span></code> again to release the <code class="docutils literal notranslate"><span class="pre">salloc</span></code> allocation.</p>
+<p>You can also use <code class="docutils literal notranslate"><span class="pre">srun</span></code> to run a single command on the allocated node without opening a full shell:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>srun<span class="w"> </span>python<span class="w"> </span>my_script.py
+</pre></div>
+</div>
+<p>To request a GPU interactively, add <code class="docutils literal notranslate"><span class="pre">--gres=gpu:1</span></code> to your <code class="docutils literal notranslate"><span class="pre">salloc</span></code> command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>salloc<span class="w"> </span>--account<span class="o">=</span>kellogg<span class="w"> </span><span class="se">\</span>
+<span class="w">       </span>--partition<span class="o">=</span>kellogg<span class="w"> </span><span class="se">\</span>
+<span class="w">       </span>--nodes<span class="o">=</span><span class="m">1</span><span class="w"> </span>--ntasks<span class="o">=</span><span class="m">4</span><span class="w"> </span>--mem<span class="o">=</span>32G<span class="w"> </span><span class="se">\</span>
+<span class="w">       </span>--gres<span class="o">=</span>gpu:1<span class="w"> </span>--time<span class="o">=</span><span class="m">01</span>:00:00
+</pre></div>
+</div>
+<p>Then connect to the node and verify the GPU is visible:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>srun<span class="w"> </span>--pty<span class="w"> </span>bash
+nvidia-smi
+</pre></div>
+</div>
+<p>For GPU setup and batch examples, see <a class="reference internal" href="gpu-jobs.html"><span class="doc std std-doc">GPU Jobs</span></a>.</p>
+<section id="using-srun-directly-one-step-alternative">
+<h3>Using <code class="docutils literal notranslate"><span class="pre">srun</span></code> Directly (One-Step Alternative)<a class="headerlink" href="#using-srun-directly-one-step-alternative" title="Link to this heading">#</a></h3>
+<p>You can skip <code class="docutils literal notranslate"><span class="pre">salloc</span></code> entirely and let <code class="docutils literal notranslate"><span class="pre">srun</span></code> handle both allocation and execution in a single command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>srun<span class="w"> </span>--account<span class="o">=</span>kellogg<span class="w"> </span><span class="se">\</span>
+<span class="w">     </span>--partition<span class="o">=</span>kellogg<span class="w"> </span><span class="se">\</span>
+<span class="w">     </span>--nodes<span class="o">=</span><span class="m">1</span><span class="w"> </span>--ntasks<span class="o">=</span><span class="m">4</span><span class="w"> </span>--mem<span class="o">=</span>32G<span class="w"> </span><span class="se">\</span>
+<span class="w">     </span>--time<span class="o">=</span><span class="m">01</span>:00:00<span class="w"> </span><span class="se">\</span>
+<span class="w">     </span>--pty<span class="w"> </span>bash
+</pre></div>
+</div>
+<p>For a GPU session:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>srun<span class="w"> </span>--account<span class="o">=</span>kellogg<span class="w"> </span><span class="se">\</span>
+<span class="w">     </span>--partition<span class="o">=</span>kellogg<span class="w"> </span><span class="se">\</span>
+<span class="w">     </span>--nodes<span class="o">=</span><span class="m">1</span><span class="w"> </span>--ntasks<span class="o">=</span><span class="m">4</span><span class="w"> </span>--mem<span class="o">=</span>32G<span class="w"> </span><span class="se">\</span>
+<span class="w">     </span>--gres<span class="o">=</span>gpu:1<span class="w"> </span>--time<span class="o">=</span><span class="m">01</span>:00:00<span class="w"> </span><span class="se">\</span>
+<span class="w">     </span>--pty<span class="w"> </span>bash
+</pre></div>
+</div>
+<p>This is the simpler option for a quick one-off session. The tradeoff is that each <code class="docutils literal notranslate"><span class="pre">srun</span></code> call competes for resources independently — if you need to run several sequential steps and want them all to share the same allocation without requeuing, use <code class="docutils literal notranslate"><span class="pre">salloc</span></code> + <code class="docutils literal notranslate"><span class="pre">srun</span></code> instead.</p>
+</section>
+</section>
+<section id="job-arrays">
+<h2>Job Arrays<a class="headerlink" href="#job-arrays" title="Link to this heading">#</a></h2>
+<p>Run the same script on many inputs with a <strong>job array</strong>. Each task receives a unique index in <code class="docutils literal notranslate"><span class="pre">$SLURM_ARRAY_TASK_ID</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="c1">#SBATCH --account=kellogg</span>
+<span class="c1">#SBATCH --partition=kellogg</span>
+<span class="c1">#SBATCH --job-name=batch-analysis</span>
+<span class="c1">#SBATCH --array=1-50                      ## Tasks indexed 1 through 50</span>
+<span class="c1">#SBATCH --nodes=1</span>
+<span class="c1">#SBATCH --ntasks=4</span>
+<span class="c1">#SBATCH --mem=16G</span>
+<span class="c1">#SBATCH --time=01:00:00</span>
+<span class="c1">#SBATCH --output=logs/job-%A_%a.out       ## %A = array job ID, %a = task index</span>
+
+module<span class="w"> </span>purge
+module<span class="w"> </span>use<span class="w"> </span>--append<span class="w"> </span>/kellogg/software/Modules/modulefiles
+module<span class="w"> </span>load<span class="w"> </span>mamba/latest
+<span class="nb">source</span><span class="w"> </span>activate<span class="w"> </span>/kellogg/proj/&lt;your-netid&gt;/envs/my-env
+
+<span class="nv">INPUT_FILE</span><span class="o">=</span>/kellogg/proj/&lt;your-netid&gt;/data/input_<span class="si">${</span><span class="nv">SLURM_ARRAY_TASK_ID</span><span class="si">}</span>.csv
+
+python<span class="w"> </span>process.py<span class="w"> </span>--input<span class="w"> </span><span class="nv">$INPUT_FILE</span><span class="w"> </span><span class="se">\</span>
+<span class="w">                  </span>--output<span class="w"> </span>/kellogg/proj/&lt;your-netid&gt;/results/output_<span class="si">${</span><span class="nv">SLURM_ARRAY_TASK_ID</span><span class="si">}</span>.csv
+</pre></div>
+</div>
+<p>All tasks run in parallel subject to partition capacity.</p>
+</section>
+<section id="monitoring-and-cancelling-jobs">
+<h2>Monitoring and Cancelling Jobs<a class="headerlink" href="#monitoring-and-cancelling-jobs" title="Link to this heading">#</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Queued and running jobs</span>
+squeue<span class="w"> </span>-u<span class="w"> </span><span class="nv">$USER</span>
+
+<span class="c1"># Expected start time for a pending job</span>
+squeue<span class="w"> </span>-j<span class="w"> </span>&lt;job-id&gt;<span class="w"> </span>--start
+
+<span class="c1"># Detailed status</span>
+checkjob<span class="w"> </span>&lt;job-id&gt;
+
+<span class="c1"># Resource efficiency after completion</span>
+seff<span class="w"> </span>&lt;job-id&gt;
+
+<span class="c1"># Cancel a job</span>
+scancel<span class="w"> </span>&lt;job-id&gt;
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">seff</span></code> reports CPU efficiency and actual vs. requested memory — use it after each run to tighten your resource requests and reduce queue wait time.</p>
+</section>
+<section id="common-pitfalls">
+<h2>Common Pitfalls<a class="headerlink" href="#common-pitfalls" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Symptom</p></th>
+<th class="head"><p>Likely cause</p></th>
+<th class="head"><p>What to do</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Invalid</span> <span class="pre">account</span></code></p></td>
+<td><p>Wrong <code class="docutils literal notranslate"><span class="pre">--account</span></code> or no partition access</p></td>
+<td><p>Run <code class="docutils literal notranslate"><span class="pre">groups</span></code>; contact <a class="reference external" href="mailto:rs&#37;&#52;&#48;kellogg&#46;northwestern&#46;edu" target="_blank">rs<span>&#64;</span>kellogg<span>&#46;</span>northwestern<span>&#46;</span>edu <svg version="1.1" width="1.0em" height="1.0em" viewBox="0 0 16 16" aria-hidden="true" style="display: inline-block; vertical-align: middle; fill: currentColor;"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>Job stays <code class="docutils literal notranslate"><span class="pre">PD</span></code> (pending)</p></td>
+<td><p>Cluster busy or request too large</p></td>
+<td><p>Check <code class="docutils literal notranslate"><span class="pre">squeue</span> <span class="pre">-j</span> <span class="pre">&lt;job-id&gt;</span> <span class="pre">--start</span></code>; reduce <code class="docutils literal notranslate"><span class="pre">--mem</span></code>, <code class="docutils literal notranslate"><span class="pre">--ntasks</span></code>, or <code class="docutils literal notranslate"><span class="pre">--time</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Job fails immediately</p></td>
+<td><p>Missing <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">load</span></code> or wrong conda path</p></td>
+<td><p>Test the exact commands interactively first</p></td>
+</tr>
+<tr class="row-odd"><td><p>Job ends with <code class="docutils literal notranslate"><span class="pre">OUT_OF_MEMORY</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">--mem</span></code> too low</p></td>
+<td><p>Increase <code class="docutils literal notranslate"><span class="pre">--mem</span></code>; use <code class="docutils literal notranslate"><span class="pre">seff</span></code> on a failed job to see actual use</p></td>
+</tr>
+<tr class="row-even"><td><p>Job ends with <code class="docutils literal notranslate"><span class="pre">TIMEOUT</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">--time</span></code> too low</p></td>
+<td><p>Increase <code class="docutils literal notranslate"><span class="pre">--time</span></code> and resubmit</p></td>
+</tr>
+<tr class="row-odd"><td><p>Empty or missing output file</p></td>
+<td><p>Wrong <code class="docutils literal notranslate"><span class="pre">--output</span></code> path</p></td>
+<td><p>Create the log directory before submitting; use an absolute path under <code class="docutils literal notranslate"><span class="pre">/kellogg/proj/</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--ntasks</span></code> spreads across nodes</p></td>
+<td><p>Missing <code class="docutils literal notranslate"><span class="pre">--nodes=1</span></code></p></td>
+<td><p>Always add <code class="docutils literal notranslate"><span class="pre">--nodes=1</span></code> for non-MPI jobs</p></td>
+</tr>
+<tr class="row-odd"><td><p>GPU not visible in Python</p></td>
+<td><p>CUDA environment not loaded</p></td>
+<td><p>Load the correct CUDA module; see <a class="reference internal" href="gpu-jobs.html"><span class="doc std std-doc">GPU Jobs</span></a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="practical-workflow">
+<h2>Practical Workflow<a class="headerlink" href="#practical-workflow" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Develop interactively</strong> on a login node with a small sample. Fix bugs and tune parameters.</p></li>
+<li><p><strong>Capture commands</strong> in a SLURM script — same <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">load</span></code> steps and working directory.</p></li>
+<li><p><strong>Submit one test job</strong> on representative data; confirm output and runtime.</p></li>
+<li><p><strong>Scale</strong> with a job array if you have many inputs.</p></li>
+<li><p><strong>Tune resources</strong> with <code class="docutils literal notranslate"><span class="pre">seff</span></code> before the next large run.</p></li>
+</ol>
+</section>
+<section id="further-reading">
+<h2>Further Reading<a class="headerlink" href="#further-reading" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://rcdsdocs.it.northwestern.edu/systems/quest/user-guide/slurm/slurm.html" target="_blank">Quest SLURM documentation <svg version="1.1" width="1.0em" height="1.0em" viewBox="0 0 16 16" aria-hidden="true" style="display: inline-block; vertical-align: middle; fill: currentColor;"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a> — comprehensive <code class="docutils literal notranslate"><span class="pre">#SBATCH</span></code> reference</p></li>
+<li><p><a class="reference internal" href="when-to-use.html"><span class="doc std std-doc">When to Use KLC Reserve</span></a> — when to use SLURM vs. direct login</p></li>
+<li><p><a class="reference internal" href="../klc/user-guide/klc-software.html"><span class="doc std std-doc">Launching Jobs on KLC</span></a> — modules and environment setup</p></li>
+<li><p><a class="reference internal" href="../klc/user-guide/klc-tmux.html"><span class="doc std std-doc">Using tmux</span></a> — keeping interactive sessions alive on login nodes</p></li>
+<li><p><a class="reference internal" href="gpu-jobs.html"><span class="doc std std-doc">GPU Jobs</span></a> — GPU requests on the <code class="docutils literal notranslate"><span class="pre">kellogg</span></code> partition</p></li>
+<li><p><a class="reference internal" href="klc-reserve.html"><span class="doc std std-doc">KLC Reserve overview</span></a> — available hardware</p></li>
+</ul>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="gpu-concepts.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">GPU Concepts and Options</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="gpu-jobs.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">GPU Jobs</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prerequisites">Prerequisites</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-minimal-batch-script">A Minimal Batch Script</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#partition-limits-kellogg">Partition Limits (<code class="docutils literal notranslate"><span class="pre">kellogg</span></code>)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-sbatch-options">Key <code class="docutils literal notranslate"><span class="pre">#SBATCH</span></code> Options</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interactive-sessions">Interactive Sessions</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-srun-directly-one-step-alternative">Using <code class="docutils literal notranslate"><span class="pre">srun</span></code> Directly (One-Step Alternative)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#job-arrays">Job Arrays</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#monitoring-and-cancelling-jobs">Monitoring and Cancelling Jobs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#common-pitfalls">Common Pitfalls</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-workflow">Practical Workflow</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#further-reading">Further Reading</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+
+
+<div id="footer-bottom">
+<div class="contain-1120">
+<span class="copyright" style="color:white">©
+<script>// <![CDATA[
+document.write(new Date().getFullYear())
+// ]]></script>
+Kellogg School of Management | <a href="https://www.kellogg.northwestern.edu/academics-research/research-support/">Kellogg Research Support</a></span>
+<!--
+<ul>
+<li><a href="https://www.facebook.com/NorthwesternU"> <span class="social facebook">Facebook</span> </a></li>
+<li><a href="https://www.twitter.com/northwesternu"> <span class="social twitter">Twitter</span> </a></li>
+<li><a href="https://www.instagram.com/northwesternu"> <span class="social instagram">Instagram</span> </a></li>
+<li><a href="https://www.youtube.com/user/NorthwesternU"> <span class="social youtube">YouTube</span> </a></li>
+<li><a href="https://www.tiktok.com/@northwestern.u"> <span class="social tiktok">TikTok</span> </a></li>
+<li><a href="https://www.linkedin.com/school/northwestern-university/"> <span class="social linkedin">LinkedIn</span> </a></li>
+</ul>
+-->
+<span class="right" style="color:white"><a style="color:white" href="https://www.northwestern.edu/disclaimer.html">Disclaimer</a></span>
+</div>
+</div>
+  </footer>
+  </body>
+</html>
