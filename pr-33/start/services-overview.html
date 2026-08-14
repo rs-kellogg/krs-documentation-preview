@@ -345,9 +345,12 @@ Northwestern University - Home"/>
             <nav aria-label="Page">
                 <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kellogg-linux-cluster-klc">Kellogg Linux Cluster (KLC)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quest-general-access-gpus">Quest General Access GPUs</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kellogg-data-hosting">Kellogg Data Hosting</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kellogg-linux-cluster-reserve">Kellogg Linux Cluster Reserve</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#other-northwestern-resources">Other Northwestern Resources</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#quest-general-access-gpus">Quest General Access GPUs</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#not-sure">Not Sure?</a></li>
 </ul>
             </nav>
@@ -375,17 +378,6 @@ Northwestern University - Home"/>
 </ul>
 <p>→ <a class="reference internal" href="klc/klc-intro.html"><span class="doc std std-doc">Getting Started with KLC</span></a> · <a class="reference internal" href="../services/klc/user-guide/klc-user-guide.html"><span class="doc std std-doc">KLC User Guide</span></a></p>
 </section>
-<section id="quest-general-access-gpus">
-<h2>Quest General Access GPUs<a class="headerlink" href="#quest-general-access-gpus" title="Link to this heading">#</a></h2>
-<p>Northwestern-wide NVIDIA GPU nodes (A100 and H100) on the <strong><code class="docutils literal notranslate"><span class="pre">gengpu</span></code> partition</strong> — for workloads that need GPUs at scale beyond what Kellogg Reserve provides.</p>
-<p><strong>Use <code class="docutils literal notranslate"><span class="pre">gengpu</span></code> when:</strong></p>
-<ul class="simple">
-<li><p>Your GPU workflow is already working on KLC Reserve and you need more cards or concurrent GPU jobs</p></li>
-<li><p>You hold a Quest allocation and want access to the larger General Access GPU pool</p></li>
-</ul>
-<p>Test on <a class="reference internal" href="../services/klc-reserve/klc-reserve.html"><span class="doc std std-doc">KLC Reserve</span></a> first, then scale out to <code class="docutils literal notranslate"><span class="pre">gengpu</span></code>.</p>
-<p>→ <a class="reference internal" href="../services/klc-reserve/gpu-concepts.html"><span class="doc std std-doc">GPU Concepts and Options</span></a> · <a class="reference external" href="https://rcdsdocs.it.northwestern.edu/systems/quest/user-guide/gpu/gpu.html" target="_blank">GPUs on Quest <svg version="1.1" width="1.0em" height="1.0em" viewBox="0 0 16 16" aria-hidden="true" style="display: inline-block; vertical-align: middle; fill: currentColor;"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a></p>
-</section>
 <section id="kellogg-data-hosting">
 <h2>Kellogg Data Hosting<a class="headerlink" href="#kellogg-data-hosting" title="Link to this heading">#</a></h2>
 <p>WRDS, Amazon Athena, and Redivis — the three platforms through which KRS provides access to licensed research datasets.</p>
@@ -407,6 +399,21 @@ Northwestern University - Home"/>
 <li><p>You want reproducible, scheduled batch jobs</p></li>
 </ul>
 <p>→ <a class="reference internal" href="../services/klc-reserve/klc-reserve.html"><span class="doc std std-doc">Kellogg Linux Cluster Reserve</span></a></p>
+</section>
+<section id="other-northwestern-resources">
+<h2>Other Northwestern Resources<a class="headerlink" href="#other-northwestern-resources" title="Link to this heading">#</a></h2>
+<p>These university-wide resources are operated by Northwestern IT, not Kellogg Research Support.</p>
+<section id="quest-general-access-gpus">
+<h3>Quest General Access GPUs<a class="headerlink" href="#quest-general-access-gpus" title="Link to this heading">#</a></h3>
+<p>Northwestern-wide NVIDIA GPU nodes (A100 and H100) on the <strong><code class="docutils literal notranslate"><span class="pre">gengpu</span></code> partition</strong> — for workloads that need GPUs at scale beyond what Kellogg Reserve provides.</p>
+<p><strong>Use <code class="docutils literal notranslate"><span class="pre">gengpu</span></code> when:</strong></p>
+<ul class="simple">
+<li><p>Your GPU workflow is already working on KLC Reserve and you need more cards or concurrent GPU jobs</p></li>
+<li><p>You hold a Quest allocation and want access to the larger General Access GPU pool</p></li>
+</ul>
+<p>Test on <a class="reference internal" href="../services/klc-reserve/klc-reserve.html"><span class="doc std std-doc">KLC Reserve</span></a> first, then scale out to <code class="docutils literal notranslate"><span class="pre">gengpu</span></code>.</p>
+<p>→ <a class="reference internal" href="../services/klc-reserve/gpu-concepts.html"><span class="doc std std-doc">GPU Concepts and Options</span></a> · <a class="reference external" href="https://rcdsdocs.it.northwestern.edu/systems/quest/user-guide/gpu/gpu.html" target="_blank">GPUs on Quest <svg version="1.1" width="1.0em" height="1.0em" viewBox="0 0 16 16" aria-hidden="true" style="display: inline-block; vertical-align: middle; fill: currentColor;"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a></p>
+</section>
 </section>
 <section id="not-sure">
 <h2>Not Sure?<a class="headerlink" href="#not-sure" title="Link to this heading">#</a></h2>
@@ -462,9 +469,12 @@ Northwestern University - Home"/>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kellogg-linux-cluster-klc">Kellogg Linux Cluster (KLC)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quest-general-access-gpus">Quest General Access GPUs</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kellogg-data-hosting">Kellogg Data Hosting</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kellogg-linux-cluster-reserve">Kellogg Linux Cluster Reserve</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#other-northwestern-resources">Other Northwestern Resources</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#quest-general-access-gpus">Quest General Access GPUs</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#not-sure">Not Sure?</a></li>
 </ul>
   </nav></div>

@@ -15,18 +15,6 @@ High-memory Linux servers for interactive computing, large-scale data analysis, 
 
 → [Getting Started with KLC](klc/klc-intro) · [KLC User Guide](/services/klc/user-guide/klc-user-guide)
 
-## Quest General Access GPUs
-
-Northwestern-wide NVIDIA GPU nodes (A100 and H100) on the **`gengpu` partition** — for workloads that need GPUs at scale beyond what Kellogg Reserve provides.
-
-**Use `gengpu` when:**
-- Your GPU workflow is already working on KLC Reserve and you need more cards or concurrent GPU jobs
-- You hold a Quest allocation and want access to the larger General Access GPU pool
-
-Test on [KLC Reserve](/services/klc-reserve/klc-reserve) first, then scale out to `gengpu`.
-
-→ [GPU Concepts and Options](/services/klc-reserve/gpu-concepts) · [GPUs on Quest](https://rcdsdocs.it.northwestern.edu/systems/quest/user-guide/gpu/gpu.html)
-
 ## Kellogg Data Hosting
 
 WRDS, Amazon Athena, and Redivis — the three platforms through which KRS provides access to licensed research datasets.
@@ -48,6 +36,22 @@ Dedicated GPU and high-memory compute nodes accessed through the SLURM job sched
 - You want reproducible, scheduled batch jobs
 
 → [Kellogg Linux Cluster Reserve](/services/klc-reserve/klc-reserve)
+
+## Other Northwestern Resources
+
+These university-wide resources are operated by Northwestern IT, not Kellogg Research Support.
+
+### Quest General Access GPUs
+
+Northwestern-wide NVIDIA GPU nodes (A100 and H100) on the **`gengpu` partition** — for workloads that need GPUs at scale beyond what Kellogg Reserve provides.
+
+**Use `gengpu` when:**
+- Your GPU workflow is already working on KLC Reserve and you need more cards or concurrent GPU jobs
+- You hold a Quest allocation and want access to the larger General Access GPU pool
+
+Test on [KLC Reserve](/services/klc-reserve/klc-reserve) first, then scale out to `gengpu`.
+
+→ [GPU Concepts and Options](/services/klc-reserve/gpu-concepts) · [GPUs on Quest](https://rcdsdocs.it.northwestern.edu/systems/quest/user-guide/gpu/gpu.html)
 
 ## Not Sure?
 
