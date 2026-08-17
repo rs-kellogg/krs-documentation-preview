@@ -1,0 +1,855 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" data-theme="light">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Athena (AWS) &#8212; Kellogg School of Management
+Research Support
+Northwestern University</title>
+<script data-cfasync="false">
+  localStorage.setItem("mode", "light");
+  localStorage.setItem("theme", "light");
+</script>
+
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/kellogg-rs-docs.css?v=9c3e1ba6" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'services/kellogg-data-hosting/athena/athena';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = true;</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Comscore" href="../../datasets/datasets/comscore.html" />
+    <link rel="prev" title="Revelio Labs Example: Monthly Headcount and Separation Rate" href="../wrds/examples/revelio-example.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../../../_static/searchtools.js"></script>
+    <script src="../../../_static/language_data.js"></script>
+    <script src="../../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="light">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+<aside class="bd-header-announcement" aria-label="Announcement">
+  <div class="bd-header-announcement__content">⚠️This documentation is in beta and is under active development.⚠️</div>
+</aside>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+    
+    <img src="../../../_static/kellogg_logo.png" class="logo__image only-light" alt="Kellogg School of Management
+Research Support
+Northwestern University - Home"/>
+    <img src="../../../_static/kellogg_logo.png" class="logo__image only-dark pst-js-only" alt="Kellogg School of Management
+Research Support
+Northwestern University - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../start/getting-help.html">Getting Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../start/services-overview.html">What Does KRS Offer?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../start/klc/klc-intro.html">Introduction to Kellogg Linux Cluster</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../start/workshop-doc.html">Research the Right Way Workshop</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Computing and Datasets</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../klc/klc.html">Kellogg Linux Cluster</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference external" href="https://www.kellogg.northwestern.edu/academics-research/research-support/computing/kellogg-linux-cluster/" target="_blank">Kellogg Linux Cluster Overview <svg aria-hidden="true" height="1.0em" style="display: inline-block; vertical-align: middle; fill: currentColor;" version="1.1" viewbox="0 0 16 16" width="1.0em"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../klc/user-guide/klc-user-guide.html">KLC User Guide</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../klc/user-guide/klc-accessing.html">Access KLC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../klc/user-guide/klc-ssh.html">SSH</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../klc/user-guide/klc-fastx.html">FastX</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../klc/user-guide/klc-vscode.html">VS Code Workflow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../klc/user-guide/klc-ondemand.html">KLC OnDemand</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../klc/user-guide/klc-files.html">KLC Filesystem</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../klc/user-guide/klc-transferfiles.html">Data Transfer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../klc/user-guide/klc-editor.html">Edit Files on KLC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../klc/user-guide/klc-git.html">Using Git on KLC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../klc/user-guide/klc-conda.html">Conda/Mamba Environments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../klc/user-guide/klc-software.html">Launching Jobs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../klc/user-guide/klc-tmux.html">Using tmux</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../klc/user-guide/klc-profiling.html">Monitoring &amp; Managing Jobs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../klc/user-guide/llm-api.html">LLM API Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../klc/user-guide/llm-klc.html">Open Source LLMs (Interactive)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../../klc/klc-datasets.html">Datasets on KLC</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://rcdsdocs.it.northwestern.edu/systems/quest/quest.html" target="_blank">Quest Documentation <svg aria-hidden="true" height="1.0em" style="display: inline-block; vertical-align: middle; fill: currentColor;" version="1.1" viewbox="0 0 16 16" width="1.0em"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a></li>
+<li class="toctree-l2"><a class="reference external" href="https://www.it.northwestern.edu/departments/it-services-support/research/computing/quest/data-security-guidance.html" target="_blank">Quest Data Security Guidance <svg aria-hidden="true" height="1.0em" style="display: inline-block; vertical-align: middle; fill: currentColor;" version="1.1" viewbox="0 0 16 16" width="1.0em"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../kdc.html">Kellogg Data Hosting</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 has-children"><a class="reference internal" href="../wrds/wrds.html">WRDS</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../wrds/examples/crsp-example.html">CRSP Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../wrds/examples/taq-example.html">TAQ Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../wrds/examples/revelio-example.html">Revelio Labs Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 current active has-children"><a class="current reference internal" href="#">Athena (AWS)</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../datasets/datasets/comscore.html">Comscore</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../datasets/datasets/cotality.html">Cotality (formerly CoreLogic)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../datasets/datasets/equifax.html">Equifax</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../datasets/datasets/patstat.html">PATSTAT</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../redivis/redivis.html">Redivis</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../datasets/datasets/l2-vm2-uniform.html">L2 VM2 Uniform</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../datasets/datasets/numerator.html">Numerator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../datasets/datasets/openalex.html">OpenAlex</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../datasets/datasets/proxycurl.html">ProxyCurl</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../klc-reserve/klc-reserve.html">Kellogg Linux Cluster Reserve</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../klc-reserve/when-to-use.html">When to Use KLC Reserve</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../klc-reserve/gpu-concepts.html">GPU Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../klc-reserve/slurm-jobs.html">Submitting SLURM Jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../klc-reserve/gpu-jobs.html">GPU Jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../klc-reserve/vllm-example.html">vLLM on GPUs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../klc-reserve/ollama-example.html">Ollama on GPUs</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../tutorials/nlp/nlp.html">Natural Language Processing</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/nlp/tutorial1.html">Deterministic Extraction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/nlp/tutorial2.html">Quantifying Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/nlp/tutorial3.html">Paid LLMs for Text Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/nlp/tutorial4.html">Open-Source LLMs for Text Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/nlp/tutorial5.html">Validation and Rigor</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Resource Guides</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../guides/openai/openai.html">OpenAI and LLMs</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../guides/openai/llm-intro.html">Understanding LLMs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../guides/openai/openai-api.html">OpenAI API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../guides/openai/openai-copilot.html">GitHub Copilot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../guides/openai/openai-workflow.html">Application Workflow</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../guides/llm/llm.html">Open Source LLMs</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Athena (AWS)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#choosing-an-access-method">Choosing an Access Method</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#accessing-via-the-aws-console">Accessing via the AWS Console</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#log-in-to-aws">1. Log in to AWS</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#navigate-to-athena">2. Navigate to Athena</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#query-and-download-results">3. Query and Download Results</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#accessing-via-klc">Accessing via KLC</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#load-the-aws-cli">1. Load the AWS CLI</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configure-netid-authentication">2. Configure NetID Authentication</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#verify-access">3. Verify Access</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#set-up-the-odbc-environment">4. Set Up the ODBC Environment</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#copy-and-run-a-sample-script">5. Copy and Run a Sample Script</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#query-limits-and-reducing-data-scanned">Query Limits and Reducing Data Scanned</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#troubleshooting">Troubleshooting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#datasets-on-athena">Datasets on Athena</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="athena-aws">
+<span id="athena"></span><h1>Athena (AWS)<a class="headerlink" href="#athena-aws" title="Link to this heading">#</a></h1>
+<p>The Kellogg Data Hosting <strong>Athena</strong> platform is built on <strong>Amazon Athena</strong>, a serverless SQL query service. You can query Athena datasets either through the AWS web console or directly from KLC via an ODBC connection.</p>
+<p>To request access to a specific dataset, contact <a class="reference external" href="mailto:rs&#37;&#52;&#48;kellogg&#46;northwestern&#46;edu" target="_blank">rs<span>&#64;</span>kellogg<span>&#46;</span>northwestern<span>&#46;</span>edu <svg version="1.1" width="1.0em" height="1.0em" viewBox="0 0 16 16" aria-hidden="true" style="display: inline-block; vertical-align: middle; fill: currentColor;"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a>. Access is granted per database, not to the platform as a whole.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Once logged in to AWS, you only have access to Athena. This account does not grant access to any other AWS service.</p>
+</div>
+<section id="choosing-an-access-method">
+<h2>Choosing an Access Method<a class="headerlink" href="#choosing-an-access-method" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Method</p></th>
+<th class="head"><p>Best For</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="#accessing-via-the-aws-console">AWS Console</a></p></td>
+<td><p>Exploring data, running ad-hoc SQL queries, downloading CSV results</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#accessing-via-klc">KLC via ODBC</a></p></td>
+<td><p>Integrating Athena data into Python, R, or Stata workflows on the cluster</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The AWS Console requires no local setup. The KLC path requires a one-time <code class="docutils literal notranslate"><span class="pre">aws</span> <span class="pre">configure</span> <span class="pre">sso</span></code> setup; in future sessions, refresh your SSO session with <code class="docutils literal notranslate"><span class="pre">aws</span> <span class="pre">sso</span> <span class="pre">login</span></code> (the default session length is 4 hours).</p>
+</section>
+<section id="accessing-via-the-aws-console">
+<h2>Accessing via the AWS Console<a class="headerlink" href="#accessing-via-the-aws-console" title="Link to this heading">#</a></h2>
+<p><strong>Prerequisites:</strong></p>
+<ul class="simple">
+<li><p>A Northwestern NetID</p></li>
+<li><p>Access to a specific Athena database already granted by Kellogg Research Support</p></li>
+<li><p>No local setup or software installation</p></li>
+</ul>
+<section id="log-in-to-aws">
+<h3>1. Log in to AWS<a class="headerlink" href="#log-in-to-aws" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Go to the <a class="reference external" href="https://www.it.northwestern.edu/support/login/aws.html" target="_blank">NUIT AWS login page <svg version="1.1" width="1.0em" height="1.0em" viewBox="0 0 16 16" aria-hidden="true" style="display: inline-block; vertical-align: middle; fill: currentColor;"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a>, click <strong>General Use Login</strong>, and authenticate with your Northwestern NetID.</p></li>
+<li><p>On the <strong>AWS access portal</strong>, click the arrow next to <strong>ksm-rch-data</strong> to expand it.</p></li>
+<li><p>Click <strong>Management console</strong> next to your database, for example <code class="docutils literal notranslate"><span class="pre">ksm-rch-data-comscore2</span></code>.</p></li>
+<li><p>Confirm the <strong>Region</strong> in the upper right is <strong>US East (Ohio) (us-east-2)</strong>.</p></li>
+</ol>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Screenshots: Logging In to AWS</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text"><strong>1. NUIT AWS login page</strong></p>
+<a class="reference internal image-reference" href="../../../_images/aws-login-page.png"><img alt="NUIT AWS login page showing General Use Login and NIH-Funded Research Login buttons" src="../../../_images/aws-login-page.png" style="width: 838.0px; height: 486.5px;" />
+</a>
+<p class="sd-card-text"><strong>2. AWS access portal</strong></p>
+<a class="reference internal image-reference" href="../../../_images/aws-access-portal-accounts.png"><img alt="AWS access portal showing ksm-rch-data and ksm-rch-support accounts" src="../../../_images/aws-access-portal-accounts.png" style="width: 838.5px; height: 488.5px;" />
+</a>
+<p class="sd-card-text"><strong>3. ksm-rch-data expanded</strong></p>
+<a class="reference internal image-reference" href="../../../_images/aws-access-portal-expanded.png"><img alt="ksm-rch-data expanded showing database roles such as ksm-rch-data-comscore2 and ksm-rch-data-fetchrewards" src="../../../_images/aws-access-portal-expanded.png" style="width: 836.5px; height: 486.5px;" />
+</a>
+<p class="sd-card-text"><strong>4. AWS Console Home</strong></p>
+<a class="reference internal image-reference" href="../../../_images/aws-console-home.png"><img alt="AWS Console Home showing the correct region and account in the upper right" src="../../../_images/aws-console-home.png" style="width: 836.5px; height: 487.0px;" />
+</a>
+</div>
+</details></section>
+<section id="navigate-to-athena">
+<h3>2. Navigate to Athena<a class="headerlink" href="#navigate-to-athena" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Type <strong>Athena</strong> in the search bar at the top of the console and select <strong>Athena</strong> from the results.</p></li>
+<li><p>Right-click any table name in the left panel to access shortcuts such as <strong>Preview Table</strong> and <strong>Generate table DDL</strong>.</p></li>
+</ol>
+<p>The Athena <strong>Query editor</strong> opens. The <strong>Workgroup</strong> (shown in the upper right of the editor) and <strong>Database</strong> (in the left panel) are set to the database you were granted access to. If either value is wrong, select the correct workgroup and database from the dropdown menus in the editor. The left panel lists all available tables.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Right-click any table name in the left panel to access shortcuts such as <strong>Preview Table</strong> (generates a <code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">*</span></code> query with a 10-row limit) and <strong>Generate table DDL</strong> (shows the table schema). Preview Table still scans data — see <a class="reference internal" href="#query-limits-and-reducing-data-scanned">Query Limits and Reducing Data Scanned</a> before previewing large tables.</p>
+</div>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Screenshots: Navigating to Athena</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text"><strong>1. Search for Athena</strong></p>
+<a class="reference internal image-reference" href="../../../_images/aws-console-search-athena.png"><img alt="AWS Console search bar with &quot;athena&quot; typed, showing the Athena service result" src="../../../_images/aws-console-search-athena.png" style="width: 836.5px; height: 485.0px;" />
+</a>
+<p class="sd-card-text"><strong>2. Athena Query editor</strong></p>
+<a class="reference internal image-reference" href="../../../_images/athena-query-editor.png"><img alt="Athena Query Editor with workgroup set to comscore2, database set to comscore, and 8 tables listed" src="../../../_images/athena-query-editor.png" style="width: 836.0px; height: 485.5px;" />
+</a>
+<p class="sd-card-text"><strong>3. Table context menu</strong></p>
+<a class="reference internal image-reference" href="../../../_images/athena-table-context-menu.png"><img alt="Table context menu showing options including Preview Table, Generate table DDL, Insert into editor, and View properties" src="../../../_images/athena-table-context-menu.png" style="width: 864.0px; height: 559.0px;" />
+</a>
+</div>
+</details></section>
+<section id="query-and-download-results">
+<h3>3. Query and Download Results<a class="headerlink" href="#query-and-download-results" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Type your SQL query in the editor and click <strong>Run</strong>. The status bar below the editor shows the query progress.</p></li>
+<li><p>When the query completes, click <strong>Download results CSV</strong> in the <strong>Query results</strong> panel to save the output to your computer.</p></li>
+</ol>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Screenshots: Querying and Downloading Results</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text"><strong>1. Query running</strong></p>
+<a class="reference internal image-reference" href="../../../_images/athena-query-running.png"><img alt="Athena Query Editor with a SELECT query running, showing &quot;Running&quot; status and time in queue" src="../../../_images/athena-query-running.png" style="width: 835.5px; height: 487.5px;" />
+</a>
+<p class="sd-card-text"><strong>2. Query results</strong></p>
+<a class="reference internal image-reference" href="../../../_images/athena-query-results.png"><img alt="Athena Query Editor showing completed query results with 10 rows and the Download results CSV button" src="../../../_images/athena-query-results.png" style="width: 836.5px; height: 484.5px;" />
+</a>
+</div>
+</details></section>
+</section>
+<section id="accessing-via-klc">
+<span id="id1"></span><h2>Accessing via KLC<a class="headerlink" href="#accessing-via-klc" title="Link to this heading">#</a></h2>
+<p>Querying Athena from KLC lets you integrate Kellogg Data Hosting datasets into Python, R, or Stata workflows running on the cluster.</p>
+<p><strong>Prerequisites:</strong></p>
+<ul class="simple">
+<li><p>A <a class="reference internal" href="../../klc/user-guide/klc-accessing.html"><span class="doc std std-doc">KLC account</span></a> and an active terminal session on KLC</p></li>
+<li><p>Access to a specific Athena database already granted by Kellogg Research Support</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">awscli/latest</span></code> module on KLC, which provides AWS CLI 2.22.7 (<code class="docutils literal notranslate"><span class="pre">aws</span> <span class="pre">configure</span> <span class="pre">sso</span></code> requires 2.9.0 or later)</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Where to run queries:</strong> Short interactive queries are fine on a KLC login node. Do not pull large result sets on a login node — see <a class="reference internal" href="../../klc-reserve/when-to-use.html"><span class="doc std std-doc">When to Use KLC Reserve</span></a> for the 24-core policy and batch options. Use <a class="reference internal" href="../../klc/user-guide/klc-tmux.html"><span class="doc std std-doc">tmux</span></a> to keep sessions alive after disconnecting.</p>
+</div>
+<section id="load-the-aws-cli">
+<h3>1. Load the AWS CLI<a class="headerlink" href="#load-the-aws-cli" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>module<span class="w"> </span>load<span class="w"> </span>awscli/latest
+</pre></div>
+</div>
+<p>Optionally confirm the version:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>aws<span class="w"> </span>--version
+</pre></div>
+</div>
+</section>
+<section id="configure-netid-authentication">
+<h3>2. Configure NetID Authentication<a class="headerlink" href="#configure-netid-authentication" title="Link to this heading">#</a></h3>
+<p>KLC login nodes have no GUI browser. AWS CLI 2.22.0 and later also default to a PKCE authorization flow that cannot complete on a login node. Use <code class="docutils literal notranslate"><span class="pre">aws</span> <span class="pre">configure</span> <span class="pre">sso</span> <span class="pre">--no-browser</span> <span class="pre">--use-device-code</span></code> and enter the values below when prompted:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Prompt</p></th>
+<th class="head"><p>Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>SSO session name</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">nu-sso</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>SSO start URL</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">https://nu-sso.awsapps.com/start</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>SSO region</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">us-east-2</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>SSO registration scopes</p></td>
+<td><p>Accept the default (<code class="docutils literal notranslate"><span class="pre">sso:account:access</span></code>)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>aws<span class="w"> </span>configure<span class="w"> </span>sso<span class="w"> </span>--no-browser<span class="w"> </span>--use-device-code
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">--use-device-code</span></code> is required on AWS CLI 2.22.0 and later. On AWS CLI older than 2.22.0, <code class="docutils literal notranslate"><span class="pre">--use-device-code</span></code> is not recognized; those versions already use the device-code flow, so <code class="docutils literal notranslate"><span class="pre">--no-browser</span></code> alone is enough.</p>
+<p>To avoid passing the <code class="docutils literal notranslate"><span class="pre">--use-device-code</span></code> flag on every SSO command, add <code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">AWS_CLI_SSO_RETRY_MODE=device-code</span></code> to <code class="docutils literal notranslate"><span class="pre">~/.bashrc</span></code>.</p>
+</div>
+<ol class="arabic simple">
+<li><p>Copy the URL the CLI prints into a browser on your local machine, sign in with your NetID, and pass the Duo MFA challenge.</p></li>
+<li><p>Choose <strong>Allow access</strong> when the browser asks to authorize <code class="docutils literal notranslate"><span class="pre">botocore-client-nu-sso</span></code>.</p></li>
+<li><p>Back in the terminal, arrow-key to <strong>ksm-rch-data</strong> and press Enter. Do not select any other AWS account.</p></li>
+<li><p>Select the role matching your database, for example <code class="docutils literal notranslate"><span class="pre">ksm-rch-data-fetchrewards</span></code>.</p></li>
+<li><p>Enter <code class="docutils literal notranslate"><span class="pre">us-east-2</span></code> for the default region, then press Enter to accept the defaults for output format and profile name. The default profile name is <code class="docutils literal notranslate"><span class="pre">ksm-rch-data-&lt;database&gt;-&lt;account-id&gt;</span></code>.</p></li>
+</ol>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Screenshots: Configuring NetID Authentication</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text"><strong>2. Allow access</strong></p>
+<a class="reference internal image-reference" href="../../../_images/aws-cli-sso-allow-access.png"><img alt="AWS SSO authorization dialog asking Allow botocore-client-nu-sso to access your data with an Allow access button" src="../../../_images/aws-cli-sso-allow-access.png" style="width: 502.92px; height: 316.14000000000004px;" />
+</a>
+<p class="sd-card-text"><strong>3. Select AWS account</strong></p>
+<a class="reference internal image-reference" href="../../../_images/aws-cli-sso-select-account.png"><img alt="Terminal account selection during aws configure sso with ksm-rch-data highlighted" src="../../../_images/aws-cli-sso-select-account.png" style="width: 958.32px; height: 139.92000000000002px;" />
+</a>
+<p class="sd-card-text"><strong>4. Select role</strong></p>
+<a class="reference internal image-reference" href="../../../_images/aws-cli-sso-select-role.png"><img alt="Terminal role selection during aws configure sso showing ksm-rch-data roles" src="../../../_images/aws-cli-sso-select-role.png" style="width: 387.42px; height: 107.58px;" />
+</a>
+<p class="sd-card-text"><strong>5. CLI options</strong></p>
+<a class="reference internal image-reference" href="../../../_images/aws-cli-sso-cli-options.png"><img alt="Terminal prompts for CLI default region, output format, and profile name during aws configure sso" src="../../../_images/aws-cli-sso-cli-options.png" style="width: 833.58px; height: 271.92px;" />
+</a>
+</div>
+</details><div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Note the exact profile name the CLI prints at the end of setup. You will pass this name to <code class="docutils literal notranslate"><span class="pre">--profile</span></code> and <code class="docutils literal notranslate"><span class="pre">AWS_PROFILE</span></code> in later steps.</p>
+<!-- TODO(KRS): confirm whether the ODBC configuration in /kellogg/software/.odbc/<workgroup-name> expects a specific AWS profile name (previously ksm-rch-data-<database>). If so, users must name their SSO profile to match. -->
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If you have access to multiple accounts or roles, copy the profile block that <code class="docutils literal notranslate"><span class="pre">aws</span> <span class="pre">configure</span> <span class="pre">sso</span></code> writes to <code class="docutils literal notranslate"><span class="pre">~/.aws/config</span></code> for each additional account or role, reusing the same <code class="docutils literal notranslate"><span class="pre">sso_session</span></code> (<code class="docutils literal notranslate"><span class="pre">nu-sso</span></code>). You can then choose which profile to use for each AWS CLI command without re-authenticating.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The default SSO session length is 4 hours. In future sessions, if you are not prompted to log in automatically when running an AWS CLI command, run the command below.</p>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>aws<span class="w"> </span>sso<span class="w"> </span>login<span class="w"> </span>--sso-session<span class="w"> </span>nu-sso<span class="w"> </span>--no-browser<span class="w"> </span>--use-device-code
+</pre></div>
+</div>
+<p>For more details, see <a class="reference external" href="https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-sso.html" target="_blank">Configuring IAM Identity Center authentication with the AWS CLI <svg version="1.1" width="1.0em" height="1.0em" viewBox="0 0 16 16" aria-hidden="true" style="display: inline-block; vertical-align: middle; fill: currentColor;"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a>.</p>
+</section>
+<section id="verify-access">
+<h3>3. Verify Access<a class="headerlink" href="#verify-access" title="Link to this heading">#</a></h3>
+<p>Verify your SSO profile works by listing accessible S3 buckets:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>aws<span class="w"> </span>s3<span class="w"> </span>ls<span class="w"> </span>--profile<span class="w"> </span>&lt;account-profile&gt;
+</pre></div>
+</div>
+<p>Replace <code class="docutils literal notranslate"><span class="pre">&lt;account-profile&gt;</span></code> with the profile name from step 2 (for example, <code class="docutils literal notranslate"><span class="pre">ksm-rch-data-comscore2-&lt;account-id&gt;</span></code>).</p>
+<!-- TODO(KRS): re-record; this video shows the retired credentials-file workflow and the old awscli/2 module -->
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Video: Load AWS CLI and verify credentials</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<iframe src="https://kellogg-northwestern.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=860f70f1-a8b1-4e39-99c5-b09d013226fc&autoplay=false&offerviewer=true&showtitle=true&showbrand=true&captions=false&interactivity=all" height="405" width="720" title="Video walkthrough: load AWS CLI and verify credentials" allowfullscreen allow="autoplay"></iframe>
+</div>
+</details></section>
+<section id="set-up-the-odbc-environment">
+<h3>4. Set Up the ODBC Environment<a class="headerlink" href="#set-up-the-odbc-environment" title="Link to this heading">#</a></h3>
+<p>The shared ODBC configuration at <code class="docutils literal notranslate"><span class="pre">/kellogg/software/.odbc/&lt;workgroup-name&gt;</span></code> must use <code class="docutils literal notranslate"><span class="pre">AuthenticationType=Default</span> <span class="pre">Credentials</span></code> so the driver reads the SSO token that <code class="docutils literal notranslate"><span class="pre">aws</span> <span class="pre">sso</span> <span class="pre">login</span></code> cached under <code class="docutils literal notranslate"><span class="pre">~/.aws/sso/cache</span></code>. Export your profile name alongside the ODBC paths:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">ODBCSYSINI</span><span class="o">=</span>/kellogg/software/.odbc/&lt;workgroup-name&gt;
+<span class="nb">export</span><span class="w"> </span><span class="nv">ODBCINI</span><span class="o">=</span>/kellogg/software/.odbc/&lt;workgroup-name&gt;
+<span class="nb">export</span><span class="w"> </span><span class="nv">AWS_PROFILE</span><span class="o">=</span>&lt;account-profile&gt;
+</pre></div>
+</div>
+<p>Replace the placeholders in the commands above:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;workgroup-name&gt;</span></code> — your Athena workgroup, for example <code class="docutils literal notranslate"><span class="pre">comscore2</span></code>. This is the workgroup shown in the upper right of the Athena Query editor, not the database name in the left panel.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;account-profile&gt;</span></code> — the profile name from step 2</p></li>
+</ul>
+<!-- TODO(KRS): confirm the driver version at /kellogg/software/.odbc/<workgroup-name> is the Athena ODBC v2 driver, and update AuthenticationType to Default Credentials. -->
+<!-- TODO(KRS): confirm the driver's bundled AWS SDK supports the sso_session config format that `aws configure sso` writes ([sso-session nu-sso]) rather than only the legacy inline sso_start_url format. -->
+<p>If ODBC commands fail to pick up your SSO token, export static credentials from your active SSO session into the environment:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">eval</span><span class="w"> </span><span class="s2">"</span><span class="k">$(</span>aws<span class="w"> </span>configure<span class="w"> </span>export-credentials<span class="w"> </span>--profile<span class="w"> </span>&lt;account-profile&gt;<span class="w"> </span>--format<span class="w"> </span>env<span class="k">)</span><span class="s2">"</span>
+</pre></div>
+</div>
+<p>Both <code class="docutils literal notranslate"><span class="pre">Default</span> <span class="pre">Credentials</span></code> and <code class="docutils literal notranslate"><span class="pre">IAM</span> <span class="pre">Profile</span></code> with <code class="docutils literal notranslate"><span class="pre">credential_source=Environment</span></code> accept these environment variables.</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Video: Set up ODBC environment</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<iframe src="https://kellogg-northwestern.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=22ac65fe-040c-4caa-90ca-b09d0132196f&autoplay=false&offerviewer=true&showtitle=true&showbrand=true&captions=false&interactivity=all" height="405" width="720" title="Video walkthrough: set up ODBC environment" allowfullscreen allow="autoplay"></iframe>
+</div>
+</details></section>
+<section id="copy-and-run-a-sample-script">
+<h3>5. Copy and Run a Sample Script<a class="headerlink" href="#copy-and-run-a-sample-script" title="Link to this heading">#</a></h3>
+<p>Sample files for each language are at <code class="docutils literal notranslate"><span class="pre">/kellogg/software/aws_odbc_samples</span></code> on KLC. Copy them to your working directory:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>~/athena-work
+cp<span class="w"> </span>/kellogg/software/aws_odbc_samples/*<span class="w"> </span>~/athena-work/
+<span class="nb">cd</span><span class="w"> </span>~/athena-work
+</pre></div>
+</div>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-0">
+Python</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>module<span class="w"> </span>load<span class="w"> </span>python/3.10<span class="w">   </span><span class="c1"># or your preferred version</span>
+</pre></div>
+</div>
+<p>Edit <code class="docutils literal notranslate"><span class="pre">athena_odbc.py</span></code> with your database name and table name, then run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>athena_odbc.py
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-1">
+R</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>module<span class="w"> </span>load<span class="w"> </span>R
+</pre></div>
+</div>
+<p>Edit <code class="docutils literal notranslate"><span class="pre">athena_odbc.R</span></code> with your database name and table name, then run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Rscript<span class="w"> </span>athena_odbc.R
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-2" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-2">
+Stata</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>module<span class="w"> </span>load<span class="w"> </span>stata
+</pre></div>
+</div>
+<p>Edit <code class="docutils literal notranslate"><span class="pre">athena_odbc.do</span></code> with your database name and table name, then run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>stata-mp<span class="w"> </span>-b<span class="w"> </span>athena_odbc.do
+</pre></div>
+</div>
+</div>
+</div>
+<!-- TODO(KRS): confirm whether module load python/3.10 includes the ODBC bindings required by athena_odbc.py -->
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Video: Connect from Python</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<iframe src="https://kellogg-northwestern.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=a7e74d1c-2527-4455-b0ae-b09d01321108&autoplay=false&offerviewer=true&showtitle=true&showbrand=true&captions=false&interactivity=all" height="405" width="720" title="Video walkthrough: connect from Python" allowfullscreen allow="autoplay"></iframe>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Video: Connect from R</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<iframe src="https://kellogg-northwestern.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=52c31140-fb33-4a07-b6cf-b09d0132110b&autoplay=false&offerviewer=true&showtitle=true&showbrand=true&captions=false&interactivity=all" height="405" width="720" title="Video walkthrough: connect from R" allowfullscreen allow="autoplay"></iframe>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Video: Connect from Stata</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<iframe src="https://kellogg-northwestern.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=1977204b-10d4-41d4-aa71-b09d01321e16&autoplay=false&offerviewer=true&showtitle=true&showbrand=true&captions=false&interactivity=all" height="405" width="720" title="Video walkthrough: connect from Stata" allowfullscreen allow="autoplay"></iframe>
+</div>
+</details></section>
+</section>
+<section id="query-limits-and-reducing-data-scanned">
+<span id="id2"></span><h2>Query Limits and Reducing Data Scanned<a class="headerlink" href="#query-limits-and-reducing-data-scanned" title="Link to this heading">#</a></h2>
+<p>Most Athena databases have a daily query limit of <strong>2 TB of data scanned</strong>, whether you query from the AWS Console or from KLC. Contact <a class="reference external" href="mailto:rs&#37;&#52;&#48;kellogg&#46;northwestern&#46;edu" target="_blank">rs<span>&#64;</span>kellogg<span>&#46;</span>northwestern<span>&#46;</span>edu <svg version="1.1" width="1.0em" height="1.0em" viewBox="0 0 16 16" aria-hidden="true" style="display: inline-block; vertical-align: middle; fill: currentColor;"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a> if you need this limit increased.</p>
+<p>Athena charges by data scanned, not rows returned. After each query, check the <strong>Data scanned</strong> value in the Query editor results panel before running follow-up queries.</p>
+<p>To stay under the limit:</p>
+<ul class="simple">
+<li><p>Filter on partition columns (such as date or year) whenever the table schema supports it</p></li>
+<li><p>Select only the columns you need instead of using <code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">*</span></code></p></li>
+<li><p>Use <strong>Generate table DDL</strong> to inspect the schema before writing queries</p></li>
+</ul>
+<!-- TODO(KRS): confirm whether Preview Table (SELECT * with LIMIT 10) scans the full table or only a subset -->
+</section>
+<section id="troubleshooting">
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading">#</a></h2>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">AWS CLI or ODBC commands fail with an authentication or token error</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">If AWS CLI or ODBC commands fail with an authentication or token error, your SSO session has expired. Run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>aws<span class="w"> </span>sso<span class="w"> </span>login<span class="w"> </span>--sso-session<span class="w"> </span>nu-sso<span class="w"> </span>--no-browser<span class="w"> </span>--use-device-code
+</pre></div>
+</div>
+<!-- TODO(KRS): confirm the exact error message users see when an SSO session expires -->
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text"><code class="docutils literal notranslate"><span class="pre">aws</span> <span class="pre">configure</span> <span class="pre">sso</span></code> or <code class="docutils literal notranslate"><span class="pre">--no-browser</span></code> is not recognized, or the SSO flow hangs</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">If the CLI reports that <code class="docutils literal notranslate"><span class="pre">aws</span> <span class="pre">configure</span> <span class="pre">sso</span></code> or <code class="docutils literal notranslate"><span class="pre">--no-browser</span></code> is not recognized, an older <code class="docutils literal notranslate"><span class="pre">awscli</span></code> module is loaded. Run <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">load</span> <span class="pre">awscli/latest</span></code> and try again.</p>
+<p class="sd-card-text">If the SSO flow hangs or reports a connection or callback error instead of printing a URL and code, device-code mode was not requested. Add <code class="docutils literal notranslate"><span class="pre">--use-device-code</span></code> to the command, or set <code class="docutils literal notranslate"><span class="pre">AWS_CLI_SSO_RETRY_MODE=device-code</span></code> in <code class="docutils literal notranslate"><span class="pre">~/.bashrc</span></code>.</p>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Your database does not appear under <strong>ksm-rch-data</strong></span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">If your database does not appear under <strong>ksm-rch-data</strong> in the AWS access portal, access has not been granted yet. Email <a class="reference external" href="mailto:rs&#37;&#52;&#48;kellogg&#46;northwestern&#46;edu" target="_blank">rs<span>&#64;</span>kellogg<span>&#46;</span>northwestern<span>&#46;</span>edu <svg version="1.1" width="1.0em" height="1.0em" viewBox="0 0 16 16" aria-hidden="true" style="display: inline-block; vertical-align: middle; fill: currentColor;"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a> with the dataset name.</p>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Athena returns no tables, or queries fail immediately</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">Athena queries fail or return no tables when the region is not <strong>US East (Ohio) (us-east-2)</strong>. Confirm the region in the upper right of the AWS Console before opening the Query editor.</p>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">A sample script cannot connect through ODBC</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">If a sample script fails to connect, verify all of the following:</p>
+<ul class="simple">
+<li><p class="sd-card-text">The ODBC environment variables from step 4 are set in your current shell session</p></li>
+<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">&lt;workgroup-name&gt;</span></code> matches your Athena workgroup, not the database name</p></li>
+<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">AWS_PROFILE</span></code> matches the profile name from step 2</p></li>
+<li><p class="sd-card-text">Your SSO session is active (<code class="docutils literal notranslate"><span class="pre">aws</span> <span class="pre">sso</span> <span class="pre">login</span> <span class="pre">--sso-session</span> <span class="pre">nu-sso</span> <span class="pre">--no-browser</span> <span class="pre">--use-device-code</span></code>)</p></li>
+</ul>
+<!-- TODO(KRS): confirm common ODBC error messages and fixes -->
+</div>
+</details></section>
+<section id="datasets-on-athena">
+<h2>Datasets on Athena<a class="headerlink" href="#datasets-on-athena" title="Link to this heading">#</a></h2>
+<p>The dataset pages below document each Kellogg-licensed dataset hosted on the Athena platform:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../../datasets/datasets/comscore.html"><span class="doc std std-doc">Comscore</span></a></p></li>
+<li><p><a class="reference internal" href="../../datasets/datasets/cotality.html"><span class="doc std std-doc">Cotality (formerly CoreLogic)</span></a></p></li>
+<li><p><a class="reference internal" href="../../datasets/datasets/equifax.html"><span class="doc std std-doc">Equifax</span></a> <!-- TODO(KRS): confirm Equifax is available on Athena; equifax.md lists access platforms as TBD --></p></li>
+<li><p><a class="reference internal" href="../../datasets/datasets/patstat.html"><span class="doc std std-doc">PATSTAT</span></a></p></li>
+</ul>
+<p>For the full Kellogg Data Hosting overview, see <a class="reference internal" href="../kdc.html"><span class="doc std std-doc">Kellogg Data Hosting</span></a>. For access requests or questions, see <a class="reference internal" href="../../../start/getting-help.html"><span class="doc std std-doc">Getting Help</span></a>.</p>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../wrds/examples/revelio-example.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Revelio Labs Example: Monthly Headcount and Separation Rate</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../../datasets/datasets/comscore.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Comscore</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#choosing-an-access-method">Choosing an Access Method</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#accessing-via-the-aws-console">Accessing via the AWS Console</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#log-in-to-aws">1. Log in to AWS</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#navigate-to-athena">2. Navigate to Athena</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#query-and-download-results">3. Query and Download Results</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#accessing-via-klc">Accessing via KLC</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#load-the-aws-cli">1. Load the AWS CLI</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configure-netid-authentication">2. Configure NetID Authentication</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#verify-access">3. Verify Access</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#set-up-the-odbc-environment">4. Set Up the ODBC Environment</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#copy-and-run-a-sample-script">5. Copy and Run a Sample Script</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#query-limits-and-reducing-data-scanned">Query Limits and Reducing Data Scanned</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#troubleshooting">Troubleshooting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#datasets-on-athena">Datasets on Athena</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+
+
+<div id="footer-bottom">
+<div class="contain-1120">
+<span class="copyright" style="color:white">©
+<script>// <![CDATA[
+document.write(new Date().getFullYear())
+// ]]></script>
+Kellogg School of Management | <a href="https://www.kellogg.northwestern.edu/academics-research/research-support/">Kellogg Research Support</a></span>
+<!--
+<ul>
+<li><a href="https://www.facebook.com/NorthwesternU"> <span class="social facebook">Facebook</span> </a></li>
+<li><a href="https://www.twitter.com/northwesternu"> <span class="social twitter">Twitter</span> </a></li>
+<li><a href="https://www.instagram.com/northwesternu"> <span class="social instagram">Instagram</span> </a></li>
+<li><a href="https://www.youtube.com/user/NorthwesternU"> <span class="social youtube">YouTube</span> </a></li>
+<li><a href="https://www.tiktok.com/@northwestern.u"> <span class="social tiktok">TikTok</span> </a></li>
+<li><a href="https://www.linkedin.com/school/northwestern-university/"> <span class="social linkedin">LinkedIn</span> </a></li>
+</ul>
+-->
+<span class="right" style="color:white"><a style="color:white" href="https://www.northwestern.edu/disclaimer.html">Disclaimer</a></span>
+</div>
+</div>
+  </footer>
+  </body>
+</html>
