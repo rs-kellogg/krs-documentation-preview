@@ -1,0 +1,994 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" data-theme="light">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>PATSTAT &#8212; Kellogg School of Management
+Research Support
+Northwestern University</title>
+<script data-cfasync="false">
+  localStorage.setItem("mode", "light");
+  localStorage.setItem("theme", "light");
+</script>
+
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/kellogg-rs-docs.css?v=9c3e1ba6" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'services/datasets/datasets/patstat';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = true;</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Kellogg Data Hosting" href="../../kellogg-data-hosting/kdc.html" />
+    <link rel="prev" title="Nielsen Marketing Data" href="nielsen-marketing-data.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../../../_static/searchtools.js"></script>
+    <script src="../../../_static/language_data.js"></script>
+    <script src="../../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="light">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+<aside class="bd-header-announcement" aria-label="Announcement">
+  <div class="bd-header-announcement__content">⚠️This documentation is in beta and is under active development.⚠️</div>
+</aside>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+    
+    <img src="../../../_static/kellogg_logo.png" class="logo__image only-light" alt="Kellogg School of Management
+Research Support
+Northwestern University - Home"/>
+    <img src="../../../_static/kellogg_logo.png" class="logo__image only-dark pst-js-only" alt="Kellogg School of Management
+Research Support
+Northwestern University - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../start/getting-help.html">Getting Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../start/services-overview.html">What Does KRS Offer?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../start/klc/klc-intro.html">Introduction to Kellogg Linux Cluster</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../start/workshop-doc.html">Research the Right Way Workshop</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Computing and Datasets</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../../klc/klc.html">Kellogg Linux Cluster</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference external" href="https://www.kellogg.northwestern.edu/academics-research/research-support/computing/kellogg-linux-cluster/" target="_blank">Kellogg Linux Cluster Overview <svg aria-hidden="true" height="1.0em" style="display: inline-block; vertical-align: middle; fill: currentColor;" version="1.1" viewbox="0 0 16 16" width="1.0em"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../klc/user-guide/klc-user-guide.html">KLC User Guide</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../klc/user-guide/klc-accessing.html">Access KLC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../klc/user-guide/klc-ssh.html">SSH</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../klc/user-guide/klc-fastx.html">FastX</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../klc/user-guide/klc-vscode.html">VS Code Workflow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../klc/user-guide/klc-ondemand.html">KLC OnDemand</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../klc/user-guide/klc-files.html">KLC Filesystem</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../klc/user-guide/klc-transferfiles.html">Data Transfer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../klc/user-guide/klc-editor.html">Edit Files on KLC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../klc/user-guide/klc-git.html">Using Git on KLC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../klc/user-guide/klc-conda.html">Conda/Mamba Environments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../klc/user-guide/klc-software.html">Launching Jobs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../klc/user-guide/klc-tmux.html">Using tmux</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../klc/user-guide/klc-profiling.html">Monitoring &amp; Managing Jobs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../klc/user-guide/llm-api.html">LLM API Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../klc/user-guide/llm-klc.html">Open Source LLMs (Interactive)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="../../klc/klc-datasets.html">Datasets on KLC</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="cme.html">CME</a></li>
+<li class="toctree-l3"><a class="reference internal" href="comscore.html">Comscore</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cotality.html">Cotality (formerly CoreLogic)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="edgar.html">EDGAR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nielsen-marketing-data.html">Nielsen Marketing Data</a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">PATSTAT</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference external" href="https://rcdsdocs.it.northwestern.edu/systems/quest/quest.html" target="_blank">Quest Documentation <svg aria-hidden="true" height="1.0em" style="display: inline-block; vertical-align: middle; fill: currentColor;" version="1.1" viewbox="0 0 16 16" width="1.0em"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a></li>
+<li class="toctree-l2"><a class="reference external" href="https://www.it.northwestern.edu/departments/it-services-support/research/computing/quest/data-security-guidance.html" target="_blank">Quest Data Security Guidance <svg aria-hidden="true" height="1.0em" style="display: inline-block; vertical-align: middle; fill: currentColor;" version="1.1" viewbox="0 0 16 16" width="1.0em"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../../kellogg-data-hosting/kdc.html">Kellogg Data Hosting</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../kellogg-data-hosting/wrds/wrds.html">WRDS</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../kellogg-data-hosting/wrds/examples/crsp-example.html">CRSP Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../kellogg-data-hosting/wrds/examples/taq-example.html">TAQ Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../kellogg-data-hosting/wrds/examples/revelio-example.html">Revelio Labs Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="../../kellogg-data-hosting/athena/athena.html">Athena (AWS)</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="comscore.html">Comscore</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cotality.html">Cotality (formerly CoreLogic)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="equifax.html">Equifax</a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">PATSTAT</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../kellogg-data-hosting/redivis/redivis.html">Redivis</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="l2-vm2-uniform.html">L2 VM2 Uniform</a></li>
+<li class="toctree-l3"><a class="reference internal" href="numerator.html">Numerator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="openalex.html">OpenAlex</a></li>
+<li class="toctree-l3"><a class="reference internal" href="proxycurl.html">ProxyCurl</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../klc-reserve/klc-reserve.html">Kellogg Linux Cluster Reserve</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../klc-reserve/when-to-use.html">When to Use KLC Reserve</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../klc-reserve/gpu-concepts.html">GPU Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../klc-reserve/slurm-jobs.html">Submitting SLURM Jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../klc-reserve/gpu-jobs.html">GPU Jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../klc-reserve/highmem-jobs.html">High-Memory Jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../klc-reserve/vllm-example.html">vLLM on GPUs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../klc-reserve/ollama-example.html">Ollama on GPUs</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../tutorials/nlp/nlp.html">Natural Language Processing</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/nlp/tutorial1.html">Deterministic Extraction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/nlp/tutorial2.html">Quantifying Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/nlp/tutorial3.html">Paid LLMs for Text Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/nlp/tutorial4.html">Open-Source LLMs for Text Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/nlp/tutorial5.html">Validation and Rigor</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Resource Guides</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../guides/openai/openai.html">OpenAI and LLMs</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../guides/openai/llm-intro.html">Understanding LLMs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../guides/openai/openai-api.html">OpenAI API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../guides/openai/openai-copilot.html">GitHub Copilot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../guides/openai/openai-workflow.html">Application Workflow</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../guides/llm/llm.html">Open Source LLMs</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>PATSTAT</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#at-a-glance">At a Glance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#description">Description</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#access">Access</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#choosing-between-duckdb-on-klc-and-athena">Choosing Between DuckDB on KLC and Athena</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-coverage-key-identifiers">Data Coverage &amp; Key Identifiers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tables-on-klc">Tables on KLC</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-queries">Example Queries</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#applications-by-filing-year-and-authority">Applications by Filing Year and Authority</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#first-publication-per-application">First Publication per Application</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#top-ipc-sections-for-a-given-year">Top IPC Sections for a Given Year</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cpc-heatmap-top-cpc-main-groups-by-authority-and-year">CPC Heatmap: Top CPC Main Groups by Authority and Year</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#applicant-country-roll-up">Applicant Country Roll-Up</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#documentation">Documentation</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="patstat">
+<h1>PATSTAT<a class="headerlink" href="#patstat" title="Link to this heading">#</a></h1>
+<section id="at-a-glance">
+<h2>At a Glance<a class="headerlink" href="#at-a-glance" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Provider</strong></p></td>
+<td><p><a class="reference external" href="https://www.epo.org/searching-for-patents/business/patstat.html" target="_blank">European Patent Office (EPO) <svg version="1.1" width="1.0em" height="1.0em" viewBox="0 0 16 16" aria-hidden="true" style="display: inline-block; vertical-align: middle; fill: currentColor;"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Coverage</strong></p></td>
+<td><p>Through January 1, 2024</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Geographic scope</strong></p></td>
+<td><p>Global</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Update frequency</strong></p></td>
+<td><p>2023 Autumn snapshot (delivered 2023-11-22) <!-- TODO(KRS): confirm whether newer PATSTAT editions will be loaded --></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Access platforms</strong></p></td>
+<td><p>KLC, AWS Athena</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Eligible users</strong></p></td>
+<td><p>TBD <!-- TODO(KRS): confirm eligible users --></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Questions</strong></p></td>
+<td><p><a class="reference external" href="mailto:rs&#37;&#52;&#48;kellogg&#46;northwestern&#46;edu" target="_blank">rs<span>&#64;</span>kellogg<span>&#46;</span>northwestern<span>&#46;</span>edu <svg version="1.1" width="1.0em" height="1.0em" viewBox="0 0 16 16" aria-hidden="true" style="display: inline-block; vertical-align: middle; fill: currentColor;"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="description">
+<h2>Description<a class="headerlink" href="#description" title="Link to this heading">#</a></h2>
+<p>PATSTAT is a worldwide database of patents, prepared by the European Patent Office (EPO). More information is available on the <a class="reference external" href="https://www.epo.org/searching-for-patents/business/patstat.html" target="_blank">PATSTAT website <svg version="1.1" width="1.0em" height="1.0em" viewBox="0 0 16 16" aria-hidden="true" style="display: inline-block; vertical-align: middle; fill: currentColor;"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a>.</p>
+</section>
+<section id="access">
+<h2>Access<a class="headerlink" href="#access" title="Link to this heading">#</a></h2>
+<p>PATSTAT is licensed data. Email <a class="reference external" href="mailto:rs&#37;&#52;&#48;kellogg&#46;northwestern&#46;edu" target="_blank">Kellogg Research Support <svg version="1.1" width="1.0em" height="1.0em" viewBox="0 0 16 16" aria-hidden="true" style="display: inline-block; vertical-align: middle; fill: currentColor;"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a> to request access.</p>
+<ul class="simple">
+<li><p><strong>KLC:</strong> Parquet files under <code class="docutils literal notranslate"><span class="pre">/kellogg/data/PATSTAT-2023-11-22/PATSTAT/parquet/</span></code>. Each subfolder name matches an EPO table name (for example, <code class="docutils literal notranslate"><span class="pre">tls201_appln</span></code>, <code class="docutils literal notranslate"><span class="pre">tls211_pat_publn</span></code>). Query the files with DuckDB or another Parquet-aware tool. See <a class="reference internal" href="../../klc/user-guide/klc-accessing.html"><span class="doc std std-doc">How to Access KLC</span></a>.</p></li>
+<li><p><strong>Athena:</strong> Pre-registered SQL tables in workgroup <code class="docutils literal notranslate"><span class="pre">patstat</span></code> and database <code class="docutils literal notranslate"><span class="pre">patstat</span></code>. See the <a class="reference internal" href="../../kellogg-data-hosting/athena/athena.html"><span class="doc std std-doc">Kellogg Data Hosting — Athena platform</span></a>.</p></li>
+</ul>
+</section>
+<section id="choosing-between-duckdb-on-klc-and-athena">
+<h2>Choosing Between DuckDB on KLC and Athena<a class="headerlink" href="#choosing-between-duckdb-on-klc-and-athena" title="Link to this heading">#</a></h2>
+<p>PATSTAT is available on both KLC (as Parquet files queryable with DuckDB) and Athena (as pre-registered SQL tables). Table and column names use lowercase EPO identifiers on both platforms, so queries are closer to copy-paste portable than datasets where KLC Parquet uses quoted names with spaces.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p>DuckDB on KLC</p></th>
+<th class="head"><p>Athena</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Setup required</strong></p></td>
+<td><p><a class="reference internal" href="../../klc/user-guide/klc-accessing.html"><span class="doc std std-doc">KLC account</span></a></p></td>
+<td><p>Athena database access; optional <a class="reference internal" href="../../kellogg-data-hosting/athena/athena.html"><span class="doc std std-doc">SSO setup for ODBC</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Where compute runs</strong></p></td>
+<td><p>KLC cluster</p></td>
+<td><p>AWS (serverless)</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Cost / quota</strong></p></td>
+<td><p>KLC compute limits; see the <a class="reference internal" href="../../klc-reserve/when-to-use.html"><span class="doc std std-doc">24-core login node policy</span></a></p></td>
+<td><p><a class="reference internal" href="../../kellogg-data-hosting/athena/athena.html#query-limits-and-reducing-data-scanned"><span class="std std-ref">2 TB of data scanned per day</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Typical result size</strong></p></td>
+<td><p>Large extracts and full-table scans</p></td>
+<td><p>Small filtered extracts</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Downstream workflow</strong></p></td>
+<td><p>Python, R, or Stata on KLC; write derived files to the file system</p></td>
+<td><p>Download CSV from the AWS Console, or query via ODBC from KLC scripts</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Use Athena when you want to:</strong></p>
+<ul class="simple">
+<li><p>Explore table schemas and run ad-hoc SQL without loading files</p></li>
+<li><p>Pull a small, filtered extract and download results to your laptop</p></li>
+<li><p>Work from the AWS Console with no KLC session</p></li>
+</ul>
+<p><strong>Use DuckDB on KLC when you want to:</strong></p>
+<ul class="simple">
+<li><p>Scan large portions of a table or join many columns</p></li>
+<li><p>Iterate repeatedly on the same local Parquet files</p></li>
+<li><p>Write derived Parquet or other outputs alongside the rest of a KLC pipeline</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Queries are not fully copy-paste portable between the two platforms. DuckDB accepts <code class="docutils literal notranslate"><span class="pre">GROUP</span> <span class="pre">BY</span> <span class="pre">ALL</span></code> and <code class="docutils literal notranslate"><span class="pre">read_parquet()</span></code>; Athena does not. Function names also differ (for example, <code class="docutils literal notranslate"><span class="pre">REGEXP_EXTRACT</span></code> in DuckDB versus <code class="docutils literal notranslate"><span class="pre">regexp_extract</span></code> in Athena).</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The DuckDB examples set <code class="docutils literal notranslate"><span class="pre">PRAGMA</span> <span class="pre">memory_limit='128GB'</span></code> for large scans. Run those queries in a <a class="reference internal" href="../../klc-reserve/when-to-use.html"><span class="doc std std-doc">KLC Reserve</span></a> batch job, not on a login node. Use Athena for small, filtered extracts when you do not need a full-table scan on KLC.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Before running an Athena query, right-click a table in the Query editor and choose <strong>Generate table DDL</strong> to confirm table and column names. Filter on indexed or partition columns whenever possible to stay under the daily scan limit.</p>
+</div>
+</section>
+<section id="data-coverage-key-identifiers">
+<h2>Data Coverage &amp; Key Identifiers<a class="headerlink" href="#data-coverage-key-identifiers" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Attribute</p></th>
+<th class="head"><p>Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Time period</strong></p></td>
+<td><p>Through January 1, 2024</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Geographic coverage</strong></p></td>
+<td><p>Global</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Unit of observation</strong></p></td>
+<td><p>Patent application (<code class="docutils literal notranslate"><span class="pre">tls201_appln</span></code>)</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Primary identifier</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">appln_id</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Commonly linked via</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">appln_id</span></code>, <code class="docutils literal notranslate"><span class="pre">person_id</span></code>, <code class="docutils literal notranslate"><span class="pre">pat_publn_id</span></code>, <code class="docutils literal notranslate"><span class="pre">docdb_family_id</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Key variables</strong></p></td>
+<td><p>Filing authority and year, publication date, IPC/CPC classifications, applicants and inventors, citations, legal events</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="tables-on-klc">
+<h2>Tables on KLC<a class="headerlink" href="#tables-on-klc" title="Link to this heading">#</a></h2>
+<p>The hosted snapshot includes these EPO tables as Parquet subfolders under <code class="docutils literal notranslate"><span class="pre">/kellogg/data/PATSTAT-2023-11-22/PATSTAT/parquet/</span></code>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">tls201_appln</span></code>, <code class="docutils literal notranslate"><span class="pre">tls202_appln_title</span></code>, <code class="docutils literal notranslate"><span class="pre">tls203_appln_abstr</span></code>, <code class="docutils literal notranslate"><span class="pre">tls204_appln_prior</span></code>, <code class="docutils literal notranslate"><span class="pre">tls205_tech_rel</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tls206_person</span></code>, <code class="docutils literal notranslate"><span class="pre">tls207_pers_appln</span></code>, <code class="docutils literal notranslate"><span class="pre">tls209_appln_ipc</span></code>, <code class="docutils literal notranslate"><span class="pre">tls210_appln_n_cls</span></code>, <code class="docutils literal notranslate"><span class="pre">tls211_pat_publn</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tls212_citation</span></code>, <code class="docutils literal notranslate"><span class="pre">tls214_npl_publn</span></code>, <code class="docutils literal notranslate"><span class="pre">tls215_citn_categ</span></code>, <code class="docutils literal notranslate"><span class="pre">tls216_appln_contn</span></code>, <code class="docutils literal notranslate"><span class="pre">tls222_appln_jp_class</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tls224_appln_cpc</span></code>, <code class="docutils literal notranslate"><span class="pre">tls225_docdb_fam_cpc</span></code>, <code class="docutils literal notranslate"><span class="pre">tls226_person_orig</span></code>, <code class="docutils literal notranslate"><span class="pre">tls227_pers_publn</span></code>, <code class="docutils literal notranslate"><span class="pre">tls228_docdb_fam_citn</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tls229_appln_nace2</span></code>, <code class="docutils literal notranslate"><span class="pre">tls230_appln_techn_field</span></code>, <code class="docutils literal notranslate"><span class="pre">tls231_inpadoc_legal_event</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tls801_country</span></code>, <code class="docutils literal notranslate"><span class="pre">tls803_legal_event_code</span></code>, <code class="docutils literal notranslate"><span class="pre">tls901_techn_field_ipc</span></code>, <code class="docutils literal notranslate"><span class="pre">tls902_ipc_nace2</span></code>, <code class="docutils literal notranslate"><span class="pre">tls904_nuts</span></code></p></li>
+</ul>
+<p>The same tables are registered in the Athena <code class="docutils literal notranslate"><span class="pre">patstat</span></code> database.</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Register all tables in DuckDB</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">duckdb</span>
+
+<span class="n">base</span> <span class="o">=</span> <span class="s2">"/kellogg/data/PATSTAT-2023-11-22/PATSTAT/parquet"</span>
+<span class="n">tables</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">"tls201_appln"</span><span class="p">,</span> <span class="s2">"tls202_appln_title"</span><span class="p">,</span> <span class="s2">"tls203_appln_abstr"</span><span class="p">,</span> <span class="s2">"tls204_appln_prior"</span><span class="p">,</span>
+    <span class="s2">"tls205_tech_rel"</span><span class="p">,</span> <span class="s2">"tls206_person"</span><span class="p">,</span> <span class="s2">"tls207_pers_appln"</span><span class="p">,</span> <span class="s2">"tls209_appln_ipc"</span><span class="p">,</span>
+    <span class="s2">"tls210_appln_n_cls"</span><span class="p">,</span> <span class="s2">"tls211_pat_publn"</span><span class="p">,</span> <span class="s2">"tls212_citation"</span><span class="p">,</span> <span class="s2">"tls214_npl_publn"</span><span class="p">,</span>
+    <span class="s2">"tls215_citn_categ"</span><span class="p">,</span> <span class="s2">"tls216_appln_contn"</span><span class="p">,</span> <span class="s2">"tls222_appln_jp_class"</span><span class="p">,</span> <span class="s2">"tls224_appln_cpc"</span><span class="p">,</span>
+    <span class="s2">"tls225_docdb_fam_cpc"</span><span class="p">,</span> <span class="s2">"tls226_person_orig"</span><span class="p">,</span> <span class="s2">"tls227_pers_publn"</span><span class="p">,</span> <span class="s2">"tls228_docdb_fam_citn"</span><span class="p">,</span>
+    <span class="s2">"tls229_appln_nace2"</span><span class="p">,</span> <span class="s2">"tls230_appln_techn_field"</span><span class="p">,</span> <span class="s2">"tls231_inpadoc_legal_event"</span><span class="p">,</span>
+    <span class="s2">"tls801_country"</span><span class="p">,</span> <span class="s2">"tls803_legal_event_code"</span><span class="p">,</span> <span class="s2">"tls901_techn_field_ipc"</span><span class="p">,</span>
+    <span class="s2">"tls902_ipc_nace2"</span><span class="p">,</span> <span class="s2">"tls904_nuts"</span><span class="p">,</span>
+<span class="p">]</span>
+
+<span class="n">con</span> <span class="o">=</span> <span class="n">duckdb</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+<span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"PRAGMA threads=8"</span><span class="p">)</span>
+<span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"PRAGMA memory_limit='128GB'"</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">table_name</span> <span class="ow">in</span> <span class="n">tables</span><span class="p">:</span>
+    <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">"CREATE OR REPLACE VIEW </span><span class="si">{</span><span class="n">table_name</span><span class="si">}</span><span class="s2"> AS "</span>
+        <span class="sa">f</span><span class="s2">"SELECT * FROM read_parquet('</span><span class="si">{</span><span class="n">base</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">table_name</span><span class="si">}</span><span class="s2">/*.parquet')"</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details></section>
+<section id="example-queries">
+<h2>Example Queries<a class="headerlink" href="#example-queries" title="Link to this heading">#</a></h2>
+<p>Each example below registers only the tables it needs. Join paths follow EPO table documentation: <code class="docutils literal notranslate"><span class="pre">tls211_pat_publn.appln_id</span></code> links to <code class="docutils literal notranslate"><span class="pre">tls201_appln.appln_id</span></code>; <code class="docutils literal notranslate"><span class="pre">tls207_pers_appln</span></code> links people to applications via <code class="docutils literal notranslate"><span class="pre">appln_id</span></code> and <code class="docutils literal notranslate"><span class="pre">person_id</span></code>.</p>
+<section id="applications-by-filing-year-and-authority">
+<h3>Applications by Filing Year and Authority<a class="headerlink" href="#applications-by-filing-year-and-authority" title="Link to this heading">#</a></h3>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-0">
+DuckDB on KLC</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">duckdb</span>
+
+<span class="n">con</span> <span class="o">=</span> <span class="n">duckdb</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+<span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"PRAGMA threads=8"</span><span class="p">)</span>
+<span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"PRAGMA memory_limit='128GB'"</span><span class="p">)</span>
+
+<span class="n">base</span> <span class="o">=</span> <span class="s2">"/kellogg/data/PATSTAT-2023-11-22/PATSTAT/parquet"</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">register</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+    <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">"CREATE OR REPLACE VIEW </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2"> AS "</span>
+        <span class="sa">f</span><span class="s2">"SELECT * FROM read_parquet('</span><span class="si">{</span><span class="n">base</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">/*.parquet')"</span>
+    <span class="p">)</span>
+
+<span class="n">register</span><span class="p">(</span><span class="s2">"tls201_appln"</span><span class="p">)</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"""</span>
+<span class="s2">    SELECT</span>
+<span class="s2">        appln_auth,</span>
+<span class="s2">        appln_filing_year,</span>
+<span class="s2">        COUNT(*) AS applications</span>
+<span class="s2">    FROM tls201_appln</span>
+<span class="s2">    WHERE appln_filing_year BETWEEN 2015 AND 2023</span>
+<span class="s2">    GROUP BY ALL</span>
+<span class="s2">    ORDER BY appln_filing_year, applications DESC</span>
+<span class="s2">"""</span><span class="p">)</span><span class="o">.</span><span class="n">fetchdf</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-1">
+Athena SQL</label><div class="sd-tab-content docutils">
+<p>In the Athena Query editor, select workgroup <code class="docutils literal notranslate"><span class="pre">patstat</span></code> and database <code class="docutils literal notranslate"><span class="pre">patstat</span></code>.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span>
+<span class="w">    </span><span class="n">appln_auth</span><span class="p">,</span>
+<span class="w">    </span><span class="n">appln_filing_year</span><span class="p">,</span>
+<span class="w">    </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">applications</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">tls201_appln</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">appln_filing_year</span><span class="w"> </span><span class="k">BETWEEN</span><span class="w"> </span><span class="mi">2015</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="mi">2023</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">appln_auth</span><span class="p">,</span><span class="w"> </span><span class="n">appln_filing_year</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">appln_filing_year</span><span class="p">,</span><span class="w"> </span><span class="n">applications</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="first-publication-per-application">
+<h3>First Publication per Application<a class="headerlink" href="#first-publication-per-application" title="Link to this heading">#</a></h3>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-2" name="sd-tab-set-1" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-2">
+DuckDB on KLC</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">duckdb</span>
+
+<span class="n">con</span> <span class="o">=</span> <span class="n">duckdb</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+<span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"PRAGMA threads=8"</span><span class="p">)</span>
+<span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"PRAGMA memory_limit='128GB'"</span><span class="p">)</span>
+
+<span class="n">base</span> <span class="o">=</span> <span class="s2">"/kellogg/data/PATSTAT-2023-11-22/PATSTAT/parquet"</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">register</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+    <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">"CREATE OR REPLACE VIEW </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2"> AS "</span>
+        <span class="sa">f</span><span class="s2">"SELECT * FROM read_parquet('</span><span class="si">{</span><span class="n">base</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">/*.parquet')"</span>
+    <span class="p">)</span>
+
+<span class="n">register</span><span class="p">(</span><span class="s2">"tls201_appln"</span><span class="p">)</span>
+<span class="n">register</span><span class="p">(</span><span class="s2">"tls211_pat_publn"</span><span class="p">)</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"""</span>
+<span class="s2">    WITH first_pub AS (</span>
+<span class="s2">        SELECT</span>
+<span class="s2">            a.appln_id,</span>
+<span class="s2">            MIN(p.publn_date) AS first_pub_date</span>
+<span class="s2">        FROM tls201_appln a</span>
+<span class="s2">        JOIN tls211_pat_publn p USING (appln_id)</span>
+<span class="s2">        WHERE p.publn_date IS NOT NULL</span>
+<span class="s2">        GROUP BY a.appln_id</span>
+<span class="s2">    )</span>
+<span class="s2">    SELECT *</span>
+<span class="s2">    FROM first_pub</span>
+<span class="s2">    ORDER BY first_pub_date</span>
+<span class="s2">    LIMIT 100</span>
+<span class="s2">"""</span><span class="p">)</span><span class="o">.</span><span class="n">fetchdf</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-3" name="sd-tab-set-1" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-3">
+Athena SQL</label><div class="sd-tab-content docutils">
+<p>In the Athena Query editor, select workgroup <code class="docutils literal notranslate"><span class="pre">patstat</span></code> and database <code class="docutils literal notranslate"><span class="pre">patstat</span></code>.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">WITH</span><span class="w"> </span><span class="n">first_pub</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="k">SELECT</span>
+<span class="w">        </span><span class="n">a</span><span class="p">.</span><span class="n">appln_id</span><span class="p">,</span>
+<span class="w">        </span><span class="k">MIN</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">publn_date</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">first_pub_date</span>
+<span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">tls201_appln</span><span class="w"> </span><span class="n">a</span>
+<span class="w">    </span><span class="k">JOIN</span><span class="w"> </span><span class="n">tls211_pat_publn</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">appln_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">appln_id</span>
+<span class="w">    </span><span class="k">WHERE</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">publn_date</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span>
+<span class="w">    </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">appln_id</span>
+<span class="p">)</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="o">*</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">first_pub</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">first_pub_date</span>
+<span class="k">LIMIT</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="top-ipc-sections-for-a-given-year">
+<h3>Top IPC Sections for a Given Year<a class="headerlink" href="#top-ipc-sections-for-a-given-year" title="Link to this heading">#</a></h3>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-4" name="sd-tab-set-2" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-4">
+DuckDB on KLC</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">duckdb</span>
+
+<span class="n">con</span> <span class="o">=</span> <span class="n">duckdb</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+<span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"PRAGMA threads=8"</span><span class="p">)</span>
+<span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"PRAGMA memory_limit='128GB'"</span><span class="p">)</span>
+
+<span class="n">base</span> <span class="o">=</span> <span class="s2">"/kellogg/data/PATSTAT-2023-11-22/PATSTAT/parquet"</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">register</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+    <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">"CREATE OR REPLACE VIEW </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2"> AS "</span>
+        <span class="sa">f</span><span class="s2">"SELECT * FROM read_parquet('</span><span class="si">{</span><span class="n">base</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">/*.parquet')"</span>
+    <span class="p">)</span>
+
+<span class="n">register</span><span class="p">(</span><span class="s2">"tls201_appln"</span><span class="p">)</span>
+<span class="n">register</span><span class="p">(</span><span class="s2">"tls209_appln_ipc"</span><span class="p">)</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"""</span>
+<span class="s2">    SELECT</span>
+<span class="s2">        SUBSTR(i.ipc_class_symbol, 1, 1) AS ipc_section,</span>
+<span class="s2">        COUNT(DISTINCT i.appln_id) AS applns</span>
+<span class="s2">    FROM tls209_appln_ipc i</span>
+<span class="s2">    JOIN tls201_appln a USING (appln_id)</span>
+<span class="s2">    WHERE a.appln_filing_year = 2020</span>
+<span class="s2">      AND i.ipc_class_level = 'A'</span>
+<span class="s2">    GROUP BY ipc_section</span>
+<span class="s2">    ORDER BY applns DESC</span>
+<span class="s2">"""</span><span class="p">)</span><span class="o">.</span><span class="n">fetchdf</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-5" name="sd-tab-set-2" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-5">
+Athena SQL</label><div class="sd-tab-content docutils">
+<p>In the Athena Query editor, select workgroup <code class="docutils literal notranslate"><span class="pre">patstat</span></code> and database <code class="docutils literal notranslate"><span class="pre">patstat</span></code>.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span>
+<span class="w">    </span><span class="n">substr</span><span class="p">(</span><span class="n">i</span><span class="p">.</span><span class="n">ipc_class_symbol</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">ipc_section</span><span class="p">,</span>
+<span class="w">    </span><span class="k">COUNT</span><span class="p">(</span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">i</span><span class="p">.</span><span class="n">appln_id</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">applns</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">tls209_appln_ipc</span><span class="w"> </span><span class="n">i</span>
+<span class="k">JOIN</span><span class="w"> </span><span class="n">tls201_appln</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">i</span><span class="p">.</span><span class="n">appln_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">appln_id</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">appln_filing_year</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2020</span>
+<span class="w">  </span><span class="k">AND</span><span class="w"> </span><span class="n">i</span><span class="p">.</span><span class="n">ipc_class_level</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'A'</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="mi">1</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">applns</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="cpc-heatmap-top-cpc-main-groups-by-authority-and-year">
+<h3>CPC Heatmap: Top CPC Main Groups by Authority and Year<a class="headerlink" href="#cpc-heatmap-top-cpc-main-groups-by-authority-and-year" title="Link to this heading">#</a></h3>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-6" name="sd-tab-set-3" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-6">
+DuckDB on KLC</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">duckdb</span>
+
+<span class="n">con</span> <span class="o">=</span> <span class="n">duckdb</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+<span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"PRAGMA threads=8"</span><span class="p">)</span>
+<span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"PRAGMA memory_limit='128GB'"</span><span class="p">)</span>
+
+<span class="n">base</span> <span class="o">=</span> <span class="s2">"/kellogg/data/PATSTAT-2023-11-22/PATSTAT/parquet"</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">register</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+    <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">"CREATE OR REPLACE VIEW </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2"> AS "</span>
+        <span class="sa">f</span><span class="s2">"SELECT * FROM read_parquet('</span><span class="si">{</span><span class="n">base</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">/*.parquet')"</span>
+    <span class="p">)</span>
+
+<span class="n">register</span><span class="p">(</span><span class="s2">"tls201_appln"</span><span class="p">)</span>
+<span class="n">register</span><span class="p">(</span><span class="s2">"tls224_appln_cpc"</span><span class="p">)</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"""</span>
+<span class="s2">    SELECT</span>
+<span class="s2">        a.appln_auth,</span>
+<span class="s2">        a.appln_filing_year,</span>
+<span class="s2">        REGEXP_EXTRACT(c.cpc_class_symbol, '^[A-HY]</span><span class="se">\\</span><span class="s2">d+</span><span class="se">\\</span><span class="s2">D</span><span class="se">\\</span><span class="s2">d+/?</span><span class="se">\\</span><span class="s2">d*') AS cpc_main_group,</span>
+<span class="s2">        COUNT(DISTINCT a.appln_id) AS applns</span>
+<span class="s2">    FROM tls224_appln_cpc c</span>
+<span class="s2">    JOIN tls201_appln a USING (appln_id)</span>
+<span class="s2">    WHERE a.appln_filing_year BETWEEN 2019 AND 2023</span>
+<span class="s2">    GROUP BY ALL</span>
+<span class="s2">    HAVING COUNT(DISTINCT a.appln_id) &gt;= 100</span>
+<span class="s2">    ORDER BY appln_filing_year DESC, applns DESC</span>
+<span class="s2">    LIMIT 200</span>
+<span class="s2">"""</span><span class="p">)</span><span class="o">.</span><span class="n">fetchdf</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-7" name="sd-tab-set-3" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-7">
+Athena SQL</label><div class="sd-tab-content docutils">
+<p>In the Athena Query editor, select workgroup <code class="docutils literal notranslate"><span class="pre">patstat</span></code> and database <code class="docutils literal notranslate"><span class="pre">patstat</span></code>.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span>
+<span class="w">    </span><span class="n">a</span><span class="p">.</span><span class="n">appln_auth</span><span class="p">,</span>
+<span class="w">    </span><span class="n">a</span><span class="p">.</span><span class="n">appln_filing_year</span><span class="p">,</span>
+<span class="w">    </span><span class="n">regexp_extract</span><span class="p">(</span><span class="k">c</span><span class="p">.</span><span class="n">cpc_class_symbol</span><span class="p">,</span><span class="w"> </span><span class="s1">'^[A-HY]\d+\D\d+/?\d*'</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">cpc_main_group</span><span class="p">,</span>
+<span class="w">    </span><span class="k">COUNT</span><span class="p">(</span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">appln_id</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">applns</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">tls224_appln_cpc</span><span class="w"> </span><span class="k">c</span>
+<span class="k">JOIN</span><span class="w"> </span><span class="n">tls201_appln</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">c</span><span class="p">.</span><span class="n">appln_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">appln_id</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">appln_filing_year</span><span class="w"> </span><span class="k">BETWEEN</span><span class="w"> </span><span class="mi">2019</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="mi">2023</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span>
+<span class="k">HAVING</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">appln_id</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">100</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">appln_filing_year</span><span class="w"> </span><span class="k">DESC</span><span class="p">,</span><span class="w"> </span><span class="n">applns</span><span class="w"> </span><span class="k">DESC</span>
+<span class="k">LIMIT</span><span class="w"> </span><span class="mi">200</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="applicant-country-roll-up">
+<h3>Applicant Country Roll-Up<a class="headerlink" href="#applicant-country-roll-up" title="Link to this heading">#</a></h3>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-8" name="sd-tab-set-4" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-8">
+DuckDB on KLC</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">duckdb</span>
+
+<span class="n">con</span> <span class="o">=</span> <span class="n">duckdb</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+<span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"PRAGMA threads=8"</span><span class="p">)</span>
+<span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"PRAGMA memory_limit='128GB'"</span><span class="p">)</span>
+
+<span class="n">base</span> <span class="o">=</span> <span class="s2">"/kellogg/data/PATSTAT-2023-11-22/PATSTAT/parquet"</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">register</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+    <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">"CREATE OR REPLACE VIEW </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2"> AS "</span>
+        <span class="sa">f</span><span class="s2">"SELECT * FROM read_parquet('</span><span class="si">{</span><span class="n">base</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">/*.parquet')"</span>
+    <span class="p">)</span>
+
+<span class="n">register</span><span class="p">(</span><span class="s2">"tls201_appln"</span><span class="p">)</span>
+<span class="n">register</span><span class="p">(</span><span class="s2">"tls207_pers_appln"</span><span class="p">)</span>
+<span class="n">register</span><span class="p">(</span><span class="s2">"tls206_person"</span><span class="p">)</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"""</span>
+<span class="s2">    WITH applicants AS (</span>
+<span class="s2">        SELECT pa.appln_id, pa.person_id</span>
+<span class="s2">        FROM tls207_pers_appln pa</span>
+<span class="s2">        WHERE pa.applt_seq_nr &gt; 0</span>
+<span class="s2">    ),</span>
+<span class="s2">    applicant_ctry AS (</span>
+<span class="s2">        SELECT a.appln_id, p.person_ctry_code</span>
+<span class="s2">        FROM applicants a</span>
+<span class="s2">        JOIN tls206_person p USING (person_id)</span>
+<span class="s2">    )</span>
+<span class="s2">    SELECT</span>
+<span class="s2">        person_ctry_code,</span>
+<span class="s2">        a.appln_filing_year,</span>
+<span class="s2">        COUNT(DISTINCT a.appln_id) AS applns</span>
+<span class="s2">    FROM tls201_appln a</span>
+<span class="s2">    LEFT JOIN applicant_ctry ac USING (appln_id)</span>
+<span class="s2">    WHERE a.appln_filing_year BETWEEN 2018 AND 2023</span>
+<span class="s2">    GROUP BY ALL</span>
+<span class="s2">    ORDER BY appln_filing_year, applns DESC</span>
+<span class="s2">"""</span><span class="p">)</span><span class="o">.</span><span class="n">fetchdf</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-9" name="sd-tab-set-4" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-9">
+Athena SQL</label><div class="sd-tab-content docutils">
+<p>In the Athena Query editor, select workgroup <code class="docutils literal notranslate"><span class="pre">patstat</span></code> and database <code class="docutils literal notranslate"><span class="pre">patstat</span></code>.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">WITH</span><span class="w"> </span><span class="n">applicants</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="n">pa</span><span class="p">.</span><span class="n">appln_id</span><span class="p">,</span><span class="w"> </span><span class="n">pa</span><span class="p">.</span><span class="n">person_id</span>
+<span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">tls207_pers_appln</span><span class="w"> </span><span class="n">pa</span>
+<span class="w">    </span><span class="k">WHERE</span><span class="w"> </span><span class="n">pa</span><span class="p">.</span><span class="n">applt_seq_nr</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span>
+<span class="p">),</span>
+<span class="n">applicant_ctry</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">appln_id</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">person_ctry_code</span>
+<span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">applicants</span><span class="w"> </span><span class="n">a</span>
+<span class="w">    </span><span class="k">JOIN</span><span class="w"> </span><span class="n">tls206_person</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">person_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">person_id</span>
+<span class="p">)</span>
+<span class="k">SELECT</span>
+<span class="w">    </span><span class="n">person_ctry_code</span><span class="p">,</span>
+<span class="w">    </span><span class="n">a</span><span class="p">.</span><span class="n">appln_filing_year</span><span class="p">,</span>
+<span class="w">    </span><span class="k">COUNT</span><span class="p">(</span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">appln_id</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">applns</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">tls201_appln</span><span class="w"> </span><span class="n">a</span>
+<span class="k">LEFT</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">applicant_ctry</span><span class="w"> </span><span class="n">ac</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">appln_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ac</span><span class="p">.</span><span class="n">appln_id</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">appln_filing_year</span><span class="w"> </span><span class="k">BETWEEN</span><span class="w"> </span><span class="mi">2018</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="mi">2023</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">person_ctry_code</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">appln_filing_year</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">appln_filing_year</span><span class="p">,</span><span class="w"> </span><span class="n">applns</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="documentation">
+<h2>Documentation<a class="headerlink" href="#documentation" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.epo.org/searching-for-patents/business/patstat.html" target="_blank">PATSTAT product page (EPO) <svg version="1.1" width="1.0em" height="1.0em" viewBox="0 0 16 16" aria-hidden="true" style="display: inline-block; vertical-align: middle; fill: currentColor;"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a></p></li>
+<li><p><a class="reference external" href="https://www.epo.org/searching-for-patents/business/patstat/data.html" target="_blank">PATSTAT data documentation (EPO) <svg version="1.1" width="1.0em" height="1.0em" viewBox="0 0 16 16" aria-hidden="true" style="display: inline-block; vertical-align: middle; fill: currentColor;"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a></p></li>
+</ul>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="nielsen-marketing-data.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Nielsen Marketing Data</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../../kellogg-data-hosting/kdc.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Kellogg Data Hosting</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#at-a-glance">At a Glance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#description">Description</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#access">Access</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#choosing-between-duckdb-on-klc-and-athena">Choosing Between DuckDB on KLC and Athena</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-coverage-key-identifiers">Data Coverage &amp; Key Identifiers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tables-on-klc">Tables on KLC</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-queries">Example Queries</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#applications-by-filing-year-and-authority">Applications by Filing Year and Authority</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#first-publication-per-application">First Publication per Application</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#top-ipc-sections-for-a-given-year">Top IPC Sections for a Given Year</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cpc-heatmap-top-cpc-main-groups-by-authority-and-year">CPC Heatmap: Top CPC Main Groups by Authority and Year</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#applicant-country-roll-up">Applicant Country Roll-Up</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#documentation">Documentation</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+
+
+<div id="footer-bottom">
+<div class="contain-1120">
+<span class="copyright" style="color:white">©
+<script>// <![CDATA[
+document.write(new Date().getFullYear())
+// ]]></script>
+Kellogg School of Management | <a href="https://www.kellogg.northwestern.edu/academics-research/research-support/">Kellogg Research Support</a></span>
+<!--
+<ul>
+<li><a href="https://www.facebook.com/NorthwesternU"> <span class="social facebook">Facebook</span> </a></li>
+<li><a href="https://www.twitter.com/northwesternu"> <span class="social twitter">Twitter</span> </a></li>
+<li><a href="https://www.instagram.com/northwesternu"> <span class="social instagram">Instagram</span> </a></li>
+<li><a href="https://www.youtube.com/user/NorthwesternU"> <span class="social youtube">YouTube</span> </a></li>
+<li><a href="https://www.tiktok.com/@northwestern.u"> <span class="social tiktok">TikTok</span> </a></li>
+<li><a href="https://www.linkedin.com/school/northwestern-university/"> <span class="social linkedin">LinkedIn</span> </a></li>
+</ul>
+-->
+<span class="right" style="color:white"><a style="color:white" href="https://www.northwestern.edu/disclaimer.html">Disclaimer</a></span>
+</div>
+</div>
+  </footer>
+  </body>
+</html>
