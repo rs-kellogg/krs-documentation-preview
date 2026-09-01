@@ -1,0 +1,283 @@
+/* ------------------------------------------------------------------------- */
+/* Set variables for Northwestern Branding Stuff                             */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins');
+
+:root {
+    --nu-purple: #4E2A84;
+    --nu-font: "Arial Regular", Arial, sans-serif;
+    --nu-header-font: "Poppins", "Arial Regular", Arial, sans-serif;
+    --nu-secondary: #836EAA;
+    --nu-purple-120: #401F68;
+    --nu-purple-60: #836EAA;
+    --nu-purple-30: #B6ACD1;
+    --nu-purple-10: #E4E0EE;
+    --nu-sec-green: #58B947;
+    --nu-sec-dkgreen: #008656;
+    --nu-sec-teal: #7FCECD;
+    --nu-sec-dkteal: #007FA4;
+    --nu-sec-blue: #5091CD;
+    --nu-sec-dkblue: #0D2D6C;
+    --nu-sec-red: #EF553F;
+    --nu-sec-dkred: #D85820;
+    --nu-sec-gold: #FFC520;
+    --nu-sec-dkgold: #CA7C1B;
+}
+
+
+
+/* ------------------------------------------------ */
+/* Light theme settings                             */
+
+
+
+
+html[data-theme=light] {
+  /* base font size - applied at body/html level */
+    --pst-font-size-base: 16px;
+
+  /* Primary and secondary colors */
+    --pst-color-secondary: var(--nu-secondary);
+    --pst-color-primary: var(--nu-purple);
+    
+  /* other color alterations */
+    --pst-color-muted: var(--nu-purple-120);
+
+  /* heading font sizes based on a medium contrast type scale */
+    --pst-font-size-h1: 2.625rem;
+    --pst-font-size-h2: 2.125rem;
+    --pst-font-size-h3: 1.5rem;
+    --pst-font-size-h4: 1.25rem;
+    --pst-font-size-h5: 1.0rem;
+    --pst-font-size-h6: 1rem;
+
+  /* smaller than heading font sizes */
+  --pst-font-size-milli: 0.9rem;
+
+  /* Sidebar styles */
+  --pst-sidebar-font-size: 0.9rem;
+  --pst-sidebar-font-size-mobile: 1.1rem;
+  --pst-sidebar-header-font-size: 1.2rem;
+  --pst-sidebar-header-font-weight: 600;
+
+  /* Admonition styles */
+  --pst-admonition-font-weight-heading: 600;
+
+  /* Font weights */
+  --pst-font-weight-caption: 300;
+  --pst-font-weight-heading: 600;
+
+  /* Font family */
+  --pst-font-family-base-system: var(--nu-font);
+  --pst-font-family-heading: var(--nu-header-font);
+}
+
+html[data-theme=light] .bd-header-article .btn {
+    align-items: center;
+    border: none;
+    color: var(--nu-purple);
+    display: flex;
+    font-size: 1.3rem;
+    padding-left: .5rem;
+    padding-right: .5rem;
+}
+
+
+hr {
+    border-top: 1px solid #666666;
+}
+
+html[data-theme="light"] .sphinx-tabs-tab {
+    color: black;
+    font-size: 18px;
+}
+
+html[data-theme="light"] .card-header {
+    font-size: 1.5rem;
+}
+
+html[data-theme="light"] .caption {
+    font-family: var(--nu-header-font);
+}
+
+html[data-theme="light"] nav.bd-links p.caption {
+  color: var(--nu-purple-120);
+  font-size: var(--pst-sidebar-header-font-size);
+}
+
+
+/* ------------------------------------------------------------------------- */
+/* Set things to make documentation take full page                           */
+
+.bd-main .bd-content .bd-article-container {
+  max-width: 100%;  /* default is 60em */
+}
+
+.bd-page-width {
+  max-width: 100%;  /* default is 88rem */
+}
+
+
+/* --------------------------------------------------------------- */
+/* Disable dark mode/theme, if an option                           */
+
+button.theme-switch-button {
+    display: none !important;
+}
+
+button.primary-toggle {
+    display: none !important;
+}
+
+button.secondary-toggle {
+    display: none !important;
+}
+
+/* --------------------------------------------------------------- */
+/* Set style for footer only so it displays as desired             */
+
+#footer-bottom {
+  background:#401f68;
+  padding: 1rem;
+  font-size:12px
+}
+#footer-bottom .copyright {
+  font-size:14px;
+  margin-right:1rem
+}
+#footer-bottom .right {
+  float:right
+}
+#footer-bottom a {
+  color: var(--nu-purple-10);
+}
+#footer-bottom a.visited {
+  color: var(--nu-purple-10);
+}
+#footer-bottom a.hover {
+  color: white;
+}
+#footer-bottom a.active {
+  color: var(--nu-purple-10);
+}
+#footer-bottom ul {
+  list-style-type:none;
+  margin:0;
+  padding:0;
+  display:inline
+}
+#footer-bottom ul li {
+  margin:0;
+  padding:0 .3rem;
+  display:inline
+}
+#footer-bottom ul a {
+  text-decoration:none;
+  position:relative;
+  display:inline-block
+}
+#footer-bottom ul .social {
+  background-repeat:no-repeat;
+  height:18px;
+  width:18px;
+  position:relative;
+  top:4px;
+  overflow:hidden;
+  text-indent:-9999px
+}
+#footer-bottom ul .text {
+  display:none
+}
+
+
+/* ------------------------------------------------------------- */
+/* Dark theme settings (not that we are surfacing Dark Theme)    */
+
+html[data-theme="dark"] .sphinx-tabs-panel {
+    color: black;
+    filter: brightness(.8) contrast(1.2);
+}
+
+html[data-theme="dark"] .sphinx-tabs-panel img{
+    color: black;
+    filter: none;
+}
+
+html[data-theme="dark"] .sphinx-tabs-panel a.reference.internal {
+    color: #176de8;
+}
+
+html[data-theme="dark"] .sphinx-tabs-panel a.reference.external {
+    color: #176de8;
+}
+
+html[data-theme="dark"] .sphinx-tabs-panel h1, .sphinx-tabs-panel h2, .sphinx-tabs-panel h3, .sphinx-tabs-panel h4, .sphinx-tabs-panel h5, .sphinx-tabs-panel p.caption {
+    color: black;
+}
+
+html[data-theme="dark"] .sphinx-tabs-tab {
+    color: var(--nu-purple);
+    font-size: 18px;
+    font-family: var(--nu-font);
+}
+
+html[data-theme="dark"] .sphinx-tabs-tab[aria-selected="true"] {
+    color: black;
+    filter: brightness(.8) contrast(1.2);
+    font-size: 18px;
+    font-family: var(--nu-font);
+}
+
+html[data-theme="dark"] .sphinx-tabs-tab[aria-selected="false"] {
+    background-color: black;
+    border: 1px solid whitesmoke;
+    font-size: 18px;
+    font-family: var(--nu-font);
+}
+
+html[data-theme="dark"] code.docutils.literal.notranslate {
+    color: var(--nu-purple); 
+}
+
+html[data-theme=dark] {
+    --pst-font-size-base: none;
+    --pst-color-secondary: var(--nu-secondary);
+    --pst-color-primary: var(--nu-purple);
+}
+
+html[data-theme=dark] .bd-header-article .btn {
+    align-items: center;
+    border: none;
+    color: var(--nu-purple);
+    display: flex;
+    font-size: 1.3rem;
+    padding-left: .5rem;
+    padding-right: .5rem;
+}
+
+html[data-theme=dark] .bd-header-article .btn:hover {
+    filter: brightness(1) contrast(1.5);
+}
+
+
+html[data-theme=dark] .form-control:focus {
+    box-shadow: 0 0 0 .1875rem var(--nu-purple);
+}
+
+.hidden{
+        display: none;
+}
+
+nav.bd-links li > a.reference.external::after {
+    content: "";
+    font: var(--fa-font-solid);
+    font-size: .75em;
+    margin-left: .3em;
+}
+
+/* ------------------------------------------------------------------------- */
+/* Force light mode regardless of OS/browser dark mode preference            */
+
+:root {
+    color-scheme: light only;
+}
