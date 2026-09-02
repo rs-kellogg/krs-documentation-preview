@@ -1,0 +1,1213 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" data-theme="light">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Qualitative Coding with LLMs: A Worked Example &#8212; Kellogg School of Management
+Research Support
+Northwestern University</title>
+<script data-cfasync="false">
+  localStorage.setItem("mode", "light");
+  localStorage.setItem("theme", "light");
+</script>
+
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/kellogg-rs-docs.css?v=9c3e1ba6" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/qual-coding/qualitative-coding-with-llms';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = true;</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="OpenAI and LLMs" href="../../guides/openai/openai.html" />
+    <link rel="prev" title="Validation and Rigor" href="../nlp/tutorial5.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../../_static/searchtools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="light">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+<aside class="bd-header-announcement" aria-label="Announcement">
+  <div class="bd-header-announcement__content">Kellogg Research Support holds weekly office hours at the Kellogg Global Hub, Room 5422, every Wednesday from 10:00 a.m. to 12:00 p.m.</div>
+</aside>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+    
+    <img src="../../_static/kellogg_logo.png" class="logo__image only-light" alt="Kellogg School of Management
+Research Support
+Northwestern University - Home"/>
+    <img src="../../_static/kellogg_logo.png" class="logo__image only-dark pst-js-only" alt="Kellogg School of Management
+Research Support
+Northwestern University - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Fundamentals</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../start/getting-help.html">Getting Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../start/services-overview.html">What Does KRS Offer?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../start/klc/klc-intro.html">Introduction to Kellogg Linux Cluster</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Computing</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../services/klc/klc.html">Kellogg Linux Cluster</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference external" href="https://www.kellogg.northwestern.edu/academics-research/research-support/computing/kellogg-linux-cluster/" target="_blank">Kellogg Linux Cluster Overview <svg aria-hidden="true" height="1.0em" style="display: inline-block; vertical-align: middle; fill: currentColor;" version="1.1" viewbox="0 0 16 16" width="1.0em"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../services/klc/user-guide/klc-user-guide.html">KLC User Guide</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../services/klc/user-guide/klc-accessing.html">Access KLC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../services/klc/user-guide/klc-ssh.html">SSH</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../services/klc/user-guide/klc-fastx.html">FastX</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../services/klc/user-guide/klc-vscode.html">VS Code Workflow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../services/klc/user-guide/klc-ondemand.html">KLC OnDemand</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../services/klc/user-guide/klc-files.html">KLC Filesystem</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../services/klc/user-guide/klc-transferfiles.html">Data Transfer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../services/klc/user-guide/klc-editor.html">Edit Files on KLC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../services/klc/user-guide/klc-git.html">Using Git on KLC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../services/klc/user-guide/klc-conda.html">Conda/Mamba Environments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../services/klc/user-guide/klc-software.html">Launching Jobs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../services/klc/user-guide/klc-tmux.html">Using tmux</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../services/klc/user-guide/klc-profiling.html">Monitoring &amp; Managing Jobs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../services/klc/user-guide/llm-api.html">LLM API Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../services/klc/user-guide/llm-klc.html">Open Source LLMs (Interactive)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../services/klc/klc-datasets.html">Datasets on KLC</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../services/datasets/datasets/cme.html">CME</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../services/datasets/datasets/comscore.html">Comscore</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../services/datasets/datasets/cotality.html">Cotality (formerly CoreLogic)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../services/datasets/datasets/edgar.html">EDGAR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../services/datasets/datasets/nielsen-marketing-data.html">Nielsen Marketing Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../services/datasets/datasets/patstat.html">PATSTAT</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference external" href="https://rcdsdocs.it.northwestern.edu/systems/quest/quest.html" target="_blank">Quest Documentation <svg aria-hidden="true" height="1.0em" style="display: inline-block; vertical-align: middle; fill: currentColor;" version="1.1" viewbox="0 0 16 16" width="1.0em"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a></li>
+<li class="toctree-l2"><a class="reference external" href="https://www.it.northwestern.edu/departments/it-services-support/research/computing/quest/data-security-guidance.html" target="_blank">Quest Data Security Guidance <svg aria-hidden="true" height="1.0em" style="display: inline-block; vertical-align: middle; fill: currentColor;" version="1.1" viewbox="0 0 16 16" width="1.0em"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../services/klc-reserve/klc-reserve.html">Kellogg Linux Cluster Reserve</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../services/klc-reserve/when-to-use.html">When to Use KLC Reserve</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../services/klc-reserve/gpu-concepts.html">GPU Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../services/klc-reserve/slurm-jobs.html">Submitting SLURM Jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../services/klc-reserve/gpu-jobs.html">GPU Jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../services/klc-reserve/highmem-jobs.html">High-Memory Jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../services/klc-reserve/vllm-example.html">vLLM on GPUs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../services/klc-reserve/ollama-example.html">Ollama on GPUs</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Datasets</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../services/kellogg-data-hosting/kdc.html">Kellogg Data Hosting</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../services/kellogg-data-hosting/wrds/wrds.html">WRDS</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../services/kellogg-data-hosting/wrds/examples/crsp-example.html">CRSP Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../services/kellogg-data-hosting/wrds/examples/taq-example.html">TAQ Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../services/kellogg-data-hosting/wrds/examples/revelio-example.html">Revelio Labs Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../services/kellogg-data-hosting/athena/athena.html">Athena (AWS)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../services/datasets/datasets/comscore.html">Comscore</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../services/datasets/datasets/cotality.html">Cotality (formerly CoreLogic)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../services/datasets/datasets/equifax.html">Equifax</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../services/datasets/datasets/patstat.html">PATSTAT</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../services/kellogg-data-hosting/redivis/redivis.html">Redivis</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../services/datasets/datasets/l2-vm2-uniform.html">L2 VM2 Uniform</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../services/datasets/datasets/numerator.html">Numerator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../services/datasets/datasets/openalex.html">OpenAlex</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../services/datasets/datasets/proxycurl.html">ProxyCurl</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.kellogg.northwestern.edu/academics-research/research-support/dataset/" target="_blank">Kellogg Research Support Datasets <svg aria-hidden="true" height="1.0em" style="display: inline-block; vertical-align: middle; fill: currentColor;" version="1.1" viewbox="0 0 16 16" width="1.0em"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../start/workshop-doc.html">Research the Right Way Workshop</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../nlp/nlp.html">Natural Language Processing</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../nlp/tutorial1.html">Deterministic Extraction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp/tutorial2.html">Quantifying Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp/tutorial3.html">Paid LLMs for Text Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp/tutorial4.html">Open-Source LLMs for Text Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nlp/tutorial5.html">Validation and Rigor</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Qualitative Coding with LLMs</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../guides/openai/openai.html">OpenAI and LLMs</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../guides/openai/llm-intro.html">Understanding LLMs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../guides/openai/openai-api.html">OpenAI API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../guides/openai/openai-copilot.html">GitHub Copilot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../guides/openai/openai-workflow.html">Application Workflow</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../guides/llm/llm.html">Open Source LLMs</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Qualitative Coding with LLMs: A Worked Example</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prerequisites">Prerequisites</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#materials">Materials</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#executive-summary">Executive Summary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-toy-example">0. The Toy Example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-the-rubric-can-t-be-complete">1. Why the Rubric Can’t Be Complete</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#anatomy-of-an-llm-api-call">2. Anatomy of an LLM API Call</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#system-prompt-vs-user-prompt-for-qualitative-coding">3. System Prompt vs. User Prompt for Qualitative Coding</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#giving-the-model-an-out-preventing-false-confidence-hallucination">4. Giving the Model an “Out”: Preventing False-Confidence Hallucination</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-out-is-a-routing-decision-not-a-resolution">4.1 The “Out” Is a Routing Decision, Not a Resolution</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calibration-by-example-anchoring-the-model-on-your-judgment-calls">5. Calibration by Example: Anchoring the Model on Your Judgment Calls</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adapting-this-template-to-your-own-study">5.1 Adapting this template to your own study</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scaling-beyond-one-input-looping-over-the-data-groups-folder">6. Scaling Beyond One Input: Looping Over the <code class="docutils literal notranslate"><span class="pre">data/groups/</span></code> Folder</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#non-determinism-why-rerunning-isn-t-free">7. Non-Determinism: Why Rerunning Isn’t Free</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#intercoder-reliability-llm-vs-llm-and-llm-vs-human">8. Intercoder Reliability: LLM vs. LLM, and LLM vs. Human</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-to-do-when-coders-disagree-adjudication-not-just-diagnosis">9. What to Do When Coders Disagree: Adjudication, Not Just Diagnosis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps">Next Steps</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="qualitative-coding-with-llms-a-worked-example">
+<span id="qualitative-coding-with-llms"></span><h1>Qualitative Coding with LLMs: A Worked Example<a class="headerlink" href="#qualitative-coding-with-llms-a-worked-example" title="Link to this heading">#</a></h1>
+<section id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Python 3 with <code class="docutils literal notranslate"><span class="pre">openai</span></code> and <code class="docutils literal notranslate"><span class="pre">pandas</span></code> installed (<code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">openai</span> <span class="pre">pandas</span></code>)</p></li>
+<li><p>An OpenAI API key saved in <code class="docutils literal notranslate"><span class="pre">~/keys/openai-key.txt</span></code> in your home directory — see <a class="reference internal" href="../../guides/openai/openai-api.html"><span class="doc std std-doc">OpenAI API</span></a></p></li>
+<li><p>Familiarity with reading Python scripts; no prior qualitative-coding experience required</p></li>
+</ul>
+</section>
+<section id="materials">
+<h2>Materials<a class="headerlink" href="#materials" title="Link to this heading">#</a></h2>
+<p>Download the tutorial files, unzip, and run the scripts from the <code class="docutils literal notranslate"><span class="pre">code/</span></code> folder (they load paragraphs from the sibling <code class="docutils literal notranslate"><span class="pre">data/groups/</span></code> folder):</p>
+<ul class="simple">
+<li><p><a class="reference download internal" download="" href="../../_downloads/b5a3e63cb204998ccbbb998117f13f01/qual-coding-materials.zip"><code class="xref download docutils literal notranslate"><span class="pre">Tutorial</span> <span class="pre">files</span> <span class="pre">(zip)</span></code></a> — five Python scripts and six sample paragraphs</p></li>
+</ul>
+<p>The sample paragraphs are synthetic examples written for this tutorial.</p>
+</section>
+<section id="executive-summary">
+<h2>Executive Summary<a class="headerlink" href="#executive-summary" title="Link to this heading">#</a></h2>
+<p><strong>Qualitative coding</strong> is an iterative, interpretive process of indexing textual or non-numerical data to uncover deeper meanings, conceptual connections, and overarching themes. While other coding tasks rely on deterministic, unambiguous steps to automate the translation of text or images into structured data, qualitative coding is not as cut and dry. Its core nuance is that it requires continuous contextual judgment to interpret ambiguity, subtext, and conflicting evidence within the data.</p>
+<p>Qualitative coding can show up across a wide range of research settings: from lab experiments asking subjects to explain their decisions, to observational data like news coverage, field notes, or historical administrative records.</p>
+<p>For instance:</p>
+<ul class="simple">
+<li><p><strong>Lab experiments.</strong> A study asks participants to explain in writing why they chose to share or keep money in a decision-making game.</p>
+<ul>
+<li><p><em>Target variable:</em> Primary motivation (Altruism, Self-interest, or Social pressure).</p></li>
+<li><p><em>Hard case:</em> A participant writes, “I wanted to be kind and give half because everyone was watching.”</p></li>
+<li><p><em>Human judgment:</em> The action (giving half) looks like generosity, but the text reveals the true motive is avoiding embarrassment. A human coder reads the social context and codes it as Social pressure rather than Altruism.</p></li>
+</ul>
+</li>
+<li><p><strong>Observational data.</strong> A researcher collects news coverage of a proposed law to see how journalists frame the policy.</p>
+<ul>
+<li><p><em>Target variable:</em> Article framing (Economic impact or National security).</p></li>
+<li><p><em>Hard case:</em> A headline reads, “New Port Restrictions Aim to Cut Smuggling and Protect Local Shipping Jobs.”</p></li>
+<li><p><em>Human judgment:</em> The headline explicitly mentions both security (smuggling) and the economy (jobs). A human coder reads the full article to judge which angle dominates the story, rather than letting a keyword count force a coin-flip choice.</p></li>
+</ul>
+</li>
+</ul>
+<p>Classifying cases against a rubric like these is precisely what this walkthrough is built around. Using an LLM for this work is promising, but the tricky part is managing the exact judgment calls that a rubric alone cannot make for you.</p>
+<p>We’ll cover:</p>
+<ul class="simple">
+<li><p>Why a rubric can never fully anticipate the data it’s applied to (Section 1)</p></li>
+<li><p>The anatomy of an LLM API call (Section 2)</p></li>
+<li><p>Coding the rubric you are given (Section 3)</p></li>
+<li><p>Giving the model an explicit “out” for hard cases (Section 4)</p></li>
+<li><p>Anchoring the model’s judgment with examples (Section 5)</p></li>
+<li><p>Scaling the pipeline across multiple inputs (Section 6)</p></li>
+<li><p>Why rerunning the same prompt doesn’t always give the same answer (Section 7)</p></li>
+<li><p>Checking agreement between coders (Section 8)</p></li>
+<li><p>What to do when coders disagree (Section 9)</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="the-toy-example">
+<h2>0. The Toy Example<a class="headerlink" href="#the-toy-example" title="Link to this heading">#</a></h2>
+<p>Before any code, here is the toy example this whole walkthrough is built around.</p>
+<p><strong>The research question.</strong> Scholars of civil-military relations often want to know how consistently a state’s security forces are actually integrated into its formal chain of command, since the answer bears on questions like coup risk, civilian control, and accountability for abuses those forces commit. A natural first step in a project like that is descriptive: across a set of security forces, which ones are cleanly state-integrated, which operate more like parallel or non-state structures (think mercenary groups), and how much variation is there even within a single country’s security apparatus? Classifying dozens or hundreds of forces this way by hand is slow, which makes it a natural candidate for an LLM-assisted coding pipeline, provided that pipeline can be trusted to handle the hard cases responsibly.</p>
+<p><strong>The task.</strong> A professor working on a project like this has handed you a rubric and a set of paragraphs describing specific security forces, and asked you to use an LLM to code each one against it.</p>
+<p><strong>The rubric.</strong></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Dimension</p></th>
+<th class="head"><p>State-integrated</p></th>
+<th class="head"><p>Non-state-parallel</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Formal integration</p></td>
+<td><p>Constitutionally part of the regular military</p></td>
+<td><p>Parallel or parastatal structure</p></td>
+</tr>
+<tr class="row-odd"><td><p>Command and control</p></td>
+<td><p>Standard hierarchy under civilian or military authority</p></td>
+<td><p>Personalized or opaque chain of command</p></td>
+</tr>
+<tr class="row-even"><td><p>Compensation and loyalty basis</p></td>
+<td><p>Standard state salary or service law</p></td>
+<td><p>Patronage, business ventures, or informal arrangements</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>The data.</strong> Here are some groups to start with. Each paragraph is saved as its own file in <code class="docutils literal notranslate"><span class="pre">data/groups/</span></code>; the scripts load from that folder starting in Section 3.</p>
+<p>Section 1 uses this same rubric and these same paragraphs to work through why classifying these groups is harder than the rubric alone suggests.</p>
+</section>
+<hr class="docutils" />
+<section id="why-the-rubric-can-t-be-complete">
+<h2>1. Why the Rubric Can’t Be Complete<a class="headerlink" href="#why-the-rubric-can-t-be-complete" title="Link to this heading">#</a></h2>
+<p>Qualitative coding starts with a <strong>rubric</strong> (or codebook): a structured set of categories meant to capture the dimensions of interest in some body of text, image, or observational data. The rubric is a starting point, not a finish line. No matter how carefully it is built, it cannot fully anticipate every case it will eventually be applied to.</p>
+<p>This is a familiar problem to anyone who has hand-coded real data. A rubric built from theory or from a first pass through the data will inevitably meet cases that don’t sit cleanly in any one category. When that happens, a human coder relies on <strong>judgment</strong>, informed by domain expertise, context, and the accumulated sense of “what the rubric-writer probably meant,” to make a call anyway.</p>
+<p>Apply this rubric to all six groups, and the picture splits into two very different kinds of cases.</p>
+<p>Two of them are genuinely easy: every dimension points the same direction, so the rubric alone is enough.</p>
+<ul class="simple">
+<li><p><strong>AFP (Philippines):</strong> Constitutionally established, funded through congressional appropriations, and run through a centralized chain of command to the Chief of Staff and the President, with no independent business ventures. State-integrated on all three dimensions.</p></li>
+<li><p><strong>Wagner Group (Russia):</strong> Privately funded, privately commanded, and structured explicitly outside the Ministry of Defense’s chain of command, with personnel under private contract rather than military oath. Non-state-parallel on all three dimensions.</p></li>
+</ul>
+<p>The other four are harder, and harder in two different ways. Three of them split within a single dimension, the way you’d expect a hard case to:</p>
+<ul class="simple">
+<li><p><strong>ABRI (Indonesia):</strong> Formally the national armed forces, paid through the state defense budget, with standard rank and chain of command: clear on dimensions 1 and 2. But under the <em>dwifungsi</em> doctrine, officers also ran a sprawling network of military-owned businesses, blurring salary-based compensation with off-budget business income. That third dimension does not fit cleanly into either column.</p></li>
+<li><p><strong>ISI (Pakistan):</strong> A formally constituted state intelligence agency, staffed by seconded military officers: clear on dimensions 1 and 3. But its actual command relationships have often bypassed civilian oversight in practice, reporting informally to military leadership rather than elected government. That second dimension resists a clean label too.</p></li>
+<li><p><strong>IRGC (Iran):</strong> Constitutionally established, but explicitly as a <em>parallel</em> force alongside the regular military (Artesh), answering directly to the Supreme Leader: already unusual on dimension 1. Personnel are nominally salaried, but the IRGC also controls major business conglomerates and runs the Quds Force through informal proxy militias abroad, so dimensions 2 and 3 both resist a clean call.</p></li>
+</ul>
+<p>The fourth, Sudan’s Janjaweed, is harder in a different way:</p>
+<ul class="simple">
+<li><p><strong>Janjaweed (Sudan):</strong> Every dimension actually points toward non-state-parallel: no constitutional status, an opaque chieftain-based command hierarchy, and compensation through patronage and looted resources rather than salary. But the paragraph also says the militia was covertly mobilized, armed, and coordinated by the Sudanese government as an instrument of regime survival, meaning the state built this “non-state” structure on purpose for the deniability it provides. Clean on every dimension, but a rubric with no dimension for engineered deniability still misses what matters most about this case.</p></li>
+</ul>
+<p>In each of these four cases, the evidence splits, or the rubric’s categories themselves fall short of what’s actually going on. Forcing every dimension into one of the two labels the rubric offers loses information a careful coder would want to preserve. That gap is exactly what a third category, “ambiguous,” is for, and Section 4 builds it directly into the coding pipeline.</p>
+<p>No single sentence in the rubric resolves these cases. A human coder has to weigh partial evidence and make a defensible call, and document why. The rest of this walkthrough is about how to get an LLM to do the same thing: apply a rubric the way a trained research assistant would, including knowing when to hedge.</p>
+</section>
+<hr class="docutils" />
+<section id="anatomy-of-an-llm-api-call">
+<h2>2. Anatomy of an LLM API Call<a class="headerlink" href="#anatomy-of-an-llm-api-call" title="Link to this heading">#</a></h2>
+<p>Before getting into the specifics of this coding task, it helps to have the basic shape of an LLM API call in view, since most of what follows is really just decisions about how to fill in a few pieces of that shape. For API key setup and authentication, see <a class="reference internal" href="../../guides/openai/openai-api.html"><span class="doc std std-doc">OpenAI API</span></a>.</p>
+<p>At the most basic level, an API call to an LLM is simple: you send a <strong>prompt</strong>, and you get back a <strong>response</strong>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   <span class="n">PROMPT</span>          <span class="o">---&gt;</span>          <span class="n">LLM</span>          <span class="o">---&gt;</span>          <span class="n">RESPONSE</span>
+  <span class="p">(</span><span class="nb">input</span> <span class="n">text</span><span class="p">)</span>                <span class="p">(</span><span class="n">the</span> <span class="n">model</span><span class="p">)</span>                  <span class="p">(</span><span class="n">output</span> <span class="n">text</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>That’s the whole mechanism. What makes it useful is what you put in the prompt, and most APIs, including the one used in this walkthrough, actually split “the prompt” into two separate input fields rather than one block of text: a <strong>system prompt</strong> and a <strong>user prompt</strong>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PROMPT</span>
+ <span class="o">|--</span> <span class="n">system</span> <span class="n">prompt</span>   <span class="p">(</span><span class="nb">set</span> <span class="n">once</span><span class="p">,</span> <span class="n">reused</span> <span class="n">every</span> <span class="n">call</span><span class="p">:</span> <span class="n">role</span><span class="p">,</span> <span class="n">rules</span><span class="p">,</span> <span class="nb">format</span><span class="p">)</span>
+ <span class="o">|--</span> <span class="n">user</span> <span class="n">prompt</span>     <span class="p">(</span><span class="n">changes</span> <span class="n">every</span> <span class="n">call</span><span class="p">:</span> <span class="n">this</span> <span class="n">call</span><span class="s1">'s specific input)</span>
+</pre></div>
+</div>
+<p><strong>What these two fields are typically used for.</strong> In most applications, the system prompt is written once and sets the model’s role, its instructions, and any rules it should follow for the whole task. The user prompt is the specific input for that one call, and it’s the piece that changes every time even though the system prompt usually stays fixed. A generic, non-coding example:</p>
+<ul class="simple">
+<li><p><strong>System prompt:</strong> “You are a die-hard Cardinals fan who believes in heated team rivalries. You are taking a survey.”</p></li>
+<li><p><strong>User prompt:</strong> “What’s your honest opinion of the Cubs?”</p></li>
+</ul>
+<p>Here’s that exact exchange as the simplest possible piece of running code, saved as <code class="docutils literal notranslate"><span class="pre">code/api_call_ex.py</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#################</span>
+<span class="c1"># Sample API Call</span>
+<span class="c1">##################</span>
+<span class="sd">"""</span>
+<span class="sd">system prompt / user prompt API call example</span>
+
+<span class="sd">Before running:</span>
+<span class="sd">1. pip install openai</span>
+<span class="sd">2. Save your OpenAI API key in `~/keys/openai-key.txt` (see openai-api guide).</span>
+<span class="sd">3. Run: python api_call_ex.py</span>
+<span class="sd">"""</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">OpenAI</span>
+
+<span class="n">openai_key_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s2">"~/keys/openai-key.txt"</span><span class="p">)</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">openai_key_path</span><span class="p">,</span> <span class="s2">"r"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">api_key</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+<span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">SystemExit</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">"Couldn't find </span><span class="si">{</span><span class="n">openai_key_path</span><span class="si">}</span><span class="s2">. Create ~/keys/openai-key.txt in your "</span>
+        <span class="s2">"home directory and paste your OpenAI API key into it (just the key, "</span>
+        <span class="s2">"nothing else)."</span>
+    <span class="p">)</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">(</span><span class="n">api_key</span><span class="o">=</span><span class="n">api_key</span><span class="p">)</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="s2">"gpt-5-mini"</span><span class="p">,</span>
+    <span class="n">messages</span><span class="o">=</span><span class="p">[</span>
+        <span class="p">{</span><span class="s2">"role"</span><span class="p">:</span> <span class="s2">"system"</span><span class="p">,</span> <span class="s2">"content"</span><span class="p">:</span> <span class="s2">"You are a die-hard Cardinals fan who believes in heated team rivalries. You are taking a survey."</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">"role"</span><span class="p">:</span> <span class="s2">"user"</span><span class="p">,</span> <span class="s2">"content"</span><span class="p">:</span> <span class="s2">"What's your honest opinion of the Cubs?"</span><span class="p">},</span>
+    <span class="p">],</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Actual output from <code class="docutils literal notranslate"><span class="pre">code/api_call_ex.py</span></code>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Honest? I can't stand the Cubs. Classic bandwagon city, overhyped ballpark, and way
+too many smug fans who act like 2016 erased a century of being annoying. On the
+field they're loud and flashy sometimes, but they don't hold a candle to St. Louis'
+history and consistency — Cardinals have 11 World Series rings to their three. Love
+the rivalry though; nothing fires me up more than trouncing Chicago.
+</pre></div>
+</div>
+<p><strong>How this maps onto qualitative coding.</strong> The same two-field split applies here, just with a rubric standing in for a rivalry:</p>
+<ul class="simple">
+<li><p><strong>System prompt:</strong> the rubric, the persona the model should adopt, the output format, and the rules for handling ambiguity, everything that should stay constant across every group you code.</p></li>
+<li><p><strong>User prompt:</strong> the single paragraph about the one group being coded right now, the only thing that changes from call to call.</p></li>
+</ul>
+<p>Section 3 puts that division into actual code.</p>
+</section>
+<hr class="docutils" />
+<section id="system-prompt-vs-user-prompt-for-qualitative-coding">
+<h2>3. System Prompt vs. User Prompt for Qualitative Coding<a class="headerlink" href="#system-prompt-vs-user-prompt-for-qualitative-coding" title="Link to this heading">#</a></h2>
+<p>Section 2 laid out the general shape: rubric and persona in the system prompt, the one paragraph being coded in the user prompt. This mirrors how a human coding team actually works: everyone gets the same codebook and training (the system prompt), and then each coder independently looks at one case at a time (the user prompt).</p>
+<p><strong>Code: coding a single file from <code class="docutils literal notranslate"><span class="pre">data/groups/</span></code></strong>, saved as <code class="docutils literal notranslate"><span class="pre">code/indonesia_basic_instruct.py</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#####################################</span>
+<span class="c1"># Sample API Call: Code a Single File</span>
+<span class="c1">#####################################</span>
+<span class="sd">"""</span>
+<span class="sd">system prompt / user prompt API call example, coding one paragraph</span>
+<span class="sd">against the rubric from Section 0 (no structured "out" yet)</span>
+
+<span class="sd">Before running:</span>
+<span class="sd">1. pip install openai</span>
+<span class="sd">2. Save your OpenAI API key in `~/keys/openai-key.txt` (see openai-api guide).</span>
+<span class="sd">3. Run from this folder: python indonesia_basic_instruct.py</span>
+<span class="sd">"""</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">OpenAI</span>
+
+<span class="n">openai_key_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s2">"~/keys/openai-key.txt"</span><span class="p">)</span>
+<span class="n">groups_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">normpath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">),</span> <span class="s2">"../data/groups"</span><span class="p">))</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">openai_key_path</span><span class="p">,</span> <span class="s2">"r"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">api_key</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+<span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">SystemExit</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">"Couldn't find </span><span class="si">{</span><span class="n">openai_key_path</span><span class="si">}</span><span class="s2">. Create ~/keys/openai-key.txt in your "</span>
+        <span class="s2">"home directory and paste your OpenAI API key into it (just the key, "</span>
+        <span class="s2">"nothing else)."</span>
+    <span class="p">)</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">(</span><span class="n">api_key</span><span class="o">=</span><span class="n">api_key</span><span class="p">)</span>
+
+<span class="n">SYSTEM_PROMPT</span> <span class="o">=</span> <span class="s2">"""You are a research assistant coding paragraphs about state </span><span class="se">\</span>
+<span class="s2">security forces along three dimensions, using the rubric below.</span>
+
+<span class="s2">Dimensions:</span>
+<span class="s2">1. Formal integration: state-integrated | non-state-parallel</span>
+<span class="s2">2. Command &amp; control: state-integrated | non-state-parallel</span>
+<span class="s2">3. Compensation/loyalty basis: state-integrated | non-state-parallel</span>
+
+<span class="s2">For each dimension, assign exactly one of the three labels above based only </span><span class="se">\</span>
+<span class="s2">on the paragraph provided. Do not use outside knowledge beyond what is stated </span><span class="se">\</span>
+<span class="s2">or clearly implied in the text.</span>
+<span class="s2">"""</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">code_one_file</span><span class="p">(</span><span class="n">filepath</span><span class="p">):</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="s2">"r"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">paragraph</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+
+    <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+        <span class="n">model</span><span class="o">=</span><span class="s2">"gpt-5-mini"</span><span class="p">,</span>
+        <span class="n">messages</span><span class="o">=</span><span class="p">[</span>
+            <span class="p">{</span><span class="s2">"role"</span><span class="p">:</span> <span class="s2">"system"</span><span class="p">,</span> <span class="s2">"content"</span><span class="p">:</span> <span class="n">SYSTEM_PROMPT</span><span class="p">},</span>
+            <span class="p">{</span><span class="s2">"role"</span><span class="p">:</span> <span class="s2">"user"</span><span class="p">,</span> <span class="s2">"content"</span><span class="p">:</span> <span class="n">paragraph</span><span class="p">},</span>
+        <span class="p">],</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">content</span>
+
+<span class="c1"># Try it on one file first</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">code_one_file</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">groups_dir</span><span class="p">,</span> <span class="s2">"indonesia.txt"</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Actual output from <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">indonesia_basic_instruct.py</span></code>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Formal integration: state-integrated
+Command &amp; control: state-integrated
+Compensation/loyalty basis: non-state-parallel
+</pre></div>
+</div>
+<p>Notice what’s <em>not</em> in this version yet: no explicit rule telling the model to hedge when evidence is genuinely conflicting, no required rationale field, and no structured output format to make each call auditable. In this run, the model landed on “non-state-parallel” for compensation.  Whereas, something is off for this case because of the off-budget business income Section 1 flagged. Without an explicit rule and a required rationale, there’s nothing stopping the model from confidently forcing a label as seen in this case. Section 4 enables the model to acknowledge that a case is unclear and provide its reasoning so it can be audited later.</p>
+</section>
+<hr class="docutils" />
+<section id="giving-the-model-an-out-preventing-false-confidence-hallucination">
+<h2>4. Giving the Model an “Out”: Preventing False-Confidence Hallucination<a class="headerlink" href="#giving-the-model-an-out-preventing-false-confidence-hallucination" title="Link to this heading">#</a></h2>
+<p>If a rubric label is forced on every dimension, the model will produce one, even for a case, like ABRI’s compensation dimension, where a human coder would visibly hesitate. That’s a quiet but serious problem: the resulting dataset looks complete and confident, but some fraction of the labels are effectively guesses dressed up as findings. This is the LLM analogue of a human coder writing “unclear, flag for discussion” in the margin instead of forcing a call.</p>
+<p>The fix is to build the “out” directly into the rubric and require a justification alongside every label, in structured output so it can be parsed reliably. Saved as <code class="docutils literal notranslate"><span class="pre">code/indonesia_give_an_out.py</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#############################################</span>
+<span class="c1"># Sample API Call: Giving the Model an "Out"</span>
+<span class="c1">#############################################</span>
+<span class="sd">"""</span>
+<span class="sd">system prompt / user prompt API call example, coding one paragraph against</span>
+<span class="sd">the rubric from Section 0, this time with a required "ambiguous" out, a</span>
+<span class="sd">required rationale per dimension, and structured JSON output</span>
+
+<span class="sd">Before running:</span>
+<span class="sd">1. pip install openai</span>
+<span class="sd">2. Save your OpenAI API key in `~/keys/openai-key.txt` (see openai-api guide).</span>
+<span class="sd">3. Run from this folder: python indonesia_give_an_out.py</span>
+<span class="sd">"""</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">OpenAI</span>
+
+<span class="n">openai_key_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s2">"~/keys/openai-key.txt"</span><span class="p">)</span>
+<span class="n">groups_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">normpath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">),</span> <span class="s2">"../data/groups"</span><span class="p">))</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">openai_key_path</span><span class="p">,</span> <span class="s2">"r"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">api_key</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+<span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">SystemExit</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">"Couldn't find </span><span class="si">{</span><span class="n">openai_key_path</span><span class="si">}</span><span class="s2">. Create ~/keys/openai-key.txt in your "</span>
+        <span class="s2">"home directory and paste your OpenAI API key into it (just the key, "</span>
+        <span class="s2">"nothing else)."</span>
+    <span class="p">)</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">(</span><span class="n">api_key</span><span class="o">=</span><span class="n">api_key</span><span class="p">)</span>
+
+<span class="c1"># &lt;&lt;&lt; FOR A NEW STUDY, EDIT THIS BLOCK: swap in your own dimensions and</span>
+<span class="c1"># labels. Everything below (the rules, the JSON contract) is study-agnostic</span>
+<span class="c1"># and does not need to change.</span>
+<span class="n">RUBRIC_DIMENSIONS</span> <span class="o">=</span> <span class="s2">"""</span><span class="se">\</span>
+<span class="s2">Dimensions and allowed labels (use exactly one label per dimension):</span>
+<span class="s2">1. Formal integration: state-integrated | ambiguous | non-state-parallel</span>
+<span class="s2">2. Command &amp; control: state-integrated | ambiguous | non-state-parallel</span>
+<span class="s2">3. Compensation/loyalty basis: state-integrated | ambiguous | non-state-parallel</span>
+<span class="s2">"""</span>
+
+<span class="n">SYSTEM_PROMPT</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"""You are a research assistant coding paragraphs about state </span><span class="se">\</span>
+<span class="s2">security forces along three dimensions, using the rubric below.</span>
+
+<span class="si">{</span><span class="n">RUBRIC_DIMENSIONS</span><span class="si">}</span>
+<span class="s2">Rules:</span>
+<span class="s2">- Base every label only on what is stated or clearly implied in the paragraph.</span>
+<span class="s2">- If the paragraph provides genuinely conflicting or insufficient evidence for </span><span class="se">\</span>
+<span class="s2">a dimension, use the "ambiguous" label rather than guessing. Do not force a </span><span class="se">\</span>
+<span class="s2">confident label onto a genuinely unclear case.</span>
+<span class="s2">- For each dimension, provide a one-sentence rationale explaining the label, </span><span class="se">\</span>
+<span class="s2">including what specific evidence (or lack of it) drove the call.</span>
+
+<span class="s2">Respond ONLY with valid JSON in exactly this shape, no other text:</span>
+<span class="se">{{</span>
+<span class="s2">  "formal_integration": </span><span class="se">{{</span><span class="s2">"label": "...", "rationale": "..."</span><span class="se">}}</span><span class="s2">,</span>
+<span class="s2">  "command_control": </span><span class="se">{{</span><span class="s2">"label": "...", "rationale": "..."</span><span class="se">}}</span><span class="s2">,</span>
+<span class="s2">  "compensation_basis": </span><span class="se">{{</span><span class="s2">"label": "...", "rationale": "..."</span><span class="se">}}</span>
+<span class="se">}}</span>
+<span class="s2">"""</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">code_one_file</span><span class="p">(</span><span class="n">filepath</span><span class="p">):</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="s2">"r"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">paragraph</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+
+    <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+        <span class="n">model</span><span class="o">=</span><span class="s2">"gpt-5-mini"</span><span class="p">,</span>
+        <span class="n">messages</span><span class="o">=</span><span class="p">[</span>
+            <span class="p">{</span><span class="s2">"role"</span><span class="p">:</span> <span class="s2">"system"</span><span class="p">,</span> <span class="s2">"content"</span><span class="p">:</span> <span class="n">SYSTEM_PROMPT</span><span class="p">},</span>
+            <span class="p">{</span><span class="s2">"role"</span><span class="p">:</span> <span class="s2">"user"</span><span class="p">,</span> <span class="s2">"content"</span><span class="p">:</span> <span class="n">paragraph</span><span class="p">},</span>
+        <span class="p">],</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">code_one_file</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">groups_dir</span><span class="p">,</span> <span class="s2">"indonesia.txt"</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Actual output from <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">indonesia_give_an_out.py</span></code>:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">"formal_integration"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"state-integrated"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"rationale"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The paragraph states ABRI/TNI was the 'formally recognized national armed forces, fully embedded in the constitutional chain of command under the Minister of Defense and the President' and describes national garrisons and a central officer academy, indicating formal state integration."</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">"command_control"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"state-integrated"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"rationale"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The text explicitly notes ABRI was 'fully embedded in the constitutional chain of command under the Minister of Defense and the President,' which indicates command and control were integrated with state institutions despite the organization's extra-political roles."</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">"compensation_basis"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ambiguous"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"rationale"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The paragraph states officers 'were paid through the state defense budget' but also describes dwifungsi and a 'sprawling network of military-owned businesses and foundations' that produced off-budget income, so the basis of compensation/loyalty is unclear."</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The rationale field matters as much as the label itself, since it’s what lets a human reviewer later spot-check why the model called something ambiguous, the same way you’d want a research assistant to show their reasoning rather than hand you a bare checkbox.</p>
+<section id="the-out-is-a-routing-decision-not-a-resolution">
+<h3>4.1 The “Out” Is a Routing Decision, Not a Resolution<a class="headerlink" href="#the-out-is-a-routing-decision-not-a-resolution" title="Link to this heading">#</a></h3>
+<p>Adding an “ambiguous” label doesn’t make the hard cases go away, it relocates them. Instead of the model quietly guessing on ABRI’s compensation dimension, the pipeline now <em>flags</em> it. That flag is only useful if something downstream actually reads it: Section 9 is where that flag turns into action (a human looks at exactly the cells marked “ambiguous,” not the whole dataset). Giving the model an out and routing ambiguous cases to a human are the same design, described from two ends: the out is what makes routing possible in the first place.</p>
+<p><strong>Walking through the ABRI case end to end.</strong> Feed the model the ABRI paragraph from Section 0. On dimensions 1 and 2 it should land confidently on “state-integrated,” since the text gives it clean evidence. On dimension 3 (compensation), a well-calibrated response looks something like:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ambiguous"</span><span class="p">,</span><span class="w"> </span><span class="nt">"rationale"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The paragraph states officers 'were paid through the state defense budget' but also describes dwifungsi and a 'sprawling network of military-owned businesses and foundations' that produced off-budget income, so the basis of compensation/loyalty is unclear."</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>That’s the target behavior: a hedge with a <em>reason attached to specific text</em>, not a generic “insufficient information.” A human adjudicator reading that rationale doesn’t have to re-derive the ambiguity from scratch: the model has already done the first pass of the analysis, and the human is checking and finishing it, not starting over.</p>
+<p><strong>Two failure modes worth watching for, in either direction:</strong></p>
+<ul class="simple">
+<li><p><strong>Under-hedging:</strong> the model picks a confident label anyway, because “ambiguous” is a less common answer in its training data than a decisive one. This is the failure the whole section exists to prevent, and it’s why the rule has to say explicitly <em>not</em> to force a label.</p></li>
+<li><p><strong>Over-hedging:</strong> the model reaches for “ambiguous” as a safe default even when the paragraph is actually fairly clear, because hedging feels lower-risk. Watch for this especially once few-shot calibration (Section 5) is added: if the worked example is itself ambiguous, the model can overgeneralize <em>from</em> it and start seeing ambiguity everywhere.</p></li>
+</ul>
+<p>Neither failure is visible from the label alone, it only shows up if you (or a human adjudicator) actually read the rationale against the source text. That’s the practical argument for requiring rationales at all, beyond just interpretability: without them, over-hedging and under-hedging both look identical to “the pipeline ran successfully.”</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="calibration-by-example-anchoring-the-model-on-your-judgment-calls">
+<h2>5. Calibration by Example: Anchoring the Model on Your Judgment Calls<a class="headerlink" href="#calibration-by-example-anchoring-the-model-on-your-judgment-calls" title="Link to this heading">#</a></h2>
+<p>A rubric alone tells the model <em>what the categories are</em>; it doesn’t tell the model <em>how you personally draw the line</em> on a borderline case. Few-shot calibration closes that gap: you hand-code one example yourself, ideally a genuinely borderline one, and include it in the system prompt, so the model anchors on your standard rather than inventing its own.</p>
+<p>This is exactly what a human coding team does in a training session: before independent coding begins, everyone reviews a few worked examples together and discusses <em>why</em> the case was coded the way it was.</p>
+<p><strong>Code: adding a worked example to the system prompt</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># &lt;&lt;&lt; FOR A NEW STUDY, EDIT THIS BLOCK: replace the paragraph and "Correct</span>
+<span class="c1"># coding" below with one hand-coded, genuinely borderline example from your</span>
+<span class="c1"># own data. This is where your personal judgment calls enter the prompt,</span>
+<span class="c1"># since the rubric text alone can't convey where you draw the line.</span>
+<span class="n">CALIBRATION_EXAMPLE</span> <span class="o">=</span> <span class="s2">"""</span>
+<span class="s2">Worked example (for calibration only, not part of the dataset):</span>
+
+<span class="s2">Paragraph: "The Republican Guard in Iraq was formally a branch of the national army, </span><span class="se">\</span>
+<span class="s2">funded through the defense ministry's budget and holding standard military </span><span class="se">\</span>
+<span class="s2">rank. In practice, however, unit commanders were personally appointed by the </span><span class="se">\</span>
+<span class="s2">head of state based on kinship and loyalty ties rather than through the </span><span class="se">\</span>
+<span class="s2">normal officer promotion system, and several units received supplementary </span><span class="se">\</span>
+<span class="s2">payments through informal channels tied directly to the ruling family."</span>
+
+<span class="s2">Correct coding:</span>
+<span class="s2">{</span>
+<span class="s2">  "formal_integration": {"label": "state-integrated", "rationale": "Formally a branch of the national army, funded through the standard defense budget."},</span>
+<span class="s2">  "command_control": {"label": "non-state-parallel", "rationale": "Commanders appointed on personal/kinship loyalty rather than through the normal promotion hierarchy."},</span>
+<span class="s2">  "compensation_basis": {"label": "ambiguous", "rationale": "Base pay follows standard channels, but supplementary informal payments are also described, so neither label fully fits."}</span>
+<span class="s2">}</span>
+<span class="s2">"""</span>
+
+<span class="n">SYSTEM_PROMPT_CALIBRATED</span> <span class="o">=</span> <span class="n">SYSTEM_PROMPT</span> <span class="o">+</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span> <span class="o">+</span> <span class="n">CALIBRATION_EXAMPLE</span>
+</pre></div>
+</div>
+<p>Notice the worked example itself has an “ambiguous” call on purpose: calibrating the model on <em>when</em> to hedge is just as important as calibrating it on the confident labels. Swap <code class="docutils literal notranslate"><span class="pre">SYSTEM_PROMPT</span></code> for <code class="docutils literal notranslate"><span class="pre">SYSTEM_PROMPT_CALIBRATED</span></code> in the <code class="docutils literal notranslate"><span class="pre">code_one_file</span></code> call from Section 4 to use it. Saved as <code class="docutils literal notranslate"><span class="pre">code/indonesia_few_shot.py</span></code>, running it on <code class="docutils literal notranslate"><span class="pre">data/groups/indonesia.txt</span></code> again gives:</p>
+<p>Actual output from <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">indonesia_few_shot.py</span></code>:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">"formal_integration"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"state-integrated"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"rationale"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The paragraph states ABRI/TNI was the formally recognized national armed forces, embedded in the constitutional chain of command under the Minister of Defense and the President and organized as army, navy, and air force branches."</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">"command_control"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"state-integrated"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"rationale"</span><span class="p">:</span><span class="w"> </span><span class="s2">"On paper command and control are explicitly under the Minister of Defense and the President and officers held standard military rank, even though the dwifungsi doctrine gave officers concurrent civilian administrative roles."</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">"compensation_basis"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ambiguous"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"rationale"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Officers are described as paid through the state defense budget but the organization also controlled military-owned businesses and off-budget incomes that 'blur' the line between state salary and business-derived income, yielding mixed evidence."</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Same three labels as the uncalibrated run in Section 4. That’s a fair result to sit with rather than explain away: calibration didn’t change ABRI’s coding here, because the uncalibrated model had already landed on the right hedge for this particular paragraph. Calibration’s job isn’t to change every output, it’s to anchor the model on <em>your</em> specific line-drawing standard so it doesn’t have to guess. Its value shows up most clearly on the cases where the model’s default behavior would otherwise diverge from yours, not necessarily on the ones it was already getting right.</p>
+<section id="adapting-this-template-to-your-own-study">
+<h3>5.1 Adapting this template to your own study<a class="headerlink" href="#adapting-this-template-to-your-own-study" title="Link to this heading">#</a></h3>
+<p>Everything in Sections 3 through 6 (the client setup, the folder loop, the JSON parsing) is infrastructure that doesn’t change from one coding project to the next. Only two things do, and they’re marked <code class="docutils literal notranslate"><span class="pre">&lt;&lt;&lt;</span> <span class="pre">FOR</span> <span class="pre">A</span> <span class="pre">NEW</span> <span class="pre">STUDY</span></code> in the code above:</p>
+<ol class="arabic simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">RUBRIC_DIMENSIONS</span></code> (Section 4).</strong> Your dimensions and labels replace ABRI/ISI/IRGC’s three. This is where the <em>what</em> of your codebook lives.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">CALIBRATION_EXAMPLE</span></code> (Section 5, here).</strong> One hand-coded, genuinely borderline case from your own data replaces the Republican Guard example. This is where the <em>how you draw the line</em> lives, and it should stay a live decision each time you start a new coding project, not get copy-pasted forward from this one.</p></li>
+</ol>
+<p>Everything downstream, Sections 6 through 9, runs unchanged once those two pieces are swapped in.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="scaling-beyond-one-input-looping-over-the-data-groups-folder">
+<h2>6. Scaling Beyond One Input: Looping Over the <code class="docutils literal notranslate"><span class="pre">data/groups/</span></code> Folder<a class="headerlink" href="#scaling-beyond-one-input-looping-over-the-data-groups-folder" title="Link to this heading">#</a></h2>
+<p>Once the prompt logic is settled, applying it to many items is just a loop. Here, each group produces one row, with the three dimensions as columns: wide format, easy to eyeball, and a natural fit for a small toy dataset like this one. Saved as <code class="docutils literal notranslate"><span class="pre">code/mercenary_army_project.py</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">code_one_file</span><span class="p">(</span><span class="n">filepath</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Codes one paragraph and returns (result, metadata) for that call."""</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="s2">"r"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">paragraph</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+
+    <span class="c1"># Local wall-clock time right when the call is sent.</span>
+    <span class="n">call_timestamp</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">astimezone</span><span class="p">()</span><span class="o">.</span><span class="n">isoformat</span><span class="p">(</span><span class="n">timespec</span><span class="o">=</span><span class="s2">"seconds"</span><span class="p">)</span>
+
+    <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+        <span class="n">model</span><span class="o">=</span><span class="s2">"gpt-5-mini"</span><span class="p">,</span>
+        <span class="n">messages</span><span class="o">=</span><span class="p">[</span>
+            <span class="p">{</span><span class="s2">"role"</span><span class="p">:</span> <span class="s2">"system"</span><span class="p">,</span> <span class="s2">"content"</span><span class="p">:</span> <span class="n">SYSTEM_PROMPT_CALIBRATED</span><span class="p">},</span>
+            <span class="p">{</span><span class="s2">"role"</span><span class="p">:</span> <span class="s2">"user"</span><span class="p">,</span> <span class="s2">"content"</span><span class="p">:</span> <span class="n">paragraph</span><span class="p">},</span>
+        <span class="p">],</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Metadata about the call itself, pulled from the API response object.</span>
+    <span class="n">metadata</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">"call_timestamp"</span><span class="p">:</span> <span class="n">call_timestamp</span><span class="p">,</span>
+        <span class="s2">"model_requested"</span><span class="p">:</span> <span class="s2">"gpt-5-mini"</span><span class="p">,</span>
+        <span class="s2">"model_returned"</span><span class="p">:</span> <span class="n">response</span><span class="o">.</span><span class="n">model</span><span class="p">,</span>
+        <span class="s2">"response_id"</span><span class="p">:</span> <span class="n">response</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+        <span class="s2">"api_created_utc"</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">fromtimestamp</span><span class="p">(</span>
+            <span class="n">response</span><span class="o">.</span><span class="n">created</span><span class="p">,</span> <span class="n">tz</span><span class="o">=</span><span class="n">timezone</span><span class="o">.</span><span class="n">utc</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">isoformat</span><span class="p">(</span><span class="n">timespec</span><span class="o">=</span><span class="s2">"seconds"</span><span class="p">),</span>
+        <span class="s2">"prompt_tokens"</span><span class="p">:</span> <span class="n">response</span><span class="o">.</span><span class="n">usage</span><span class="o">.</span><span class="n">prompt_tokens</span><span class="p">,</span>
+        <span class="s2">"completion_tokens"</span><span class="p">:</span> <span class="n">response</span><span class="o">.</span><span class="n">usage</span><span class="o">.</span><span class="n">completion_tokens</span><span class="p">,</span>
+        <span class="s2">"total_tokens"</span><span class="p">:</span> <span class="n">response</span><span class="o">.</span><span class="n">usage</span><span class="o">.</span><span class="n">total_tokens</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="n">result</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">result</span><span class="p">,</span> <span class="n">metadata</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">code_folder</span><span class="p">(</span><span class="n">folder_path</span><span class="p">):</span>
+    <span class="n">rows</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">log_rows</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">folder_path</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">filename</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">".txt"</span><span class="p">):</span>
+            <span class="k">continue</span>
+        <span class="n">group_name</span> <span class="o">=</span> <span class="n">filename</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">".txt"</span><span class="p">,</span> <span class="s2">""</span><span class="p">)</span>
+        <span class="n">filepath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">folder_path</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Coding </span><span class="si">{</span><span class="n">group_name</span><span class="si">}</span><span class="s2">..."</span><span class="p">)</span>
+        <span class="n">result</span><span class="p">,</span> <span class="n">metadata</span> <span class="o">=</span> <span class="n">code_one_file</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span>
+
+        <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+            <span class="s2">"group"</span><span class="p">:</span> <span class="n">group_name</span><span class="p">,</span>
+            <span class="s2">"formal_integration_label"</span><span class="p">:</span> <span class="n">result</span><span class="p">[</span><span class="s2">"formal_integration"</span><span class="p">][</span><span class="s2">"label"</span><span class="p">],</span>
+            <span class="s2">"formal_integration_rationale"</span><span class="p">:</span> <span class="n">result</span><span class="p">[</span><span class="s2">"formal_integration"</span><span class="p">][</span><span class="s2">"rationale"</span><span class="p">],</span>
+            <span class="s2">"command_control_label"</span><span class="p">:</span> <span class="n">result</span><span class="p">[</span><span class="s2">"command_control"</span><span class="p">][</span><span class="s2">"label"</span><span class="p">],</span>
+            <span class="s2">"command_control_rationale"</span><span class="p">:</span> <span class="n">result</span><span class="p">[</span><span class="s2">"command_control"</span><span class="p">][</span><span class="s2">"rationale"</span><span class="p">],</span>
+            <span class="s2">"compensation_basis_label"</span><span class="p">:</span> <span class="n">result</span><span class="p">[</span><span class="s2">"compensation_basis"</span><span class="p">][</span><span class="s2">"label"</span><span class="p">],</span>
+            <span class="s2">"compensation_basis_rationale"</span><span class="p">:</span> <span class="n">result</span><span class="p">[</span><span class="s2">"compensation_basis"</span><span class="p">][</span><span class="s2">"rationale"</span><span class="p">],</span>
+        <span class="p">})</span>
+
+        <span class="n">log_rows</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">"group"</span><span class="p">:</span> <span class="n">group_name</span><span class="p">,</span> <span class="o">**</span><span class="n">metadata</span><span class="p">})</span>
+
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rows</span><span class="p">),</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">log_rows</span><span class="p">)</span>
+
+<span class="n">df</span><span class="p">,</span> <span class="n">log_df</span> <span class="o">=</span> <span class="n">code_folder</span><span class="p">(</span><span class="n">groups_folder_path</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">"coded_groups.csv"</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">log_df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">"api_call_log.csv"</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">log_df</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Actual output from <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">mercenary_army_project.py</span></code>, saved to <code class="docutils literal notranslate"><span class="pre">coded_groups.csv</span></code> (rationale columns omitted here to fit the page, but they’re in the actual CSV):</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>group</p></th>
+<th class="head"><p>formal_integration_label</p></th>
+<th class="head"><p>command_control_label</p></th>
+<th class="head"><p>compensation_basis_label</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>indonesia</p></td>
+<td><p>state-integrated</p></td>
+<td><p>state-integrated</p></td>
+<td><p>ambiguous</p></td>
+</tr>
+<tr class="row-odd"><td><p>iran</p></td>
+<td><p>non-state-parallel</p></td>
+<td><p>non-state-parallel</p></td>
+<td><p>ambiguous</p></td>
+</tr>
+<tr class="row-even"><td><p>pakistan</p></td>
+<td><p>state-integrated</p></td>
+<td><p>non-state-parallel</p></td>
+<td><p>ambiguous</p></td>
+</tr>
+<tr class="row-odd"><td><p>philippines</p></td>
+<td><p>state-integrated</p></td>
+<td><p>state-integrated</p></td>
+<td><p>state-integrated</p></td>
+</tr>
+<tr class="row-even"><td><p>russia</p></td>
+<td><p>non-state-parallel</p></td>
+<td><p>non-state-parallel</p></td>
+<td><p>non-state-parallel</p></td>
+</tr>
+<tr class="row-odd"><td><p>sudan</p></td>
+<td><p>non-state-parallel</p></td>
+<td><p>non-state-parallel</p></td>
+<td><p>non-state-parallel</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Worth pausing on two cells here rather than glossing over them: compare this table to the human judgment call in Section 1. For Pakistan, Section 1 flags command and control as the hard dimension; gpt-5-mini instead called it a confident <code class="docutils literal notranslate"><span class="pre">non-state-parallel</span></code>. For Iran, Section 1 flags both command and control and compensation as hard; gpt-5-mini only hedged on compensation, and again called command and control a confident <code class="docutils literal notranslate"><span class="pre">non-state-parallel</span></code>. Indonesia, Philippines, Russia, and Sudan all match the human read. Those two mismatches aren’t a rubric problem or a prompt problem, the same calibrated prompt got the other four cases right. They’re a model-capability problem, and they’re exactly the kind of thing a single coding pass won’t catch on its own. Section 8 picks this back up.</p>
+<p>The run also wrote a second file, <code class="docutils literal notranslate"><span class="pre">api_call_log.csv</span></code>, with one row of call metadata per API call:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>group</p></th>
+<th class="head"><p>call_timestamp</p></th>
+<th class="head"><p>model_returned</p></th>
+<th class="head"><p>total_tokens</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>indonesia</p></td>
+<td><p>2026-08-31T17:51:36-05:00</p></td>
+<td><p>gpt-5-mini-2025-08-07</p></td>
+<td><p>1487</p></td>
+</tr>
+<tr class="row-odd"><td><p>iran</p></td>
+<td><p>2026-08-31T17:51:46-05:00</p></td>
+<td><p>gpt-5-mini-2025-08-07</p></td>
+<td><p>1635</p></td>
+</tr>
+<tr class="row-even"><td><p>pakistan</p></td>
+<td><p>2026-08-31T17:51:57-05:00</p></td>
+<td><p>gpt-5-mini-2025-08-07</p></td>
+<td><p>1868</p></td>
+</tr>
+<tr class="row-odd"><td><p>philippines</p></td>
+<td><p>2026-08-31T17:52:11-05:00</p></td>
+<td><p>gpt-5-mini-2025-08-07</p></td>
+<td><p>1107</p></td>
+</tr>
+<tr class="row-even"><td><p>russia</p></td>
+<td><p>2026-08-31T17:52:18-05:00</p></td>
+<td><p>gpt-5-mini-2025-08-07</p></td>
+<td><p>1452</p></td>
+</tr>
+<tr class="row-odd"><td><p>sudan</p></td>
+<td><p>2026-08-31T17:52:29-05:00</p></td>
+<td><p>gpt-5-mini-2025-08-07</p></td>
+<td><p>1360</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">model_returned</span></code> is worth calling out on its own: it’s the exact dated snapshot that actually served each call (<code class="docutils literal notranslate"><span class="pre">gpt-5-mini-2025-08-07</span></code>), not just the alias (<code class="docutils literal notranslate"><span class="pre">gpt-5-mini</span></code>) requested in the code. That distinction matters for reproducibility, since an alias can point to a different underlying snapshot later even if the code never changes. The log also keeps each call’s <code class="docutils literal notranslate"><span class="pre">response_id</span></code> and the API’s own server-side timestamp, in case the two ever need to be reconciled.</p>
+<p>Running this over the six files in <code class="docutils literal notranslate"><span class="pre">data/groups/</span></code> from Section 0 should produce a six-row CSV, one row per group, three label/rationale column-pairs each, that mirrors the rubric table from Section 0, but now filled in by the model instead of by hand.</p>
+</section>
+<hr class="docutils" />
+<section id="non-determinism-why-rerunning-isn-t-free">
+<h2>7. Non-Determinism: Why Rerunning Isn’t Free<a class="headerlink" href="#non-determinism-why-rerunning-isn-t-free" title="Link to this heading">#</a></h2>
+<p>A human coder, asked to code the same paragraph twice, will (mostly) give the same answer both times. An LLM won’t necessarily. Even with an identical prompt, sending the exact same paragraph through the model twice can produce different labels or different rationale wording. This isn’t a bug, it’s a property of how the model samples its output.</p>
+<p>This matters for two practical reasons: it means a single coding pass shouldn’t be treated as ground truth, and it means “just rerun it” isn’t a free diagnostic the way it would be for a deterministic script. For logging prompts and responses at scale, see <a class="reference internal" href="../nlp/tutorial3.html"><span class="doc std std-doc">Paid LLMs for Text Analysis</span></a>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">groups_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">),</span> <span class="s2">"../data/groups"</span><span class="p">)</span>
+<span class="n">result_1</span> <span class="o">=</span> <span class="n">code_one_file</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">groups_dir</span><span class="p">,</span> <span class="s2">"indonesia.txt"</span><span class="p">))</span>
+<span class="n">result_2</span> <span class="o">=</span> <span class="n">code_one_file</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">groups_dir</span><span class="p">,</span> <span class="s2">"indonesia.txt"</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">dim</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">"formal_integration"</span><span class="p">,</span> <span class="s2">"command_control"</span><span class="p">,</span> <span class="s2">"compensation_basis"</span><span class="p">]:</span>
+    <span class="n">same</span> <span class="o">=</span> <span class="n">result_1</span><span class="p">[</span><span class="n">dim</span><span class="p">][</span><span class="s2">"label"</span><span class="p">]</span> <span class="o">==</span> <span class="n">result_2</span><span class="p">[</span><span class="n">dim</span><span class="p">][</span><span class="s2">"label"</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">dim</span><span class="si">}</span><span class="s2">: run1=</span><span class="si">{</span><span class="n">result_1</span><span class="p">[</span><span class="n">dim</span><span class="p">][</span><span class="s1">'label'</span><span class="p">]</span><span class="si">!r}</span><span class="s2">, run2=</span><span class="si">{</span><span class="n">result_2</span><span class="p">[</span><span class="n">dim</span><span class="p">][</span><span class="s1">'label'</span><span class="p">]</span><span class="si">!r}</span><span class="s2">, match=</span><span class="si">{</span><span class="n">same</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Example output:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>formal_integration: run1='state-integrated', run2='state-integrated', match=True
+command_control: run1='state-integrated', run2='state-integrated', match=True
+compensation_basis: run1='ambiguous', run2='state-integrated', match=False
+</pre></div>
+</div>
+<p>Notice where the disagreement lands: not on the two dimensions that were clean to begin with, but on compensation, the one dimension that was genuinely hard in Section 1. That’s not a coincidence. Non-determinism tends to surface exactly where the underlying call was already borderline.</p>
+<p>Setting <code class="docutils literal notranslate"><span class="pre">temperature=0</span></code> and <code class="docutils literal notranslate"><span class="pre">seed=42</span></code> in the API call reduces variation but does not fully eliminate it: it’s a partial fix, not a guarantee of identical output. See <a class="reference internal" href="../../guides/openai/openai-api.html"><span class="doc std std-doc">OpenAI API</span></a> for reproducibility settings. The more robust approach is the one this walkthrough is building toward: treat any single pass as one “coder,” and check it against other passes or other models, rather than trusting it in isolation.</p>
+</section>
+<hr class="docutils" />
+<section id="intercoder-reliability-llm-vs-llm-and-llm-vs-human">
+<h2>8. Intercoder Reliability: LLM vs. LLM, and LLM vs. Human<a class="headerlink" href="#intercoder-reliability-llm-vs-llm-and-llm-vs-human" title="Link to this heading">#</a></h2>
+<p>The standard way to check whether a coding scheme is being applied consistently is to have more than one coder, human or otherwise, code the same items independently, then measure how often they agree. Here, we use a second, larger model (<code class="docutils literal notranslate"><span class="pre">gpt-5</span></code>) as a second coder, applying the exact same calibrated system prompt to the exact same paragraphs, to see whether a more capable model catches anything the faster <code class="docutils literal notranslate"><span class="pre">gpt-5-mini</span></code> run from Section 6 missed.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">code_one_file_with_model</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="n">model_name</span><span class="p">,</span> <span class="n">system_prompt</span><span class="p">):</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="s2">"r"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">paragraph</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+
+    <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+        <span class="n">model</span><span class="o">=</span><span class="n">model_name</span><span class="p">,</span>
+        <span class="n">messages</span><span class="o">=</span><span class="p">[</span>
+            <span class="p">{</span><span class="s2">"role"</span><span class="p">:</span> <span class="s2">"system"</span><span class="p">,</span> <span class="s2">"content"</span><span class="p">:</span> <span class="n">system_prompt</span><span class="p">},</span>
+            <span class="p">{</span><span class="s2">"role"</span><span class="p">:</span> <span class="s2">"user"</span><span class="p">,</span> <span class="s2">"content"</span><span class="p">:</span> <span class="n">paragraph</span><span class="p">},</span>
+        <span class="p">],</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">code_folder_with_model</span><span class="p">(</span><span class="n">folder_path</span><span class="p">,</span> <span class="n">model_name</span><span class="p">,</span> <span class="n">system_prompt</span><span class="p">):</span>
+    <span class="n">rows</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">folder_path</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">filename</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">".txt"</span><span class="p">):</span>
+            <span class="k">continue</span>
+        <span class="n">group_name</span> <span class="o">=</span> <span class="n">filename</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">".txt"</span><span class="p">,</span> <span class="s2">""</span><span class="p">)</span>
+        <span class="n">filepath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">folder_path</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">code_one_file_with_model</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="n">model_name</span><span class="p">,</span> <span class="n">system_prompt</span><span class="p">)</span>
+        <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+            <span class="s2">"group"</span><span class="p">:</span> <span class="n">group_name</span><span class="p">,</span>
+            <span class="s2">"formal_integration_label"</span><span class="p">:</span> <span class="n">result</span><span class="p">[</span><span class="s2">"formal_integration"</span><span class="p">][</span><span class="s2">"label"</span><span class="p">],</span>
+            <span class="s2">"command_control_label"</span><span class="p">:</span> <span class="n">result</span><span class="p">[</span><span class="s2">"command_control"</span><span class="p">][</span><span class="s2">"label"</span><span class="p">],</span>
+            <span class="s2">"compensation_basis_label"</span><span class="p">:</span> <span class="n">result</span><span class="p">[</span><span class="s2">"compensation_basis"</span><span class="p">][</span><span class="s2">"label"</span><span class="p">],</span>
+        <span class="p">})</span>
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rows</span><span class="p">)</span>
+
+<span class="c1"># Coder A: gpt-5-mini (from Section 6)</span>
+<span class="n">df_a</span> <span class="o">=</span> <span class="n">code_folder_with_model</span><span class="p">(</span><span class="n">groups_dir</span><span class="p">,</span> <span class="s2">"gpt-5-mini"</span><span class="p">,</span> <span class="n">SYSTEM_PROMPT_CALIBRATED</span><span class="p">)</span>
+
+<span class="c1"># Coder B: a larger model in the same family</span>
+<span class="n">df_b</span> <span class="o">=</span> <span class="n">code_folder_with_model</span><span class="p">(</span><span class="n">groups_dir</span><span class="p">,</span> <span class="s2">"gpt-5"</span><span class="p">,</span> <span class="n">SYSTEM_PROMPT_CALIBRATED</span><span class="p">)</span>
+
+<span class="c1"># Merge on group and compare label-by-label</span>
+<span class="n">comparison</span> <span class="o">=</span> <span class="n">df_a</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df_b</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">"group"</span><span class="p">,</span> <span class="n">suffixes</span><span class="o">=</span><span class="p">(</span><span class="s2">"_a"</span><span class="p">,</span> <span class="s2">"_b"</span><span class="p">))</span>
+
+<span class="n">dimensions</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"formal_integration_label"</span><span class="p">,</span> <span class="s2">"command_control_label"</span><span class="p">,</span> <span class="s2">"compensation_basis_label"</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">dim</span> <span class="ow">in</span> <span class="n">dimensions</span><span class="p">:</span>
+    <span class="n">comparison</span><span class="p">[</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">dim</span><span class="si">}</span><span class="s2">_match"</span><span class="p">]</span> <span class="o">=</span> <span class="n">comparison</span><span class="p">[</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">dim</span><span class="si">}</span><span class="s2">_a"</span><span class="p">]</span> <span class="o">==</span> <span class="n">comparison</span><span class="p">[</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">dim</span><span class="si">}</span><span class="s2">_b"</span><span class="p">]</span>
+
+<span class="n">percent_agreement</span> <span class="o">=</span> <span class="n">comparison</span><span class="p">[[</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">d</span><span class="si">}</span><span class="s2">_match"</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">dimensions</span><span class="p">]]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">percent_agreement</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Example output:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>formal_integration_label_match      1.000000
+command_control_label_match         0.666667
+compensation_basis_label_match      1.000000
+dtype: float64
+</pre></div>
+</div>
+<p>The two coders disagree on exactly two cases, and both land on the command and control dimension: <code class="docutils literal notranslate"><span class="pre">gpt-5</span></code> called Pakistan’s and Iran’s command and control “ambiguous,” where <code class="docutils literal notranslate"><span class="pre">gpt-5-mini</span></code> had called both a confident “non-state-parallel.” Look back at Section 6: those are the exact two cells flagged as diverging from the human judgment call in Section 1. The larger model isn’t just disagreeing for its own sake here, it’s landing on the same read a careful human coder made. That’s the real case for cross-checking across models, or between a model and a human, instead of trusting a single pass: it’s not a formality, it’s the mechanism that actually catches cases like these two.</p>
+<p>Percent agreement is the simplest diagnostic: the share of items where both coders picked the same label, per dimension. It’s worth pairing with Cohen’s kappa if you want a measure that accounts for agreement expected by chance (especially relevant here, since “ambiguous” is one of only three possible labels, so raw percent agreement can look artificially high). See <a class="reference internal" href="../nlp/tutorial5.html"><span class="doc std std-doc">Validation and Rigor</span></a> for Cohen’s kappa and a full validation framework; <code class="docutils literal notranslate"><span class="pre">sklearn.metrics.cohen_kappa_score</span></code> computes it directly once you have two aligned label columns.</p>
+<p>This same structure (two independent coders, same items, same rubric, compare labels) is exactly how you’d check agreement between an LLM and a human coder instead: just swap <code class="docutils literal notranslate"><span class="pre">df_b</span></code> for a DataFrame of your own hand-coded labels.</p>
+</section>
+<hr class="docutils" />
+<section id="what-to-do-when-coders-disagree-adjudication-not-just-diagnosis">
+<h2>9. What to Do When Coders Disagree: Adjudication, Not Just Diagnosis<a class="headerlink" href="#what-to-do-when-coders-disagree-adjudication-not-just-diagnosis" title="Link to this heading">#</a></h2>
+<p>Reliability statistics tell you <em>whether</em> two coders agree; they don’t tell you what to do when they don’t. That’s a separate, necessary step: without it, “check intercoder reliability” becomes a box-checking exercise rather than something that actually improves the dataset.</p>
+<p>This is the other half of the “out” from Section 4.1. There, giving the model permission to say “ambiguous” turned silent guessing into a visible flag. Here, that flag, and any case where two coders land on different labels, is what a human actually spends their time on. The point of both moves together is to make the human’s effort go exactly where the model’s judgment ran out, instead of asking a person to either re-check everything or trust everything.</p>
+<p>A few standard options, in roughly ascending order of effort:</p>
+<ul class="simple">
+<li><p><strong>Human adjudicates ties.</strong> Wherever the two model coders disagree, a human reviewer looks at the paragraph and the two rationales, and makes the final call. This is usually the right default for a small dataset like this one.</p></li>
+<li><p><strong>Majority vote across three or more coders.</strong> If you’re running more than two coders (e.g., two LLMs plus a human, or three LLM passes), take the majority label per dimension, and flag true three-way splits for manual review.</p></li>
+<li><p><strong>Disagreement as a signal to revise the codebook.</strong> If the same dimension keeps producing disagreement across many items, not just one or two idiosyncratic cases, that’s evidence the rubric itself may be under-specified for this dimension, not just that the coders are being sloppy. That sends you back to Section 1: refine the category definitions, then re-code.</p></li>
+</ul>
+<p>That’s the core loop this walkthrough has traced: a rubric is a starting point, judgment (human or model) fills the gaps the rubric can’t anticipate, and disagreement between coders, properly adjudicated, tells you whether the rubric needs to grow to meet the data, or whether the data was just genuinely hard to call. That’s the toy-example version of the process; seeing it run on a real research pipeline is a natural next step.</p>
+</section>
+<section id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Adapt the template</strong> — swap in your own <code class="docutils literal notranslate"><span class="pre">RUBRIC_DIMENSIONS</span></code> and <code class="docutils literal notranslate"><span class="pre">CALIBRATION_EXAMPLE</span></code> (Sections 4–5), then loop over your corpus (Section 6)</p></li>
+<li><p><strong>Validate before scaling</strong> — build a hand-coded gold standard and measure agreement; see <a class="reference internal" href="../nlp/tutorial5.html"><span class="doc std std-doc">Validation and Rigor</span></a></p></li>
+<li><p><strong>Run on KLC</strong> — for larger corpora or batch jobs, see <a class="reference internal" href="../../services/klc/user-guide/llm-api.html"><span class="doc std std-doc">LLM API Usage on KLC</span></a></p></li>
+<li><p><strong>Sensitive data</strong> — use <a class="reference internal" href="../../guides/llm/llm.html"><span class="doc std std-doc">open-source models on KLC</span></a> instead of a paid API when data cannot leave Northwestern systems</p></li>
+<li><p><strong>Paid API basics</strong> — <a class="reference internal" href="../../guides/openai/openai-api.html"><span class="doc std std-doc">OpenAI API</span></a> and <a class="reference internal" href="../nlp/tutorial3.html"><span class="doc std std-doc">Paid LLMs for Text Analysis</span></a></p></li>
+</ul>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../nlp/tutorial5.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Validation and Rigor</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../../guides/openai/openai.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">OpenAI and LLMs</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prerequisites">Prerequisites</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#materials">Materials</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#executive-summary">Executive Summary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-toy-example">0. The Toy Example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-the-rubric-can-t-be-complete">1. Why the Rubric Can’t Be Complete</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#anatomy-of-an-llm-api-call">2. Anatomy of an LLM API Call</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#system-prompt-vs-user-prompt-for-qualitative-coding">3. System Prompt vs. User Prompt for Qualitative Coding</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#giving-the-model-an-out-preventing-false-confidence-hallucination">4. Giving the Model an “Out”: Preventing False-Confidence Hallucination</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-out-is-a-routing-decision-not-a-resolution">4.1 The “Out” Is a Routing Decision, Not a Resolution</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calibration-by-example-anchoring-the-model-on-your-judgment-calls">5. Calibration by Example: Anchoring the Model on Your Judgment Calls</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adapting-this-template-to-your-own-study">5.1 Adapting this template to your own study</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scaling-beyond-one-input-looping-over-the-data-groups-folder">6. Scaling Beyond One Input: Looping Over the <code class="docutils literal notranslate"><span class="pre">data/groups/</span></code> Folder</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#non-determinism-why-rerunning-isn-t-free">7. Non-Determinism: Why Rerunning Isn’t Free</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#intercoder-reliability-llm-vs-llm-and-llm-vs-human">8. Intercoder Reliability: LLM vs. LLM, and LLM vs. Human</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-to-do-when-coders-disagree-adjudication-not-just-diagnosis">9. What to Do When Coders Disagree: Adjudication, Not Just Diagnosis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps">Next Steps</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+
+
+<div id="footer-bottom">
+<div class="contain-1120">
+<span class="copyright" style="color:white">©
+<script>// <![CDATA[
+document.write(new Date().getFullYear())
+// ]]></script>
+Kellogg School of Management | <a href="https://www.kellogg.northwestern.edu/academics-research/research-support/">Kellogg Research Support</a></span>
+<!--
+<ul>
+<li><a href="https://www.facebook.com/NorthwesternU"> <span class="social facebook">Facebook</span> </a></li>
+<li><a href="https://www.twitter.com/northwesternu"> <span class="social twitter">Twitter</span> </a></li>
+<li><a href="https://www.instagram.com/northwesternu"> <span class="social instagram">Instagram</span> </a></li>
+<li><a href="https://www.youtube.com/user/NorthwesternU"> <span class="social youtube">YouTube</span> </a></li>
+<li><a href="https://www.tiktok.com/@northwestern.u"> <span class="social tiktok">TikTok</span> </a></li>
+<li><a href="https://www.linkedin.com/school/northwestern-university/"> <span class="social linkedin">LinkedIn</span> </a></li>
+</ul>
+-->
+<span class="right" style="color:white"><a style="color:white" href="https://www.northwestern.edu/disclaimer.html">Disclaimer</a></span>
+</div>
+</div>
+  </footer>
+  </body>
+</html>
