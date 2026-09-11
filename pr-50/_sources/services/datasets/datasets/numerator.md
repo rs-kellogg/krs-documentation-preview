@@ -428,6 +428,7 @@ FROM standard_nmr_feed_itemlvl_fact_table AS f
 JOIN standard_nmr_feed_item_table AS i
     ON f.ITEM_ID = i.ITEM_ID
 WHERE i.CATEGORY_ID = 'isc_gro_dai_egg_cage_free'
+  -- Limit the comparison to likely 12-count (one-dozen) packages.
   AND LOWER(i.ITEM_DESCRIPTION) LIKE '%12%'
   AND f.ITEM_UNIT_PRICE IS NOT NULL
   AND f.ITEM_UNIT_PRICE > 0
