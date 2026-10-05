@@ -11,9 +11,9 @@ Coding agents send file contents and prompts to Anthropic's, OpenAI's, or GitHub
 Each CLI installs with a single `curl` command into `~/.local/bin` — no environment setup required. Install whichever agent(s) you want to use.
 
 :::::{tab-set}
-::::{tab-item} Copilot CLI
+::::{tab-item} GitHub Copilot CLI
 
-See the [Copilot CLI install instructions](https://docs.github.com/en/copilot/how-tos/copilot-cli/set-up-copilot-cli/install-copilot-cli) for macOS and Linux, or run:
+See the [GitHub Copilot CLI install instructions](https://docs.github.com/en/copilot/how-tos/copilot-cli/set-up-copilot-cli/install-copilot-cli) for macOS and Linux, or run:
 
 ```bash
 curl -fsSL https://gh.io/copilot-install | bash
