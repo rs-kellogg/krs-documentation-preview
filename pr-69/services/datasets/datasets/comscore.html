@@ -1,0 +1,1489 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" data-theme="light">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Comscore &#8212; Kellogg School of Management
+Research Support
+Northwestern University</title>
+<script data-cfasync="false">
+  localStorage.setItem("mode", "light");
+  localStorage.setItem("theme", "light");
+</script>
+
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/kellogg-rs-docs.css?v=c63f1eac" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'services/datasets/datasets/comscore';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = true;</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Cotality (formerly CoreLogic)" href="cotality.html" />
+    <link rel="prev" title="Athena (AWS)" href="../../kellogg-data-hosting/athena/athena.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../../../_static/searchtools.js"></script>
+    <script src="../../../_static/language_data.js"></script>
+    <script src="../../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="light">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+<aside class="bd-header-announcement" aria-label="Announcement">
+  <div class="bd-header-announcement__content">Kellogg Research Support holds weekly office hours at the Kellogg Global Hub, Room 5422, every Wednesday from 10:00 a.m. to 12:00 p.m.</div>
+</aside>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+    
+    <img src="../../../_static/kellogg_logo.png" class="logo__image only-light" alt="Kellogg School of Management
+Research Support
+Northwestern University - Home"/>
+    <img src="../../../_static/kellogg_logo.png" class="logo__image only-dark pst-js-only" alt="Kellogg School of Management
+Research Support
+Northwestern University - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Fundamentals</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../start/getting-help.html">Getting Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../start/services-overview.html">What Does KRS Offer?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../start/klc/klc-intro.html">Introduction to Kellogg Linux Cluster</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Computing</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../klc/klc.html">Kellogg Linux Cluster</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference external" href="https://www.kellogg.northwestern.edu/academics-research/research-support/computing/kellogg-linux-cluster/" target="_blank">Kellogg Linux Cluster Overview <svg aria-hidden="true" height="1.0em" style="display: inline-block; vertical-align: middle; fill: currentColor;" version="1.1" viewbox="0 0 16 16" width="1.0em"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../klc/user-guide/klc-user-guide.html">KLC User Guide</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../klc/user-guide/klc-accessing.html">Access KLC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../klc/user-guide/klc-ssh.html">SSH</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../klc/user-guide/klc-fastx.html">FastX</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../klc/user-guide/klc-vscode.html">VS Code Workflow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../klc/user-guide/klc-ondemand.html">KLC OnDemand</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../klc/user-guide/klc-files.html">KLC Filesystem</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../klc/user-guide/klc-transferfiles.html">Data Transfer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../klc/user-guide/klc-editor.html">Edit Files on KLC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../klc/user-guide/klc-git.html">Using Git on KLC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../klc/user-guide/klc-conda.html">Conda/Mamba Environments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../klc/user-guide/klc-software.html">Launching Jobs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../klc/user-guide/klc-stata.html">Running Stata and Bash Jobs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../klc/user-guide/klc-tmux.html">Using tmux</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../klc/user-guide/klc-profiling.html">Monitoring &amp; Managing Jobs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../klc/user-guide/llm-api.html">LLM API Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../klc/user-guide/llm-klc.html">Open Source LLMs (Interactive)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../klc/user-guide/ai-agent-container.html">AI Coding Agents</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference external" href="https://rcdsdocs.it.northwestern.edu/systems/quest/quest.html" target="_blank">Quest Documentation <svg aria-hidden="true" height="1.0em" style="display: inline-block; vertical-align: middle; fill: currentColor;" version="1.1" viewbox="0 0 16 16" width="1.0em"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a></li>
+<li class="toctree-l2"><a class="reference external" href="https://www.it.northwestern.edu/departments/it-services-support/research/computing/quest/data-security-guidance.html" target="_blank">Quest Data Security Guidance <svg aria-hidden="true" height="1.0em" style="display: inline-block; vertical-align: middle; fill: currentColor;" version="1.1" viewbox="0 0 16 16" width="1.0em"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../klc-reserve/klc-reserve.html">Kellogg Linux Cluster Reserve</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../klc-reserve/when-to-use.html">When to Use KLC Reserve</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../klc-reserve/gpu-concepts.html">GPU Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../klc-reserve/slurm-jobs.html">Submitting SLURM Jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../klc-reserve/gpu-jobs.html">GPU Jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../klc-reserve/highmem-jobs.html">High-Memory Jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../klc-reserve/vllm-example.html">vLLM on GPUs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../klc-reserve/ollama-example.html">Ollama on GPUs</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../klc-node-resources.html">KLC Node Resources</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Datasets</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../../kellogg-data-hosting/kdc.html">Kellogg Data Hosting</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../kellogg-data-hosting/wrds/wrds.html">WRDS</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../kellogg-data-hosting/wrds/examples/crsp-example.html">CRSP Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../kellogg-data-hosting/wrds/examples/taq-example.html">TAQ Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../kellogg-data-hosting/wrds/examples/revelio-example.html">Revelio Labs Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="../../kellogg-data-hosting/athena/athena.html">Athena (AWS)</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">Comscore</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cotality.html">Cotality (formerly CoreLogic)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="equifax.html">Equifax</a></li>
+<li class="toctree-l3"><a class="reference internal" href="patstat.html">PATSTAT</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../kellogg-data-hosting/redivis/redivis.html">Redivis</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="l2-vm2-uniform.html">L2 VM2 Uniform</a></li>
+<li class="toctree-l3"><a class="reference internal" href="numerator.html">Numerator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="openalex.html">OpenAlex</a></li>
+<li class="toctree-l3"><a class="reference internal" href="proxycurl.html">ProxyCurl</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="../../klc/klc-datasets.html">Datasets on KLC</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="cme.html">CME</a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">Comscore</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cotality.html">Cotality (formerly CoreLogic)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="edgar.html">EDGAR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="l2-vm2-uniform.html">L2 VM2 Uniform</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nielsen-marketing-data.html">Nielsen Marketing Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="patstat.html">PATSTAT</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.kellogg.northwestern.edu/academics-research/research-support/dataset/" target="_blank">Kellogg Research Support Datasets <svg aria-hidden="true" height="1.0em" style="display: inline-block; vertical-align: middle; fill: currentColor;" version="1.1" viewbox="0 0 16 16" width="1.0em"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../start/workshop-doc.html">Research the Right Way Workshop</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../tutorials/nlp/nlp.html">Natural Language Processing</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/nlp/tutorial1.html">Deterministic Extraction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/nlp/tutorial2.html">Quantifying Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/nlp/tutorial3.html">Paid LLMs for Text Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/nlp/tutorial4.html">Open-Source LLMs for Text Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/nlp/tutorial5.html">Validation and Rigor</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/qual-coding/qualitative-coding-with-llms.html">Qualitative Coding with LLMs</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../guides/openai/openai.html">OpenAI and LLMs</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../guides/openai/llm-intro.html">Understanding LLMs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../guides/openai/openai-api.html">OpenAI API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../guides/openai/openai-copilot.html">GitHub Copilot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../guides/openai/openai-workflow.html">Application Workflow</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../guides/llm/llm.html">Open Source LLMs</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Comscore</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#at-a-glance">At a Glance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#description">Description</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#access">Access</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#choosing-between-duckdb-on-klc-and-athena">Choosing Between DuckDB on KLC and Athena</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-coverage-key-identifiers">Data Coverage &amp; Key Identifiers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tables">Tables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#working-with-url-traffic-on-klc">Working with URL Traffic on KLC</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-queries-athena">Example Queries (Athena)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#documentation">Documentation</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="comscore">
+<h1>Comscore<a class="headerlink" href="#comscore" title="Link to this heading">#</a></h1>
+<section id="at-a-glance">
+<h2>At a Glance<a class="headerlink" href="#at-a-glance" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Provider</strong></p></td>
+<td><p>Comscore</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Coverage</strong></p></td>
+<td><p>2019–2020</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Geographic scope</strong></p></td>
+<td><p>US</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Update frequency</strong></p></td>
+<td><p>Discontinued</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Access platforms</strong></p></td>
+<td><p>KLC, AWS Athena</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Eligible users</strong></p></td>
+<td><p>Northwestern faculty and doctoral students</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Questions</strong></p></td>
+<td><p><a class="reference external" href="mailto:rs&#37;&#52;&#48;kellogg&#46;northwestern&#46;edu" target="_blank">rs<span>&#64;</span>kellogg<span>&#46;</span>northwestern<span>&#46;</span>edu <svg version="1.1" width="1.0em" height="1.0em" viewBox="0 0 16 16" aria-hidden="true" style="display: inline-block; vertical-align: middle; fill: currentColor;"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="description">
+<h2>Description<a class="headerlink" href="#description" title="Link to this heading">#</a></h2>
+<p>Historical data feeds and lookups include:</p>
+<ul class="simple">
+<li><p><strong>Desktop URL Traffic</strong> — individual-level host, directory, and page of visited and referring sites</p></li>
+<li><p><strong>AdMetrix Traffic</strong> — individual-level ad exposures, advertiser, and advertiser hierarchy</p></li>
+<li><p><strong>Ecommerce</strong> — machine-level transaction data including item name, quantity purchased, and total basket cost where available</p></li>
+</ul>
+<p>Data are suppressed for panelists identifiable as under the age of 18 at the time of measurement.</p>
+</section>
+<section id="access">
+<h2>Access<a class="headerlink" href="#access" title="Link to this heading">#</a></h2>
+<p>Comscore is licensed data. Email <a class="reference external" href="mailto:rs&#37;&#52;&#48;kellogg&#46;northwestern&#46;edu" target="_blank">Kellogg Research Support <svg version="1.1" width="1.0em" height="1.0em" viewBox="0 0 16 16" aria-hidden="true" style="display: inline-block; vertical-align: middle; fill: currentColor;"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a> to request access and to get advice about how to structure Athena queries for better performance.</p>
+<ul class="simple">
+<li><p><strong>Athena:</strong> Pre-registered SQL tables in workgroup <code class="docutils literal notranslate"><span class="pre">comscore2</span></code> and database <code class="docutils literal notranslate"><span class="pre">comscore</span></code>. See the <a class="reference internal" href="../../kellogg-data-hosting/athena/athena.html"><span class="doc std std-doc">Kellogg Data Hosting — Athena platform</span></a>.</p></li>
+<li><p><strong>KLC — Desktop URL traffic:</strong> Hive-partitioned Parquet under <code class="docutils literal notranslate"><span class="pre">/kellogg/data/comscore/parquet/comscore_url_traffic/</span></code>. Query these files with DuckDB or another Parquet-aware tool. See <a class="reference internal" href="../../klc/user-guide/klc-accessing.html"><span class="doc std std-doc">How to Access KLC</span></a>.</p></li>
+<li><p><strong>KLC — Other feeds:</strong> AdMetrix, ecommerce, lookups, and demographics are available on Athena as registered tables. The DuckDB examples on this page cover URL traffic Parquet only.</p></li>
+</ul>
+<p>Additional Comscore files may exist under <code class="docutils literal notranslate"><span class="pre">/kellogg/data/comscore</span></code>; contact Research Support if you need a path that is not listed here.</p>
+</section>
+<section id="choosing-between-duckdb-on-klc-and-athena">
+<h2>Choosing Between DuckDB on KLC and Athena<a class="headerlink" href="#choosing-between-duckdb-on-klc-and-athena" title="Link to this heading">#</a></h2>
+<p>Desktop URL traffic is available on KLC as Parquet and on Athena as the <code class="docutils literal notranslate"><span class="pre">comscore_url_traffic</span></code> table. Other Comscore tables in the sections below are registered in Athena.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p>DuckDB on KLC</p></th>
+<th class="head"><p>Athena</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Setup required</strong></p></td>
+<td><p><a class="reference internal" href="../../klc/user-guide/klc-accessing.html"><span class="doc std std-doc">KLC account</span></a></p></td>
+<td><p>Athena database access; optional <a class="reference internal" href="../../kellogg-data-hosting/athena/athena.html"><span class="doc std std-doc">KLC SSO setup</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Where compute runs</strong></p></td>
+<td><p>KLC cluster</p></td>
+<td><p>AWS (serverless)</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Cost / quota</strong></p></td>
+<td><p>KLC compute limits; see the <a class="reference internal" href="../../klc-reserve/when-to-use.html"><span class="doc std std-doc">24-core login node policy</span></a></p></td>
+<td><p><a class="reference internal" href="../../kellogg-data-hosting/athena/athena.html#query-limits-and-reducing-data-scanned"><span class="std std-ref">2 TB of data scanned per day</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Typical result size</strong></p></td>
+<td><p>Large URL scans and derived Parquet on scratch</p></td>
+<td><p>Small filtered extracts and multi-table joins</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Downstream workflow</strong></p></td>
+<td><p>Python, R, or Stata on KLC; write derived files to the file system</p></td>
+<td><p>Download CSV from the AWS Console, or query with Python on KLC and read the saved file in R or Stata</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">When to Use Each Platform</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text"><strong>Use Athena when you want to:</strong></p>
+<ul class="simple">
+<li><p class="sd-card-text">Explore table schemas and run ad-hoc SQL without loading files</p></li>
+<li><p class="sd-card-text">Join URL traffic to <code class="docutils literal notranslate"><span class="pre">comscore_time_lookup</span></code>, demographics, AdMetrix, or ecommerce in one query</p></li>
+<li><p class="sd-card-text">Pull a small, filtered extract and download results to your laptop</p></li>
+</ul>
+<p class="sd-card-text"><strong>Use DuckDB on KLC when you want to:</strong></p>
+<ul class="simple">
+<li><p class="sd-card-text">Scan one or more URL traffic months from Parquet and aggregate before pulling data into memory</p></li>
+<li><p class="sd-card-text">Stage compact monthly visit counts under <code class="docutils literal notranslate"><span class="pre">/scratch/$USER/</span></code> and reuse them across panel months</p></li>
+<li><p class="sd-card-text">Iterate repeatedly on the same Parquet partitions without re-scanning raw events</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p class="sd-card-text">For URL traffic on KLC, hive partitions (<code class="docutils literal notranslate"><span class="pre">year=…</span></code>, <code class="docutils literal notranslate"><span class="pre">month=…</span></code>, <code class="docutils literal notranslate"><span class="pre">day=…</span></code>) replace a <code class="docutils literal notranslate"><span class="pre">comscore_time_lookup</span></code> join when you filter to a calendar month. Athena examples below still use the lookup table where that join is the clearest pattern.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p class="sd-card-text">Before running an Athena query, right-click a table in the Query editor and choose <strong>Generate table DDL</strong> to confirm table and column names. Filter on partition or indexed columns whenever possible to stay under the daily scan limit.</p>
+</div>
+</div>
+</details></section>
+<section id="data-coverage-key-identifiers">
+<h2>Data Coverage &amp; Key Identifiers<a class="headerlink" href="#data-coverage-key-identifiers" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Attribute</p></th>
+<th class="head"><p>Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Time period</strong></p></td>
+<td><p>2019–2020</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Geographic coverage</strong></p></td>
+<td><p>US</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Unit of observation</strong></p></td>
+<td><p>Panelist-event</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Primary identifier</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">machine_id</span></code> (machine), <code class="docutils literal notranslate"><span class="pre">person_id</span></code> (person)</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Commonly linked via</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">machine_id</span></code>, <code class="docutils literal notranslate"><span class="pre">person_id</span></code>, <code class="docutils literal notranslate"><span class="pre">time_id</span></code> / <code class="docutils literal notranslate"><span class="pre">time_period_id</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Key variables</strong></p></td>
+<td><p>URL, page, ad exposure, advertiser, transaction amount, quantity, demographics</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="tables">
+<h2>Tables<a class="headerlink" href="#tables" title="Link to this heading">#</a></h2>
+<p>Expand a table name to view column definitions. Desktop URL traffic includes the KLC Parquet layout.</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Desktop URL Traffic — <code class="docutils literal notranslate"><span class="pre">comscore_url_traffic</span></code></span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text"><strong>KLC Parquet layout.</strong> Files are hive-partitioned under <code class="docutils literal notranslate"><span class="pre">/kellogg/data/comscore/parquet/comscore_url_traffic/</span></code> by <code class="docutils literal notranslate"><span class="pre">year</span></code>, <code class="docutils literal notranslate"><span class="pre">month</span></code>, and <code class="docutils literal notranslate"><span class="pre">day</span></code>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>/kellogg/data/comscore/parquet/comscore_url_traffic/year=2019/month=1/day=1/*.parquet
+</pre></div>
+</div>
+<p class="sd-card-text">Some months use a zero-padded directory name (<code class="docutils literal notranslate"><span class="pre">month=01</span></code>) instead of <code class="docutils literal notranslate"><span class="pre">month=1</span></code>. Resolve whichever directory exists for the month you need before calling <code class="docutils literal notranslate"><span class="pre">read_parquet()</span></code>.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p class="sd-card-text">Column</p></th>
+<th class="head"><p class="sd-card-text">Type</p></th>
+<th class="head"><p class="sd-card-text">Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">machine_id</span></code></p></td>
+<td><p class="sd-card-text">bigint</p></td>
+<td><p class="sd-card-text">Unique identifier for each machine</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">url_idc</span></code></p></td>
+<td><p class="sd-card-text">varchar</p></td>
+<td><p class="sd-card-text">Unique event identifier</p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">person_id</span></code></p></td>
+<td><p class="sd-card-text">bigint</p></td>
+<td><p class="sd-card-text">Unique identifier for each person</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">ss2k</span></code></p></td>
+<td><p class="sd-card-text">bigint</p></td>
+<td><p class="sd-card-text">Seconds since 2000</p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">time_id</span></code></p></td>
+<td><p class="sd-card-text">int</p></td>
+<td><p class="sd-card-text">Comscore date identifier (unique identifier for days)</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">domain_name</span></code></p></td>
+<td><p class="sd-card-text">varchar</p></td>
+<td><p class="sd-card-text">Domain name portion of URL</p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">url_host</span></code></p></td>
+<td><p class="sd-card-text">varchar</p></td>
+<td><p class="sd-card-text">URL host portion of URL</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">url_dir</span></code></p></td>
+<td><p class="sd-card-text">varchar</p></td>
+<td><p class="sd-card-text">URL directory portion of URL (e.g. <code class="docutils literal notranslate"><span class="pre">/gp/product/</span></code>)</p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">url_page</span></code></p></td>
+<td><p class="sd-card-text">varchar</p></td>
+<td><p class="sd-card-text">URL page portion of URL (e.g. <code class="docutils literal notranslate"><span class="pre">index.asp</span></code>)</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">url_refer_domain</span></code></p></td>
+<td><p class="sd-card-text">varchar</p></td>
+<td><p class="sd-card-text">Domain name portion of referring URL</p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">url_refer_host</span></code></p></td>
+<td><p class="sd-card-text">varchar</p></td>
+<td><p class="sd-card-text">URL host portion of referring URL</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">url_refer_dir</span></code></p></td>
+<td><p class="sd-card-text">varchar</p></td>
+<td><p class="sd-card-text">URL directory portion of referring URL</p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">url_refer_page</span></code></p></td>
+<td><p class="sd-card-text">varchar</p></td>
+<td><p class="sd-card-text">URL page portion of referring URL</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">mimetype</span></code></p></td>
+<td><p class="sd-card-text">varchar</p></td>
+<td><p class="sd-card-text">MIME type of URL; derived from content-type reply header</p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">http_rc</span></code></p></td>
+<td><p class="sd-card-text">int</p></td>
+<td><p class="sd-card-text">Standard HTTP reply code (200, 302, 404, etc.)</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">keywords</span></code></p></td>
+<td><p class="sd-card-text">varchar</p></td>
+<td><p class="sd-card-text">Search keywords associated with the event</p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">html_title</span></code></p></td>
+<td><p class="sd-card-text">varchar</p></td>
+<td><p class="sd-card-text">HTML title from the page</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">pattern_id</span></code></p></td>
+<td><p class="sd-card-text">int</p></td>
+<td><p class="sd-card-text">Comscore Client Focus Dictionary URL page mask ID</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Desktop AdMetrix Ad Exposure — <code class="docutils literal notranslate"><span class="pre">comscore_admetrix</span></code></span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p class="sd-card-text">Column</p></th>
+<th class="head"><p class="sd-card-text">Type</p></th>
+<th class="head"><p class="sd-card-text">Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">machine_id</span></code></p></td>
+<td><p class="sd-card-text">bigint</p></td>
+<td><p class="sd-card-text">Unique identifier for each machine</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">person_id</span></code></p></td>
+<td><p class="sd-card-text">bigint</p></td>
+<td><p class="sd-card-text">Unique identifier for each person</p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">time_id</span></code></p></td>
+<td><p class="sd-card-text">int</p></td>
+<td><p class="sd-card-text">Comscore date identifier (unique identifier for days)</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">ss2k</span></code></p></td>
+<td><p class="sd-card-text">bigint</p></td>
+<td><p class="sd-card-text">Seconds since 2000</p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">adv_pattern_id</span></code></p></td>
+<td><p class="sd-card-text">int</p></td>
+<td><p class="sd-card-text">Advertiser’s AdMetrix Product Dictionary page mask ID</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">pub_pattern_id</span></code></p></td>
+<td><p class="sd-card-text">int</p></td>
+<td><p class="sd-card-text">Publisher’s Comscore Client Focus Dictionary URL page mask ID</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">AdMetrix Advertiser Pattern Lookup — <code class="docutils literal notranslate"><span class="pre">comscore_admetrix_product_dictionary</span></code></span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p class="sd-card-text">Column</p></th>
+<th class="head"><p class="sd-card-text">Type</p></th>
+<th class="head"><p class="sd-card-text">Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">month_id</span></code></p></td>
+<td><p class="sd-card-text">int</p></td>
+<td><p class="sd-card-text">Comscore date identifier (unique identifier for months)</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">adv_pattern_id</span></code></p></td>
+<td><p class="sd-card-text">int</p></td>
+<td><p class="sd-card-text">Advertiser’s AdMetrix Product Dictionary page mask ID</p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">adv_web_id</span></code></p></td>
+<td><p class="sd-card-text">int</p></td>
+<td><p class="sd-card-text">Comscore AdMetrix Product Dictionary entity ID</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">adv_web_name</span></code></p></td>
+<td><p class="sd-card-text">varchar</p></td>
+<td><p class="sd-card-text">Comscore AdMetrix Product Dictionary entity name</p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">adv_level_id</span></code></p></td>
+<td><p class="sd-card-text">int</p></td>
+<td><p class="sd-card-text">Comscore AdMetrix Product Dictionary level identifier</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">adv_parent_id</span></code></p></td>
+<td><p class="sd-card-text">int</p></td>
+<td><p class="sd-card-text">Comscore AdMetrix Product Dictionary parent ID</p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">adv_category</span></code></p></td>
+<td><p class="sd-card-text">varchar</p></td>
+<td><p class="sd-card-text">Comscore AdMetrix Product Dictionary category name</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">adv_subcategory</span></code></p></td>
+<td><p class="sd-card-text">varchar</p></td>
+<td><p class="sd-card-text">Comscore AdMetrix Product Dictionary sub-category name</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Desktop Ecommerce — <code class="docutils literal notranslate"><span class="pre">comscore_ecommerce</span></code></span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p class="sd-card-text">Column</p></th>
+<th class="head"><p class="sd-card-text">Type</p></th>
+<th class="head"><p class="sd-card-text">Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">month_id</span></code></p></td>
+<td><p class="sd-card-text">int</p></td>
+<td><p class="sd-card-text">Month number corresponding to Comscore time</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">domain_name</span></code></p></td>
+<td><p class="sd-card-text">varchar(50)</p></td>
+<td><p class="sd-card-text">Domain where transaction occurred</p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">machine_id</span></code></p></td>
+<td><p class="sd-card-text">bigint</p></td>
+<td><p class="sd-card-text">Unique identifier for machines</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">url_idc</span></code></p></td>
+<td><p class="sd-card-text">char(22)</p></td>
+<td><p class="sd-card-text">Unique identifier for transactions</p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">time_id</span></code></p></td>
+<td><p class="sd-card-text">int</p></td>
+<td><p class="sd-card-text">Comscore date identifier (unique identifier for days)</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">event_time</span></code></p></td>
+<td><p class="sd-card-text">datetime</p></td>
+<td><p class="sd-card-text">Timestamp of purchase in GMT</p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">payment_desc</span></code></p></td>
+<td><p class="sd-card-text">varchar(50)</p></td>
+<td><p class="sd-card-text">Payment method used (where observable)</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">machine_country</span></code></p></td>
+<td><p class="sd-card-text">varchar(2)</p></td>
+<td><p class="sd-card-text">Country where the panelist who made the purchase is located</p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">itemName</span></code></p></td>
+<td><p class="sd-card-text">varchar(500)</p></td>
+<td><p class="sd-card-text">Name of item (where observable; only available for retailers with item-level detail)</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">productCategory</span></code></p></td>
+<td><p class="sd-card-text">varchar(250)</p></td>
+<td><p class="sd-card-text">Product category name (where observable; only available for retailers with item-level detail)</p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">productSubCategory</span></code></p></td>
+<td><p class="sd-card-text">varchar(250)</p></td>
+<td><p class="sd-card-text">Product sub-category name (where observable; only available for retailers with item-level detail)</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">raw_basketTotal</span></code></p></td>
+<td><p class="sd-card-text">numeric(20,2)</p></td>
+<td><p class="sd-card-text">Total spent for the transaction in USD</p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">raw_quantity</span></code></p></td>
+<td><p class="sd-card-text">int</p></td>
+<td><p class="sd-card-text">Quantity of items (only available for retailers with item-level detail)</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">raw_itemTotal</span></code></p></td>
+<td><p class="sd-card-text">numeric(20,2)</p></td>
+<td><p class="sd-card-text">Total spent for specified item(s) in USD (only available for retailers with item-level detail)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Time Lookup — <code class="docutils literal notranslate"><span class="pre">comscore_time_lookup</span></code></span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p class="sd-card-text">Column</p></th>
+<th class="head"><p class="sd-card-text">Type</p></th>
+<th class="head"><p class="sd-card-text">Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">time_id</span></code></p></td>
+<td><p class="sd-card-text">int</p></td>
+<td><p class="sd-card-text">Comscore date identifier (unique identifier for days)</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">week_id</span></code></p></td>
+<td><p class="sd-card-text">int</p></td>
+<td><p class="sd-card-text">Comscore date identifier (unique identifier for weeks)</p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">month_id</span></code></p></td>
+<td><p class="sd-card-text">int</p></td>
+<td><p class="sd-card-text">Comscore date identifier (unique identifier for months)</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">calendar_day</span></code></p></td>
+<td><p class="sd-card-text">date</p></td>
+<td><p class="sd-card-text">Calendar day associated with Comscore <code class="docutils literal notranslate"><span class="pre">time_id</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Traffic Category Map — <code class="docutils literal notranslate"><span class="pre">comscore_category_map</span></code></span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p class="sd-card-text">Column</p></th>
+<th class="head"><p class="sd-card-text">Type</p></th>
+<th class="head"><p class="sd-card-text">Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">month_id</span></code></p></td>
+<td><p class="sd-card-text">int</p></td>
+<td><p class="sd-card-text">Comscore date identifier (unique identifier for months)</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">pattern_id</span></code></p></td>
+<td><p class="sd-card-text">int</p></td>
+<td><p class="sd-card-text">Comscore Client Focus Dictionary URL page mask ID</p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">web_id</span></code></p></td>
+<td><p class="sd-card-text">int</p></td>
+<td><p class="sd-card-text">Comscore Client Focus Dictionary entity ID</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">web_name</span></code></p></td>
+<td><p class="sd-card-text">varchar(255)</p></td>
+<td><p class="sd-card-text">Comscore Client Focus Dictionary entity name</p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">level_name</span></code></p></td>
+<td><p class="sd-card-text">varchar(255)</p></td>
+<td><p class="sd-card-text">Comscore Client Focus Dictionary level name</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">level_id</span></code></p></td>
+<td><p class="sd-card-text">int</p></td>
+<td><p class="sd-card-text">Comscore Client Focus Dictionary level unique identifier</p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">parent_id</span></code></p></td>
+<td><p class="sd-card-text">int</p></td>
+<td><p class="sd-card-text">Comscore Client Focus Dictionary parent ID</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">subcategory</span></code></p></td>
+<td><p class="sd-card-text">varchar(255)</p></td>
+<td><p class="sd-card-text">Comscore Media Metrix category to which entity belongs</p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">category</span></code></p></td>
+<td><p class="sd-card-text">varchar(255)</p></td>
+<td><p class="sd-card-text">Parent category of the above category</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">Magazine</span></code></p></td>
+<td><p class="sd-card-text">int</p></td>
+<td><p class="sd-card-text">Comscore dictionary attribute (1 = True, 0 = False)</p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">Streaming_Video</span></code></p></td>
+<td><p class="sd-card-text">int</p></td>
+<td><p class="sd-card-text">Comscore dictionary attribute (1 = True, 0 = False)</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">Blog</span></code></p></td>
+<td><p class="sd-card-text">int</p></td>
+<td><p class="sd-card-text">Comscore dictionary attribute (1 = True, 0 = False)</p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">Streaming_Audio</span></code></p></td>
+<td><p class="sd-card-text">int</p></td>
+<td><p class="sd-card-text">Comscore dictionary attribute (1 = True, 0 = False)</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">Cable_Broadcast_TV</span></code></p></td>
+<td><p class="sd-card-text">int</p></td>
+<td><p class="sd-card-text">Comscore dictionary attribute (1 = True, 0 = False)</p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">Radio</span></code></p></td>
+<td><p class="sd-card-text">int</p></td>
+<td><p class="sd-card-text">Comscore dictionary attribute (1 = True, 0 = False)</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">Newspaper</span></code></p></td>
+<td><p class="sd-card-text">int</p></td>
+<td><p class="sd-card-text">Comscore dictionary attribute (1 = True, 0 = False)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Browser Type Lookup — <code class="docutils literal notranslate"><span class="pre">comscore_browser_type_lookup</span></code></span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p class="sd-card-text">Column</p></th>
+<th class="head"><p class="sd-card-text">Type</p></th>
+<th class="head"><p class="sd-card-text">Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">browser_type</span></code></p></td>
+<td><p class="sd-card-text">varchar</p></td>
+<td><p class="sd-card-text">Numeric ID for the browser</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">browser_name</span></code></p></td>
+<td><p class="sd-card-text">varchar</p></td>
+<td><p class="sd-card-text">High-level browser name</p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">browser_name_detail</span></code></p></td>
+<td><p class="sd-card-text">varchar</p></td>
+<td><p class="sd-card-text">Browser name with version</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Desktop Operating System Lookup — <code class="docutils literal notranslate"><span class="pre">comscore_operating_system_lookup</span></code></span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p class="sd-card-text">Column</p></th>
+<th class="head"><p class="sd-card-text">Type</p></th>
+<th class="head"><p class="sd-card-text">Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">month_id</span></code></p></td>
+<td><p class="sd-card-text">int</p></td>
+<td><p class="sd-card-text">Unique identifier for the month</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">machine_id</span></code></p></td>
+<td><p class="sd-card-text">bigint</p></td>
+<td><p class="sd-card-text">Unique identifier for each machine</p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">os_version_name</span></code></p></td>
+<td><p class="sd-card-text">varchar</p></td>
+<td><p class="sd-card-text">Operating system version name</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Machine Demographics — <code class="docutils literal notranslate"><span class="pre">machine_demog</span></code></span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p class="sd-card-text">Column</p></th>
+<th class="head"><p class="sd-card-text">Type</p></th>
+<th class="head"><p class="sd-card-text">Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">machine_id</span></code></p></td>
+<td><p class="sd-card-text">bigint</p></td>
+<td><p class="sd-card-text">Unique identifier for each machine</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">country</span></code></p></td>
+<td><p class="sd-card-text">string</p></td>
+<td><p class="sd-card-text">Country where machine is located</p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">local_market</span></code></p></td>
+<td><p class="sd-card-text">string</p></td>
+<td><p class="sd-card-text">Local market (Designated Market Area code; US only)</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">computer_location</span></code></p></td>
+<td><p class="sd-card-text">string</p></td>
+<td><p class="sd-card-text">Home or work (US only)</p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">age</span></code></p></td>
+<td><p class="sd-card-text">string</p></td>
+<td><p class="sd-card-text">Head of household age</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">income</span></code></p></td>
+<td><p class="sd-card-text">string</p></td>
+<td><p class="sd-card-text">Household income</p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">education</span></code></p></td>
+<td><p class="sd-card-text">string</p></td>
+<td><p class="sd-card-text">Head of household education</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">child_present</span></code></p></td>
+<td><p class="sd-card-text">string</p></td>
+<td><p class="sd-card-text">Child present in household</p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">hh_size</span></code></p></td>
+<td><p class="sd-card-text">string</p></td>
+<td><p class="sd-card-text">Size of household</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">time_period_id</span></code></p></td>
+<td><p class="sd-card-text">int</p></td>
+<td><p class="sd-card-text">Unique identifier for the time period</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Person Demographics — <code class="docutils literal notranslate"><span class="pre">person_demog</span></code></span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p class="sd-card-text">Column</p></th>
+<th class="head"><p class="sd-card-text">Type</p></th>
+<th class="head"><p class="sd-card-text">Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">person_id</span></code></p></td>
+<td><p class="sd-card-text">bigint</p></td>
+<td><p class="sd-card-text">Unique identifier for each person</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">machine_id</span></code></p></td>
+<td><p class="sd-card-text">bigint</p></td>
+<td><p class="sd-card-text">Unique identifier for each machine</p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">gender</span></code></p></td>
+<td><p class="sd-card-text">string</p></td>
+<td><p class="sd-card-text">Gender of panelist</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">age</span></code></p></td>
+<td><p class="sd-card-text">string</p></td>
+<td><p class="sd-card-text">Age of panelist</p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">children_present</span></code></p></td>
+<td><p class="sd-card-text">string</p></td>
+<td><p class="sd-card-text">Child present in household</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">hh_income</span></code></p></td>
+<td><p class="sd-card-text">string</p></td>
+<td><p class="sd-card-text">Household income</p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">hh_size</span></code></p></td>
+<td><p class="sd-card-text">string</p></td>
+<td><p class="sd-card-text">Size of household</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">ethnicity</span></code></p></td>
+<td><p class="sd-card-text">string</p></td>
+<td><p class="sd-card-text">Ethnicity of panelist</p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">race</span></code></p></td>
+<td><p class="sd-card-text">string</p></td>
+<td><p class="sd-card-text">Race of panelist</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">hoh_education</span></code></p></td>
+<td><p class="sd-card-text">string</p></td>
+<td><p class="sd-card-text">Head of household education level</p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">computer_location</span></code></p></td>
+<td><p class="sd-card-text">string</p></td>
+<td><p class="sd-card-text">Home or work (US only)</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">country</span></code></p></td>
+<td><p class="sd-card-text">string</p></td>
+<td><p class="sd-card-text">Country where machine is located</p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">local_market</span></code></p></td>
+<td><p class="sd-card-text">string</p></td>
+<td><p class="sd-card-text">Local market (Designated Market Area code; US only)</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">time_period_id</span></code></p></td>
+<td><p class="sd-card-text">int</p></td>
+<td><p class="sd-card-text">Unique identifier for the time period</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Person Weights — <code class="docutils literal notranslate"><span class="pre">person_weights</span></code></span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p class="sd-card-text">Column</p></th>
+<th class="head"><p class="sd-card-text">Type</p></th>
+<th class="head"><p class="sd-card-text">Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">machine_id</span></code></p></td>
+<td><p class="sd-card-text">bigint</p></td>
+<td><p class="sd-card-text">Unique identifier for each machine</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">person_id</span></code></p></td>
+<td><p class="sd-card-text">bigint</p></td>
+<td><p class="sd-card-text">Unique identifier for each person</p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">time_period_id</span></code></p></td>
+<td><p class="sd-card-text">int</p></td>
+<td><p class="sd-card-text">Unique identifier for weeks</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">numeric_time_zone</span></code></p></td>
+<td><p class="sd-card-text">int</p></td>
+<td><p class="sd-card-text">Time zone adjustment factor (converts event time from GMT to local)</p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">country</span></code></p></td>
+<td><p class="sd-card-text">string</p></td>
+<td><p class="sd-card-text">Country where machine is located</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">weight</span></code></p></td>
+<td><p class="sd-card-text">numeric</p></td>
+<td><p class="sd-card-text">Weight assigned to the person on the machine</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</details></section>
+<section id="working-with-url-traffic-on-klc">
+<h2>Working with URL Traffic on KLC<a class="headerlink" href="#working-with-url-traffic-on-klc" title="Link to this heading">#</a></h2>
+<p>The examples below run from a KLC main session or a <a class="reference internal" href="../../klc-reserve/when-to-use.html"><span class="doc std std-doc">KLC Reserve</span></a> batch job. They follow a practical pattern for large URL extracts: scan each raw month once, write compact visit-count Parquet to scratch, then build cohort and panel outputs from those stages instead of re-reading event-level files.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>You can run the DuckDB examples on KLC main nodes. They set <code class="docutils literal notranslate"><span class="pre">PRAGMA</span> <span class="pre">memory_limit='128GB'</span></code> for large scans; follow the <a class="reference internal" href="../../klc-reserve/when-to-use.html"><span class="doc std std-doc">24-core login node policy</span></a>. Use <a class="reference internal" href="../../klc-reserve/when-to-use.html"><span class="doc std std-doc">KLC Reserve</span></a> when you need dedicated cores and memory for long multi-month pipelines. Use Athena for small, filtered extracts when you do not need a full-month URL scan on KLC.</p>
+</div>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Connect DuckDB</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">duckdb</span>
+
+<span class="n">scratch</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="sa">f</span><span class="s2">"/scratch/</span><span class="si">{</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">'USER'</span><span class="p">]</span><span class="si">}</span><span class="s2">/duckdb"</span><span class="p">)</span>
+<span class="n">temp_dir</span> <span class="o">=</span> <span class="n">scratch</span> <span class="o">/</span> <span class="s2">"tmp"</span>
+<span class="n">temp_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">con</span> <span class="o">=</span> <span class="n">duckdb</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+<span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"PRAGMA threads=8"</span><span class="p">)</span>
+<span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"PRAGMA memory_limit='128GB'"</span><span class="p">)</span>
+<span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="sa">f</span><span class="s2">"SET temp_directory = '</span><span class="si">{</span><span class="n">temp_dir</span><span class="si">}</span><span class="s2">'"</span><span class="p">)</span>
+<span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"SET preserve_insertion_order = false"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Read One Month (Preview)</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">Resolve <code class="docutils literal notranslate"><span class="pre">month=1</span></code> versus <code class="docutils literal notranslate"><span class="pre">month=01</span></code>, then aggregate domain visit counts for a single calendar month:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+
+<span class="n">URL_ROOT</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">"/kellogg/data/comscore/parquet/comscore_url_traffic"</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">month_parquet_glob</span><span class="p">(</span><span class="n">year</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">month</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">directory</span> <span class="ow">in</span> <span class="p">(</span>
+        <span class="n">URL_ROOT</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">"year=</span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s2">"</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">"month=</span><span class="si">{</span><span class="n">month</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+        <span class="n">URL_ROOT</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">"year=</span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s2">"</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">"month=</span><span class="si">{</span><span class="n">month</span><span class="si">:</span><span class="s2">02d</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="k">if</span> <span class="n">directory</span><span class="o">.</span><span class="n">is_dir</span><span class="p">():</span>
+            <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">directory</span> <span class="o">/</span> <span class="s2">"**"</span> <span class="o">/</span> <span class="s2">"*.parquet"</span><span class="p">)</span>
+    <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"No URL traffic partition for </span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">month</span><span class="si">:</span><span class="s2">02d</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+
+<span class="n">glob_path</span> <span class="o">=</span> <span class="n">month_parquet_glob</span><span class="p">(</span><span class="mi">2020</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="sa">f</span><span class="s2">"""</span>
+<span class="s2">    SELECT</span>
+<span class="s2">        domain_name,</span>
+<span class="s2">        COUNT(*) AS events</span>
+<span class="s2">    FROM read_parquet(</span>
+<span class="s2">        '</span><span class="si">{</span><span class="n">glob_path</span><span class="si">}</span><span class="s2">',</span>
+<span class="s2">        hive_partitioning = true,</span>
+<span class="s2">        union_by_name = true</span>
+<span class="s2">    )</span>
+<span class="s2">    WHERE domain_name IS NOT NULL</span>
+<span class="s2">    GROUP BY domain_name</span>
+<span class="s2">    ORDER BY events DESC</span>
+<span class="s2">    LIMIT 20</span>
+<span class="s2">"""</span><span class="p">)</span><span class="o">.</span><span class="n">fetchdf</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Stage Monthly Visit Counts</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">Project only <code class="docutils literal notranslate"><span class="pre">person_id</span></code>, <code class="docutils literal notranslate"><span class="pre">machine_id</span></code>, and <code class="docutils literal notranslate"><span class="pre">domain_name</span></code>, filter to domains your study needs, aggregate to visit counts, and write one Parquet file per month. Use an <code class="docutils literal notranslate"><span class="pre">_in_progress</span></code> directory and an <code class="docutils literal notranslate"><span class="pre">_SUCCESS</span></code> marker so a loop over many months can skip completed stages:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">shutil</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+
+<span class="n">URL_ROOT</span> <span class="o">=</span> <span class="s2">"/kellogg/data/comscore/parquet/comscore_url_traffic"</span>
+<span class="n">STAGE_ROOT</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="sa">f</span><span class="s2">"/scratch/</span><span class="si">{</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">'USER'</span><span class="p">]</span><span class="si">}</span><span class="s2">/comscore_stages"</span><span class="p">)</span>
+<span class="n">YEAR</span><span class="p">,</span> <span class="n">MONTH</span> <span class="o">=</span> <span class="mi">2020</span><span class="p">,</span> <span class="mi">1</span>
+<span class="n">TRACKED_DOMAINS</span> <span class="o">=</span> <span class="p">(</span><span class="s2">"amazon.com"</span><span class="p">,</span> <span class="s2">"walmart.com"</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">month_parquet_glob</span><span class="p">(</span><span class="n">url_root</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">year</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">month</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="n">root</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">url_root</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">directory</span> <span class="ow">in</span> <span class="p">(</span>
+        <span class="n">root</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">"year=</span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s2">"</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">"month=</span><span class="si">{</span><span class="n">month</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+        <span class="n">root</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">"year=</span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s2">"</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">"month=</span><span class="si">{</span><span class="n">month</span><span class="si">:</span><span class="s2">02d</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="k">if</span> <span class="n">directory</span><span class="o">.</span><span class="n">is_dir</span><span class="p">():</span>
+            <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">directory</span> <span class="o">/</span> <span class="s2">"**"</span> <span class="o">/</span> <span class="s2">"*.parquet"</span><span class="p">)</span>
+    <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"No URL traffic partition for </span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">month</span><span class="si">:</span><span class="s2">02d</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">sql_string_list</span><span class="p">(</span><span class="n">values</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="o">...</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">return</span> <span class="s2">", "</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">"'"</span> <span class="o">+</span> <span class="n">value</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">"'"</span><span class="p">,</span> <span class="s2">"''"</span><span class="p">)</span> <span class="o">+</span> <span class="s2">"'"</span> <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">values</span><span class="p">)</span>
+
+
+<span class="n">stage_dir</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">STAGE_ROOT</span> <span class="o">/</span> <span class="s2">"tracked_domain_counts"</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">"year=</span><span class="si">{</span><span class="n">YEAR</span><span class="si">}</span><span class="s2">"</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">"month=</span><span class="si">{</span><span class="n">MONTH</span><span class="si">:</span><span class="s2">02d</span><span class="si">}</span><span class="s2">"</span>
+<span class="p">)</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">stage_dir</span> <span class="o">/</span> <span class="s2">"_SUCCESS"</span><span class="p">)</span><span class="o">.</span><span class="n">is_file</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Skipping completed stage: </span><span class="si">{</span><span class="n">stage_dir</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">in_progress</span> <span class="o">=</span> <span class="n">stage_dir</span><span class="o">.</span><span class="n">with_name</span><span class="p">(</span><span class="n">stage_dir</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s2">"_in_progress"</span><span class="p">)</span>
+    <span class="n">shutil</span><span class="o">.</span><span class="n">rmtree</span><span class="p">(</span><span class="n">in_progress</span><span class="p">,</span> <span class="n">ignore_errors</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">in_progress</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="n">month_glob</span> <span class="o">=</span> <span class="n">month_parquet_glob</span><span class="p">(</span><span class="n">URL_ROOT</span><span class="p">,</span> <span class="n">YEAR</span><span class="p">,</span> <span class="n">MONTH</span><span class="p">)</span>
+    <span class="n">output_file</span> <span class="o">=</span> <span class="n">in_progress</span> <span class="o">/</span> <span class="s2">"part-00000.parquet"</span>
+    <span class="n">domain_list</span> <span class="o">=</span> <span class="n">sql_string_list</span><span class="p">(</span><span class="n">TRACKED_DOMAINS</span><span class="p">)</span>
+
+    <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="sa">f</span><span class="s2">"""</span>
+<span class="s2">        COPY (</span>
+<span class="s2">            SELECT</span>
+<span class="s2">                u.person_id,</span>
+<span class="s2">                u.machine_id,</span>
+<span class="s2">                u.domain_name,</span>
+<span class="s2">                COUNT(*)::UBIGINT AS n_visits</span>
+<span class="s2">            FROM read_parquet(</span>
+<span class="s2">                '</span><span class="si">{</span><span class="n">month_glob</span><span class="si">}</span><span class="s2">',</span>
+<span class="s2">                hive_partitioning = true,</span>
+<span class="s2">                union_by_name = true</span>
+<span class="s2">            ) AS u</span>
+<span class="s2">            WHERE u.person_id IS NOT NULL</span>
+<span class="s2">              AND u.machine_id IS NOT NULL</span>
+<span class="s2">              AND u.domain_name IN (</span><span class="si">{</span><span class="n">domain_list</span><span class="si">}</span><span class="s2">)</span>
+<span class="s2">            GROUP BY</span>
+<span class="s2">                u.person_id,</span>
+<span class="s2">                u.machine_id,</span>
+<span class="s2">                u.domain_name</span>
+<span class="s2">        )</span>
+<span class="s2">        TO '</span><span class="si">{</span><span class="n">output_file</span><span class="si">}</span><span class="s2">'</span>
+<span class="s2">        WITH (FORMAT PARQUET, COMPRESSION ZSTD)</span>
+<span class="s2">    """</span><span class="p">)</span>
+
+    <span class="n">in_progress</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">stage_dir</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">stage_dir</span> <span class="o">/</span> <span class="s2">"_SUCCESS"</span><span class="p">)</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="s2">"ok</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Wrote </span><span class="si">{</span><span class="n">stage_dir</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="sd-card-text">Repeat the staging block for each month in your panel, checking <code class="docutils literal notranslate"><span class="pre">_SUCCESS</span></code> before scanning raw Parquet again.</p>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Build a Panel from Staged Files</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">After staging, define a person-machine cohort from the staged counts (for example, everyone who ever visited a tracked domain), then left-join each month back to that cohort so zero-visit months appear as zeros. Additional panel months should reuse the same cohort file and read only the corresponding monthly stage Parquet, not the raw URL traffic tree:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+
+<span class="n">STAGE_ROOT</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="sa">f</span><span class="s2">"/scratch/</span><span class="si">{</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">'USER'</span><span class="p">]</span><span class="si">}</span><span class="s2">/comscore_stages"</span><span class="p">)</span>
+<span class="n">OUTPUT_ROOT</span> <span class="o">=</span> <span class="n">STAGE_ROOT</span> <span class="o">/</span> <span class="s2">"panel"</span>
+<span class="n">YEAR</span><span class="p">,</span> <span class="n">MONTH</span> <span class="o">=</span> <span class="mi">2020</span><span class="p">,</span> <span class="mi">1</span>
+
+<span class="n">stage_file</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">STAGE_ROOT</span>
+    <span class="o">/</span> <span class="s2">"tracked_domain_counts"</span>
+    <span class="o">/</span> <span class="sa">f</span><span class="s2">"year=</span><span class="si">{</span><span class="n">YEAR</span><span class="si">}</span><span class="s2">"</span>
+    <span class="o">/</span> <span class="sa">f</span><span class="s2">"month=</span><span class="si">{</span><span class="n">MONTH</span><span class="si">:</span><span class="s2">02d</span><span class="si">}</span><span class="s2">"</span>
+    <span class="o">/</span> <span class="s2">"part-00000.parquet"</span>
+<span class="p">)</span>
+<span class="n">cohort_dir</span> <span class="o">=</span> <span class="n">STAGE_ROOT</span> <span class="o">/</span> <span class="s2">"visitor_cohort"</span>
+<span class="n">cohort_file</span> <span class="o">=</span> <span class="n">cohort_dir</span> <span class="o">/</span> <span class="s2">"part-00000.parquet"</span>
+
+<span class="k">if</span> <span class="ow">not</span> <span class="n">cohort_file</span><span class="o">.</span><span class="n">is_file</span><span class="p">():</span>
+    <span class="n">cohort_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="sa">f</span><span class="s2">"""</span>
+<span class="s2">        COPY (</span>
+<span class="s2">            SELECT DISTINCT person_id, machine_id</span>
+<span class="s2">            FROM read_parquet('</span><span class="si">{</span><span class="n">stage_file</span><span class="si">}</span><span class="s2">', union_by_name = true)</span>
+<span class="s2">        )</span>
+<span class="s2">        TO '</span><span class="si">{</span><span class="n">cohort_file</span><span class="si">}</span><span class="s2">'</span>
+<span class="s2">        WITH (FORMAT PARQUET, COMPRESSION ZSTD)</span>
+<span class="s2">    """</span><span class="p">)</span>
+
+<span class="n">panel_dir</span> <span class="o">=</span> <span class="n">OUTPUT_ROOT</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">"year=</span><span class="si">{</span><span class="n">YEAR</span><span class="si">}</span><span class="s2">"</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">"month=</span><span class="si">{</span><span class="n">MONTH</span><span class="si">:</span><span class="s2">02d</span><span class="si">}</span><span class="s2">"</span>
+<span class="n">panel_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">panel_file</span> <span class="o">=</span> <span class="n">panel_dir</span> <span class="o">/</span> <span class="s2">"part-00000.parquet"</span>
+
+<span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="sa">f</span><span class="s2">"""</span>
+<span class="s2">    COPY (</span>
+<span class="s2">        SELECT</span>
+<span class="s2">            c.person_id,</span>
+<span class="s2">            c.machine_id,</span>
+<span class="s2">            </span><span class="si">{</span><span class="n">YEAR</span><span class="si">}</span><span class="s2">::INTEGER AS year,</span>
+<span class="s2">            </span><span class="si">{</span><span class="n">MONTH</span><span class="si">}</span><span class="s2">::INTEGER AS month,</span>
+<span class="s2">            COALESCE(SUM(s.n_visits), 0)::UBIGINT AS total_visits</span>
+<span class="s2">        FROM read_parquet('</span><span class="si">{</span><span class="n">cohort_file</span><span class="si">}</span><span class="s2">', union_by_name = true) AS c</span>
+<span class="s2">        LEFT JOIN read_parquet('</span><span class="si">{</span><span class="n">stage_file</span><span class="si">}</span><span class="s2">', union_by_name = true) AS s</span>
+<span class="s2">            ON c.person_id = s.person_id</span>
+<span class="s2">           AND c.machine_id = s.machine_id</span>
+<span class="s2">        GROUP BY c.person_id, c.machine_id</span>
+<span class="s2">    )</span>
+<span class="s2">    TO '</span><span class="si">{</span><span class="n">panel_file</span><span class="si">}</span><span class="s2">'</span>
+<span class="s2">    WITH (FORMAT PARQUET, COMPRESSION ZSTD)</span>
+<span class="s2">"""</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Wrote </span><span class="si">{</span><span class="n">panel_file</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details></section>
+<section id="example-queries-athena">
+<h2>Example Queries (Athena)<a class="headerlink" href="#example-queries-athena" title="Link to this heading">#</a></h2>
+<p>Run the SQL below in the Athena Query editor with workgroup <code class="docutils literal notranslate"><span class="pre">comscore2</span></code> and database <code class="docutils literal notranslate"><span class="pre">comscore</span></code>.</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">URL Traffic with Calendar Dates</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">Resolve <code class="docutils literal notranslate"><span class="pre">time_id</span></code> values to calendar dates using the time lookup table:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span>
+<span class="w">    </span><span class="n">t</span><span class="p">.</span><span class="n">calendar_day</span><span class="p">,</span>
+<span class="w">    </span><span class="n">u</span><span class="p">.</span><span class="n">person_id</span><span class="p">,</span>
+<span class="w">    </span><span class="n">u</span><span class="p">.</span><span class="n">domain_name</span><span class="p">,</span>
+<span class="w">    </span><span class="n">u</span><span class="p">.</span><span class="n">url_host</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">comscore_url_traffic</span><span class="w"> </span><span class="n">u</span>
+<span class="k">JOIN</span><span class="w"> </span><span class="n">comscore_time_lookup</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">u</span><span class="p">.</span><span class="n">time_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">t</span><span class="p">.</span><span class="n">time_id</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">t</span><span class="p">.</span><span class="n">calendar_day</span><span class="w"> </span><span class="k">BETWEEN</span><span class="w"> </span><span class="nb">DATE</span><span class="w"> </span><span class="s1">'2020-01-01'</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="nb">DATE</span><span class="w"> </span><span class="s1">'2020-01-31'</span>
+<span class="k">LIMIT</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">URL Traffic with Demographics and Weights</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">Join URL traffic to person demographics and survey weights:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span>
+<span class="w">    </span><span class="n">u</span><span class="p">.</span><span class="n">person_id</span><span class="p">,</span>
+<span class="w">    </span><span class="n">u</span><span class="p">.</span><span class="n">domain_name</span><span class="p">,</span>
+<span class="w">    </span><span class="n">p</span><span class="p">.</span><span class="n">gender</span><span class="p">,</span>
+<span class="w">    </span><span class="n">p</span><span class="p">.</span><span class="n">age</span><span class="p">,</span>
+<span class="w">    </span><span class="n">w</span><span class="p">.</span><span class="n">weight</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">comscore_url_traffic</span><span class="w"> </span><span class="n">u</span>
+<span class="k">JOIN</span><span class="w"> </span><span class="n">person_demog</span><span class="w"> </span><span class="n">p</span>
+<span class="w">    </span><span class="k">ON</span><span class="w"> </span><span class="n">u</span><span class="p">.</span><span class="n">person_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">person_id</span>
+<span class="k">JOIN</span><span class="w"> </span><span class="n">person_weights</span><span class="w"> </span><span class="n">w</span>
+<span class="w">    </span><span class="k">ON</span><span class="w"> </span><span class="n">u</span><span class="p">.</span><span class="n">person_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">w</span><span class="p">.</span><span class="n">person_id</span>
+<span class="w">   </span><span class="k">AND</span><span class="w"> </span><span class="n">u</span><span class="p">.</span><span class="n">machine_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">w</span><span class="p">.</span><span class="n">machine_id</span>
+<span class="k">LIMIT</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Ad Exposure with Advertiser Names</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">Look up ad exposure events with advertiser names:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span>
+<span class="w">    </span><span class="n">a</span><span class="p">.</span><span class="n">person_id</span><span class="p">,</span>
+<span class="w">    </span><span class="n">a</span><span class="p">.</span><span class="n">time_id</span><span class="p">,</span>
+<span class="w">    </span><span class="n">d</span><span class="p">.</span><span class="n">adv_web_name</span><span class="p">,</span>
+<span class="w">    </span><span class="n">d</span><span class="p">.</span><span class="n">adv_category</span><span class="p">,</span>
+<span class="w">    </span><span class="n">d</span><span class="p">.</span><span class="n">adv_subcategory</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">comscore_admetrix</span><span class="w"> </span><span class="n">a</span>
+<span class="k">JOIN</span><span class="w"> </span><span class="n">comscore_admetrix_product_dictionary</span><span class="w"> </span><span class="n">d</span>
+<span class="w">    </span><span class="k">ON</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">adv_pattern_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">d</span><span class="p">.</span><span class="n">adv_pattern_id</span>
+<span class="k">LIMIT</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Ecommerce Spending by Domain</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">Summarize ecommerce spending by domain:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span>
+<span class="w">    </span><span class="n">domain_name</span><span class="p">,</span>
+<span class="w">    </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">transactions</span><span class="p">,</span>
+<span class="w">    </span><span class="k">SUM</span><span class="p">(</span><span class="n">raw_basketTotal</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">total_spend</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">comscore_ecommerce</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">domain_name</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">total_spend</span><span class="w"> </span><span class="k">DESC</span>
+<span class="k">LIMIT</span><span class="w"> </span><span class="mi">20</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</details></section>
+<section id="documentation">
+<h2>Documentation<a class="headerlink" href="#documentation" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://nuwildcat-my.sharepoint.com/:b:/r/personal/jpj8711_ads_northwestern_edu/Documents/Data%20Documentation/comScore/comScore%20Data%20Traffic%20Schema.pdf?csf=1&amp;amp;web=1&amp;amp;e=rsCRMJ" target="_blank">Desktop URL, AdMetrix, and Ecommerce schema <svg version="1.1" width="1.0em" height="1.0em" viewBox="0 0 16 16" aria-hidden="true" style="display: inline-block; vertical-align: middle; fill: currentColor;"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a></p></li>
+<li><p><a class="reference external" href="https://nuwildcat-my.sharepoint.com/:x:/r/personal/jpj8711_ads_northwestern_edu/Documents/Data%20Documentation/comScore/comScore%20Demographics%20Schema.xlsx?d=wdd59b6aaa55145a290e657e698d472c8&amp;amp;csf=1&amp;amp;web=1&amp;amp;e=tFYKmg" target="_blank">Demographics schema <svg version="1.1" width="1.0em" height="1.0em" viewBox="0 0 16 16" aria-hidden="true" style="display: inline-block; vertical-align: middle; fill: currentColor;"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a></p></li>
+</ul>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../../kellogg-data-hosting/athena/athena.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Athena (AWS)</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="cotality.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Cotality (formerly CoreLogic)</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#at-a-glance">At a Glance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#description">Description</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#access">Access</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#choosing-between-duckdb-on-klc-and-athena">Choosing Between DuckDB on KLC and Athena</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-coverage-key-identifiers">Data Coverage &amp; Key Identifiers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tables">Tables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#working-with-url-traffic-on-klc">Working with URL Traffic on KLC</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-queries-athena">Example Queries (Athena)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#documentation">Documentation</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+
+
+<div id="footer-bottom">
+<div class="contain-1120">
+<span class="copyright" style="color:white">©
+<script>// <![CDATA[
+document.write(new Date().getFullYear())
+// ]]></script>
+Kellogg School of Management | <a href="https://www.kellogg.northwestern.edu/academics-research/research-support/">Kellogg Research Support</a></span>
+<!--
+<ul>
+<li><a href="https://www.facebook.com/NorthwesternU"> <span class="social facebook">Facebook</span> </a></li>
+<li><a href="https://www.twitter.com/northwesternu"> <span class="social twitter">Twitter</span> </a></li>
+<li><a href="https://www.instagram.com/northwesternu"> <span class="social instagram">Instagram</span> </a></li>
+<li><a href="https://www.youtube.com/user/NorthwesternU"> <span class="social youtube">YouTube</span> </a></li>
+<li><a href="https://www.tiktok.com/@northwestern.u"> <span class="social tiktok">TikTok</span> </a></li>
+<li><a href="https://www.linkedin.com/school/northwestern-university/"> <span class="social linkedin">LinkedIn</span> </a></li>
+</ul>
+-->
+<span class="right" style="color:white"><a style="color:white" href="https://www.northwestern.edu/disclaimer.html">Disclaimer</a></span>
+</div>
+</div>
+  </footer>
+  </body>
+</html>

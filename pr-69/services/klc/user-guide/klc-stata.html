@@ -1,0 +1,833 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" data-theme="light">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Running Stata and Bash Jobs &#8212; Kellogg School of Management
+Research Support
+Northwestern University</title>
+<script data-cfasync="false">
+  localStorage.setItem("mode", "light");
+  localStorage.setItem("theme", "light");
+</script>
+
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/kellogg-rs-docs.css?v=c63f1eac" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'services/klc/user-guide/klc-stata';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = true;</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Using tmux" href="klc-tmux.html" />
+    <link rel="prev" title="Launching Jobs" href="klc-software.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../../../_static/searchtools.js"></script>
+    <script src="../../../_static/language_data.js"></script>
+    <script src="../../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="light">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+<aside class="bd-header-announcement" aria-label="Announcement">
+  <div class="bd-header-announcement__content">Kellogg Research Support holds weekly office hours at the Kellogg Global Hub, Room 5422, every Wednesday from 10:00 a.m. to 12:00 p.m.</div>
+</aside>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+    
+    <img src="../../../_static/kellogg_logo.png" class="logo__image only-light" alt="Kellogg School of Management
+Research Support
+Northwestern University - Home"/>
+    <img src="../../../_static/kellogg_logo.png" class="logo__image only-dark pst-js-only" alt="Kellogg School of Management
+Research Support
+Northwestern University - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Fundamentals</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../start/getting-help.html">Getting Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../start/services-overview.html">What Does KRS Offer?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../start/klc/klc-intro.html">Introduction to Kellogg Linux Cluster</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Computing</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../klc.html">Kellogg Linux Cluster</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference external" href="https://www.kellogg.northwestern.edu/academics-research/research-support/computing/kellogg-linux-cluster/" target="_blank">Kellogg Linux Cluster Overview <svg aria-hidden="true" height="1.0em" style="display: inline-block; vertical-align: middle; fill: currentColor;" version="1.1" viewbox="0 0 16 16" width="1.0em"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a></li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="klc-user-guide.html">KLC User Guide</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="klc-accessing.html">Access KLC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="klc-ssh.html">SSH</a></li>
+<li class="toctree-l3"><a class="reference internal" href="klc-fastx.html">FastX</a></li>
+<li class="toctree-l3"><a class="reference internal" href="klc-vscode.html">VS Code Workflow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="klc-ondemand.html">KLC OnDemand</a></li>
+<li class="toctree-l3"><a class="reference internal" href="klc-files.html">KLC Filesystem</a></li>
+<li class="toctree-l3"><a class="reference internal" href="klc-transferfiles.html">Data Transfer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="klc-editor.html">Edit Files on KLC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="klc-git.html">Using Git on KLC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="klc-conda.html">Conda/Mamba Environments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="klc-software.html">Launching Jobs</a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">Running Stata and Bash Jobs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="klc-tmux.html">Using tmux</a></li>
+<li class="toctree-l3"><a class="reference internal" href="klc-profiling.html">Monitoring &amp; Managing Jobs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="llm-api.html">LLM API Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="llm-klc.html">Open Source LLMs (Interactive)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ai-agent-container.html">AI Coding Agents</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference external" href="https://rcdsdocs.it.northwestern.edu/systems/quest/quest.html" target="_blank">Quest Documentation <svg aria-hidden="true" height="1.0em" style="display: inline-block; vertical-align: middle; fill: currentColor;" version="1.1" viewbox="0 0 16 16" width="1.0em"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a></li>
+<li class="toctree-l2"><a class="reference external" href="https://www.it.northwestern.edu/departments/it-services-support/research/computing/quest/data-security-guidance.html" target="_blank">Quest Data Security Guidance <svg aria-hidden="true" height="1.0em" style="display: inline-block; vertical-align: middle; fill: currentColor;" version="1.1" viewbox="0 0 16 16" width="1.0em"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../klc-reserve/klc-reserve.html">Kellogg Linux Cluster Reserve</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../klc-reserve/when-to-use.html">When to Use KLC Reserve</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../klc-reserve/gpu-concepts.html">GPU Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../klc-reserve/slurm-jobs.html">Submitting SLURM Jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../klc-reserve/gpu-jobs.html">GPU Jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../klc-reserve/highmem-jobs.html">High-Memory Jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../klc-reserve/vllm-example.html">vLLM on GPUs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../klc-reserve/ollama-example.html">Ollama on GPUs</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../klc-node-resources.html">KLC Node Resources</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Datasets</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../kellogg-data-hosting/kdc.html">Kellogg Data Hosting</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../kellogg-data-hosting/wrds/wrds.html">WRDS</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../kellogg-data-hosting/wrds/examples/crsp-example.html">CRSP Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../kellogg-data-hosting/wrds/examples/taq-example.html">TAQ Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../kellogg-data-hosting/wrds/examples/revelio-example.html">Revelio Labs Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../kellogg-data-hosting/athena/athena.html">Athena (AWS)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../datasets/datasets/comscore.html">Comscore</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../datasets/datasets/cotality.html">Cotality (formerly CoreLogic)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../datasets/datasets/equifax.html">Equifax</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../datasets/datasets/patstat.html">PATSTAT</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../kellogg-data-hosting/redivis/redivis.html">Redivis</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../datasets/datasets/l2-vm2-uniform.html">L2 VM2 Uniform</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../datasets/datasets/numerator.html">Numerator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../datasets/datasets/openalex.html">OpenAlex</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../datasets/datasets/proxycurl.html">ProxyCurl</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../klc-datasets.html">Datasets on KLC</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../datasets/datasets/cme.html">CME</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../datasets/datasets/comscore.html">Comscore</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../datasets/datasets/cotality.html">Cotality (formerly CoreLogic)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../datasets/datasets/edgar.html">EDGAR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../datasets/datasets/l2-vm2-uniform.html">L2 VM2 Uniform</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../datasets/datasets/nielsen-marketing-data.html">Nielsen Marketing Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../datasets/datasets/patstat.html">PATSTAT</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.kellogg.northwestern.edu/academics-research/research-support/dataset/" target="_blank">Kellogg Research Support Datasets <svg aria-hidden="true" height="1.0em" style="display: inline-block; vertical-align: middle; fill: currentColor;" version="1.1" viewbox="0 0 16 16" width="1.0em"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../start/workshop-doc.html">Research the Right Way Workshop</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../tutorials/nlp/nlp.html">Natural Language Processing</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/nlp/tutorial1.html">Deterministic Extraction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/nlp/tutorial2.html">Quantifying Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/nlp/tutorial3.html">Paid LLMs for Text Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/nlp/tutorial4.html">Open-Source LLMs for Text Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/nlp/tutorial5.html">Validation and Rigor</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/qual-coding/qualitative-coding-with-llms.html">Qualitative Coding with LLMs</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../guides/openai/openai.html">OpenAI and LLMs</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../guides/openai/llm-intro.html">Understanding LLMs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../guides/openai/openai-api.html">OpenAI API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../guides/openai/openai-copilot.html">GitHub Copilot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../guides/openai/openai-workflow.html">Application Workflow</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../guides/llm/llm.html">Open Source LLMs</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Running Stata and Bash Jobs</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#choose-a-way-to-run">Choose a Way to Run</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stata-executables">Stata Executables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-the-stata-gui-on-klc-ondemand">Run the Stata GUI on KLC OnDemand</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#where-to-store-files">Where to Store Files</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-logs-are-created">How Logs Are Created</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-on-klc-main">Run on KLC Main</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stata-do-file">Stata Do-File</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bash-command">Bash Command</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-on-klc-reserve">Run on KLC Reserve</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stata-do-file-stata-mp-4-cores">Stata Do-File (<code class="docutils literal notranslate"><span class="pre">stata-mp</span></code>, 4 Cores)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Bash Command</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#submit-and-monitor">Submit and Monitor</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#check-memory-after-a-reserve-job">Check Memory After a Reserve Job</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#further-reading">Further Reading</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="running-stata-and-bash-jobs">
+<span id="klc-stata"></span><h1>Running Stata and Bash Jobs<a class="headerlink" href="#running-stata-and-bash-jobs" title="Link to this heading">#</a></h1>
+<p>Run Stata in one of three ways. Open the Stata window on a shared KLC node through <a class="reference internal" href="klc-ondemand.html"><span class="doc std std-doc">KLC OnDemand</span></a>. Run a do-file from the command line on <strong>KLC main</strong> inside <code class="docutils literal notranslate"><span class="pre">tmux</span></code>. Submit the same do-file to <strong>KLC Reserve</strong> with <code class="docutils literal notranslate"><span class="pre">sbatch</span></code> when the job needs exclusive memory or should continue after you log out.</p>
+<p>A bash script uses the two command-line paths. On KLC Reserve, set the core count in the job script.</p>
+<p>Command-line Stata uses one module on both KLC main and KLC Reserve:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>module<span class="w"> </span>load<span class="w"> </span>stata/17
+</pre></div>
+</div>
+<section id="choose-a-way-to-run">
+<h2>Choose a Way to Run<a class="headerlink" href="#choose-a-way-to-run" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p>Stata GUI</p></th>
+<th class="head"><p>KLC main</p></th>
+<th class="head"><p>KLC Reserve</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>How you start</p></td>
+<td><p>Launch KLC GNOME Desktop, then run <code class="docutils literal notranslate"><span class="pre">xstata-mp</span></code></p></td>
+<td><p>Log in and run the command in <code class="docutils literal notranslate"><span class="pre">tmux</span></code></p></td>
+<td><p>Submit a script with <code class="docutils literal notranslate"><span class="pre">sbatch</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Cores</p></td>
+<td><p>Shared with other users; <code class="docutils literal notranslate"><span class="pre">xstata-mp</span></code> uses 4</p></td>
+<td><p>Shared with other users; 24 cores at normal priority per user</p></td>
+<td><p>Reserved for your job</p></td>
+</tr>
+<tr class="row-even"><td><p>Memory</p></td>
+<td><p>Shared on the node</p></td>
+<td><p>Shared on the node</p></td>
+<td><p>Set a guesstimate with <code class="docutils literal notranslate"><span class="pre">--mem</span></code>, then check use with <code class="docutils literal notranslate"><span class="pre">seff</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Connection</p></td>
+<td><p>Reconnect from <strong>My Interactive Sessions</strong></p></td>
+<td><p>Keep the session alive with <code class="docutils literal notranslate"><span class="pre">tmux</span></code></p></td>
+<td><p>The job continues after you log out</p></td>
+</tr>
+<tr class="row-even"><td><p>Stata results</p></td>
+<td><p>Results window</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">analysis.log</span></code> from batch mode</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">analysis.log</span></code> from batch mode</p></td>
+</tr>
+<tr class="row-odd"><td><p>Shell log</p></td>
+<td><p>The desktop terminal</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">tee</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">#SBATCH</span> <span class="pre">--output</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Use the Stata GUI when you want the Stata window. Use KLC main for a do-file or bash script that fits in the shared 24-core limit. Use KLC Reserve when the job needs exclusive memory, or when you want it to run after you log out without a <code class="docutils literal notranslate"><span class="pre">tmux</span></code> session.</p>
+</section>
+<section id="stata-executables">
+<h2>Stata Executables<a class="headerlink" href="#stata-executables" title="Link to this heading">#</a></h2>
+<p>After <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">load</span> <span class="pre">stata/17</span></code>, the executable sets the core count:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Executable</p></th>
+<th class="head"><p>Interface</p></th>
+<th class="head"><p>Cores</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">stata-mp</span></code></p></td>
+<td><p>Command line</p></td>
+<td><p>4</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">stata-se</span></code></p></td>
+<td><p>Command line</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">xstata-mp</span></code></p></td>
+<td><p>Graphical</p></td>
+<td><p>4</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">xstata-se</span></code></p></td>
+<td><p>Graphical</p></td>
+<td><p>1</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- TODO(KRS): confirm xstata-se is installed alongside xstata-mp -->
+<p><code class="docutils literal notranslate"><span class="pre">stata-mp</span></code> and <code class="docutils literal notranslate"><span class="pre">xstata-mp</span></code> use 4 cores. A larger core request leaves that limit unchanged. For a bash script, set <code class="docutils literal notranslate"><span class="pre">--cpus-per-task</span></code> and <code class="docutils literal notranslate"><span class="pre">--mem</span></code> to what that task needs.</p>
+</section>
+<section id="run-the-stata-gui-on-klc-ondemand">
+<span id="stata-gui"></span><h2>Run the Stata GUI on KLC OnDemand<a class="headerlink" href="#run-the-stata-gui-on-klc-ondemand" title="Link to this heading">#</a></h2>
+<p>Launch <strong>KLC GNOME Desktop</strong> from KLC OnDemand, then start <code class="docutils literal notranslate"><span class="pre">xstata-mp</span></code> in a terminal on that desktop. The desktop runs on a shared KLC login node. It is a direct-access session, so set <strong>Wall Clock Time</strong> to the hours you need. The screenshots below use KLC node <code class="docutils literal notranslate"><span class="pre">0303</span></code>; choose a node from the live availability table.</p>
+<ol class="arabic">
+<li><p>Open <a class="reference external" href="https://ondemand.quest.northwestern.edu" target="_blank">Quest OnDemand <svg version="1.1" width="1.0em" height="1.0em" viewBox="0 0 16 16" aria-hidden="true" style="display: inline-block; vertical-align: middle; fill: currentColor;"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a> and log in with your NetID.</p>
+<p><img alt="Quest OnDemand welcome page after login" src="../../../_images/stata-gui-01-quest-ondemand.png" /></p>
+</li>
+<li><p>From the top navigation bar, select <strong>Help → Kellogg Linux Cluster</strong>.</p>
+<p><img alt="Help menu with Kellogg Linux Cluster highlighted" src="../../../_images/stata-gui-02-select-klc-profile.png" /></p>
+</li>
+<li><p>On the KLC landing page, read <strong>KLC Direct Access Resource Availability</strong> and choose a node with available CPU cores and RAM.</p>
+<p><img alt="KLC OnDemand landing page with the direct-access node table" src="../../../_images/stata-gui-03-klc-landing.png" /></p>
+</li>
+<li><p>Under <strong>Pinned Apps</strong>, select <strong>KLC GNOME Desktop</strong>.</p>
+<p><img alt="Pinned Apps with KLC GNOME Desktop highlighted" src="../../../_images/stata-gui-04-gnome-desktop-app.png" /></p>
+</li>
+<li><p>Set <strong>Cluster</strong> to the node you chose, set <strong>Wall Clock Time</strong> in hours, and click <strong>Launch</strong>.</p>
+<p><img alt="KLC GNOME Desktop launch form with a node and wall-clock time" src="../../../_images/stata-gui-05-launch-form.png" /></p>
+</li>
+<li><p>On <strong>My Interactive Sessions</strong>, wait until the session leaves <strong>Starting</strong>. Startup takes a few minutes.</p>
+<p><img alt="GNOME Desktop session in the Starting state" src="../../../_images/stata-gui-06-session-starting.png" /></p>
+</li>
+<li><p>When the status is <strong>Running</strong>, click <strong>Launch KLC GNOME Desktop</strong>. The card names the host. In this example the host is <code class="docutils literal notranslate"><span class="pre">klc0303</span></code>.</p>
+<p><img alt="Running GNOME Desktop session with the launch button highlighted" src="../../../_images/stata-gui-07-launch-desktop.png" /></p>
+</li>
+<li><p>On the desktop, click <strong>Activities</strong>.</p>
+<p><img alt="GNOME desktop with Activities in the top bar" src="../../../_images/stata-gui-08-activities.png" /></p>
+</li>
+<li><p>Click the terminal icon in the dock.</p>
+<p><img alt="Activities overview with the terminal icon highlighted" src="../../../_images/stata-gui-09-terminal-icon.png" /></p>
+</li>
+<li><p>In the terminal, change to the project directory, load Stata, and open the GUI. The terminal in the screenshot is still in the home directory; enter the <code class="docutils literal notranslate"><span class="pre">cd</span></code> command first so do-files and data stay out of the 80 GB home directory.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>/kellogg/proj/&lt;your-netid&gt;/project
+module<span class="w"> </span>load<span class="w"> </span>stata/17
+xstata-mp
+</pre></div>
+</div>
+<p><img alt="Terminal on the GNOME desktop after loading Stata and starting xstata-mp" src="../../../_images/stata-gui-10-load-module.png" /></p>
+</li>
+<li><p>Stata/MP opens in its own window.</p>
+<p><img alt="Stata/MP 17.0 window on the GNOME desktop" src="../../../_images/stata-gui-11-stata-window.png" /></p>
+</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The session card reports <strong>1 core</strong>. That count describes the desktop session on a shared login node. <code class="docutils literal notranslate"><span class="pre">xstata-mp</span></code> still uses up to 4 cores, and those cores count toward the 24-core normal-priority limit per user.</p>
+</div>
+<!-- TODO(KRS): confirm the OnDemand "1 core" badge is not a hard cap on xstata-mp -->
+<p>Results from the GUI appear in the Results window. Batch mode, covered below, writes <code class="docutils literal notranslate"><span class="pre">analysis.log</span></code> instead. For a 1-core graphical session, run <code class="docutils literal notranslate"><span class="pre">xstata-se</span></code> in place of <code class="docutils literal notranslate"><span class="pre">xstata-mp</span></code>.</p>
+<p>Reconnect to the desktop, or cancel it when you are finished, from <strong>My Interactive Sessions</strong>. See <a class="reference internal" href="klc-ondemand.html"><span class="doc std std-doc">KLC OnDemand</span></a> for session timing and the file manager.</p>
+</section>
+<section id="where-to-store-files">
+<h2>Where to Store Files<a class="headerlink" href="#where-to-store-files" title="Link to this heading">#</a></h2>
+<p>Put the do-file, bash script, data, and logs in your project directory:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>/kellogg/proj/&lt;your-netid&gt;/
+</pre></div>
+</div>
+<p>The home directory quota is 80 GB. Leave job output out of <code class="docutils literal notranslate"><span class="pre">/home/&lt;your-netid&gt;/</span></code>.</p>
+</section>
+<section id="how-logs-are-created">
+<h2>How Logs Are Created<a class="headerlink" href="#how-logs-are-created" title="Link to this heading">#</a></h2>
+<p>Each command-line run produces two records. They are different files.</p>
+<p><strong>Stata results.</strong> Batch mode writes a log named after the do-file, in the directory where you launch Stata. This command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>stata-mp<span class="w"> </span>-b<span class="w"> </span><span class="k">do</span><span class="w"> </span>analysis.do
+</pre></div>
+</div>
+<p>creates <code class="docutils literal notranslate"><span class="pre">analysis.log</span></code> in the current directory. That file holds the do-file output. <code class="docutils literal notranslate"><span class="pre">stata-se</span> <span class="pre">-b</span> <span class="pre">do</span> <span class="pre">analysis.do</span></code> does the same thing on 1 core. Batch mode keeps the do-file output in that <code class="docutils literal notranslate"><span class="pre">.log</span></code> file, so the terminal stays quiet.</p>
+<p><strong>Shell log.</strong> This file records the surrounding command: module loads, bash output, and errors from the job step.</p>
+<ul class="simple">
+<li><p>On KLC main, append the terminal stream to a file with <code class="docutils literal notranslate"><span class="pre">tee</span></code>.</p></li>
+<li><p>On KLC Reserve, SLURM writes it to the path in <code class="docutils literal notranslate"><span class="pre">#SBATCH</span> <span class="pre">--output</span></code>.</p></li>
+</ul>
+<p>Read <code class="docutils literal notranslate"><span class="pre">analysis.log</span></code> for Stata results. Read the shell log for everything around the Stata command. For a bash script, the shell log is the record of the script, because bash writes its output to that stream.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Create the log directory before you submit a KLC Reserve job. A missing directory leaves the <code class="docutils literal notranslate"><span class="pre">#SBATCH</span> <span class="pre">--output</span></code> file empty.</p>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>/kellogg/proj/&lt;your-netid&gt;/logs
+</pre></div>
+</div>
+</section>
+<section id="run-on-klc-main">
+<h2>Run on KLC Main<a class="headerlink" href="#run-on-klc-main" title="Link to this heading">#</a></h2>
+<p>Log in to a KLC node and run the job in <code class="docutils literal notranslate"><span class="pre">tmux</span></code>. <code class="docutils literal notranslate"><span class="pre">stata-mp</span></code> uses 4 cores and <code class="docutils literal notranslate"><span class="pre">stata-se</span></code> uses 1 core, with no separate resource request. Memory is shared with everyone else on that node. Each user has 24 cores at normal priority across KLC nodes; several <code class="docutils literal notranslate"><span class="pre">stata-mp</span></code> jobs at once count toward that total.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>A <code class="docutils literal notranslate"><span class="pre">tmux</span></code> session stays on the node where you created it. To reattach, SSH to that same node. See <a class="reference internal" href="klc-tmux.html"><span class="doc std std-doc">Using tmux</span></a> for detach, reattach, and other session commands.</p>
+</div>
+<section id="stata-do-file">
+<h3>Stata Do-File<a class="headerlink" href="#stata-do-file" title="Link to this heading">#</a></h3>
+<ol class="arabic">
+<li><p>Log in:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ssh<span class="w"> </span>&lt;your-netid&gt;@klc0305.quest.northwestern.edu
+</pre></div>
+</div>
+</li>
+<li><p>Go to the project directory and start a named session:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>/kellogg/proj/&lt;your-netid&gt;/project
+tmux<span class="w"> </span>new<span class="w"> </span>-s<span class="w"> </span>stata-job
+</pre></div>
+</div>
+</li>
+<li><p>Load Stata and run the do-file. Use <code class="docutils literal notranslate"><span class="pre">stata-mp</span></code> for 4 cores:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>logs
+module<span class="w"> </span>load<span class="w"> </span>stata/17
+stata-mp<span class="w"> </span>-b<span class="w"> </span><span class="k">do</span><span class="w"> </span>analysis.do
+</pre></div>
+</div>
+<p>Use <code class="docutils literal notranslate"><span class="pre">stata-se</span></code> for 1 core:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>stata-se<span class="w"> </span>-b<span class="w"> </span><span class="k">do</span><span class="w"> </span>analysis.do
+</pre></div>
+</div>
+</li>
+<li><p>Detach and leave the job running: press <code class="docutils literal notranslate"><span class="pre">Ctrl+b</span></code>, then <code class="docutils literal notranslate"><span class="pre">d</span></code>.</p></li>
+<li><p>Reattach later from the same node:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>tmux<span class="w"> </span>attach<span class="w"> </span>-t<span class="w"> </span>stata-job
+</pre></div>
+</div>
+</li>
+</ol>
+<p>Results are in <code class="docutils literal notranslate"><span class="pre">analysis.log</span></code> in the project directory. To keep a shell log as well, run the command this way:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>stata-mp<span class="w"> </span>-b<span class="w"> </span><span class="k">do</span><span class="w"> </span>analysis.do<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tee<span class="w"> </span>-a<span class="w"> </span>logs/stata-shell.log
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">logs/stata-shell.log</span></code> records the shell. The estimation output remains in <code class="docutils literal notranslate"><span class="pre">analysis.log</span></code>.</p>
+<p>To see memory in use on the node while you are logged in, run <code class="docutils literal notranslate"><span class="pre">free</span> <span class="pre">-h</span></code>.</p>
+</section>
+<section id="bash-command">
+<h3>Bash Command<a class="headerlink" href="#bash-command" title="Link to this heading">#</a></h3>
+<p>Use the same <code class="docutils literal notranslate"><span class="pre">tmux</span></code> session. Append stdout and stderr to a log file:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>/kellogg/proj/&lt;your-netid&gt;/project
+mkdir<span class="w"> </span>-p<span class="w"> </span>logs
+bash<span class="w"> </span>run_task.sh<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tee<span class="w"> </span>-a<span class="w"> </span>logs/run_task.log
+</pre></div>
+</div>
+<p>Detach with <code class="docutils literal notranslate"><span class="pre">Ctrl+b</span></code>, then <code class="docutils literal notranslate"><span class="pre">d</span></code>. The script keeps running, and <code class="docutils literal notranslate"><span class="pre">logs/run_task.log</span></code> remains after the session ends. Follow the file from another window with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>tail<span class="w"> </span>-f<span class="w"> </span>logs/run_task.log
+</pre></div>
+</div>
+</section>
+</section>
+<section id="run-on-klc-reserve">
+<h2>Run on KLC Reserve<a class="headerlink" href="#run-on-klc-reserve" title="Link to this heading">#</a></h2>
+<p>Submit from any KLC node. The job runs on the <code class="docutils literal notranslate"><span class="pre">kellogg</span></code> partition and keeps the cores and memory you request for the length of the job. The maximum wall time is 48 hours. If you omit <code class="docutils literal notranslate"><span class="pre">--mem</span></code>, the partition assigns 3 GB per core. Set <code class="docutils literal notranslate"><span class="pre">--mem</span></code> to a guesstimate of peak use (for example <code class="docutils literal notranslate"><span class="pre">32G</span></code> or <code class="docutils literal notranslate"><span class="pre">64G</span></code>).</p>
+<p>Stata is one process that uses extra cores as threads. Set <code class="docutils literal notranslate"><span class="pre">--ntasks=1</span></code> and put the core count in <code class="docutils literal notranslate"><span class="pre">--cpus-per-task</span></code>: 4 for <code class="docutils literal notranslate"><span class="pre">stata-mp</span></code>, 1 for <code class="docutils literal notranslate"><span class="pre">stata-se</span></code>.</p>
+<p>For partitions, monitoring commands, and other job scripts, see <a class="reference internal" href="../../klc-reserve/slurm-jobs.html"><span class="doc std std-doc">Submitting SLURM Jobs</span></a>.</p>
+<section id="stata-do-file-stata-mp-4-cores">
+<h3>Stata Do-File (<code class="docutils literal notranslate"><span class="pre">stata-mp</span></code>, 4 Cores)<a class="headerlink" href="#stata-do-file-stata-mp-4-cores" title="Link to this heading">#</a></h3>
+<p>Save this as <code class="docutils literal notranslate"><span class="pre">stata_mp_job.sh</span></code>. Replace <code class="docutils literal notranslate"><span class="pre">&lt;your-netid&gt;</span></code>, the <code class="docutils literal notranslate"><span class="pre">--mem</span></code> guesstimate, and the wall time.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="c1">#SBATCH --account=kellogg</span>
+<span class="c1">#SBATCH --partition=kellogg</span>
+<span class="c1">#SBATCH --job-name=stata-mp</span>
+<span class="c1">#SBATCH --nodes=1</span>
+<span class="c1">#SBATCH --ntasks=1</span>
+<span class="c1">#SBATCH --cpus-per-task=4</span>
+<span class="c1">#SBATCH --mem=64G</span>
+<span class="c1">#SBATCH --time=04:00:00</span>
+<span class="c1">#SBATCH --output=/kellogg/proj/&lt;your-netid&gt;/logs/slurm-%j.out</span>
+
+module<span class="w"> </span>purge
+module<span class="w"> </span>load<span class="w"> </span>stata/17
+
+<span class="nb">cd</span><span class="w"> </span>/kellogg/proj/&lt;your-netid&gt;/project
+stata-mp<span class="w"> </span>-b<span class="w"> </span><span class="k">do</span><span class="w"> </span>analysis.do
+</pre></div>
+</div>
+<p>For 1 core, change the executable and the core request:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1">#SBATCH --cpus-per-task=1</span>
+stata-se<span class="w"> </span>-b<span class="w"> </span><span class="k">do</span><span class="w"> </span>analysis.do
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">%j</span></code> in <code class="docutils literal notranslate"><span class="pre">--output</span></code> is the job ID, so each submission gets its own shell log. Stata still writes <code class="docutils literal notranslate"><span class="pre">analysis.log</span></code> in the project directory. That file is the do-file record. The SLURM file records the script around it.</p>
+</section>
+<section id="id1">
+<h3>Bash Command<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<p>Save this as <code class="docutils literal notranslate"><span class="pre">bash_job.sh</span></code>. Set <code class="docutils literal notranslate"><span class="pre">--cpus-per-task</span></code> and <code class="docutils literal notranslate"><span class="pre">--mem</span></code> to what that task needs.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="c1">#SBATCH --account=kellogg</span>
+<span class="c1">#SBATCH --partition=kellogg</span>
+<span class="c1">#SBATCH --job-name=bash-task</span>
+<span class="c1">#SBATCH --nodes=1</span>
+<span class="c1">#SBATCH --ntasks=1</span>
+<span class="c1">#SBATCH --cpus-per-task=4</span>
+<span class="c1">#SBATCH --mem=32G</span>
+<span class="c1">#SBATCH --time=02:00:00</span>
+<span class="c1">#SBATCH --output=/kellogg/proj/&lt;your-netid&gt;/logs/slurm-%j.out</span>
+
+<span class="nb">cd</span><span class="w"> </span>/kellogg/proj/&lt;your-netid&gt;/project
+bash<span class="w"> </span>run_task.sh
+</pre></div>
+</div>
+<p>The shell log at <code class="docutils literal notranslate"><span class="pre">--output</span></code> is the record of <code class="docutils literal notranslate"><span class="pre">run_task.sh</span></code>. Change <code class="docutils literal notranslate"><span class="pre">--cpus-per-task</span></code> and <code class="docutils literal notranslate"><span class="pre">--mem</span></code> for each task.</p>
+</section>
+<section id="submit-and-monitor">
+<h3>Submit and Monitor<a class="headerlink" href="#submit-and-monitor" title="Link to this heading">#</a></h3>
+<ol class="arabic">
+<li><p>Create the log directory:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>/kellogg/proj/&lt;your-netid&gt;/logs
+</pre></div>
+</div>
+</li>
+<li><p>Submit:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sbatch<span class="w"> </span>stata_mp_job.sh
+</pre></div>
+</div>
+<p>SLURM prints a job ID:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Submitted batch job 1234567
+</pre></div>
+</div>
+</li>
+<li><p>Check the queue:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>squeue<span class="w"> </span>-u<span class="w"> </span><span class="nv">$USER</span>
+</pre></div>
+</div>
+</li>
+<li><p>Read the shell log while the job runs, using the job ID from <code class="docutils literal notranslate"><span class="pre">sbatch</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>tail<span class="w"> </span>-f<span class="w"> </span>/kellogg/proj/&lt;your-netid&gt;/logs/slurm-1234567.out
+</pre></div>
+</div>
+</li>
+<li><p>When the job finishes, read <code class="docutils literal notranslate"><span class="pre">analysis.log</span></code> in the project directory for Stata results.</p></li>
+</ol>
+<p>If submission fails with an account error, run <code class="docutils literal notranslate"><span class="pre">groups</span></code> on a KLC node and confirm <code class="docutils literal notranslate"><span class="pre">kellogg</span></code> is listed. Contact <a class="reference external" href="mailto:rs&#37;&#52;&#48;kellogg&#46;northwestern&#46;edu" target="_blank">rs<span>&#64;</span>kellogg<span>&#46;</span>northwestern<span>&#46;</span>edu <svg version="1.1" width="1.0em" height="1.0em" viewBox="0 0 16 16" aria-hidden="true" style="display: inline-block; vertical-align: middle; fill: currentColor;"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a> if it is missing. Cancel a job with <code class="docutils literal notranslate"><span class="pre">scancel</span> <span class="pre">&lt;job-id&gt;</span></code>.</p>
+</section>
+</section>
+<section id="check-memory-after-a-reserve-job">
+<h2>Check Memory After a Reserve Job<a class="headerlink" href="#check-memory-after-a-reserve-job" title="Link to this heading">#</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">--mem</span></code> value is a guesstimate. After the job finishes, compare it with the memory the job actually used:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>seff<span class="w"> </span>&lt;job-id&gt;
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">seff</span></code> reports requested memory and the memory used. For the next submission, set <code class="docutils literal notranslate"><span class="pre">--mem</span></code> to about 110% of that peak. If the job ends with <code class="docutils literal notranslate"><span class="pre">OUT_OF_MEMORY</span></code>, raise <code class="docutils literal notranslate"><span class="pre">--mem</span></code> and resubmit. If it ends with <code class="docutils literal notranslate"><span class="pre">TIMEOUT</span></code>, raise <code class="docutils literal notranslate"><span class="pre">--time</span></code>. The wall-time limit on the <code class="docutils literal notranslate"><span class="pre">kellogg</span></code> partition is 48 hours.</p>
+</section>
+<section id="further-reading">
+<h2>Further Reading<a class="headerlink" href="#further-reading" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="klc-software.html"><span class="doc std std-doc">Launching Jobs on KLC</span></a> — interactive runs and <code class="docutils literal notranslate"><span class="pre">tee</span></code> logs on KLC main</p></li>
+<li><p><a class="reference internal" href="klc-tmux.html"><span class="doc std std-doc">Using tmux</span></a> — detach, reattach, and session commands</p></li>
+<li><p><a class="reference internal" href="klc-ondemand.html"><span class="doc std std-doc">KLC OnDemand</span></a> — browser login, GNOME Desktop, and session management</p></li>
+<li><p><a class="reference internal" href="../../klc-reserve/slurm-jobs.html"><span class="doc std std-doc">Submitting SLURM Jobs</span></a> — job scripts, monitoring, and resource limits on KLC Reserve</p></li>
+</ul>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="klc-software.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Launching Jobs</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="klc-tmux.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Using tmux</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#choose-a-way-to-run">Choose a Way to Run</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stata-executables">Stata Executables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-the-stata-gui-on-klc-ondemand">Run the Stata GUI on KLC OnDemand</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#where-to-store-files">Where to Store Files</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-logs-are-created">How Logs Are Created</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-on-klc-main">Run on KLC Main</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stata-do-file">Stata Do-File</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bash-command">Bash Command</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-on-klc-reserve">Run on KLC Reserve</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stata-do-file-stata-mp-4-cores">Stata Do-File (<code class="docutils literal notranslate"><span class="pre">stata-mp</span></code>, 4 Cores)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Bash Command</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#submit-and-monitor">Submit and Monitor</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#check-memory-after-a-reserve-job">Check Memory After a Reserve Job</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#further-reading">Further Reading</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+
+
+<div id="footer-bottom">
+<div class="contain-1120">
+<span class="copyright" style="color:white">©
+<script>// <![CDATA[
+document.write(new Date().getFullYear())
+// ]]></script>
+Kellogg School of Management | <a href="https://www.kellogg.northwestern.edu/academics-research/research-support/">Kellogg Research Support</a></span>
+<!--
+<ul>
+<li><a href="https://www.facebook.com/NorthwesternU"> <span class="social facebook">Facebook</span> </a></li>
+<li><a href="https://www.twitter.com/northwesternu"> <span class="social twitter">Twitter</span> </a></li>
+<li><a href="https://www.instagram.com/northwesternu"> <span class="social instagram">Instagram</span> </a></li>
+<li><a href="https://www.youtube.com/user/NorthwesternU"> <span class="social youtube">YouTube</span> </a></li>
+<li><a href="https://www.tiktok.com/@northwestern.u"> <span class="social tiktok">TikTok</span> </a></li>
+<li><a href="https://www.linkedin.com/school/northwestern-university/"> <span class="social linkedin">LinkedIn</span> </a></li>
+</ul>
+-->
+<span class="right" style="color:white"><a style="color:white" href="https://www.northwestern.edu/disclaimer.html">Disclaimer</a></span>
+</div>
+</div>
+  </footer>
+  </body>
+</html>
