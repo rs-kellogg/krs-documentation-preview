@@ -426,19 +426,14 @@ Codex CLI</label><div class="sd-tab-content docutils">
 <p>Load the container module and launch it with the agent you installed, passing the project directory and (optionally) a data directory to mount:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>module<span class="w"> </span>load<span class="w"> </span>ai-agent-container
 
-ai_agent_container<span class="w"> </span>-a<span class="w"> </span>claude<span class="w"> </span>/path/to/project<span class="w"> </span>/path/to/data
+ai_agent_container<span class="w"> </span>-a<span class="w"> </span>claude<span class="w"> </span>/path/to/project<span class="w"> </span>/path/to/data:ro
 <span class="c1"># or</span>
-ai_agent_container<span class="w"> </span>-a<span class="w"> </span>codex<span class="w"> </span>/path/to/project<span class="w"> </span>/path/to/data
+ai_agent_container<span class="w"> </span>-a<span class="w"> </span>codex<span class="w"> </span>/path/to/project<span class="w"> </span>/path/to/data:ro
 <span class="c1"># or</span>
-ai_agent_container<span class="w"> </span>-a<span class="w"> </span>copilot<span class="w"> </span>/path/to/project<span class="w"> </span>/path/to/data
+ai_agent_container<span class="w"> </span>-a<span class="w"> </span>copilot<span class="w"> </span>/path/to/project<span class="w"> </span>/path/to/data:ro
 </pre></div>
 </div>
-<p>Replace <code class="docutils literal notranslate"><span class="pre">/path/to/project</span></code> and <code class="docutils literal notranslate"><span class="pre">/path/to/data</span></code> with the directories the agent needs access to — for example your project repository under <code class="docutils literal notranslate"><span class="pre">/kellogg/proj/&lt;your-netid&gt;/</span></code> and a dataset path under <code class="docutils literal notranslate"><span class="pre">/kellogg/data/</span></code>. The agent cannot see anything outside the paths you pass in.</p>
-<p>Append <code class="docutils literal notranslate"><span class="pre">:ro</span></code> to a path to mount it read-only:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ai_agent_container<span class="w"> </span>-a<span class="w"> </span>claude<span class="w"> </span>/path/to/project<span class="w"> </span>/path/to/data:ro
-</pre></div>
-</div>
-<p>Use a read-only mount for reference data or licensed datasets you want the agent to read but never modify or delete.</p>
+<p>Replace <code class="docutils literal notranslate"><span class="pre">/path/to/project</span></code> and <code class="docutils literal notranslate"><span class="pre">/path/to/data</span></code> with the directories the agent needs access to — for example your project repository under <code class="docutils literal notranslate"><span class="pre">/kellogg/proj/&lt;your-netid&gt;/</span></code> and a dataset path under <code class="docutils literal notranslate"><span class="pre">/kellogg/data/</span></code>. The agent cannot see anything outside the paths you pass in. The <code class="docutils literal notranslate"><span class="pre">:ro</span></code> suffix mounts the data directory read-only; default to it for reference data or licensed datasets so the agent can read them but never modify or delete them. Drop the suffix only if the agent needs to write to that directory.</p>
 </section>
 <section id="log-in-to-activate-the-agent">
 <h2>3. Log in to Activate the Agent<a class="headerlink" href="#log-in-to-activate-the-agent" title="Link to this heading">#</a></h2>

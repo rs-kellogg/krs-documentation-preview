@@ -61,22 +61,14 @@ Load the container module and launch it with the agent you installed, passing th
 ```bash
 module load ai-agent-container
 
-ai_agent_container -a claude /path/to/project /path/to/data
-# or
-ai_agent_container -a codex /path/to/project /path/to/data
-# or
-ai_agent_container -a copilot /path/to/project /path/to/data
-```
-
-Replace `/path/to/project` and `/path/to/data` with the directories the agent needs access to — for example your project repository under `/kellogg/proj/<your-netid>/` and a dataset path under `/kellogg/data/`. The agent cannot see anything outside the paths you pass in.
-
-Append `:ro` to a path to mount it read-only:
-
-```bash
 ai_agent_container -a claude /path/to/project /path/to/data:ro
+# or
+ai_agent_container -a codex /path/to/project /path/to/data:ro
+# or
+ai_agent_container -a copilot /path/to/project /path/to/data:ro
 ```
 
-Use a read-only mount for reference data or licensed datasets you want the agent to read but never modify or delete.
+Replace `/path/to/project` and `/path/to/data` with the directories the agent needs access to — for example your project repository under `/kellogg/proj/<your-netid>/` and a dataset path under `/kellogg/data/`. The agent cannot see anything outside the paths you pass in. The `:ro` suffix mounts the data directory read-only; default to it for reference data or licensed datasets so the agent can read them but never modify or delete them. Drop the suffix only if the agent needs to write to that directory.
 
 ## 3. Log in to Activate the Agent
 
