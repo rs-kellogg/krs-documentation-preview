@@ -359,10 +359,9 @@ Northwestern University - Home"/>
             </div>
             <nav aria-label="Page">
                 <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-conda-mamba-environment-with-node-js">1. Create a Conda/Mamba Environment with Node.js</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install-the-cli-tool">2. Install the CLI Tool</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-and-launch-the-container">3. Load and Launch the Container</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#log-in-to-activate-the-agent">4. Log in to Activate the Agent</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install-the-cli-tool">1. Install the CLI Tool</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-and-launch-the-container">2. Load and Launch the Container</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#log-in-to-activate-the-agent">3. Log in to Activate the Agent</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#related-pages">Related Pages</a></li>
 </ul>
             </nav>
@@ -377,58 +376,73 @@ Northwestern University - Home"/>
                   
   <section id="ai-coding-agents-on-klc">
 <h1>AI Coding Agents on KLC<a class="headerlink" href="#ai-coding-agents-on-klc" title="Link to this heading">#</a></h1>
-<p>KLC provides a container module for running command-line AI coding agents — <a class="reference external" href="https://docs.anthropic.com/en/docs/claude-code" target="_blank">Claude Code <svg version="1.1" width="1.0em" height="1.0em" viewBox="0 0 16 16" aria-hidden="true" style="display: inline-block; vertical-align: middle; fill: currentColor;"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a> and <a class="reference external" href="https://developers.openai.com/codex/cli" target="_blank">OpenAI Codex CLI <svg version="1.1" width="1.0em" height="1.0em" viewBox="0 0 16 16" aria-hidden="true" style="display: inline-block; vertical-align: middle; fill: currentColor;"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a> — against your project files. The container isolates the agent’s runtime from the shared KLC environment and mounts only the project and data directories you specify, so the agent cannot read outside of them.</p>
+<p>KLC provides a container module for running command-line AI coding agents — <a class="reference external" href="https://docs.anthropic.com/en/docs/claude-code" target="_blank">Claude Code <svg version="1.1" width="1.0em" height="1.0em" viewBox="0 0 16 16" aria-hidden="true" style="display: inline-block; vertical-align: middle; fill: currentColor;"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a>, <a class="reference external" href="https://developers.openai.com/codex/cli" target="_blank">OpenAI Codex CLI <svg version="1.1" width="1.0em" height="1.0em" viewBox="0 0 16 16" aria-hidden="true" style="display: inline-block; vertical-align: middle; fill: currentColor;"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a>, and GitHub Copilot CLI — against your project files. The container isolates the agent’s runtime from the shared KLC environment and mounts only the project and data directories you specify, so the agent cannot read outside of them.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>Coding agents send file contents and prompts to Anthropic’s or OpenAI’s servers. Follow your IRB protocol and Northwestern data governance policies before pointing an agent at a directory that contains identifiable human-subjects data or other restricted data. See <a class="reference internal" href="llm-api.html"><span class="doc std std-doc">Data Governance and IRB</span></a>.</p>
+<p>Coding agents send file contents and prompts to Anthropic’s, OpenAI’s, or GitHub’s servers. Follow your IRB protocol and Northwestern data governance policies before pointing an agent at a directory that contains identifiable human-subjects data or other restricted data. See <a class="reference internal" href="llm-api.html"><span class="doc std std-doc">Data Governance and IRB</span></a>.</p>
 </div>
-<section id="create-a-conda-mamba-environment-with-node-js">
-<h2>1. Create a Conda/Mamba Environment with Node.js<a class="headerlink" href="#create-a-conda-mamba-environment-with-node-js" title="Link to this heading">#</a></h2>
-<p>Both CLI tools need a Node.js runtime (or, for the Claude Code installer, a user-writable location for its install script). Create a dedicated environment in your project directory rather than your home directory — the home directory has an <a class="reference internal" href="klc-files.html"><span class="doc std std-doc">80 GB quota</span></a> that is easy to exhaust with Node packages and model caches.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>module<span class="w"> </span>load<span class="w"> </span>mamba/24.3.0
-<span class="nb">source</span><span class="w"> </span>/hpc/software/mamba/24.3.0/etc/profile.d/conda.sh
-
-mamba<span class="w"> </span>create<span class="w"> </span>-p<span class="w"> </span>/kellogg/proj/&lt;your-netid&gt;/envs/coding-agent<span class="w"> </span>nodejs
-mamba<span class="w"> </span>activate<span class="w"> </span>/kellogg/proj/&lt;your-netid&gt;/envs/coding-agent
-</pre></div>
-</div>
-</section>
 <section id="install-the-cli-tool">
-<h2>2. Install the CLI Tool<a class="headerlink" href="#install-the-cli-tool" title="Link to this heading">#</a></h2>
-<p>With the environment active, install whichever agent you want to use.</p>
+<h2>1. Install the CLI Tool<a class="headerlink" href="#install-the-cli-tool" title="Link to this heading">#</a></h2>
+<p>Each CLI installs with a single <code class="docutils literal notranslate"><span class="pre">curl</span></code> command into <code class="docutils literal notranslate"><span class="pre">~/.local/bin</span></code> — no environment setup required. Install whichever agent(s) you want to use.</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
 <label class="sd-tab-label" for="sd-tab-item-0">
-Codex</label><div class="sd-tab-content docutils">
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>npm<span class="w"> </span>i<span class="w"> </span>-g<span class="w"> </span>@openai/codex
+Copilot CLI</label><div class="sd-tab-content docutils">
+<p>See the <a class="reference external" href="https://docs.github.com/en/copilot/how-tos/copilot-cli/set-up-copilot-cli/install-copilot-cli" target="_blank">Copilot CLI install instructions <svg version="1.1" width="1.0em" height="1.0em" viewBox="0 0 16 16" aria-hidden="true" style="display: inline-block; vertical-align: middle; fill: currentColor;"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a> for macOS and Linux, or run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://gh.io/copilot-install<span class="w"> </span><span class="p">|</span><span class="w"> </span>bash
+~/.local/bin/copilot<span class="w"> </span>--version
 </pre></div>
 </div>
+<p>You need a GitHub account with access to Copilot.</p>
 </div>
 <input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
 <label class="sd-tab-label" for="sd-tab-item-1">
 Claude Code</label><div class="sd-tab-content docutils">
+<p>See the <a class="reference external" href="https://docs.anthropic.com/en/docs/claude-code" target="_blank">Claude Code install instructions <svg version="1.1" width="1.0em" height="1.0em" viewBox="0 0 16 16" aria-hidden="true" style="display: inline-block; vertical-align: middle; fill: currentColor;"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a>, or run:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://claude.ai/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>bash
+~/.local/bin/claude<span class="w"> </span>--version
 </pre></div>
 </div>
+<p>You need a Claude account.</p>
+</div>
+<input id="sd-tab-item-2" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-2">
+Codex CLI</label><div class="sd-tab-content docutils">
+<p>See the <a class="reference external" href="https://developers.openai.com/codex/cli" target="_blank">Codex CLI documentation <svg version="1.1" width="1.0em" height="1.0em" viewBox="0 0 16 16" aria-hidden="true" style="display: inline-block; vertical-align: middle; fill: currentColor;"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a>, or run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://chatgpt.com/codex/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>sh
+~/.local/bin/codex<span class="w"> </span>--version
+</pre></div>
+</div>
+<p>You need a ChatGPT account with access to Codex.</p>
 </div>
 </div>
-<p>You only need to do this once per environment — the CLI persists in the environment’s prefix until you remove or recreate it.</p>
+<p>If the version check above fails with “command not found,” add <code class="docutils literal notranslate"><span class="pre">~/.local/bin</span></code> to your <code class="docutils literal notranslate"><span class="pre">PATH</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">"</span><span class="nv">$HOME</span><span class="s2">/.local/bin:</span><span class="nv">$PATH</span><span class="s2">"</span>
+</pre></div>
+</div>
 </section>
 <section id="load-and-launch-the-container">
-<h2>3. Load and Launch the Container<a class="headerlink" href="#load-and-launch-the-container" title="Link to this heading">#</a></h2>
+<h2>2. Load and Launch the Container<a class="headerlink" href="#load-and-launch-the-container" title="Link to this heading">#</a></h2>
 <p>Load the container module and launch it with the agent you installed, passing the project directory and (optionally) a data directory to mount:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>module<span class="w"> </span>load<span class="w"> </span>ai-agent-container
 
 ai_agent_container<span class="w"> </span>-a<span class="w"> </span>claude<span class="w"> </span>/path/to/project<span class="w"> </span>/path/to/data
 <span class="c1"># or</span>
 ai_agent_container<span class="w"> </span>-a<span class="w"> </span>codex<span class="w"> </span>/path/to/project<span class="w"> </span>/path/to/data
+<span class="c1"># or</span>
+ai_agent_container<span class="w"> </span>-a<span class="w"> </span>copilot<span class="w"> </span>/path/to/project<span class="w"> </span>/path/to/data
 </pre></div>
 </div>
-<p>Replace <code class="docutils literal notranslate"><span class="pre">/path/to/project</span></code> and <code class="docutils literal notranslate"><span class="pre">/path/to/data</span></code> with the directories the agent needs access to — for example your project repository under <code class="docutils literal notranslate"><span class="pre">/kellogg/proj/&lt;your-netid&gt;/</span></code> and a read-only dataset path under <code class="docutils literal notranslate"><span class="pre">/kellogg/data/</span></code>. The agent cannot see anything outside the paths you pass in.</p>
+<p>Replace <code class="docutils literal notranslate"><span class="pre">/path/to/project</span></code> and <code class="docutils literal notranslate"><span class="pre">/path/to/data</span></code> with the directories the agent needs access to — for example your project repository under <code class="docutils literal notranslate"><span class="pre">/kellogg/proj/&lt;your-netid&gt;/</span></code> and a dataset path under <code class="docutils literal notranslate"><span class="pre">/kellogg/data/</span></code>. The agent cannot see anything outside the paths you pass in.</p>
+<p>Append <code class="docutils literal notranslate"><span class="pre">:ro</span></code> to a path to mount it read-only:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ai_agent_container<span class="w"> </span>-a<span class="w"> </span>claude<span class="w"> </span>/path/to/project<span class="w"> </span>/path/to/data:ro
+</pre></div>
+</div>
+<p>Use a read-only mount for reference data or licensed datasets you want the agent to read but never modify or delete.</p>
 </section>
 <section id="log-in-to-activate-the-agent">
-<h2>4. Log in to Activate the Agent<a class="headerlink" href="#log-in-to-activate-the-agent" title="Link to this heading">#</a></h2>
-<p>The first time you launch, you’re prompted to log in to your Anthropic or OpenAI account. If no prompt appears, run the login command inside the agent’s session:</p>
+<h2>3. Log in to Activate the Agent<a class="headerlink" href="#log-in-to-activate-the-agent" title="Link to this heading">#</a></h2>
+<p>The first time you launch, you’re prompted to log in to your Anthropic, OpenAI, or GitHub account, depending on the agent. If no prompt appears, run the login command inside the agent’s session:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">login</span>
 </pre></div>
 </div>
@@ -437,7 +451,6 @@ ai_agent_container<span class="w"> </span>-a<span class="w"> </span>codex<span c
 <section id="related-pages">
 <h2>Related Pages<a class="headerlink" href="#related-pages" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p><a class="reference internal" href="klc-conda.html"><span class="doc std std-doc">Conda/Mamba Environments</span></a> — general environment management on KLC</p></li>
 <li><p><a class="reference internal" href="llm-api.html"><span class="doc std std-doc">LLM API Usage</span></a> — data governance guidance that also applies to coding agents</p></li>
 <li><p><a class="reference internal" href="klc-files.html"><span class="doc std std-doc">KLC Filesystem</span></a> — home directory and project directory quotas</p></li>
 </ul>
@@ -491,10 +504,9 @@ ai_agent_container<span class="w"> </span>-a<span class="w"> </span>codex<span c
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-conda-mamba-environment-with-node-js">1. Create a Conda/Mamba Environment with Node.js</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install-the-cli-tool">2. Install the CLI Tool</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-and-launch-the-container">3. Load and Launch the Container</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#log-in-to-activate-the-agent">4. Log in to Activate the Agent</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install-the-cli-tool">1. Install the CLI Tool</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-and-launch-the-container">2. Load and Launch the Container</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#log-in-to-activate-the-agent">3. Log in to Activate the Agent</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#related-pages">Related Pages</a></li>
 </ul>
   </nav></div>
