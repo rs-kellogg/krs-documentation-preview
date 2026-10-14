@@ -124,5 +124,6 @@ Research the Right Way Workshop </start/workshop-doc>
 Qualitative Coding with LLMs </tutorials/qual-coding/qualitative-coding-with-llms>
 OpenAI and LLMs </guides/openai/openai>
 Open Source LLMs </guides/llm/llm>
+LLM Batch Pipeline </guides/llm/llm-batch>
 ```
 

@@ -42,10 +42,3 @@ The **Open Source LLMs the Right Way** workshop (April 2024) covers model select
 | Follow a hands-on NLP research tutorial | [Open-Source LLMs for Text Analysis](/tutorials/nlp/tutorial4) |
 | Learn general LLM concepts (transformers, model selection) | [Understanding LLMs](/guides/openai/llm-intro) |
 | Run large, auditable batches of LLM requests | [LLM Batch Pipeline](/guides/llm/llm-batch) |
-
-```{toctree}
-:maxdepth: 1
-:hidden:
-
-LLM Batch Pipeline <llm-batch>
-```
