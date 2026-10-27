@@ -53,20 +53,20 @@ On KLC, look up a firm's `rcid` in `company_mapping`, then follow [Querying with
 (revelio-duckdb)=
 ## Querying with DuckDB on KLC
 
-DuckDB reads the Parquet files in place. On KLC main, cap every session at 16 threads and 128 GB. Use a [KLC Reserve](/services/klc-reserve/when-to-use) job when the query needs more than that, or when a long scan should leave the shared login node.
+DuckDB reads the Parquet files in place. On KLC main, cap every session at 16 threads and 128 GB. Queries that filter, aggregate, or write an extract stay on KLC main. Read [Use KLC Reserve Above This Budget](revelio-reserve) only when you will load the entire contents of one or more tables into memory.
 
 ### Before You Start
 
 - Log in to KLC. See [How to Access KLC](/services/klc/user-guide/klc-accessing) if you do not have an account.
 - Create a conda environment under `/kellogg/proj/<your-netid>/`. See [Conda Environments on KLC](/services/klc/user-guide/klc-conda).
 - Store views and extracts under `/kellogg/proj/<your-netid>/revelio`. Home directories are 80 GB.
-- Send DuckDB spill files to `/scratch/<your-netid>/duckdb_tmp`.
+- Send DuckDB spill files to `/scratch/$USER/duckdb_tmp`. The Python and R examples set that path from the `USER` environment variable.
 
 ```bash
 module load mamba/24.3.0
 mamba create -p /kellogg/proj/<your-netid>/envs/revelio-duckdb -c conda-forge python-duckdb
 source activate /kellogg/proj/<your-netid>/envs/revelio-duckdb
-mkdir -p /kellogg/proj/<your-netid>/revelio /scratch/<your-netid>/duckdb_tmp
+mkdir -p /kellogg/proj/<your-netid>/revelio /scratch/$USER/duckdb_tmp
 ```
 
 For R, add `duckdb` and `DBI` to an R environment from the same conda page. Replace `<your-netid>` in every path below.
@@ -79,105 +79,12 @@ KLC main is the default. Check [KLC Node Resources](/services/klc-node-resources
 
 | Query | Where to Run |
 |---|---|
-| `DESCRIBE`, an unfiltered `COUNT(*)`, and the small tables (`company_mapping`, role and skill lookups, `school_mapping`, `regions`, `months`, `layoffs`, `sentiment_scores`) | KLC main |
-| A one-firm extract or a filtered aggregate from `individual_positions`, `postings_cosmos`, posting text, or `individual_user_skills` | KLC main, at 16 threads and 128 GB |
-| A query that needs more than 16 threads or more than 128 GB, or a multi-hour scan to move off the shared node | [KLC Reserve](/services/klc-reserve/when-to-use) |
-
-(revelio-duckdb-limits)=
-### Open DuckDB with Limits
-
-Create the views file in the next section, then open it read-only with this configuration. Set the cap on every connection.
-
-::::{tab-set}
-
-:::{tab-item} Python
-:sync: python
-
-```python
-import duckdb
-
-con = duckdb.connect(
-    "/kellogg/proj/<your-netid>/revelio/revelio_views.duckdb",
-    read_only=True,
-    config={
-        "threads": 16,
-        "memory_limit": "128GB",
-        "temp_directory": "/scratch/<your-netid>/duckdb_tmp",
-        "max_temp_directory_size": "200GB",
-    },
-)
-con.execute("SET preserve_insertion_order = false")
-```
-
-:::
-
-:::{tab-item} R
-:sync: r
-
-```r
-library(DBI)
-library(duckdb)
-
-con <- dbConnect(
-  duckdb(),
-  dbdir = "/kellogg/proj/<your-netid>/revelio/revelio_views.duckdb",
-  read_only = TRUE,
-  config = list(
-    threads = "16",
-    memory_limit = "128GB",
-    temp_directory = "/scratch/<your-netid>/duckdb_tmp",
-    max_temp_directory_size = "200GB"
-  )
-)
-dbExecute(con, "SET preserve_insertion_order = false")
-```
-
-:::
-
-:::{tab-item} SQL
-
-```sql
-SET threads = 16;
-SET memory_limit = '128GB';
-SET temp_directory = '/scratch/<your-netid>/duckdb_tmp';
-SET max_temp_directory_size = '200GB';
-SET preserve_insertion_order = false;
-```
-
-:::
-
-::::
-
-| Setting | Controls | KLC Main Value |
-|---|---|---|
-| `threads` | CPU threads for query execution | `SET threads = 16;` |
-| `memory_limit` | Maximum memory DuckDB uses before spilling to disk | `SET memory_limit = '128GB';` |
-| `temp_directory` | Where DuckDB writes spill files | `SET temp_directory = '/scratch/<your-netid>/duckdb_tmp';` |
-| `max_temp_directory_size` | Cap on total spill-file size | `SET max_temp_directory_size = '200GB';` |
-| `preserve_insertion_order` | `false` lowers memory use for large scans and exports | `SET preserve_insertion_order = false;` |
-
-Confirm the active values:
-
-```sql
-SELECT current_setting('threads') AS threads,
-       current_setting('memory_limit') AS memory_limit,
-       current_setting('temp_directory') AS temp_directory;
-```
-
-| Where You Run | `threads` | `memory_limit` |
-|---|---|---|
-| KLC main | 16 | `128GB` |
-| KLC Reserve | The `--ntasks` value you request | About 90% of the `--mem` value you request |
-
-When a query exceeds `memory_limit`, DuckDB spills to `temp_directory` and keeps running. When the spill would pass `max_temp_directory_size`, raise that cap or move the query to a [KLC Reserve](/services/klc-reserve/when-to-use) job with a higher `--mem`. See [High-Memory Jobs](/services/klc-reserve/highmem-jobs) for requests above 128 GB.
-
-:::{note}
-`memory_limit` applies to DuckDB's own buffers. Converting a result to pandas or R with `.df()` or `dbGetQuery()` allocates additional memory outside the limit. Return an aggregate or a small extract.
-:::
+| A DuckDB query that filters, aggregates, or writes an extract, including `DESCRIBE` and an unfiltered `COUNT(*)` | KLC main, at 16 threads and 128 GB |
+| Reading the entire contents of one or more tables into pandas, Polars, or R | [Use KLC Reserve Above This Budget](revelio-reserve) |
 
 ### Query Rules
 
-- Set `threads = 16` and `memory_limit = '128GB'` when you connect on KLC main. Raise either value only in a KLC Reserve job that requests those resources.
+- Set `threads = 16` and `memory_limit = '128GB'` when you connect on KLC main. Raise either value only in a [KLC Reserve](revelio-reserve) job that loads entire tables into memory and requests those resources.
 - Name the columns you need. DuckDB then skips the other Parquet columns, including `description` and review text.
 - Filter and aggregate in DuckDB. Do not pull `individual_positions`, `postings_cosmos`, or `individual_user_skills` into pandas, Polars, or R.
 - Save an extract under `/kellogg/proj/<your-netid>/revelio/` for repeated work. The files are not partitioned by `rcid`, so a firm filter still reads many parts.
@@ -188,7 +95,10 @@ When a query exceeds `memory_limit`, DuckDB spills to `temp_directory` and keeps
 A view gives each table a short name and hides the file glob. This script stores view definitions in a small DuckDB file. DuckDB reads the Parquet files when you query a view. Run the script again when a new snapshot folder replaces the dates below. The connection uses the same 16-thread and 128 GB cap.
 
 ```python
+import os
 import duckdb
+
+TEMP_DIRECTORY = f"/scratch/{os.environ['USER']}/duckdb_tmp"
 
 ROOT = "/kellogg/data/revelio"
 JOBS = f"{ROOT}/Oct52026/revelio_job_postings"
@@ -228,7 +138,7 @@ con = duckdb.connect(
     config={
         "threads": 16,
         "memory_limit": "128GB",
-        "temp_directory": "/scratch/<your-netid>/duckdb_tmp",
+        "temp_directory": TEMP_DIRECTORY,
         "max_temp_directory_size": "200GB",
     },
 )
@@ -240,7 +150,7 @@ for name, base in tables.items():
         f"SELECT * FROM read_parquet('{base}/{name}/*.parquet')"
     )
 
-# Filtered joins against posting text. For a long extract, use the part-by-part script.
+# Combined posting text for filtered joins, including a country-year extract.
 raw_parts = [f"'{JOBS}/postings_cosmos_raw_p{i}/*.parquet'" for i in range(10)]
 con.execute(
     "CREATE OR REPLACE VIEW postings_cosmos_raw AS "
@@ -250,9 +160,9 @@ con.execute(
 con.close()
 ```
 
-`postings_cosmos_raw` unions all 10 posting-text tables. Use it for a filtered join. For a long extract, use the part-by-part script in [Extract Posting Text for a Country and Year](revelio-country-postings).
+`postings_cosmos_raw` unions all 10 posting-text tables. Use it for a filtered join, including the country-year extract in [Extract Posting Text for a Country and Year](revelio-country-postings). The join filters to the target `job_id`s first, so the memory footprint stays low.
 
-Open the read-only connection from [Open DuckDB with Limits](revelio-duckdb-limits) and check the views:
+Open the read-only connection from [Open a Connection](revelio-duckdb-limits) and check the views:
 
 ```sql
 SHOW TABLES;
@@ -262,10 +172,13 @@ DESCRIBE company_mapping;
 SELECT COUNT(*) AS n_companies FROM company_mapping;
 ```
 
+(revelio-duckdb-limits)=
 (revelio-run-query)=
-### Open DuckDB or the WRDS Python Client
+### Open a Connection
 
-Each example below has a DuckDB tab and a WRDS tab. Open the client once, then run the later snippets in that same session. DuckDB reads the local Parquet views. The WRDS client queries the `revelio` library. For WRDS, complete [Setting Up Credentials](setting-up-credentials) and [Connecting from KLC](connecting-from-klc). Call `.pl()` instead of `.df()` when you want a Polars data frame from DuckDB. The R connection for DuckDB is in [Open DuckDB with Limits](revelio-duckdb-limits).
+Open the views file from the previous section. Set the cap on every connection, then run every later snippet in that same session. Each example below has a DuckDB tab and a WRDS tab. DuckDB reads the local Parquet views. The WRDS client queries the `revelio` library. For WRDS, complete [Setting Up Credentials](setting-up-credentials) and [Connecting from KLC](connecting-from-klc). Call `.pl()` instead of `.df()` when you want a Polars data frame from DuckDB.
+
+The Python and R snippets set `temp_directory` from the `USER` environment variable. In the SQL tab, replace `<your-netid>` with your NetID.
 
 ::::{tab-set}
 
@@ -273,7 +186,10 @@ Each example below has a DuckDB tab and a WRDS tab. Open the client once, then r
 :sync: duckdb
 
 ```python
+import os
 import duckdb
+
+TEMP_DIRECTORY = f"/scratch/{os.environ['USER']}/duckdb_tmp"
 
 con = duckdb.connect(
     "/kellogg/proj/<your-netid>/revelio/revelio_views.duckdb",
@@ -281,11 +197,46 @@ con = duckdb.connect(
     config={
         "threads": 16,
         "memory_limit": "128GB",
-        "temp_directory": "/scratch/<your-netid>/duckdb_tmp",
+        "temp_directory": TEMP_DIRECTORY,
         "max_temp_directory_size": "200GB",
     },
 )
 con.execute("SET preserve_insertion_order = false")
+```
+
+:::
+
+:::{tab-item} R
+:sync: r
+
+```r
+library(DBI)
+library(duckdb)
+
+con <- dbConnect(
+  duckdb(),
+  dbdir = "/kellogg/proj/<your-netid>/revelio/revelio_views.duckdb",
+  read_only = TRUE,
+  config = list(
+    threads = "16",
+    memory_limit = "128GB",
+    temp_directory = paste0("/scratch/", Sys.getenv("USER"), "/duckdb_tmp"),
+    max_temp_directory_size = "200GB"
+  )
+)
+dbExecute(con, "SET preserve_insertion_order = false")
+```
+
+:::
+
+:::{tab-item} SQL
+
+```sql
+SET threads = 16;
+SET memory_limit = '128GB';
+SET temp_directory = '/scratch/<your-netid>/duckdb_tmp';
+SET max_temp_directory_size = '200GB';
+SET preserve_insertion_order = false;
 ```
 
 :::
@@ -303,6 +254,35 @@ conn = wrds.Connection(wrds_username="your-wrds-username")
 
 ::::
 
+| Setting | Controls | KLC Main Value |
+|---|---|---|
+| `threads` | CPU threads for query execution | `SET threads = 16;` |
+| `memory_limit` | Maximum memory DuckDB uses before spilling to disk | `SET memory_limit = '128GB';` |
+| `temp_directory` | Where DuckDB writes spill files | `SET temp_directory = '/scratch/<your-netid>/duckdb_tmp';` |
+| `max_temp_directory_size` | Cap on total spill-file size | `SET max_temp_directory_size = '200GB';` |
+| `preserve_insertion_order` | `false` lowers memory use for large scans and exports | `SET preserve_insertion_order = false;` |
+
+The Python and R snippets fill `temp_directory` from `USER`. The SQL value above is the same path with your NetID written out.
+
+Confirm the active values:
+
+```sql
+SELECT current_setting('threads') AS threads,
+       current_setting('memory_limit') AS memory_limit,
+       current_setting('temp_directory') AS temp_directory;
+```
+
+| Where You Run | `threads` | `memory_limit` |
+|---|---|---|
+| KLC main | 16 | `128GB` |
+| KLC Reserve | The `--ntasks` value you request | About 90% of the `--mem` value you request |
+
+When a query exceeds `memory_limit`, DuckDB spills to `temp_directory` and keeps running. When the spill would pass `max_temp_directory_size`, raise that cap. Loading an entire table into memory is covered in [Use KLC Reserve Above This Budget](revelio-reserve). See [High-Memory Jobs](/services/klc-reserve/highmem-jobs) for requests above 128 GB.
+
+:::{note}
+`memory_limit` applies to DuckDB's own buffers. Converting a result to pandas or R with `.df()` or `dbGetQuery()` allocates additional memory outside the limit. Return an aggregate or a small extract on KLC main.
+:::
+
 Close the session when you are finished: `con.close()` in DuckDB, or `conn.close()` in WRDS.
 
 :::{warning}
@@ -312,7 +292,7 @@ Do not pull `individual_user_skills` (about 11.8 billion rows), `postings_cosmos
 (revelio-one-firm)=
 ### One Firm, End to End
 
-Run these four steps in order. Replace `123456` with the `rcid` from the first query. The DuckDB headcount reads the extract from step 3. The WRDS headcount applies the same filters on `revelio.individual_positions`.
+Run these four steps in order in the session opened above. Replace `123456` with the `rcid` from the first query. The DuckDB headcount reads the extract from step 3. The WRDS headcount applies the same filters on `revelio.individual_positions`.
 
 #### Find a Firm's rcid
 
@@ -517,223 +497,9 @@ print(df.head())
 
 <!-- TODO(KRS): confirm the country literal in the local Parquet files, as in the WRDS example -->
 
-(revelio-reserve)=
-### Use KLC Reserve Above This Budget
-
-Submit the same query to [KLC Reserve](/services/klc-reserve/when-to-use) when it needs more than 16 threads or more than 128 GB, or when you want a long scan off the shared node. The script below reads `SLURM_NTASKS` and `SLURM_MEM_PER_NODE` (megabytes, set by `--mem`) and sets `memory_limit` to about 90% of that grant. Outside a SLURM job it uses the KLC main cap of 16 threads and 128 GB.
-
-The sample query scans `postings_cosmos`. On KLC main, run it at 16 threads and 128 GB. Raise `--ntasks` and `--mem` in the batch script when you need more. For RAM above a standard Reserve node, see [High-Memory Jobs](/services/klc-reserve/highmem-jobs).
-
-Save this script as `revelio_job.py`:
-
-```python
-import os
-import duckdb
-
-if os.environ.get("SLURM_JOB_ID"):
-    threads = int(os.environ["SLURM_NTASKS"])
-    mem_mb = int(os.environ["SLURM_MEM_PER_NODE"])
-    memory_limit = f"{int(mem_mb * 0.9 / 1024)}GB"
-else:
-    threads = 16
-    memory_limit = "128GB"
-
-con = duckdb.connect(
-    "/kellogg/proj/<your-netid>/revelio/revelio_views.duckdb",
-    read_only=True,
-    config={
-        "threads": threads,
-        "memory_limit": memory_limit,
-        "temp_directory": "/scratch/<your-netid>/duckdb_tmp",
-        "max_temp_directory_size": "200GB",
-    },
-)
-con.execute("SET preserve_insertion_order = false")
-
-con.sql("""
-    SELECT date_trunc('month', post_date) AS post_month, COUNT(*) AS n_postings
-    FROM postings_cosmos
-    GROUP BY post_month
-    ORDER BY post_month
-""").write_csv("/kellogg/proj/<your-netid>/revelio/postings_by_month.csv")
-```
-
-Save this as `revelio_job.sh`:
-
-```bash
-#!/bin/bash
-#SBATCH --account=kellogg
-#SBATCH --partition=kellogg
-#SBATCH --job-name=revelio-duckdb
-#SBATCH --nodes=1
-#SBATCH --ntasks=16
-#SBATCH --mem=128G
-#SBATCH --time=04:00:00
-#SBATCH --output=logs/slurm-%j.out
-
-module purge
-module use --append /kellogg/software/Modules/modulefiles
-module load mamba/24.3.0
-source activate /kellogg/proj/<your-netid>/envs/revelio-duckdb
-
-mkdir -p /scratch/<your-netid>/duckdb_tmp
-python revelio_job.py
-```
-
-`#SBATCH --output` is opened when the job starts, so create the log directory before you submit. For submission options, monitoring, and tuning, see [Submitting SLURM Jobs](/services/klc-reserve/slurm-jobs).
-
-```bash
-mkdir -p logs
-sbatch revelio_job.sh
-```
-
 ### More Examples
 
-Use the session from [Open DuckDB or the WRDS Python Client](revelio-run-query). Run `DESCRIBE` on a DuckDB view before a join, and cast both sides of a join key when the types differ. See [Key Identifiers and Joins](revelio-identifiers).
-
-#### Layoffs by State and Year
-
-`layoffs` is a small table. Run this on KLC main.
-
-::::{tab-set}
-
-:::{tab-item} DuckDB
-:sync: duckdb
-
-```python
-df = con.sql("""
-    SELECT
-        state,
-        EXTRACT(year FROM layoff_date) AS layoff_year,
-        COUNT(*) AS n_events,
-        SUM(num_employees) AS employees_laid_off
-    FROM layoffs
-    WHERE layoff_date IS NOT NULL
-    GROUP BY state, layoff_year
-    ORDER BY employees_laid_off DESC NULLS LAST
-    LIMIT 25
-""").df()
-print(df)
-```
-
-:::
-
-:::{tab-item} WRDS
-:sync: wrds
-
-```python
-df = conn.raw_sql("""
-    SELECT
-        state,
-        EXTRACT(year FROM layoff_date) AS layoff_year,
-        COUNT(*) AS n_events,
-        SUM(num_employees) AS employees_laid_off
-    FROM revelio.layoffs
-    WHERE layoff_date IS NOT NULL
-    GROUP BY state, layoff_year
-    ORDER BY employees_laid_off DESC NULLS LAST
-    LIMIT 25
-""")
-print(df)
-```
-
-:::
-
-::::
-
-#### Company Sentiment Scores
-
-`sentiment_scores` is a small table. Run this on KLC main.
-
-::::{tab-set}
-
-:::{tab-item} DuckDB
-:sync: duckdb
-
-```python
-df = con.sql("""
-    SELECT company, rcid, culture_sentiment,
-           work_life_balance_sentiment, num_reviews
-    FROM sentiment_scores
-    WHERE num_reviews >= 100
-    ORDER BY culture_sentiment DESC
-    LIMIT 25
-""").df()
-print(df)
-```
-
-:::
-
-:::{tab-item} WRDS
-:sync: wrds
-
-```python
-df = conn.raw_sql("""
-    SELECT company, rcid, culture_sentiment,
-           work_life_balance_sentiment, num_reviews
-    FROM revelio.sentiment_scores
-    WHERE num_reviews >= 100
-    ORDER BY culture_sentiment DESC
-    LIMIT 25
-""")
-print(df)
-```
-
-:::
-
-::::
-
-#### Employee Review Ratings by Year
-
-Run this on KLC main at 16 threads and 128 GB. The query names the columns it aggregates.
-
-::::{tab-set}
-
-:::{tab-item} DuckDB
-:sync: duckdb
-
-```python
-df = con.sql("""
-    SELECT
-        EXTRACT(year FROM review_date) AS review_year,
-        COUNT(*) AS n_reviews,
-        AVG(rating_overall) AS avg_overall,
-        AVG(rating_culture_and_values) AS avg_culture
-    FROM sentiment_individual_reviews
-    WHERE rcid = 123456
-    GROUP BY review_year
-    ORDER BY review_year
-""").df()
-print(df)
-```
-
-:::
-
-:::{tab-item} WRDS
-:sync: wrds
-
-```python
-df = conn.raw_sql("""
-    SELECT
-        EXTRACT(year FROM review_date) AS review_year,
-        COUNT(*) AS n_reviews,
-        AVG(rating_overall) AS avg_overall,
-        AVG(rating_culture_and_values) AS avg_culture
-    FROM revelio.sentiment_individual_reviews
-    WHERE rcid = 123456
-    GROUP BY review_year
-    ORDER BY review_year
-""")
-print(df)
-```
-
-:::
-
-::::
-
-:::{note}
-`sentiment_individual_reviews` includes free-text columns (`review_pros`, `review_cons`, `review_advice`). Select the columns you need when you scan this table.
-:::
+Use the session from [Open a Connection](revelio-run-query). Run `DESCRIBE` on a DuckDB view before a join, and cast both sides of a join key when the types differ. See [Key Identifiers and Joins](revelio-identifiers).
 
 #### Positions by Role Group
 
@@ -787,116 +553,9 @@ print(df)
 
 ::::
 
-#### Education by Degree and Field
-
-Run this on KLC main at 16 threads and 128 GB.
-
-::::{tab-set}
-
-:::{tab-item} DuckDB
-:sync: duckdb
-
-```python
-df = con.sql("""
-    SELECT e.degree, e.field, COUNT(*) AS n_records
-    FROM individual_user_education AS e
-    JOIN school_mapping AS s ON e.rsid = s.rsid
-    JOIN individual_user AS u ON e.user_id = u.user_id
-    WHERE s.school_cleaned ILIKE 'northwestern university'
-      AND u.user_country = 'United States'
-    GROUP BY e.degree, e.field
-    ORDER BY n_records DESC
-    LIMIT 25
-""").df()
-print(df)
-```
-
-:::
-
-:::{tab-item} WRDS
-:sync: wrds
-
-```python
-df = conn.raw_sql("""
-    SELECT e.degree, e.field, COUNT(*) AS n_records
-    FROM revelio.individual_user_education AS e
-    JOIN revelio.school_mapping AS s ON e.rsid = s.rsid
-    JOIN revelio.individual_user AS u ON e.user_id = u.user_id
-    WHERE s.school_cleaned ILIKE 'northwestern university'
-      AND u.user_country = 'United States'
-    GROUP BY e.degree, e.field
-    ORDER BY n_records DESC
-    LIMIT 25
-""")
-print(df)
-```
-
-:::
-
-::::
-
-<!-- TODO(KRS): confirm the cleaned school name and country literal in the local Parquet files -->
-
-#### Job Postings by Month and Role
-
-Run this on KLC main at 16 threads and 128 GB. The filter keeps the scan to one firm.
-
-::::{tab-set}
-
-:::{tab-item} DuckDB
-:sync: duckdb
-
-```python
-df = con.sql("""
-    SELECT
-        date_trunc('month', c.post_date) AS post_month,
-        l.role_k50_v3,
-        COUNT(*) AS n_postings,
-        AVG(c.salary) AS avg_salary
-    FROM postings_cosmos AS c
-    JOIN postings_role_lookup_v3 AS l
-      ON c.role_k17000_v3 = l.role_k17000_v3
-    WHERE c.rcid = 123456
-      AND c.post_date >= DATE '2020-01-01'
-    GROUP BY post_month, l.role_k50_v3
-    ORDER BY post_month, n_postings DESC
-""").df()
-print(df)
-```
-
-:::
-
-:::{tab-item} WRDS
-:sync: wrds
-
-```python
-df = conn.raw_sql(
-    """
-    SELECT
-        date_trunc('month', c.post_date) AS post_month,
-        l.role_k50_v3,
-        COUNT(*) AS n_postings,
-        AVG(c.salary) AS avg_salary
-    FROM revelio.postings_cosmos AS c
-    JOIN revelio.postings_role_lookup_v3 AS l
-      ON c.role_k17000_v3 = l.role_k17000_v3
-    WHERE c.rcid = 123456
-      AND c.post_date >= DATE '2020-01-01'
-    GROUP BY post_month, l.role_k50_v3
-    ORDER BY post_month, n_postings DESC
-    """,
-    date_cols=["post_month"],
-)
-print(df)
-```
-
-:::
-
-::::
-
 #### Skills of One Firm's Employees
 
-Run this on KLC main at 16 threads and 128 GB. Move the DuckDB query to KLC Reserve when you need more than that. The firm filter runs first. DuckDB uses `SEMI JOIN` so the skills scan stays on those users. WRDS uses an inner join for the same filter. Prefer the DuckDB tab when the skills table is the main scan.
+Run this on KLC main at 16 threads and 128 GB. The result is an aggregate, so this query stays on KLC main. The firm filter runs first. DuckDB uses `SEMI JOIN` so the skills scan stays on those users. WRDS uses an inner join for the same filter. Prefer the DuckDB tab when the skills table is the main scan.
 
 ::::{tab-set}
 
@@ -958,57 +617,10 @@ print(df)
 
 ::::
 
-#### Search Posting Text
-
-Run this on KLC main at 16 threads and 128 GB. Move the DuckDB query to KLC Reserve when you need more than that. The filter on `postings_cosmos` runs first. On KLC, `postings_cosmos_raw` is the union of all 10 text tables. On WRDS, posting text is the single table `revelio.postings_cosmos_raw`. Cast both keys to the same type. The KLC files are not partitioned by `rcid` or `job_id`, so DuckDB can still open every text part.
-
-::::{tab-set}
-
-:::{tab-item} DuckDB
-:sync: duckdb
-
-```python
-df = con.sql("""
-    SELECT c.job_id, c.company, c.post_date, r.jobtitle_translated
-    FROM postings_cosmos AS c
-    JOIN postings_cosmos_raw AS r
-      ON CAST(c.job_id AS HUGEINT) = CAST(r.job_id AS HUGEINT)
-    WHERE c.rcid = 123456
-      AND r.description ILIKE '%machine learning%'
-    LIMIT 100
-""").df()
-print(df)
-```
-
-:::
-
-:::{tab-item} WRDS
-:sync: wrds
-
-```python
-df = conn.raw_sql(
-    """
-    SELECT c.job_id, c.company, c.post_date, r.jobtitle_translated
-    FROM revelio.postings_cosmos AS c
-    JOIN revelio.postings_cosmos_raw AS r
-      ON CAST(c.job_id AS NUMERIC) = CAST(r.job_id AS NUMERIC)
-    WHERE c.rcid = 123456
-      AND r.description ILIKE '%machine learning%'
-    LIMIT 100
-    """,
-    date_cols=["post_date"],
-)
-print(df)
-```
-
-:::
-
-::::
-
 (revelio-country-postings)=
 #### Extract Posting Text for a Country and Year
 
-Run a filtered join on KLC main at 16 threads and 128 GB. On KLC, posting text is split across 10 tables. On WRDS it is one table, `revelio.postings_cosmos_raw`. For a long KLC extract, use the part-by-part script in the dropdown. That script caps DuckDB at 16 threads and 128 GB on KLC main, and sizes `threads` and `memory_limit` from the SLURM allocation inside a Reserve job.
+Run this filtered join on KLC main at 16 threads and 128 GB. `postings_cosmos_raw` is the combined view of all 10 posting-text tables. The join filters to the target `job_id`s first, so the memory footprint stays low. On WRDS, posting text is the single table `revelio.postings_cosmos_raw`.
 
 ::::{tab-set}
 
@@ -1071,21 +683,26 @@ chunks = conn.raw_sql(
 
 ::::
 
-::::{dropdown} Part-by-Part DuckDB Script
+<!-- TODO(KRS): confirm the country literal ('Hong Kong') and that job_id values in postings_cosmos_raw_p* match postings_cosmos after the HUGEINT cast; compare matched row counts to the number of target postings -->
 
-The script below writes one Parquet file per `postings_cosmos_raw_p*` table, skips files that already exist, and writes each file under a temporary name so a failed job leaves no partial output.
+(revelio-reserve)=
+### Use KLC Reserve Above This Budget
+
+Filtered scans, aggregates, and extracts stay on KLC main, including the country-year join against `postings_cosmos_raw`. Use [KLC Reserve](/services/klc-reserve/when-to-use) when you will read the entire contents of one or more tables into memory with `.df()`, Polars, or `dbGetQuery()`.
+
+The script below reads `SLURM_NTASKS` and `SLURM_MEM_PER_NODE` (megabytes, set by `--mem`) and sets `memory_limit` to about 90% of that grant. Outside a SLURM job it uses the KLC main cap of 16 threads and 128 GB. Raise `--ntasks` and `--mem` when the in-memory table needs more than that. For RAM above a standard Reserve node, see [High-Memory Jobs](/services/klc-reserve/highmem-jobs).
+
+:::{warning}
+Do not load `individual_user_skills`, `postings_cosmos`, or `individual_positions` in full.
+:::
+
+Save this script as `revelio_job.py`:
 
 ```python
 import os
-from pathlib import Path
-
 import duckdb
 
-JOBS = "/kellogg/data/revelio/Oct52026/revelio_job_postings"
-OUT = Path("/kellogg/proj/<your-netid>/revelio/hong_kong_postings_2026")
-TMP = Path("/scratch/<your-netid>/duckdb_tmp")
-OUT.mkdir(parents=True, exist_ok=True)
-TMP.mkdir(parents=True, exist_ok=True)
+TEMP_DIRECTORY = f"/scratch/{os.environ['USER']}/duckdb_tmp"
 
 if os.environ.get("SLURM_JOB_ID"):
     threads = int(os.environ["SLURM_NTASKS"])
@@ -1095,52 +712,49 @@ else:
     threads = 16
     memory_limit = "128GB"
 
-con = duckdb.connect(config={
-    "threads": threads,
-    "memory_limit": memory_limit,
-    "temp_directory": str(TMP),
-    "max_temp_directory_size": "200GB",
-})
+con = duckdb.connect(
+    "/kellogg/proj/<your-netid>/revelio/revelio_views.duckdb",
+    read_only=True,
+    config={
+        "threads": threads,
+        "memory_limit": memory_limit,
+        "temp_directory": TEMP_DIRECTORY,
+        "max_temp_directory_size": "200GB",
+    },
+)
 con.execute("SET preserve_insertion_order = false")
 
-con.execute(f"""
-    CREATE TEMP TABLE target_postings AS
-    SELECT DISTINCT CAST(job_id AS HUGEINT) AS job_id, rcid, company, post_date
-    FROM read_parquet('{JOBS}/postings_cosmos/*.parquet')
-    WHERE country = 'Hong Kong'
-      AND post_date >= DATE '2026-01-01'
-      AND post_date <  DATE '2027-01-01'
-      AND job_id IS NOT NULL
-""")
-n_ids = con.execute("SELECT COUNT(*) FROM target_postings").fetchone()[0]
-print(f"{n_ids:,} target postings")
-
-for i in range(10):
-    out = OUT / f"postings_cosmos_raw_p{i}_matched.parquet"
-    if out.exists():
-        print(f"p{i}: already done")
-        continue
-    partial = out.with_suffix(".parquet.partial")
-    con.execute(f"""
-        COPY (
-            SELECT t.*, r.title_raw, r.jobtitle_translated, r.description
-            FROM read_parquet('{JOBS}/postings_cosmos_raw_p{i}/*.parquet') AS r
-            JOIN target_postings AS t
-              ON CAST(r.job_id AS HUGEINT) = t.job_id
-        ) TO '{partial}' (FORMAT parquet, COMPRESSION zstd)
-    """)
-    partial.rename(out)
-    print(f"p{i}: done")
-
-total = con.execute(f"SELECT COUNT(*) FROM read_parquet('{OUT}/*.parquet')").fetchone()[0]
-print(f"{total:,} matched rows")
+df = con.sql("SELECT * FROM sentiment_individual_reviews").df()
 ```
 
-Read the result with `read_parquet('/kellogg/proj/<your-netid>/revelio/hong_kong_postings_2026/*.parquet')`. Submit the script with the `sbatch` pattern in [Use KLC Reserve Above This Budget](revelio-reserve) when it needs more than 16 threads or 128 GB.
+Save this as `revelio_job.sh`:
 
-<!-- TODO(KRS): confirm the country literal ('Hong Kong') and that job_id values in postings_cosmos_raw_p* match postings_cosmos after the HUGEINT cast; compare matched row counts to the number of target postings -->
+```bash
+#!/bin/bash
+#SBATCH --account=kellogg
+#SBATCH --partition=kellogg
+#SBATCH --job-name=revelio-duckdb
+#SBATCH --nodes=1
+#SBATCH --ntasks=16
+#SBATCH --mem=128G
+#SBATCH --time=04:00:00
+#SBATCH --output=logs/slurm-%j.out
 
-::::
+module purge
+module use --append /kellogg/software/Modules/modulefiles
+module load mamba/24.3.0
+source activate /kellogg/proj/<your-netid>/envs/revelio-duckdb
+
+mkdir -p /scratch/$USER/duckdb_tmp
+python revelio_job.py
+```
+
+`#SBATCH --output` is opened when the job starts, so create the log directory before you submit. For submission options, monitoring, and tuning, see [Submitting SLURM Jobs](/services/klc-reserve/slurm-jobs).
+
+```bash
+mkdir -p logs
+sbatch revelio_job.sh
+```
 
 (revelio-klc-data)=
 ## Data Located on KLC
@@ -1159,7 +773,7 @@ Each table is a **directory** of Parquet files named `part-000000.parquet`, `par
 A table is the whole directory, not a single file. Always read all of its parts with a glob such as `/kellogg/data/revelio/Oct192026/revelio_individual/individual_positions/*.parquet`.
 :::
 
-**Scale** is `Small` or `Large`. A large table still runs on KLC main within 16 threads and 128 GB when you name columns, filter, and aggregate in DuckDB. Use [KLC Reserve](/services/klc-reserve/when-to-use) when the query needs more than that budget.
+**Scale** is `Small` or `Large`. A large table still runs on KLC main within 16 threads and 128 GB when you name columns, filter, and aggregate in DuckDB. Use [KLC Reserve](revelio-reserve) when you will load the entire contents of one or more tables into memory.
 
 ### Job Postings
 
@@ -1539,7 +1153,7 @@ Column definitions come from the WRDS `revelio` library. Select a table to expan
 - [Revelio Labs WRDS Example](/services/kellogg-data-hosting/wrds/examples/revelio-example): pull position spells for one firm through WRDS
 - [Datasets on KLC](/services/klc/klc-datasets): other datasets stored under `/kellogg/data/`
 - [KLC Node Resources](/services/klc-node-resources): live CPU and RAM availability
-- [When to Use KLC Reserve](/services/klc-reserve/when-to-use): choose a Reserve job for more than 16 threads or 128 GB
+- [When to Use KLC Reserve](/services/klc-reserve/when-to-use): choose a Reserve job when a full table must be loaded into memory
 - [Submitting SLURM Jobs](/services/klc-reserve/slurm-jobs): batch job reference for KLC Reserve
 - [High-Memory Jobs](/services/klc-reserve/highmem-jobs): Reserve jobs that need more than 128 GB
 - [DuckDB Documentation](https://duckdb.org/docs/): configuration and SQL reference

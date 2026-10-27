@@ -368,10 +368,9 @@ Northwestern University - Home"/>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#querying-with-duckdb-on-klc">Querying with DuckDB on KLC</a><ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#before-you-start">Before You Start</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#where-to-run-the-query">Where to Run the Query</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#open-duckdb-with-limits">Open DuckDB with Limits</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#query-rules">Query Rules</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-views-once">Create Views Once</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#open-duckdb-or-the-wrds-python-client">Open DuckDB or the WRDS Python Client</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#open-a-connection">Open a Connection</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#one-firm-end-to-end">One Firm, End to End</a><ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#find-a-firm-s-rcid">Find a Firm’s rcid</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#count-positions-for-one-firm">Count Positions for One Firm</a></li>
@@ -379,19 +378,13 @@ Northwestern University - Home"/>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#monthly-headcount-from-the-extract">Monthly Headcount from the Extract</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-klc-reserve-above-this-budget">Use KLC Reserve Above This Budget</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#more-examples">More Examples</a><ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#layoffs-by-state-and-year">Layoffs by State and Year</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#company-sentiment-scores">Company Sentiment Scores</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#employee-review-ratings-by-year">Employee Review Ratings by Year</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#positions-by-role-group">Positions by Role Group</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#education-by-degree-and-field">Education by Degree and Field</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#job-postings-by-month-and-role">Job Postings by Month and Role</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#skills-of-one-firm-s-employees">Skills of One Firm’s Employees</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#search-posting-text">Search Posting Text</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#extract-posting-text-for-a-country-and-year">Extract Posting Text for a Country and Year</a></li>
 </ul>
 </li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-klc-reserve-above-this-budget">Use KLC Reserve Above This Budget</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-located-on-klc">Data Located on KLC</a><ul class="pst-show_toc_level nav section-nav flex-column">
@@ -513,19 +506,19 @@ Northwestern University - Home"/>
 </section>
 <section id="querying-with-duckdb-on-klc">
 <span id="revelio-duckdb"></span><h2>Querying with DuckDB on KLC<a class="headerlink" href="#querying-with-duckdb-on-klc" title="Link to this heading">#</a></h2>
-<p>DuckDB reads the Parquet files in place. On KLC main, cap every session at 16 threads and 128 GB. Use a <a class="reference internal" href="../../klc-reserve/when-to-use.html"><span class="doc std std-doc">KLC Reserve</span></a> job when the query needs more than that, or when a long scan should leave the shared login node.</p>
+<p>DuckDB reads the Parquet files in place. On KLC main, cap every session at 16 threads and 128 GB. Queries that filter, aggregate, or write an extract stay on KLC main. Read <a class="reference internal" href="#revelio-reserve"><span class="std std-ref">Use KLC Reserve Above This Budget</span></a> only when you will load the entire contents of one or more tables into memory.</p>
 <section id="before-you-start">
 <h3>Before You Start<a class="headerlink" href="#before-you-start" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Log in to KLC. See <a class="reference internal" href="../../klc/user-guide/klc-accessing.html"><span class="doc std std-doc">How to Access KLC</span></a> if you do not have an account.</p></li>
 <li><p>Create a conda environment under <code class="docutils literal notranslate"><span class="pre">/kellogg/proj/&lt;your-netid&gt;/</span></code>. See <a class="reference internal" href="../../klc/user-guide/klc-conda.html"><span class="doc std std-doc">Conda Environments on KLC</span></a>.</p></li>
 <li><p>Store views and extracts under <code class="docutils literal notranslate"><span class="pre">/kellogg/proj/&lt;your-netid&gt;/revelio</span></code>. Home directories are 80 GB.</p></li>
-<li><p>Send DuckDB spill files to <code class="docutils literal notranslate"><span class="pre">/scratch/&lt;your-netid&gt;/duckdb_tmp</span></code>.</p></li>
+<li><p>Send DuckDB spill files to <code class="docutils literal notranslate"><span class="pre">/scratch/$USER/duckdb_tmp</span></code>. The Python and R examples set that path from the <code class="docutils literal notranslate"><span class="pre">USER</span></code> environment variable.</p></li>
 </ul>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>module<span class="w"> </span>load<span class="w"> </span>mamba/24.3.0
 mamba<span class="w"> </span>create<span class="w"> </span>-p<span class="w"> </span>/kellogg/proj/&lt;your-netid&gt;/envs/revelio-duckdb<span class="w"> </span>-c<span class="w"> </span>conda-forge<span class="w"> </span>python-duckdb
 <span class="nb">source</span><span class="w"> </span>activate<span class="w"> </span>/kellogg/proj/&lt;your-netid&gt;/envs/revelio-duckdb
-mkdir<span class="w"> </span>-p<span class="w"> </span>/kellogg/proj/&lt;your-netid&gt;/revelio<span class="w"> </span>/scratch/&lt;your-netid&gt;/duckdb_tmp
+mkdir<span class="w"> </span>-p<span class="w"> </span>/kellogg/proj/&lt;your-netid&gt;/revelio<span class="w"> </span>/scratch/<span class="nv">$USER</span>/duckdb_tmp
 </pre></div>
 </div>
 <p>For R, add <code class="docutils literal notranslate"><span class="pre">duckdb</span></code> and <code class="docutils literal notranslate"><span class="pre">DBI</span></code> to an R environment from the same conda page. Replace <code class="docutils literal notranslate"><span class="pre">&lt;your-netid&gt;</span></code> in every path below.</p>
@@ -541,141 +534,20 @@ mkdir<span class="w"> </span>-p<span class="w"> </span>/kellogg/proj/&lt;your-ne
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DESCRIBE</span></code>, an unfiltered <code class="docutils literal notranslate"><span class="pre">COUNT(*)</span></code>, and the small tables (<code class="docutils literal notranslate"><span class="pre">company_mapping</span></code>, role and skill lookups, <code class="docutils literal notranslate"><span class="pre">school_mapping</span></code>, <code class="docutils literal notranslate"><span class="pre">regions</span></code>, <code class="docutils literal notranslate"><span class="pre">months</span></code>, <code class="docutils literal notranslate"><span class="pre">layoffs</span></code>, <code class="docutils literal notranslate"><span class="pre">sentiment_scores</span></code>)</p></td>
-<td><p>KLC main</p></td>
-</tr>
-<tr class="row-odd"><td><p>A one-firm extract or a filtered aggregate from <code class="docutils literal notranslate"><span class="pre">individual_positions</span></code>, <code class="docutils literal notranslate"><span class="pre">postings_cosmos</span></code>, posting text, or <code class="docutils literal notranslate"><span class="pre">individual_user_skills</span></code></p></td>
+<tr class="row-even"><td><p>A DuckDB query that filters, aggregates, or writes an extract, including <code class="docutils literal notranslate"><span class="pre">DESCRIBE</span></code> and an unfiltered <code class="docutils literal notranslate"><span class="pre">COUNT(*)</span></code></p></td>
 <td><p>KLC main, at 16 threads and 128 GB</p></td>
 </tr>
-<tr class="row-even"><td><p>A query that needs more than 16 threads or more than 128 GB, or a multi-hour scan to move off the shared node</p></td>
-<td><p><a class="reference internal" href="../../klc-reserve/when-to-use.html"><span class="doc std std-doc">KLC Reserve</span></a></p></td>
+<tr class="row-odd"><td><p>Reading the entire contents of one or more tables into pandas, Polars, or R</p></td>
+<td><p><a class="reference internal" href="#revelio-reserve"><span class="std std-ref">Use KLC Reserve Above This Budget</span></a></p></td>
 </tr>
 </tbody>
 </table>
-</div>
-</section>
-<section id="open-duckdb-with-limits">
-<span id="revelio-duckdb-limits"></span><h3>Open DuckDB with Limits<a class="headerlink" href="#open-duckdb-with-limits" title="Link to this heading">#</a></h3>
-<p>Create the views file in the next section, then open it read-only with this configuration. Set the cap on every connection.</p>
-<div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="python" for="sd-tab-item-0">
-Python</label><div class="sd-tab-content docutils">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">duckdb</span>
-
-<span class="n">con</span> <span class="o">=</span> <span class="n">duckdb</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
-    <span class="s2">"/kellogg/proj/&lt;your-netid&gt;/revelio/revelio_views.duckdb"</span><span class="p">,</span>
-    <span class="n">read_only</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-    <span class="n">config</span><span class="o">=</span><span class="p">{</span>
-        <span class="s2">"threads"</span><span class="p">:</span> <span class="mi">16</span><span class="p">,</span>
-        <span class="s2">"memory_limit"</span><span class="p">:</span> <span class="s2">"128GB"</span><span class="p">,</span>
-        <span class="s2">"temp_directory"</span><span class="p">:</span> <span class="s2">"/scratch/&lt;your-netid&gt;/duckdb_tmp"</span><span class="p">,</span>
-        <span class="s2">"max_temp_directory_size"</span><span class="p">:</span> <span class="s2">"200GB"</span><span class="p">,</span>
-    <span class="p">},</span>
-<span class="p">)</span>
-<span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"SET preserve_insertion_order = false"</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="r" for="sd-tab-item-1">
-R</label><div class="sd-tab-content docutils">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">DBI</span><span class="p">)</span>
-<span class="nf">library</span><span class="p">(</span><span class="n">duckdb</span><span class="p">)</span>
-
-<span class="n">con</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">dbConnect</span><span class="p">(</span>
-<span class="w">  </span><span class="nf">duckdb</span><span class="p">(),</span>
-<span class="w">  </span><span class="n">dbdir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"/kellogg/proj/&lt;your-netid&gt;/revelio/revelio_views.duckdb"</span><span class="p">,</span>
-<span class="w">  </span><span class="n">read_only</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span>
-<span class="w">  </span><span class="n">config</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span>
-<span class="w">    </span><span class="n">threads</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"16"</span><span class="p">,</span>
-<span class="w">    </span><span class="n">memory_limit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"128GB"</span><span class="p">,</span>
-<span class="w">    </span><span class="n">temp_directory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"/scratch/&lt;your-netid&gt;/duckdb_tmp"</span><span class="p">,</span>
-<span class="w">    </span><span class="n">max_temp_directory_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"200GB"</span>
-<span class="w">  </span><span class="p">)</span>
-<span class="p">)</span>
-<span class="nf">dbExecute</span><span class="p">(</span><span class="n">con</span><span class="p">,</span><span class="w"> </span><span class="s">"SET preserve_insertion_order = false"</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<input id="sd-tab-item-2" name="sd-tab-set-0" type="radio">
-<label class="sd-tab-label" for="sd-tab-item-2">
-SQL</label><div class="sd-tab-content docutils">
-<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SET</span><span class="w"> </span><span class="n">threads</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">16</span><span class="p">;</span>
-<span class="k">SET</span><span class="w"> </span><span class="n">memory_limit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'128GB'</span><span class="p">;</span>
-<span class="k">SET</span><span class="w"> </span><span class="n">temp_directory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'/scratch/&lt;your-netid&gt;/duckdb_tmp'</span><span class="p">;</span>
-<span class="k">SET</span><span class="w"> </span><span class="n">max_temp_directory_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'200GB'</span><span class="p">;</span>
-<span class="k">SET</span><span class="w"> </span><span class="n">preserve_insertion_order</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">false</span><span class="p">;</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="pst-scrollable-table-container"><table class="table">
-<thead>
-<tr class="row-odd"><th class="head"><p>Setting</p></th>
-<th class="head"><p>Controls</p></th>
-<th class="head"><p>KLC Main Value</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">threads</span></code></p></td>
-<td><p>CPU threads for query execution</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">SET</span> <span class="pre">threads</span> <span class="pre">=</span> <span class="pre">16;</span></code></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">memory_limit</span></code></p></td>
-<td><p>Maximum memory DuckDB uses before spilling to disk</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">SET</span> <span class="pre">memory_limit</span> <span class="pre">=</span> <span class="pre">'128GB';</span></code></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">temp_directory</span></code></p></td>
-<td><p>Where DuckDB writes spill files</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">SET</span> <span class="pre">temp_directory</span> <span class="pre">=</span> <span class="pre">'/scratch/&lt;your-netid&gt;/duckdb_tmp';</span></code></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">max_temp_directory_size</span></code></p></td>
-<td><p>Cap on total spill-file size</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">SET</span> <span class="pre">max_temp_directory_size</span> <span class="pre">=</span> <span class="pre">'200GB';</span></code></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">preserve_insertion_order</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">false</span></code> lowers memory use for large scans and exports</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">SET</span> <span class="pre">preserve_insertion_order</span> <span class="pre">=</span> <span class="pre">false;</span></code></p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>Confirm the active values:</p>
-<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">current_setting</span><span class="p">(</span><span class="s1">'threads'</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">threads</span><span class="p">,</span>
-<span class="w">       </span><span class="n">current_setting</span><span class="p">(</span><span class="s1">'memory_limit'</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">memory_limit</span><span class="p">,</span>
-<span class="w">       </span><span class="n">current_setting</span><span class="p">(</span><span class="s1">'temp_directory'</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">temp_directory</span><span class="p">;</span>
-</pre></div>
-</div>
-<div class="pst-scrollable-table-container"><table class="table">
-<thead>
-<tr class="row-odd"><th class="head"><p>Where You Run</p></th>
-<th class="head"><p><code class="docutils literal notranslate"><span class="pre">threads</span></code></p></th>
-<th class="head"><p><code class="docutils literal notranslate"><span class="pre">memory_limit</span></code></p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>KLC main</p></td>
-<td><p>16</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">128GB</span></code></p></td>
-</tr>
-<tr class="row-odd"><td><p>KLC Reserve</p></td>
-<td><p>The <code class="docutils literal notranslate"><span class="pre">--ntasks</span></code> value you request</p></td>
-<td><p>About 90% of the <code class="docutils literal notranslate"><span class="pre">--mem</span></code> value you request</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>When a query exceeds <code class="docutils literal notranslate"><span class="pre">memory_limit</span></code>, DuckDB spills to <code class="docutils literal notranslate"><span class="pre">temp_directory</span></code> and keeps running. When the spill would pass <code class="docutils literal notranslate"><span class="pre">max_temp_directory_size</span></code>, raise that cap or move the query to a <a class="reference internal" href="../../klc-reserve/when-to-use.html"><span class="doc std std-doc">KLC Reserve</span></a> job with a higher <code class="docutils literal notranslate"><span class="pre">--mem</span></code>. See <a class="reference internal" href="../../klc-reserve/highmem-jobs.html"><span class="doc std std-doc">High-Memory Jobs</span></a> for requests above 128 GB.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p><code class="docutils literal notranslate"><span class="pre">memory_limit</span></code> applies to DuckDB’s own buffers. Converting a result to pandas or R with <code class="docutils literal notranslate"><span class="pre">.df()</span></code> or <code class="docutils literal notranslate"><span class="pre">dbGetQuery()</span></code> allocates additional memory outside the limit. Return an aggregate or a small extract.</p>
 </div>
 </section>
 <section id="query-rules">
 <h3>Query Rules<a class="headerlink" href="#query-rules" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p>Set <code class="docutils literal notranslate"><span class="pre">threads</span> <span class="pre">=</span> <span class="pre">16</span></code> and <code class="docutils literal notranslate"><span class="pre">memory_limit</span> <span class="pre">=</span> <span class="pre">'128GB'</span></code> when you connect on KLC main. Raise either value only in a KLC Reserve job that requests those resources.</p></li>
+<li><p>Set <code class="docutils literal notranslate"><span class="pre">threads</span> <span class="pre">=</span> <span class="pre">16</span></code> and <code class="docutils literal notranslate"><span class="pre">memory_limit</span> <span class="pre">=</span> <span class="pre">'128GB'</span></code> when you connect on KLC main. Raise either value only in a <a class="reference internal" href="#revelio-reserve"><span class="std std-ref">KLC Reserve</span></a> job that loads entire tables into memory and requests those resources.</p></li>
 <li><p>Name the columns you need. DuckDB then skips the other Parquet columns, including <code class="docutils literal notranslate"><span class="pre">description</span></code> and review text.</p></li>
 <li><p>Filter and aggregate in DuckDB. Do not pull <code class="docutils literal notranslate"><span class="pre">individual_positions</span></code>, <code class="docutils literal notranslate"><span class="pre">postings_cosmos</span></code>, or <code class="docutils literal notranslate"><span class="pre">individual_user_skills</span></code> into pandas, Polars, or R.</p></li>
 <li><p>Save an extract under <code class="docutils literal notranslate"><span class="pre">/kellogg/proj/&lt;your-netid&gt;/revelio/</span></code> for repeated work. The files are not partitioned by <code class="docutils literal notranslate"><span class="pre">rcid</span></code>, so a firm filter still reads many parts.</p></li>
@@ -685,7 +557,10 @@ SQL</label><div class="sd-tab-content docutils">
 <section id="create-views-once">
 <h3>Create Views Once<a class="headerlink" href="#create-views-once" title="Link to this heading">#</a></h3>
 <p>A view gives each table a short name and hides the file glob. This script stores view definitions in a small DuckDB file. DuckDB reads the Parquet files when you query a view. Run the script again when a new snapshot folder replaces the dates below. The connection uses the same 16-thread and 128 GB cap.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">duckdb</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">duckdb</span>
+
+<span class="n">TEMP_DIRECTORY</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"/scratch/</span><span class="si">{</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">'USER'</span><span class="p">]</span><span class="si">}</span><span class="s2">/duckdb_tmp"</span>
 
 <span class="n">ROOT</span> <span class="o">=</span> <span class="s2">"/kellogg/data/revelio"</span>
 <span class="n">JOBS</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">ROOT</span><span class="si">}</span><span class="s2">/Oct52026/revelio_job_postings"</span>
@@ -725,7 +600,7 @@ SQL</label><div class="sd-tab-content docutils">
     <span class="n">config</span><span class="o">=</span><span class="p">{</span>
         <span class="s2">"threads"</span><span class="p">:</span> <span class="mi">16</span><span class="p">,</span>
         <span class="s2">"memory_limit"</span><span class="p">:</span> <span class="s2">"128GB"</span><span class="p">,</span>
-        <span class="s2">"temp_directory"</span><span class="p">:</span> <span class="s2">"/scratch/&lt;your-netid&gt;/duckdb_tmp"</span><span class="p">,</span>
+        <span class="s2">"temp_directory"</span><span class="p">:</span> <span class="n">TEMP_DIRECTORY</span><span class="p">,</span>
         <span class="s2">"max_temp_directory_size"</span><span class="p">:</span> <span class="s2">"200GB"</span><span class="p">,</span>
     <span class="p">},</span>
 <span class="p">)</span>
@@ -737,7 +612,7 @@ SQL</label><div class="sd-tab-content docutils">
         <span class="sa">f</span><span class="s2">"SELECT * FROM read_parquet('</span><span class="si">{</span><span class="n">base</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">/*.parquet')"</span>
     <span class="p">)</span>
 
-<span class="c1"># Filtered joins against posting text. For a long extract, use the part-by-part script.</span>
+<span class="c1"># Combined posting text for filtered joins, including a country-year extract.</span>
 <span class="n">raw_parts</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">"'</span><span class="si">{</span><span class="n">JOBS</span><span class="si">}</span><span class="s2">/postings_cosmos_raw_p</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">/*.parquet'"</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)]</span>
 <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
     <span class="s2">"CREATE OR REPLACE VIEW postings_cosmos_raw AS "</span>
@@ -747,8 +622,8 @@ SQL</label><div class="sd-tab-content docutils">
 <span class="n">con</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </pre></div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">postings_cosmos_raw</span></code> unions all 10 posting-text tables. Use it for a filtered join. For a long extract, use the part-by-part script in <a class="reference internal" href="#revelio-country-postings"><span class="std std-ref">Extract Posting Text for a Country and Year</span></a>.</p>
-<p>Open the read-only connection from <a class="reference internal" href="#revelio-duckdb-limits"><span class="std std-ref">Open DuckDB with Limits</span></a> and check the views:</p>
+<p><code class="docutils literal notranslate"><span class="pre">postings_cosmos_raw</span></code> unions all 10 posting-text tables. Use it for a filtered join, including the country-year extract in <a class="reference internal" href="#revelio-country-postings"><span class="std std-ref">Extract Posting Text for a Country and Year</span></a>. The join filters to the target <code class="docutils literal notranslate"><span class="pre">job_id</span></code>s first, so the memory footprint stays low.</p>
+<p>Open the read-only connection from <a class="reference internal" href="#revelio-duckdb-limits"><span class="std std-ref">Open a Connection</span></a> and check the views:</p>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SHOW</span><span class="w"> </span><span class="n">TABLES</span><span class="p">;</span>
 
 <span class="k">DESCRIBE</span><span class="w"> </span><span class="n">company_mapping</span><span class="p">;</span>
@@ -757,14 +632,18 @@ SQL</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </section>
-<section id="open-duckdb-or-the-wrds-python-client">
-<span id="revelio-run-query"></span><h3>Open DuckDB or the WRDS Python Client<a class="headerlink" href="#open-duckdb-or-the-wrds-python-client" title="Link to this heading">#</a></h3>
-<p>Each example below has a DuckDB tab and a WRDS tab. Open the client once, then run the later snippets in that same session. DuckDB reads the local Parquet views. The WRDS client queries the <code class="docutils literal notranslate"><span class="pre">revelio</span></code> library. For WRDS, complete <a class="reference internal" href="../../kellogg-data-hosting/wrds/wrds.html#id2"><span class="std std-ref">Setting Up Credentials</span></a> and <a class="reference internal" href="../../kellogg-data-hosting/wrds/wrds.html#connecting-from-klc"><span class="std std-ref">Connecting from KLC</span></a>. Call <code class="docutils literal notranslate"><span class="pre">.pl()</span></code> instead of <code class="docutils literal notranslate"><span class="pre">.df()</span></code> when you want a Polars data frame from DuckDB. The R connection for DuckDB is in <a class="reference internal" href="#revelio-duckdb-limits"><span class="std std-ref">Open DuckDB with Limits</span></a>.</p>
+<section id="open-a-connection">
+<span id="revelio-run-query"></span><span id="revelio-duckdb-limits"></span><h3>Open a Connection<a class="headerlink" href="#open-a-connection" title="Link to this heading">#</a></h3>
+<p>Open the views file from the previous section. Set the cap on every connection, then run every later snippet in that same session. Each example below has a DuckDB tab and a WRDS tab. DuckDB reads the local Parquet views. The WRDS client queries the <code class="docutils literal notranslate"><span class="pre">revelio</span></code> library. For WRDS, complete <a class="reference internal" href="../../kellogg-data-hosting/wrds/wrds.html#id2"><span class="std std-ref">Setting Up Credentials</span></a> and <a class="reference internal" href="../../kellogg-data-hosting/wrds/wrds.html#connecting-from-klc"><span class="std std-ref">Connecting from KLC</span></a>. Call <code class="docutils literal notranslate"><span class="pre">.pl()</span></code> instead of <code class="docutils literal notranslate"><span class="pre">.df()</span></code> when you want a Polars data frame from DuckDB.</p>
+<p>The Python and R snippets set <code class="docutils literal notranslate"><span class="pre">temp_directory</span></code> from the <code class="docutils literal notranslate"><span class="pre">USER</span></code> environment variable. In the SQL tab, replace <code class="docutils literal notranslate"><span class="pre">&lt;your-netid&gt;</span></code> with your NetID.</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-3" name="sd-tab-set-1" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="duckdb" for="sd-tab-item-3">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="duckdb" for="sd-tab-item-0">
 DuckDB</label><div class="sd-tab-content docutils">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">duckdb</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">duckdb</span>
+
+<span class="n">TEMP_DIRECTORY</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"/scratch/</span><span class="si">{</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">'USER'</span><span class="p">]</span><span class="si">}</span><span class="s2">/duckdb_tmp"</span>
 
 <span class="n">con</span> <span class="o">=</span> <span class="n">duckdb</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
     <span class="s2">"/kellogg/proj/&lt;your-netid&gt;/revelio/revelio_views.duckdb"</span><span class="p">,</span>
@@ -772,7 +651,7 @@ DuckDB</label><div class="sd-tab-content docutils">
     <span class="n">config</span><span class="o">=</span><span class="p">{</span>
         <span class="s2">"threads"</span><span class="p">:</span> <span class="mi">16</span><span class="p">,</span>
         <span class="s2">"memory_limit"</span><span class="p">:</span> <span class="s2">"128GB"</span><span class="p">,</span>
-        <span class="s2">"temp_directory"</span><span class="p">:</span> <span class="s2">"/scratch/&lt;your-netid&gt;/duckdb_tmp"</span><span class="p">,</span>
+        <span class="s2">"temp_directory"</span><span class="p">:</span> <span class="n">TEMP_DIRECTORY</span><span class="p">,</span>
         <span class="s2">"max_temp_directory_size"</span><span class="p">:</span> <span class="s2">"200GB"</span><span class="p">,</span>
     <span class="p">},</span>
 <span class="p">)</span>
@@ -780,8 +659,40 @@ DuckDB</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="sd-tab-item-4" name="sd-tab-set-1" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="wrds" for="sd-tab-item-4">
+<input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="r" for="sd-tab-item-1">
+R</label><div class="sd-tab-content docutils">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">DBI</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">duckdb</span><span class="p">)</span>
+
+<span class="n">con</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">dbConnect</span><span class="p">(</span>
+<span class="w">  </span><span class="nf">duckdb</span><span class="p">(),</span>
+<span class="w">  </span><span class="n">dbdir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"/kellogg/proj/&lt;your-netid&gt;/revelio/revelio_views.duckdb"</span><span class="p">,</span>
+<span class="w">  </span><span class="n">read_only</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span>
+<span class="w">  </span><span class="n">config</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span>
+<span class="w">    </span><span class="n">threads</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"16"</span><span class="p">,</span>
+<span class="w">    </span><span class="n">memory_limit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"128GB"</span><span class="p">,</span>
+<span class="w">    </span><span class="n">temp_directory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">paste0</span><span class="p">(</span><span class="s">"/scratch/"</span><span class="p">,</span><span class="w"> </span><span class="nf">Sys.getenv</span><span class="p">(</span><span class="s">"USER"</span><span class="p">),</span><span class="w"> </span><span class="s">"/duckdb_tmp"</span><span class="p">),</span>
+<span class="w">    </span><span class="n">max_temp_directory_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"200GB"</span>
+<span class="w">  </span><span class="p">)</span>
+<span class="p">)</span>
+<span class="nf">dbExecute</span><span class="p">(</span><span class="n">con</span><span class="p">,</span><span class="w"> </span><span class="s">"SET preserve_insertion_order = false"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-2" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-2">
+SQL</label><div class="sd-tab-content docutils">
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SET</span><span class="w"> </span><span class="n">threads</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">16</span><span class="p">;</span>
+<span class="k">SET</span><span class="w"> </span><span class="n">memory_limit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'128GB'</span><span class="p">;</span>
+<span class="k">SET</span><span class="w"> </span><span class="n">temp_directory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'/scratch/&lt;your-netid&gt;/duckdb_tmp'</span><span class="p">;</span>
+<span class="k">SET</span><span class="w"> </span><span class="n">max_temp_directory_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'200GB'</span><span class="p">;</span>
+<span class="k">SET</span><span class="w"> </span><span class="n">preserve_insertion_order</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">false</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-3" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="wrds" for="sd-tab-item-3">
 WRDS</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">wrds</span>
 
@@ -789,6 +700,68 @@ WRDS</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
+</div>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Setting</p></th>
+<th class="head"><p>Controls</p></th>
+<th class="head"><p>KLC Main Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">threads</span></code></p></td>
+<td><p>CPU threads for query execution</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SET</span> <span class="pre">threads</span> <span class="pre">=</span> <span class="pre">16;</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">memory_limit</span></code></p></td>
+<td><p>Maximum memory DuckDB uses before spilling to disk</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SET</span> <span class="pre">memory_limit</span> <span class="pre">=</span> <span class="pre">'128GB';</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">temp_directory</span></code></p></td>
+<td><p>Where DuckDB writes spill files</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SET</span> <span class="pre">temp_directory</span> <span class="pre">=</span> <span class="pre">'/scratch/&lt;your-netid&gt;/duckdb_tmp';</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">max_temp_directory_size</span></code></p></td>
+<td><p>Cap on total spill-file size</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SET</span> <span class="pre">max_temp_directory_size</span> <span class="pre">=</span> <span class="pre">'200GB';</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">preserve_insertion_order</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">false</span></code> lowers memory use for large scans and exports</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SET</span> <span class="pre">preserve_insertion_order</span> <span class="pre">=</span> <span class="pre">false;</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The Python and R snippets fill <code class="docutils literal notranslate"><span class="pre">temp_directory</span></code> from <code class="docutils literal notranslate"><span class="pre">USER</span></code>. The SQL value above is the same path with your NetID written out.</p>
+<p>Confirm the active values:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">current_setting</span><span class="p">(</span><span class="s1">'threads'</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">threads</span><span class="p">,</span>
+<span class="w">       </span><span class="n">current_setting</span><span class="p">(</span><span class="s1">'memory_limit'</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">memory_limit</span><span class="p">,</span>
+<span class="w">       </span><span class="n">current_setting</span><span class="p">(</span><span class="s1">'temp_directory'</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">temp_directory</span><span class="p">;</span>
+</pre></div>
+</div>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Where You Run</p></th>
+<th class="head"><p><code class="docutils literal notranslate"><span class="pre">threads</span></code></p></th>
+<th class="head"><p><code class="docutils literal notranslate"><span class="pre">memory_limit</span></code></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>KLC main</p></td>
+<td><p>16</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">128GB</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>KLC Reserve</p></td>
+<td><p>The <code class="docutils literal notranslate"><span class="pre">--ntasks</span></code> value you request</p></td>
+<td><p>About 90% of the <code class="docutils literal notranslate"><span class="pre">--mem</span></code> value you request</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>When a query exceeds <code class="docutils literal notranslate"><span class="pre">memory_limit</span></code>, DuckDB spills to <code class="docutils literal notranslate"><span class="pre">temp_directory</span></code> and keeps running. When the spill would pass <code class="docutils literal notranslate"><span class="pre">max_temp_directory_size</span></code>, raise that cap. Loading an entire table into memory is covered in <a class="reference internal" href="#revelio-reserve"><span class="std std-ref">Use KLC Reserve Above This Budget</span></a>. See <a class="reference internal" href="../../klc-reserve/highmem-jobs.html"><span class="doc std std-doc">High-Memory Jobs</span></a> for requests above 128 GB.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">memory_limit</span></code> applies to DuckDB’s own buffers. Converting a result to pandas or R with <code class="docutils literal notranslate"><span class="pre">.df()</span></code> or <code class="docutils literal notranslate"><span class="pre">dbGetQuery()</span></code> allocates additional memory outside the limit. Return an aggregate or a small extract on KLC main.</p>
 </div>
 <p>Close the session when you are finished: <code class="docutils literal notranslate"><span class="pre">con.close()</span></code> in DuckDB, or <code class="docutils literal notranslate"><span class="pre">conn.close()</span></code> in WRDS.</p>
 <div class="admonition warning">
@@ -798,13 +771,13 @@ WRDS</label><div class="sd-tab-content docutils">
 </section>
 <section id="one-firm-end-to-end">
 <span id="revelio-one-firm"></span><h3>One Firm, End to End<a class="headerlink" href="#one-firm-end-to-end" title="Link to this heading">#</a></h3>
-<p>Run these four steps in order. Replace <code class="docutils literal notranslate"><span class="pre">123456</span></code> with the <code class="docutils literal notranslate"><span class="pre">rcid</span></code> from the first query. The DuckDB headcount reads the extract from step 3. The WRDS headcount applies the same filters on <code class="docutils literal notranslate"><span class="pre">revelio.individual_positions</span></code>.</p>
+<p>Run these four steps in order in the session opened above. Replace <code class="docutils literal notranslate"><span class="pre">123456</span></code> with the <code class="docutils literal notranslate"><span class="pre">rcid</span></code> from the first query. The DuckDB headcount reads the extract from step 3. The WRDS headcount applies the same filters on <code class="docutils literal notranslate"><span class="pre">revelio.individual_positions</span></code>.</p>
 <section id="find-a-firm-s-rcid">
 <h4>Find a Firm’s rcid<a class="headerlink" href="#find-a-firm-s-rcid" title="Link to this heading">#</a></h4>
 <p>Look up <code class="docutils literal notranslate"><span class="pre">rcid</span></code> by ticker or name. <code class="docutils literal notranslate"><span class="pre">company_mapping</span></code> is a small table.</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-5" name="sd-tab-set-2" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="duckdb" for="sd-tab-item-5">
+<input checked="checked" id="sd-tab-item-4" name="sd-tab-set-1" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="duckdb" for="sd-tab-item-4">
 DuckDB</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">sql</span><span class="p">(</span><span class="s2">"""</span>
 <span class="s2">    SELECT rcid, company, ticker, cik, ultimate_parent_company_name</span>
@@ -817,8 +790,8 @@ DuckDB</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="sd-tab-item-6" name="sd-tab-set-2" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="wrds" for="sd-tab-item-6">
+<input id="sd-tab-item-5" name="sd-tab-set-1" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="wrds" for="sd-tab-item-5">
 WRDS</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">raw_sql</span><span class="p">(</span><span class="s2">"""</span>
 <span class="s2">    SELECT rcid, company, ticker, cik, ultimate_parent_company_name</span>
@@ -838,8 +811,8 @@ WRDS</label><div class="sd-tab-content docutils">
 <h4>Count Positions for One Firm<a class="headerlink" href="#count-positions-for-one-firm" title="Link to this heading">#</a></h4>
 <p>Count the firm’s position rows in the database. This returns one number.</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-7" name="sd-tab-set-3" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="duckdb" for="sd-tab-item-7">
+<input checked="checked" id="sd-tab-item-6" name="sd-tab-set-2" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="duckdb" for="sd-tab-item-6">
 DuckDB</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">sql</span><span class="p">(</span><span class="s2">"""</span>
 <span class="s2">    SELECT COUNT(*) AS n_positions</span>
@@ -850,8 +823,8 @@ DuckDB</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="sd-tab-item-8" name="sd-tab-set-3" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="wrds" for="sd-tab-item-8">
+<input id="sd-tab-item-7" name="sd-tab-set-2" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="wrds" for="sd-tab-item-7">
 WRDS</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">raw_sql</span><span class="p">(</span><span class="s2">"""</span>
 <span class="s2">    SELECT COUNT(*) AS n_positions</span>
@@ -868,8 +841,8 @@ WRDS</label><div class="sd-tab-content docutils">
 <span id="revelio-extract"></span><h4>Save an Extract<a class="headerlink" href="#save-an-extract" title="Link to this heading">#</a></h4>
 <p>Write the columns you need to your own Parquet file, then query the extract for repeated work. On DuckDB, <code class="docutils literal notranslate"><span class="pre">preserve_insertion_order</span></code> is already <code class="docutils literal notranslate"><span class="pre">false</span></code> on the connection above.</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-9" name="sd-tab-set-4" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="duckdb" for="sd-tab-item-9">
+<input checked="checked" id="sd-tab-item-8" name="sd-tab-set-3" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="duckdb" for="sd-tab-item-8">
 DuckDB</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"""</span>
 <span class="s2">    COPY (</span>
@@ -894,8 +867,8 @@ DuckDB</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="sd-tab-item-10" name="sd-tab-set-4" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="wrds" for="sd-tab-item-10">
+<input id="sd-tab-item-9" name="sd-tab-set-3" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="wrds" for="sd-tab-item-9">
 WRDS</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">positions</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">raw_sql</span><span class="p">(</span>
 <span class="w">    </span><span class="sd">"""</span>
@@ -920,8 +893,8 @@ WRDS</label><div class="sd-tab-content docutils">
 <h4>Monthly Headcount from the Extract<a class="headerlink" href="#monthly-headcount-from-the-extract" title="Link to this heading">#</a></h4>
 <p>Compute a weighted monthly headcount for 2019 to 2023. The longer WRDS walkthrough, including separation rates and a plot, is the <a class="reference internal" href="../../kellogg-data-hosting/wrds/examples/revelio-example.html"><span class="doc std std-doc">Revelio Labs WRDS example</span></a>.</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-11" name="sd-tab-set-5" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="duckdb" for="sd-tab-item-11">
+<input checked="checked" id="sd-tab-item-10" name="sd-tab-set-4" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="duckdb" for="sd-tab-item-10">
 DuckDB</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">sql</span><span class="p">(</span><span class="s2">"""</span>
 <span class="s2">    WITH months AS (</span>
@@ -946,8 +919,8 @@ DuckDB</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="sd-tab-item-12" name="sd-tab-set-5" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="wrds" for="sd-tab-item-12">
+<input id="sd-tab-item-11" name="sd-tab-set-4" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="wrds" for="sd-tab-item-11">
 WRDS</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">raw_sql</span><span class="p">(</span>
 <span class="w">    </span><span class="sd">"""</span>
@@ -976,203 +949,15 @@ WRDS</label><div class="sd-tab-content docutils">
 <!-- TODO(KRS): confirm the country literal in the local Parquet files, as in the WRDS example -->
 </section>
 </section>
-<section id="use-klc-reserve-above-this-budget">
-<span id="revelio-reserve"></span><h3>Use KLC Reserve Above This Budget<a class="headerlink" href="#use-klc-reserve-above-this-budget" title="Link to this heading">#</a></h3>
-<p>Submit the same query to <a class="reference internal" href="../../klc-reserve/when-to-use.html"><span class="doc std std-doc">KLC Reserve</span></a> when it needs more than 16 threads or more than 128 GB, or when you want a long scan off the shared node. The script below reads <code class="docutils literal notranslate"><span class="pre">SLURM_NTASKS</span></code> and <code class="docutils literal notranslate"><span class="pre">SLURM_MEM_PER_NODE</span></code> (megabytes, set by <code class="docutils literal notranslate"><span class="pre">--mem</span></code>) and sets <code class="docutils literal notranslate"><span class="pre">memory_limit</span></code> to about 90% of that grant. Outside a SLURM job it uses the KLC main cap of 16 threads and 128 GB.</p>
-<p>The sample query scans <code class="docutils literal notranslate"><span class="pre">postings_cosmos</span></code>. On KLC main, run it at 16 threads and 128 GB. Raise <code class="docutils literal notranslate"><span class="pre">--ntasks</span></code> and <code class="docutils literal notranslate"><span class="pre">--mem</span></code> in the batch script when you need more. For RAM above a standard Reserve node, see <a class="reference internal" href="../../klc-reserve/highmem-jobs.html"><span class="doc std std-doc">High-Memory Jobs</span></a>.</p>
-<p>Save this script as <code class="docutils literal notranslate"><span class="pre">revelio_job.py</span></code>:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">duckdb</span>
-
-<span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"SLURM_JOB_ID"</span><span class="p">):</span>
-    <span class="n">threads</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">"SLURM_NTASKS"</span><span class="p">])</span>
-    <span class="n">mem_mb</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">"SLURM_MEM_PER_NODE"</span><span class="p">])</span>
-    <span class="n">memory_limit</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">mem_mb</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">0.9</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">1024</span><span class="p">)</span><span class="si">}</span><span class="s2">GB"</span>
-<span class="k">else</span><span class="p">:</span>
-    <span class="n">threads</span> <span class="o">=</span> <span class="mi">16</span>
-    <span class="n">memory_limit</span> <span class="o">=</span> <span class="s2">"128GB"</span>
-
-<span class="n">con</span> <span class="o">=</span> <span class="n">duckdb</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
-    <span class="s2">"/kellogg/proj/&lt;your-netid&gt;/revelio/revelio_views.duckdb"</span><span class="p">,</span>
-    <span class="n">read_only</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-    <span class="n">config</span><span class="o">=</span><span class="p">{</span>
-        <span class="s2">"threads"</span><span class="p">:</span> <span class="n">threads</span><span class="p">,</span>
-        <span class="s2">"memory_limit"</span><span class="p">:</span> <span class="n">memory_limit</span><span class="p">,</span>
-        <span class="s2">"temp_directory"</span><span class="p">:</span> <span class="s2">"/scratch/&lt;your-netid&gt;/duckdb_tmp"</span><span class="p">,</span>
-        <span class="s2">"max_temp_directory_size"</span><span class="p">:</span> <span class="s2">"200GB"</span><span class="p">,</span>
-    <span class="p">},</span>
-<span class="p">)</span>
-<span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"SET preserve_insertion_order = false"</span><span class="p">)</span>
-
-<span class="n">con</span><span class="o">.</span><span class="n">sql</span><span class="p">(</span><span class="s2">"""</span>
-<span class="s2">    SELECT date_trunc('month', post_date) AS post_month, COUNT(*) AS n_postings</span>
-<span class="s2">    FROM postings_cosmos</span>
-<span class="s2">    GROUP BY post_month</span>
-<span class="s2">    ORDER BY post_month</span>
-<span class="s2">"""</span><span class="p">)</span><span class="o">.</span><span class="n">write_csv</span><span class="p">(</span><span class="s2">"/kellogg/proj/&lt;your-netid&gt;/revelio/postings_by_month.csv"</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>Save this as <code class="docutils literal notranslate"><span class="pre">revelio_job.sh</span></code>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
-<span class="c1">#SBATCH --account=kellogg</span>
-<span class="c1">#SBATCH --partition=kellogg</span>
-<span class="c1">#SBATCH --job-name=revelio-duckdb</span>
-<span class="c1">#SBATCH --nodes=1</span>
-<span class="c1">#SBATCH --ntasks=16</span>
-<span class="c1">#SBATCH --mem=128G</span>
-<span class="c1">#SBATCH --time=04:00:00</span>
-<span class="c1">#SBATCH --output=logs/slurm-%j.out</span>
-
-module<span class="w"> </span>purge
-module<span class="w"> </span>use<span class="w"> </span>--append<span class="w"> </span>/kellogg/software/Modules/modulefiles
-module<span class="w"> </span>load<span class="w"> </span>mamba/24.3.0
-<span class="nb">source</span><span class="w"> </span>activate<span class="w"> </span>/kellogg/proj/&lt;your-netid&gt;/envs/revelio-duckdb
-
-mkdir<span class="w"> </span>-p<span class="w"> </span>/scratch/&lt;your-netid&gt;/duckdb_tmp
-python<span class="w"> </span>revelio_job.py
-</pre></div>
-</div>
-<p><code class="docutils literal notranslate"><span class="pre">#SBATCH</span> <span class="pre">--output</span></code> is opened when the job starts, so create the log directory before you submit. For submission options, monitoring, and tuning, see <a class="reference internal" href="../../klc-reserve/slurm-jobs.html"><span class="doc std std-doc">Submitting SLURM Jobs</span></a>.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>logs
-sbatch<span class="w"> </span>revelio_job.sh
-</pre></div>
-</div>
-</section>
 <section id="more-examples">
 <h3>More Examples<a class="headerlink" href="#more-examples" title="Link to this heading">#</a></h3>
-<p>Use the session from <a class="reference internal" href="#revelio-run-query"><span class="std std-ref">Open DuckDB or the WRDS Python Client</span></a>. Run <code class="docutils literal notranslate"><span class="pre">DESCRIBE</span></code> on a DuckDB view before a join, and cast both sides of a join key when the types differ. See <a class="reference internal" href="#revelio-identifiers"><span class="std std-ref">Key Identifiers and Joins</span></a>.</p>
-<section id="layoffs-by-state-and-year">
-<h4>Layoffs by State and Year<a class="headerlink" href="#layoffs-by-state-and-year" title="Link to this heading">#</a></h4>
-<p><code class="docutils literal notranslate"><span class="pre">layoffs</span></code> is a small table. Run this on KLC main.</p>
-<div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-13" name="sd-tab-set-6" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="duckdb" for="sd-tab-item-13">
-DuckDB</label><div class="sd-tab-content docutils">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">sql</span><span class="p">(</span><span class="s2">"""</span>
-<span class="s2">    SELECT</span>
-<span class="s2">        state,</span>
-<span class="s2">        EXTRACT(year FROM layoff_date) AS layoff_year,</span>
-<span class="s2">        COUNT(*) AS n_events,</span>
-<span class="s2">        SUM(num_employees) AS employees_laid_off</span>
-<span class="s2">    FROM layoffs</span>
-<span class="s2">    WHERE layoff_date IS NOT NULL</span>
-<span class="s2">    GROUP BY state, layoff_year</span>
-<span class="s2">    ORDER BY employees_laid_off DESC NULLS LAST</span>
-<span class="s2">    LIMIT 25</span>
-<span class="s2">"""</span><span class="p">)</span><span class="o">.</span><span class="n">df</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<input id="sd-tab-item-14" name="sd-tab-set-6" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="wrds" for="sd-tab-item-14">
-WRDS</label><div class="sd-tab-content docutils">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">raw_sql</span><span class="p">(</span><span class="s2">"""</span>
-<span class="s2">    SELECT</span>
-<span class="s2">        state,</span>
-<span class="s2">        EXTRACT(year FROM layoff_date) AS layoff_year,</span>
-<span class="s2">        COUNT(*) AS n_events,</span>
-<span class="s2">        SUM(num_employees) AS employees_laid_off</span>
-<span class="s2">    FROM revelio.layoffs</span>
-<span class="s2">    WHERE layoff_date IS NOT NULL</span>
-<span class="s2">    GROUP BY state, layoff_year</span>
-<span class="s2">    ORDER BY employees_laid_off DESC NULLS LAST</span>
-<span class="s2">    LIMIT 25</span>
-<span class="s2">"""</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="company-sentiment-scores">
-<h4>Company Sentiment Scores<a class="headerlink" href="#company-sentiment-scores" title="Link to this heading">#</a></h4>
-<p><code class="docutils literal notranslate"><span class="pre">sentiment_scores</span></code> is a small table. Run this on KLC main.</p>
-<div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-15" name="sd-tab-set-7" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="duckdb" for="sd-tab-item-15">
-DuckDB</label><div class="sd-tab-content docutils">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">sql</span><span class="p">(</span><span class="s2">"""</span>
-<span class="s2">    SELECT company, rcid, culture_sentiment,</span>
-<span class="s2">           work_life_balance_sentiment, num_reviews</span>
-<span class="s2">    FROM sentiment_scores</span>
-<span class="s2">    WHERE num_reviews &gt;= 100</span>
-<span class="s2">    ORDER BY culture_sentiment DESC</span>
-<span class="s2">    LIMIT 25</span>
-<span class="s2">"""</span><span class="p">)</span><span class="o">.</span><span class="n">df</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<input id="sd-tab-item-16" name="sd-tab-set-7" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="wrds" for="sd-tab-item-16">
-WRDS</label><div class="sd-tab-content docutils">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">raw_sql</span><span class="p">(</span><span class="s2">"""</span>
-<span class="s2">    SELECT company, rcid, culture_sentiment,</span>
-<span class="s2">           work_life_balance_sentiment, num_reviews</span>
-<span class="s2">    FROM revelio.sentiment_scores</span>
-<span class="s2">    WHERE num_reviews &gt;= 100</span>
-<span class="s2">    ORDER BY culture_sentiment DESC</span>
-<span class="s2">    LIMIT 25</span>
-<span class="s2">"""</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="employee-review-ratings-by-year">
-<h4>Employee Review Ratings by Year<a class="headerlink" href="#employee-review-ratings-by-year" title="Link to this heading">#</a></h4>
-<p>Run this on KLC main at 16 threads and 128 GB. The query names the columns it aggregates.</p>
-<div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-17" name="sd-tab-set-8" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="duckdb" for="sd-tab-item-17">
-DuckDB</label><div class="sd-tab-content docutils">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">sql</span><span class="p">(</span><span class="s2">"""</span>
-<span class="s2">    SELECT</span>
-<span class="s2">        EXTRACT(year FROM review_date) AS review_year,</span>
-<span class="s2">        COUNT(*) AS n_reviews,</span>
-<span class="s2">        AVG(rating_overall) AS avg_overall,</span>
-<span class="s2">        AVG(rating_culture_and_values) AS avg_culture</span>
-<span class="s2">    FROM sentiment_individual_reviews</span>
-<span class="s2">    WHERE rcid = 123456</span>
-<span class="s2">    GROUP BY review_year</span>
-<span class="s2">    ORDER BY review_year</span>
-<span class="s2">"""</span><span class="p">)</span><span class="o">.</span><span class="n">df</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<input id="sd-tab-item-18" name="sd-tab-set-8" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="wrds" for="sd-tab-item-18">
-WRDS</label><div class="sd-tab-content docutils">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">raw_sql</span><span class="p">(</span><span class="s2">"""</span>
-<span class="s2">    SELECT</span>
-<span class="s2">        EXTRACT(year FROM review_date) AS review_year,</span>
-<span class="s2">        COUNT(*) AS n_reviews,</span>
-<span class="s2">        AVG(rating_overall) AS avg_overall,</span>
-<span class="s2">        AVG(rating_culture_and_values) AS avg_culture</span>
-<span class="s2">    FROM revelio.sentiment_individual_reviews</span>
-<span class="s2">    WHERE rcid = 123456</span>
-<span class="s2">    GROUP BY review_year</span>
-<span class="s2">    ORDER BY review_year</span>
-<span class="s2">"""</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p><code class="docutils literal notranslate"><span class="pre">sentiment_individual_reviews</span></code> includes free-text columns (<code class="docutils literal notranslate"><span class="pre">review_pros</span></code>, <code class="docutils literal notranslate"><span class="pre">review_cons</span></code>, <code class="docutils literal notranslate"><span class="pre">review_advice</span></code>). Select the columns you need when you scan this table.</p>
-</div>
-</section>
+<p>Use the session from <a class="reference internal" href="#revelio-run-query"><span class="std std-ref">Open a Connection</span></a>. Run <code class="docutils literal notranslate"><span class="pre">DESCRIBE</span></code> on a DuckDB view before a join, and cast both sides of a join key when the types differ. See <a class="reference internal" href="#revelio-identifiers"><span class="std std-ref">Key Identifiers and Joins</span></a>.</p>
 <section id="positions-by-role-group">
 <h4>Positions by Role Group<a class="headerlink" href="#positions-by-role-group" title="Link to this heading">#</a></h4>
 <p>Run this on KLC main at 16 threads and 128 GB. For repeated DuckDB runs, add <code class="docutils literal notranslate"><span class="pre">role_k17000_v3</span></code> and <code class="docutils literal notranslate"><span class="pre">remote_suitability</span></code> to the extract in <a class="reference internal" href="#revelio-extract"><span class="std std-ref">Save an Extract</span></a> and query that file.</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-19" name="sd-tab-set-9" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="duckdb" for="sd-tab-item-19">
+<input checked="checked" id="sd-tab-item-12" name="sd-tab-set-5" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="duckdb" for="sd-tab-item-12">
 DuckDB</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">sql</span><span class="p">(</span><span class="s2">"""</span>
 <span class="s2">    SELECT</span>
@@ -1191,8 +976,8 @@ DuckDB</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="sd-tab-item-20" name="sd-tab-set-9" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="wrds" for="sd-tab-item-20">
+<input id="sd-tab-item-13" name="sd-tab-set-5" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="wrds" for="sd-tab-item-13">
 WRDS</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">raw_sql</span><span class="p">(</span><span class="s2">"""</span>
 <span class="s2">    SELECT</span>
@@ -1213,106 +998,12 @@ WRDS</label><div class="sd-tab-content docutils">
 </div>
 </div>
 </section>
-<section id="education-by-degree-and-field">
-<h4>Education by Degree and Field<a class="headerlink" href="#education-by-degree-and-field" title="Link to this heading">#</a></h4>
-<p>Run this on KLC main at 16 threads and 128 GB.</p>
-<div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-21" name="sd-tab-set-10" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="duckdb" for="sd-tab-item-21">
-DuckDB</label><div class="sd-tab-content docutils">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">sql</span><span class="p">(</span><span class="s2">"""</span>
-<span class="s2">    SELECT e.degree, e.field, COUNT(*) AS n_records</span>
-<span class="s2">    FROM individual_user_education AS e</span>
-<span class="s2">    JOIN school_mapping AS s ON e.rsid = s.rsid</span>
-<span class="s2">    JOIN individual_user AS u ON e.user_id = u.user_id</span>
-<span class="s2">    WHERE s.school_cleaned ILIKE 'northwestern university'</span>
-<span class="s2">      AND u.user_country = 'United States'</span>
-<span class="s2">    GROUP BY e.degree, e.field</span>
-<span class="s2">    ORDER BY n_records DESC</span>
-<span class="s2">    LIMIT 25</span>
-<span class="s2">"""</span><span class="p">)</span><span class="o">.</span><span class="n">df</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<input id="sd-tab-item-22" name="sd-tab-set-10" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="wrds" for="sd-tab-item-22">
-WRDS</label><div class="sd-tab-content docutils">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">raw_sql</span><span class="p">(</span><span class="s2">"""</span>
-<span class="s2">    SELECT e.degree, e.field, COUNT(*) AS n_records</span>
-<span class="s2">    FROM revelio.individual_user_education AS e</span>
-<span class="s2">    JOIN revelio.school_mapping AS s ON e.rsid = s.rsid</span>
-<span class="s2">    JOIN revelio.individual_user AS u ON e.user_id = u.user_id</span>
-<span class="s2">    WHERE s.school_cleaned ILIKE 'northwestern university'</span>
-<span class="s2">      AND u.user_country = 'United States'</span>
-<span class="s2">    GROUP BY e.degree, e.field</span>
-<span class="s2">    ORDER BY n_records DESC</span>
-<span class="s2">    LIMIT 25</span>
-<span class="s2">"""</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<!-- TODO(KRS): confirm the cleaned school name and country literal in the local Parquet files -->
-</section>
-<section id="job-postings-by-month-and-role">
-<h4>Job Postings by Month and Role<a class="headerlink" href="#job-postings-by-month-and-role" title="Link to this heading">#</a></h4>
-<p>Run this on KLC main at 16 threads and 128 GB. The filter keeps the scan to one firm.</p>
-<div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-23" name="sd-tab-set-11" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="duckdb" for="sd-tab-item-23">
-DuckDB</label><div class="sd-tab-content docutils">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">sql</span><span class="p">(</span><span class="s2">"""</span>
-<span class="s2">    SELECT</span>
-<span class="s2">        date_trunc('month', c.post_date) AS post_month,</span>
-<span class="s2">        l.role_k50_v3,</span>
-<span class="s2">        COUNT(*) AS n_postings,</span>
-<span class="s2">        AVG(c.salary) AS avg_salary</span>
-<span class="s2">    FROM postings_cosmos AS c</span>
-<span class="s2">    JOIN postings_role_lookup_v3 AS l</span>
-<span class="s2">      ON c.role_k17000_v3 = l.role_k17000_v3</span>
-<span class="s2">    WHERE c.rcid = 123456</span>
-<span class="s2">      AND c.post_date &gt;= DATE '2020-01-01'</span>
-<span class="s2">    GROUP BY post_month, l.role_k50_v3</span>
-<span class="s2">    ORDER BY post_month, n_postings DESC</span>
-<span class="s2">"""</span><span class="p">)</span><span class="o">.</span><span class="n">df</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<input id="sd-tab-item-24" name="sd-tab-set-11" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="wrds" for="sd-tab-item-24">
-WRDS</label><div class="sd-tab-content docutils">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">raw_sql</span><span class="p">(</span>
-<span class="w">    </span><span class="sd">"""</span>
-<span class="sd">    SELECT</span>
-<span class="sd">        date_trunc('month', c.post_date) AS post_month,</span>
-<span class="sd">        l.role_k50_v3,</span>
-<span class="sd">        COUNT(*) AS n_postings,</span>
-<span class="sd">        AVG(c.salary) AS avg_salary</span>
-<span class="sd">    FROM revelio.postings_cosmos AS c</span>
-<span class="sd">    JOIN revelio.postings_role_lookup_v3 AS l</span>
-<span class="sd">      ON c.role_k17000_v3 = l.role_k17000_v3</span>
-<span class="sd">    WHERE c.rcid = 123456</span>
-<span class="sd">      AND c.post_date &gt;= DATE '2020-01-01'</span>
-<span class="sd">    GROUP BY post_month, l.role_k50_v3</span>
-<span class="sd">    ORDER BY post_month, n_postings DESC</span>
-<span class="sd">    """</span><span class="p">,</span>
-    <span class="n">date_cols</span><span class="o">=</span><span class="p">[</span><span class="s2">"post_month"</span><span class="p">],</span>
-<span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</section>
 <section id="skills-of-one-firm-s-employees">
 <h4>Skills of One Firm’s Employees<a class="headerlink" href="#skills-of-one-firm-s-employees" title="Link to this heading">#</a></h4>
-<p>Run this on KLC main at 16 threads and 128 GB. Move the DuckDB query to KLC Reserve when you need more than that. The firm filter runs first. DuckDB uses <code class="docutils literal notranslate"><span class="pre">SEMI</span> <span class="pre">JOIN</span></code> so the skills scan stays on those users. WRDS uses an inner join for the same filter. Prefer the DuckDB tab when the skills table is the main scan.</p>
+<p>Run this on KLC main at 16 threads and 128 GB. The result is an aggregate, so this query stays on KLC main. The firm filter runs first. DuckDB uses <code class="docutils literal notranslate"><span class="pre">SEMI</span> <span class="pre">JOIN</span></code> so the skills scan stays on those users. WRDS uses an inner join for the same filter. Prefer the DuckDB tab when the skills table is the main scan.</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-25" name="sd-tab-set-12" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="duckdb" for="sd-tab-item-25">
+<input checked="checked" id="sd-tab-item-14" name="sd-tab-set-6" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="duckdb" for="sd-tab-item-14">
 DuckDB</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">sql</span><span class="p">(</span><span class="s2">"""</span>
 <span class="s2">    WITH firm_users AS (</span>
@@ -1337,8 +1028,8 @@ DuckDB</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="sd-tab-item-26" name="sd-tab-set-12" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="wrds" for="sd-tab-item-26">
+<input id="sd-tab-item-15" name="sd-tab-set-6" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="wrds" for="sd-tab-item-15">
 WRDS</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">raw_sql</span><span class="p">(</span><span class="s2">"""</span>
 <span class="s2">    WITH firm_users AS (</span>
@@ -1365,53 +1056,12 @@ WRDS</label><div class="sd-tab-content docutils">
 </div>
 </div>
 </section>
-<section id="search-posting-text">
-<h4>Search Posting Text<a class="headerlink" href="#search-posting-text" title="Link to this heading">#</a></h4>
-<p>Run this on KLC main at 16 threads and 128 GB. Move the DuckDB query to KLC Reserve when you need more than that. The filter on <code class="docutils literal notranslate"><span class="pre">postings_cosmos</span></code> runs first. On KLC, <code class="docutils literal notranslate"><span class="pre">postings_cosmos_raw</span></code> is the union of all 10 text tables. On WRDS, posting text is the single table <code class="docutils literal notranslate"><span class="pre">revelio.postings_cosmos_raw</span></code>. Cast both keys to the same type. The KLC files are not partitioned by <code class="docutils literal notranslate"><span class="pre">rcid</span></code> or <code class="docutils literal notranslate"><span class="pre">job_id</span></code>, so DuckDB can still open every text part.</p>
-<div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-27" name="sd-tab-set-13" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="duckdb" for="sd-tab-item-27">
-DuckDB</label><div class="sd-tab-content docutils">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">sql</span><span class="p">(</span><span class="s2">"""</span>
-<span class="s2">    SELECT c.job_id, c.company, c.post_date, r.jobtitle_translated</span>
-<span class="s2">    FROM postings_cosmos AS c</span>
-<span class="s2">    JOIN postings_cosmos_raw AS r</span>
-<span class="s2">      ON CAST(c.job_id AS HUGEINT) = CAST(r.job_id AS HUGEINT)</span>
-<span class="s2">    WHERE c.rcid = 123456</span>
-<span class="s2">      AND r.description ILIKE '%machine learning%'</span>
-<span class="s2">    LIMIT 100</span>
-<span class="s2">"""</span><span class="p">)</span><span class="o">.</span><span class="n">df</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<input id="sd-tab-item-28" name="sd-tab-set-13" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="wrds" for="sd-tab-item-28">
-WRDS</label><div class="sd-tab-content docutils">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">raw_sql</span><span class="p">(</span>
-<span class="w">    </span><span class="sd">"""</span>
-<span class="sd">    SELECT c.job_id, c.company, c.post_date, r.jobtitle_translated</span>
-<span class="sd">    FROM revelio.postings_cosmos AS c</span>
-<span class="sd">    JOIN revelio.postings_cosmos_raw AS r</span>
-<span class="sd">      ON CAST(c.job_id AS NUMERIC) = CAST(r.job_id AS NUMERIC)</span>
-<span class="sd">    WHERE c.rcid = 123456</span>
-<span class="sd">      AND r.description ILIKE '%machine learning%'</span>
-<span class="sd">    LIMIT 100</span>
-<span class="sd">    """</span><span class="p">,</span>
-    <span class="n">date_cols</span><span class="o">=</span><span class="p">[</span><span class="s2">"post_date"</span><span class="p">],</span>
-<span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</section>
 <section id="extract-posting-text-for-a-country-and-year">
 <span id="revelio-country-postings"></span><h4>Extract Posting Text for a Country and Year<a class="headerlink" href="#extract-posting-text-for-a-country-and-year" title="Link to this heading">#</a></h4>
-<p>Run a filtered join on KLC main at 16 threads and 128 GB. On KLC, posting text is split across 10 tables. On WRDS it is one table, <code class="docutils literal notranslate"><span class="pre">revelio.postings_cosmos_raw</span></code>. For a long KLC extract, use the part-by-part script in the dropdown. That script caps DuckDB at 16 threads and 128 GB on KLC main, and sizes <code class="docutils literal notranslate"><span class="pre">threads</span></code> and <code class="docutils literal notranslate"><span class="pre">memory_limit</span></code> from the SLURM allocation inside a Reserve job.</p>
+<p>Run this filtered join on KLC main at 16 threads and 128 GB. <code class="docutils literal notranslate"><span class="pre">postings_cosmos_raw</span></code> is the combined view of all 10 posting-text tables. The join filters to the target <code class="docutils literal notranslate"><span class="pre">job_id</span></code>s first, so the memory footprint stays low. On WRDS, posting text is the single table <code class="docutils literal notranslate"><span class="pre">revelio.postings_cosmos_raw</span></code>.</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-29" name="sd-tab-set-14" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="duckdb" for="sd-tab-item-29">
+<input checked="checked" id="sd-tab-item-16" name="sd-tab-set-7" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="duckdb" for="sd-tab-item-16">
 DuckDB</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"""</span>
 <span class="s2">    CREATE TEMP TABLE target_postings AS</span>
@@ -1439,8 +1089,8 @@ DuckDB</label><div class="sd-tab-content docutils">
 </div>
 <p>For text alone, replace <code class="docutils literal notranslate"><span class="pre">JOIN</span></code> with <code class="docutils literal notranslate"><span class="pre">SEMI</span> <span class="pre">JOIN</span></code> and select <code class="docutils literal notranslate"><span class="pre">r.job_id,</span> <span class="pre">r.description</span></code>.</p>
 </div>
-<input id="sd-tab-item-30" name="sd-tab-set-14" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="wrds" for="sd-tab-item-30">
+<input id="sd-tab-item-17" name="sd-tab-set-7" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="wrds" for="sd-tab-item-17">
 WRDS</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">chunks</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">raw_sql</span><span class="p">(</span>
 <span class="w">    </span><span class="sd">"""</span>
@@ -1462,20 +1112,22 @@ WRDS</label><div class="sd-tab-content docutils">
 <p><code class="docutils literal notranslate"><span class="pre">chunksize</span></code> returns an iterator of data frames. A country-year of posting text is large. Prefer the DuckDB tab when you want one Parquet file on the KLC file system.</p>
 </div>
 </div>
-<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
-<summary class="sd-summary-title sd-card-header">
-<span class="sd-summary-text">Part-by-Part DuckDB Script</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
-<p class="sd-card-text">The script below writes one Parquet file per <code class="docutils literal notranslate"><span class="pre">postings_cosmos_raw_p*</span></code> table, skips files that already exist, and writes each file under a temporary name so a failed job leaves no partial output.</p>
+<!-- TODO(KRS): confirm the country literal ('Hong Kong') and that job_id values in postings_cosmos_raw_p* match postings_cosmos after the HUGEINT cast; compare matched row counts to the number of target postings -->
+</section>
+</section>
+<section id="use-klc-reserve-above-this-budget">
+<span id="revelio-reserve"></span><h3>Use KLC Reserve Above This Budget<a class="headerlink" href="#use-klc-reserve-above-this-budget" title="Link to this heading">#</a></h3>
+<p>Filtered scans, aggregates, and extracts stay on KLC main, including the country-year join against <code class="docutils literal notranslate"><span class="pre">postings_cosmos_raw</span></code>. Use <a class="reference internal" href="../../klc-reserve/when-to-use.html"><span class="doc std std-doc">KLC Reserve</span></a> when you will read the entire contents of one or more tables into memory with <code class="docutils literal notranslate"><span class="pre">.df()</span></code>, Polars, or <code class="docutils literal notranslate"><span class="pre">dbGetQuery()</span></code>.</p>
+<p>The script below reads <code class="docutils literal notranslate"><span class="pre">SLURM_NTASKS</span></code> and <code class="docutils literal notranslate"><span class="pre">SLURM_MEM_PER_NODE</span></code> (megabytes, set by <code class="docutils literal notranslate"><span class="pre">--mem</span></code>) and sets <code class="docutils literal notranslate"><span class="pre">memory_limit</span></code> to about 90% of that grant. Outside a SLURM job it uses the KLC main cap of 16 threads and 128 GB. Raise <code class="docutils literal notranslate"><span class="pre">--ntasks</span></code> and <code class="docutils literal notranslate"><span class="pre">--mem</span></code> when the in-memory table needs more than that. For RAM above a standard Reserve node, see <a class="reference internal" href="../../klc-reserve/highmem-jobs.html"><span class="doc std std-doc">High-Memory Jobs</span></a>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Do not load <code class="docutils literal notranslate"><span class="pre">individual_user_skills</span></code>, <code class="docutils literal notranslate"><span class="pre">postings_cosmos</span></code>, or <code class="docutils literal notranslate"><span class="pre">individual_positions</span></code> in full.</p>
+</div>
+<p>Save this script as <code class="docutils literal notranslate"><span class="pre">revelio_job.py</span></code>:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
-
 <span class="kn">import</span><span class="w"> </span><span class="nn">duckdb</span>
 
-<span class="n">JOBS</span> <span class="o">=</span> <span class="s2">"/kellogg/data/revelio/Oct52026/revelio_job_postings"</span>
-<span class="n">OUT</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">"/kellogg/proj/&lt;your-netid&gt;/revelio/hong_kong_postings_2026"</span><span class="p">)</span>
-<span class="n">TMP</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">"/scratch/&lt;your-netid&gt;/duckdb_tmp"</span><span class="p">)</span>
-<span class="n">OUT</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">TMP</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">TEMP_DIRECTORY</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"/scratch/</span><span class="si">{</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">'USER'</span><span class="p">]</span><span class="si">}</span><span class="s2">/duckdb_tmp"</span>
 
 <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"SLURM_JOB_ID"</span><span class="p">):</span>
     <span class="n">threads</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">"SLURM_NTASKS"</span><span class="p">])</span>
@@ -1485,51 +1137,46 @@ WRDS</label><div class="sd-tab-content docutils">
     <span class="n">threads</span> <span class="o">=</span> <span class="mi">16</span>
     <span class="n">memory_limit</span> <span class="o">=</span> <span class="s2">"128GB"</span>
 
-<span class="n">con</span> <span class="o">=</span> <span class="n">duckdb</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">config</span><span class="o">=</span><span class="p">{</span>
-    <span class="s2">"threads"</span><span class="p">:</span> <span class="n">threads</span><span class="p">,</span>
-    <span class="s2">"memory_limit"</span><span class="p">:</span> <span class="n">memory_limit</span><span class="p">,</span>
-    <span class="s2">"temp_directory"</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">TMP</span><span class="p">),</span>
-    <span class="s2">"max_temp_directory_size"</span><span class="p">:</span> <span class="s2">"200GB"</span><span class="p">,</span>
-<span class="p">})</span>
+<span class="n">con</span> <span class="o">=</span> <span class="n">duckdb</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
+    <span class="s2">"/kellogg/proj/&lt;your-netid&gt;/revelio/revelio_views.duckdb"</span><span class="p">,</span>
+    <span class="n">read_only</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">config</span><span class="o">=</span><span class="p">{</span>
+        <span class="s2">"threads"</span><span class="p">:</span> <span class="n">threads</span><span class="p">,</span>
+        <span class="s2">"memory_limit"</span><span class="p">:</span> <span class="n">memory_limit</span><span class="p">,</span>
+        <span class="s2">"temp_directory"</span><span class="p">:</span> <span class="n">TEMP_DIRECTORY</span><span class="p">,</span>
+        <span class="s2">"max_temp_directory_size"</span><span class="p">:</span> <span class="s2">"200GB"</span><span class="p">,</span>
+    <span class="p">},</span>
+<span class="p">)</span>
 <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"SET preserve_insertion_order = false"</span><span class="p">)</span>
 
-<span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="sa">f</span><span class="s2">"""</span>
-<span class="s2">    CREATE TEMP TABLE target_postings AS</span>
-<span class="s2">    SELECT DISTINCT CAST(job_id AS HUGEINT) AS job_id, rcid, company, post_date</span>
-<span class="s2">    FROM read_parquet('</span><span class="si">{</span><span class="n">JOBS</span><span class="si">}</span><span class="s2">/postings_cosmos/*.parquet')</span>
-<span class="s2">    WHERE country = 'Hong Kong'</span>
-<span class="s2">      AND post_date &gt;= DATE '2026-01-01'</span>
-<span class="s2">      AND post_date &lt;  DATE '2027-01-01'</span>
-<span class="s2">      AND job_id IS NOT NULL</span>
-<span class="s2">"""</span><span class="p">)</span>
-<span class="n">n_ids</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"SELECT COUNT(*) FROM target_postings"</span><span class="p">)</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">n_ids</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2"> target postings"</span><span class="p">)</span>
-
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
-    <span class="n">out</span> <span class="o">=</span> <span class="n">OUT</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">"postings_cosmos_raw_p</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">_matched.parquet"</span>
-    <span class="k">if</span> <span class="n">out</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"p</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">: already done"</span><span class="p">)</span>
-        <span class="k">continue</span>
-    <span class="n">partial</span> <span class="o">=</span> <span class="n">out</span><span class="o">.</span><span class="n">with_suffix</span><span class="p">(</span><span class="s2">".parquet.partial"</span><span class="p">)</span>
-    <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="sa">f</span><span class="s2">"""</span>
-<span class="s2">        COPY (</span>
-<span class="s2">            SELECT t.*, r.title_raw, r.jobtitle_translated, r.description</span>
-<span class="s2">            FROM read_parquet('</span><span class="si">{</span><span class="n">JOBS</span><span class="si">}</span><span class="s2">/postings_cosmos_raw_p</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">/*.parquet') AS r</span>
-<span class="s2">            JOIN target_postings AS t</span>
-<span class="s2">              ON CAST(r.job_id AS HUGEINT) = t.job_id</span>
-<span class="s2">        ) TO '</span><span class="si">{</span><span class="n">partial</span><span class="si">}</span><span class="s2">' (FORMAT parquet, COMPRESSION zstd)</span>
-<span class="s2">    """</span><span class="p">)</span>
-    <span class="n">partial</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"p</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">: done"</span><span class="p">)</span>
-
-<span class="n">total</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="sa">f</span><span class="s2">"SELECT COUNT(*) FROM read_parquet('</span><span class="si">{</span><span class="n">OUT</span><span class="si">}</span><span class="s2">/*.parquet')"</span><span class="p">)</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">total</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2"> matched rows"</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">sql</span><span class="p">(</span><span class="s2">"SELECT * FROM sentiment_individual_reviews"</span><span class="p">)</span><span class="o">.</span><span class="n">df</span><span class="p">()</span>
 </pre></div>
 </div>
-<p class="sd-card-text">Read the result with <code class="docutils literal notranslate"><span class="pre">read_parquet('/kellogg/proj/&lt;your-netid&gt;/revelio/hong_kong_postings_2026/*.parquet')</span></code>. Submit the script with the <code class="docutils literal notranslate"><span class="pre">sbatch</span></code> pattern in <a class="reference internal" href="#revelio-reserve"><span class="std std-ref">Use KLC Reserve Above This Budget</span></a> when it needs more than 16 threads or 128 GB.</p>
-<!-- TODO(KRS): confirm the country literal ('Hong Kong') and that job_id values in postings_cosmos_raw_p* match postings_cosmos after the HUGEINT cast; compare matched row counts to the number of target postings -->
+<p>Save this as <code class="docutils literal notranslate"><span class="pre">revelio_job.sh</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="c1">#SBATCH --account=kellogg</span>
+<span class="c1">#SBATCH --partition=kellogg</span>
+<span class="c1">#SBATCH --job-name=revelio-duckdb</span>
+<span class="c1">#SBATCH --nodes=1</span>
+<span class="c1">#SBATCH --ntasks=16</span>
+<span class="c1">#SBATCH --mem=128G</span>
+<span class="c1">#SBATCH --time=04:00:00</span>
+<span class="c1">#SBATCH --output=logs/slurm-%j.out</span>
+
+module<span class="w"> </span>purge
+module<span class="w"> </span>use<span class="w"> </span>--append<span class="w"> </span>/kellogg/software/Modules/modulefiles
+module<span class="w"> </span>load<span class="w"> </span>mamba/24.3.0
+<span class="nb">source</span><span class="w"> </span>activate<span class="w"> </span>/kellogg/proj/&lt;your-netid&gt;/envs/revelio-duckdb
+
+mkdir<span class="w"> </span>-p<span class="w"> </span>/scratch/<span class="nv">$USER</span>/duckdb_tmp
+python<span class="w"> </span>revelio_job.py
+</pre></div>
 </div>
-</details></section>
+<p><code class="docutils literal notranslate"><span class="pre">#SBATCH</span> <span class="pre">--output</span></code> is opened when the job starts, so create the log directory before you submit. For submission options, monitoring, and tuning, see <a class="reference internal" href="../../klc-reserve/slurm-jobs.html"><span class="doc std std-doc">Submitting SLURM Jobs</span></a>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>logs
+sbatch<span class="w"> </span>revelio_job.sh
+</pre></div>
+</div>
 </section>
 </section>
 <section id="data-located-on-klc">
@@ -1559,7 +1206,7 @@ WRDS</label><div class="sd-tab-content docutils">
 <p class="admonition-title">Note</p>
 <p>A table is the whole directory, not a single file. Always read all of its parts with a glob such as <code class="docutils literal notranslate"><span class="pre">/kellogg/data/revelio/Oct192026/revelio_individual/individual_positions/*.parquet</span></code>.</p>
 </div>
-<p><strong>Scale</strong> is <code class="docutils literal notranslate"><span class="pre">Small</span></code> or <code class="docutils literal notranslate"><span class="pre">Large</span></code>. A large table still runs on KLC main within 16 threads and 128 GB when you name columns, filter, and aggregate in DuckDB. Use <a class="reference internal" href="../../klc-reserve/when-to-use.html"><span class="doc std std-doc">KLC Reserve</span></a> when the query needs more than that budget.</p>
+<p><strong>Scale</strong> is <code class="docutils literal notranslate"><span class="pre">Small</span></code> or <code class="docutils literal notranslate"><span class="pre">Large</span></code>. A large table still runs on KLC main within 16 threads and 128 GB when you name columns, filter, and aggregate in DuckDB. Use <a class="reference internal" href="#revelio-reserve"><span class="std std-ref">KLC Reserve</span></a> when you will load the entire contents of one or more tables into memory.</p>
 <section id="job-postings">
 <h3>Job Postings<a class="headerlink" href="#job-postings" title="Link to this heading">#</a></h3>
 <p>Path prefix: <code class="docutils literal notranslate"><span class="pre">/kellogg/data/revelio/Oct52026/revelio_job_postings/</span></code></p>
@@ -2828,7 +2475,7 @@ WRDS</label><div class="sd-tab-content docutils">
 <li><p><a class="reference internal" href="../../kellogg-data-hosting/wrds/examples/revelio-example.html"><span class="doc std std-doc">Revelio Labs WRDS Example</span></a>: pull position spells for one firm through WRDS</p></li>
 <li><p><a class="reference internal" href="../../klc/klc-datasets.html"><span class="doc std std-doc">Datasets on KLC</span></a>: other datasets stored under <code class="docutils literal notranslate"><span class="pre">/kellogg/data/</span></code></p></li>
 <li><p><a class="reference internal" href="../../klc-node-resources.html"><span class="doc std std-doc">KLC Node Resources</span></a>: live CPU and RAM availability</p></li>
-<li><p><a class="reference internal" href="../../klc-reserve/when-to-use.html"><span class="doc std std-doc">When to Use KLC Reserve</span></a>: choose a Reserve job for more than 16 threads or 128 GB</p></li>
+<li><p><a class="reference internal" href="../../klc-reserve/when-to-use.html"><span class="doc std std-doc">When to Use KLC Reserve</span></a>: choose a Reserve job when a full table must be loaded into memory</p></li>
 <li><p><a class="reference internal" href="../../klc-reserve/slurm-jobs.html"><span class="doc std std-doc">Submitting SLURM Jobs</span></a>: batch job reference for KLC Reserve</p></li>
 <li><p><a class="reference internal" href="../../klc-reserve/highmem-jobs.html"><span class="doc std std-doc">High-Memory Jobs</span></a>: Reserve jobs that need more than 128 GB</p></li>
 <li><p><a class="reference external" href="https://duckdb.org/docs/" target="_blank">DuckDB Documentation <svg version="1.1" width="1.0em" height="1.0em" viewBox="0 0 16 16" aria-hidden="true" style="display: inline-block; vertical-align: middle; fill: currentColor;"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a>: configuration and SQL reference</p></li>
@@ -2890,10 +2537,9 @@ WRDS</label><div class="sd-tab-content docutils">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#querying-with-duckdb-on-klc">Querying with DuckDB on KLC</a><ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#before-you-start">Before You Start</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#where-to-run-the-query">Where to Run the Query</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#open-duckdb-with-limits">Open DuckDB with Limits</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#query-rules">Query Rules</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-views-once">Create Views Once</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#open-duckdb-or-the-wrds-python-client">Open DuckDB or the WRDS Python Client</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#open-a-connection">Open a Connection</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#one-firm-end-to-end">One Firm, End to End</a><ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#find-a-firm-s-rcid">Find a Firm’s rcid</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#count-positions-for-one-firm">Count Positions for One Firm</a></li>
@@ -2901,19 +2547,13 @@ WRDS</label><div class="sd-tab-content docutils">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#monthly-headcount-from-the-extract">Monthly Headcount from the Extract</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-klc-reserve-above-this-budget">Use KLC Reserve Above This Budget</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#more-examples">More Examples</a><ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#layoffs-by-state-and-year">Layoffs by State and Year</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#company-sentiment-scores">Company Sentiment Scores</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#employee-review-ratings-by-year">Employee Review Ratings by Year</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#positions-by-role-group">Positions by Role Group</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#education-by-degree-and-field">Education by Degree and Field</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#job-postings-by-month-and-role">Job Postings by Month and Role</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#skills-of-one-firm-s-employees">Skills of One Firm’s Employees</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#search-posting-text">Search Posting Text</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#extract-posting-text-for-a-country-and-year">Extract Posting Text for a Country and Year</a></li>
 </ul>
 </li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-klc-reserve-above-this-budget">Use KLC Reserve Above This Budget</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-located-on-klc">Data Located on KLC</a><ul class="pst-show_toc_level nav section-nav flex-column">
