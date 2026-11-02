@@ -1,0 +1,1501 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" data-theme="light">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Equifax Analytic Dataset &#8212; Kellogg School of Management
+Research Support
+Northwestern University</title>
+<script data-cfasync="false">
+  localStorage.setItem("mode", "light");
+  localStorage.setItem("theme", "light");
+</script>
+
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/kellogg-rs-docs.css?v=c63f1eac" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'services/datasets/datasets/equifax';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = true;</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="PATSTAT" href="patstat.html" />
+    <link rel="prev" title="Cotality (formerly CoreLogic)" href="cotality.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../../../_static/searchtools.js"></script>
+    <script src="../../../_static/language_data.js"></script>
+    <script src="../../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="light">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+<aside class="bd-header-announcement" aria-label="Announcement">
+  <div class="bd-header-announcement__content">Kellogg Research Support holds weekly office hours at the Kellogg Global Hub, Room 5422, every Wednesday from 10:00 a.m. to 12:00 p.m.</div>
+</aside>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+    
+    <img src="../../../_static/kellogg_logo.png" class="logo__image only-light" alt="Kellogg School of Management
+Research Support
+Northwestern University - Home"/>
+    <img src="../../../_static/kellogg_logo.png" class="logo__image only-dark pst-js-only" alt="Kellogg School of Management
+Research Support
+Northwestern University - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Fundamentals</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../start/getting-help.html">Getting Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../start/services-overview.html">What Does KRS Offer?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../start/klc/klc-intro.html">Introduction to Kellogg Linux Cluster</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Computing</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../klc/klc.html">Kellogg Linux Cluster</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference external" href="https://www.kellogg.northwestern.edu/academics-research/research-support/computing/kellogg-linux-cluster/" target="_blank">Kellogg Linux Cluster Overview <svg aria-hidden="true" height="1.0em" style="display: inline-block; vertical-align: middle; fill: currentColor;" version="1.1" viewbox="0 0 16 16" width="1.0em"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../klc/user-guide/klc-user-guide.html">KLC User Guide</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../klc/user-guide/klc-accessing.html">Access KLC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../klc/user-guide/klc-ssh.html">SSH</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../klc/user-guide/klc-fastx.html">FastX</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../klc/user-guide/klc-vscode.html">VS Code Workflow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../klc/user-guide/klc-ondemand.html">KLC OnDemand</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../klc/user-guide/klc-files.html">KLC Filesystem</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../klc/user-guide/klc-transferfiles.html">Data Transfer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../klc/user-guide/klc-editor.html">Edit Files on KLC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../klc/user-guide/klc-git.html">Using Git on KLC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../klc/user-guide/klc-conda.html">Conda/Mamba Environments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../klc/user-guide/klc-software.html">Launching Jobs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../klc/user-guide/klc-stata.html">Running Stata and Bash Jobs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../klc/user-guide/klc-tmux.html">Using tmux</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../klc/user-guide/klc-profiling.html">Monitoring &amp; Managing Jobs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../klc/user-guide/llm-api.html">LLM API Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../klc/user-guide/llm-klc.html">Open Source LLMs (Interactive)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../klc/user-guide/ai-agent-container.html">AI Coding Agents</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference external" href="https://rcdsdocs.it.northwestern.edu/systems/quest/quest.html" target="_blank">Quest Documentation <svg aria-hidden="true" height="1.0em" style="display: inline-block; vertical-align: middle; fill: currentColor;" version="1.1" viewbox="0 0 16 16" width="1.0em"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a></li>
+<li class="toctree-l2"><a class="reference external" href="https://www.it.northwestern.edu/departments/it-services-support/research/computing/quest/data-security-guidance.html" target="_blank">Quest Data Security Guidance <svg aria-hidden="true" height="1.0em" style="display: inline-block; vertical-align: middle; fill: currentColor;" version="1.1" viewbox="0 0 16 16" width="1.0em"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../klc-reserve/klc-reserve.html">Kellogg Linux Cluster Reserve</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../klc-reserve/when-to-use.html">When to Use KLC Reserve</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../klc-reserve/gpu-concepts.html">GPU Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../klc-reserve/slurm-jobs.html">Submitting SLURM Jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../klc-reserve/gpu-jobs.html">GPU Jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../klc-reserve/highmem-jobs.html">High-Memory Jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../klc-reserve/vllm-example.html">vLLM on GPUs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../klc-reserve/ollama-example.html">Ollama on GPUs</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../klc-node-resources.html">KLC Node Resources</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Datasets</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../../kellogg-data-hosting/kdc.html">Kellogg Data Hosting</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../kellogg-data-hosting/wrds/wrds.html">WRDS</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../kellogg-data-hosting/wrds/examples/crsp-example.html">CRSP Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../kellogg-data-hosting/wrds/examples/taq-example.html">TAQ Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../kellogg-data-hosting/wrds/examples/revelio-example.html">Revelio Labs Example</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="../../kellogg-data-hosting/athena/athena.html">Athena (AWS)</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="comscore.html">Comscore</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cotality.html">Cotality (formerly CoreLogic)</a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">Equifax</a></li>
+<li class="toctree-l3"><a class="reference internal" href="patstat.html">PATSTAT</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../kellogg-data-hosting/redivis/redivis.html">Redivis</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="l2-vm2-uniform.html">L2 VM2 Uniform</a></li>
+<li class="toctree-l3"><a class="reference internal" href="numerator.html">Numerator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="openalex.html">OpenAlex</a></li>
+<li class="toctree-l3"><a class="reference internal" href="proxycurl.html">ProxyCurl</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../klc/klc-datasets.html">Datasets on KLC</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="cme.html">CME</a></li>
+<li class="toctree-l3"><a class="reference internal" href="comscore.html">Comscore</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cotality.html">Cotality (formerly CoreLogic)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="edgar.html">EDGAR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="l2-vm2-uniform.html">L2 VM2 Uniform</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nielsen-marketing-data.html">Nielsen Marketing Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="patstat.html">PATSTAT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="revelio.html">Revelio Labs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="web-of-science.html">Web of Science</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.kellogg.northwestern.edu/academics-research/research-support/dataset/" target="_blank">Kellogg Research Support Datasets <svg aria-hidden="true" height="1.0em" style="display: inline-block; vertical-align: middle; fill: currentColor;" version="1.1" viewbox="0 0 16 16" width="1.0em"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../start/workshop-doc.html">Research the Right Way Workshop</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../tutorials/nlp/nlp.html">Natural Language Processing</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/nlp/tutorial1.html">Deterministic Extraction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/nlp/tutorial2.html">Quantifying Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/nlp/tutorial3.html">Paid LLMs for Text Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/nlp/tutorial4.html">Open-Source LLMs for Text Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/nlp/tutorial5.html">Validation and Rigor</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/qual-coding/qualitative-coding-with-llms.html">Qualitative Coding with LLMs</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../guides/openai/openai.html">OpenAI and LLMs</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../guides/openai/llm-intro.html">Understanding LLMs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../guides/openai/openai-api.html">OpenAI API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../guides/openai/openai-copilot.html">GitHub Copilot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../guides/openai/openai-workflow.html">Application Workflow</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../guides/llm/llm.html">Open Source LLMs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../guides/llm/llm-batch.html">LLM Batch Pipeline</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Equifax Analytic Dataset</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#at-a-glance">At a Glance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#description">Description</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#access">Access</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#klc-parquet-files">KLC Parquet Files</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#athena">Athena</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#schema">Schema</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-field-groups">Key Field Groups</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#important-notes">Important Notes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sample-queries">Sample Queries</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basics">Basics</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#athena-build-up-from-one-month">Athena: build up from one month</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#duckdb-read-and-summarize-months">DuckDB: read and summarize months</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#toy-project-1-auto-loan-performance">Toy Project 1: Auto Loan Performance</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#athena-the-starting-cohort">Athena: the starting cohort</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#duckdb-follow-the-cohort-for-12-months">DuckDB: follow the cohort for 12 months</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#toy-project-2-mortgage-payment-behavior-across-zip-codes">Toy Project 2: Mortgage Payment Behavior Across ZIP Codes</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#athena-one-month-of-mortgage-accounts">Athena: one month of mortgage accounts</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#duckdb-a-year-long-mortgage-panel-for-one-state">DuckDB: a year-long mortgage panel for one state</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linking-to-other-datasets">Linking to Other Datasets</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#citing-this-data">Citing This Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#team-discussion-not-for-users"><span style="color:red">Team Discussion (not for users)</span></a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="equifax-analytic-dataset">
+<h1>Equifax Analytic Dataset<a class="headerlink" href="#equifax-analytic-dataset" title="Link to this heading">#</a></h1>
+<section id="at-a-glance">
+<h2>At a Glance<a class="headerlink" href="#at-a-glance" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Provider</strong></p></td>
+<td><p>Equifax (Analytic Dataset, layout ADS 3.0)</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Coverage</strong></p></td>
+<td><p>Monthly archives, July 2005 – present</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Geographic scope</strong></p></td>
+<td><p>United States, including territories and military addresses</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Update frequency</strong></p></td>
+<td><p>Quarterly</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Unit of observation</strong></p></td>
+<td><p>One account (tradeline) held by one consumer in one monthly archive</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Size</strong></p></td>
+<td><p>~140–150 million rows per month; ~11 GB per month; ~2.5 TiB total</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Access platforms</strong></p></td>
+<td><p>KLC, AWS Athena</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Eligible users</strong></p></td>
+<td><p>Guthrie Center for Real Estate Research affiliates</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Questions</strong></p></td>
+<td><p><a class="reference external" href="mailto:rs&#37;&#52;&#48;kellogg&#46;northwestern&#46;edu" target="_blank">rs<span>&#64;</span>kellogg<span>&#46;</span>northwestern<span>&#46;</span>edu <svg version="1.1" width="1.0em" height="1.0em" viewBox="0 0 16 16" aria-hidden="true" style="display: inline-block; vertical-align: middle; fill: currentColor;"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="description">
+<h2>Description<a class="headerlink" href="#description" title="Link to this heading">#</a></h2>
+<p>The Equifax Analytic Dataset is a monthly panel of consumer credit accounts. Since every account carries both its own history and a snapshot of its holder’s credit file, it supports research on:</p>
+<ul class="simple">
+<li><p><strong>Household borrowing and repayment</strong>: balances, payments, and delinquency by product (mortgage, auto, bankcard, student loan) over time.</p></li>
+<li><p><strong>Credit access and lending decisions</strong>: scores and income estimates <em>at the time each account was opened</em> let you study who gets credit without reconstructing past credit files.</p></li>
+<li><p><strong>Following accounts and consumers through time</strong>: <code class="docutils literal notranslate"><span class="pre">trade_id</span></code> and <code class="docutils literal notranslate"><span class="pre">consumer_id</span></code> link records across monthly archives.</p></li>
+<li><p><strong>Geographic variation</strong>: ZIP code and state of the consumer’s current address.</p></li>
+</ul>
+<p><strong>What it doesn’t have:</strong> names or street addresses, lender identities (only industry codes), interest rates, or measured income (<code class="docutils literal notranslate"><span class="pre">pim_score</span></code> and <code class="docutils literal notranslate"><span class="pre">consumer_income_score</span></code> are Equifax model estimates, not reported income). <span style="color:red; font-weight:bold">[TO CONFIRM: whether the panel is the full Equifax population or a sample]</span></p>
+</section>
+<section id="access">
+<h2>Access<a class="headerlink" href="#access" title="Link to this heading">#</a></h2>
+<p>The Equifax data is available in two places, and both hold the same data. On the Kellogg Linux Cluster (KLC), it is stored as Parquet files under <code class="docutils literal notranslate"><span class="pre">/kellogg/data/equifax/parquet</span></code> that you query with DuckDB from Python or R. In AWS Athena, it is a single SQL table that you can query in a browser console, or from KLC with <code class="docutils literal notranslate"><span class="pre">kdcutils</span></code>. Access to either requires approval from the Guthrie Center for Real Estate Research.</p>
+<p>Which to use depends on what you are trying to do:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>If you…</p></th>
+<th class="head"><p>Use</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Want to explore the data, get a feel for its structure, or check whether the values you want to analyze are mostly missing</p></td>
+<td><p>Athena</p></td>
+</tr>
+<tr class="row-odd"><td><p>Want all the data for a given month or year</p></td>
+<td><p>KLC files with DuckDB</p></td>
+</tr>
+<tr class="row-even"><td><p>Have a structured SQL query that scans well under 5 TB and want to run it efficiently</p></td>
+<td><p>Athena</p></td>
+</tr>
+<tr class="row-odd"><td><p>Are unsure how much your query will scan or how long it will take</p></td>
+<td><p>Athena, carefully: test on one month first (see <a class="reference internal" href="#equifax-athena">Athena</a>)</p></td>
+</tr>
+<tr class="row-even"><td><p>Have queries that scan more than 5 TB, or run too long in Athena</p></td>
+<td><p>KLC files with DuckDB</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<section id="klc-parquet-files">
+<span id="equifax-klc"></span><h3>KLC Parquet Files<a class="headerlink" href="#klc-parquet-files" title="Link to this heading">#</a></h3>
+<p>The Parquet files are at:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">kellogg</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">equifax</span><span class="o">/</span><span class="n">parquet</span><span class="o">/</span><span class="n">equifax</span><span class="o">/</span>
+</pre></div>
+</div>
+<p>They are partitioned by folder, with unpadded month numbers. Each month is split into many files, so read a folder pattern rather than individual files:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>year=2005/ … year=2026/
+  month=1/ … month=12/
+    &lt;generated-name&gt;.parquet
+</pre></div>
+</div>
+<p>Reading these files does not count against the Athena scan budget, so you can rerun large queries as often as you need. New months are added to these files first, before Athena is updated.</p>
+<p>If you receive <code class="docutils literal notranslate"><span class="pre">Permission</span> <span class="pre">denied</span></code> when listing or reading these paths, file-system access is not yet enabled. Contact <a class="reference external" href="mailto:rs&#37;&#52;&#48;kellogg&#46;northwestern&#46;edu" target="_blank">Kellogg Research Support <svg version="1.1" width="1.0em" height="1.0em" viewBox="0 0 16 16" aria-hidden="true" style="display: inline-block; vertical-align: middle; fill: currentColor;"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a>.</p>
+<p>In R, the <code class="docutils literal notranslate"><span class="pre">duckdb</span></code> package compiles from source when installed with <code class="docutils literal notranslate"><span class="pre">install.packages()</span></code>, which can take an hour on KLC. Installing the prebuilt <code class="docutils literal notranslate"><span class="pre">r-duckdb</span></code> package from conda-forge (<code class="docutils literal notranslate"><span class="pre">mamba</span> <span class="pre">install</span> <span class="pre">-c</span> <span class="pre">conda-forge</span> <span class="pre">r-duckdb</span></code>) takes a minute or two.</p>
+<p>Run these examples from a KLC session. See <a class="reference internal" href="../../klc/user-guide/klc-accessing.html"><span class="doc std std-doc">How to Access KLC</span></a> if you do not yet have an account.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="python" for="sd-tab-item-0">
+Python</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">duckdb</span>
+
+<span class="n">EQUIFAX</span> <span class="o">=</span> <span class="s2">"/kellogg/data/equifax/parquet/equifax/year=2020/month=1/*.parquet"</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">duckdb</span><span class="o">.</span><span class="n">sql</span><span class="p">(</span><span class="sa">f</span><span class="s2">"""</span>
+<span class="s2">    SELECT *</span>
+<span class="s2">    FROM read_parquet('</span><span class="si">{</span><span class="n">EQUIFAX</span><span class="si">}</span><span class="s2">', hive_partitioning = true)</span>
+<span class="s2">    LIMIT 10</span>
+<span class="s2">"""</span><span class="p">)</span><span class="o">.</span><span class="n">df</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="r" for="sd-tab-item-1">
+R</label><div class="sd-tab-content docutils">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">duckdb</span><span class="p">)</span>
+
+<span class="n">equifax</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">"/kellogg/data/equifax/parquet/equifax/year=2020/month=1/*.parquet"</span>
+
+<span class="n">con</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">dbConnect</span><span class="p">(</span><span class="nf">duckdb</span><span class="p">())</span>
+<span class="n">df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">dbGetQuery</span><span class="p">(</span><span class="n">con</span><span class="p">,</span><span class="w"> </span><span class="nf">sprintf</span><span class="p">(</span><span class="s">"</span>
+<span class="s">    SELECT *</span>
+<span class="s">    FROM read_parquet('%s', hive_partitioning = true)</span>
+<span class="s">    LIMIT 10</span>
+<span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">equifax</span><span class="p">))</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="nf">dbDisconnect</span><span class="p">(</span><span class="n">con</span><span class="p">,</span><span class="w"> </span><span class="n">shutdown</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>R may warn that it is <em>coercing nanoseconds to a lower resolution</em>. The dates fall on whole days, so nothing is lost and the warning can be ignored.</p>
+</div>
+</div>
+<p>To read one month, put it in the path. To read many months, use a wildcard path (<code class="docutils literal notranslate"><span class="pre">year=*/month=*/*.parquet</span></code>) and filter in <code class="docutils literal notranslate"><span class="pre">WHERE</span></code>; DuckDB reads <code class="docutils literal notranslate"><span class="pre">year</span></code> and <code class="docutils literal notranslate"><span class="pre">month</span></code> from the folder names as integers, so filter with <code class="docutils literal notranslate"><span class="pre">year</span> <span class="pre">=</span> <span class="pre">2020</span></code>, not <code class="docutils literal notranslate"><span class="pre">'2020'</span></code>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>One month is about 11 GB. Do not load full months into memory on a KLC login node. Select only the columns you need, let DuckDB stream the data, and use a <a class="reference internal" href="../../klc-reserve/when-to-use.html"><span class="doc std std-doc">KLC Reserve</span></a> batch job for large extracts.</p>
+</div>
+</section>
+<section id="athena">
+<span id="equifax-athena"></span><h3>Athena<a class="headerlink" href="#athena" title="Link to this heading">#</a></h3>
+<p>Both the workgroup and the database are named <code class="docutils literal notranslate"><span class="pre">equifax</span></code> in the AWS Athena console, and the table is <code class="docutils literal notranslate"><span class="pre">equifax.equifax</span></code>.</p>
+<p>The same first look as the DuckDB example above, run in the Athena console:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">equifax</span><span class="p">.</span><span class="n">equifax</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="k">year</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'2020'</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="k">month</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'1'</span>
+<span class="k">LIMIT</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Note the quotes: in Athena, <code class="docutils literal notranslate"><span class="pre">year</span></code> and <code class="docutils literal notranslate"><span class="pre">month</span></code> are strings.</p>
+<p>Athena queries share a <strong>5 TB daily scan budget</strong> across all users of the <code class="docutils literal notranslate"><span class="pre">equifax</span></code> workgroup, including queries submitted through <code class="docutils literal notranslate"><span class="pre">kdcutils</span></code>. The whole table is about 2.75 TB, so a single query rarely exceeds the budget on its own; the limit is reached when one person runs several large queries in a day, or several people work at once. Once the budget is reached, new queries are blocked until it resets.</p>
+<p>Athena counts <strong>data scanned</strong>, not rows returned. A quick look like the example above is cheap: a plain <code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">*</span></code> with <code class="docutils literal notranslate"><span class="pre">LIMIT</span> <span class="pre">10</span></code> stops after 10 rows (about 2 MB scanned in testing). But once a query aggregates, sorts, or joins, <code class="docutils literal notranslate"><span class="pre">LIMIT</span></code> no longer helps, and <code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">*</span></code> makes Athena read all 82 columns of every month the query touches. Two things keep scans small: filtering on <code class="docutils literal notranslate"><span class="pre">year</span></code> and <code class="docutils literal notranslate"><span class="pre">month</span></code>, and naming only the columns you need.</p>
+<ol class="arabic">
+<li><p><strong>Test in the console.</strong> Check that the fields you need exist and are populated, and run your query on one month with only the columns you need. The console shows data scanned as the query runs; multiply by the number of months to estimate the full query. For queries that link records across months, test on two months or one year instead. Runtime does not scale as neatly as scanning: joins and distinct counts slow down disproportionately as you add months.</p></li>
+<li><p><strong>Run the full query with <code class="docutils literal notranslate"><span class="pre">kdcutils</span></code> from KLC</strong> when you want the results saved on KLC. Save your SQL to a <code class="docutils literal notranslate"><span class="pre">.sql</span></code> file and submit it. Each run adds about 30 seconds for submitting the query and downloading results, so use the console for quick exploratory queries. See the <a class="reference external" href="https://kellogg-shared.s3.us-east-2.amazonaws.com/videos/kdcutils.mp4" target="_blank">kdcutils video <svg version="1.1" width="1.0em" height="1.0em" viewBox="0 0 16 16" aria-hidden="true" style="display: inline-block; vertical-align: middle; fill: currentColor;"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>module<span class="w"> </span>load<span class="w"> </span>kdcutils/2.0
+kdcutils<span class="w"> </span>athena<span class="w"> </span>equifax<span class="w"> </span>equifax<span class="w"> </span>sample.sql<span class="w"> </span>--out<span class="w"> </span>&lt;output-path&gt;
+</pre></div>
+</div>
+<p>Results arrive as several Parquet files, even for a few rows. Read the output folder as one dataset, for example <code class="docutils literal notranslate"><span class="pre">read_parquet('&lt;output-path&gt;/*.parquet')</span></code> in DuckDB.</p>
+</li>
+</ol>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>This dataset contains sensitive consumer credit information. Do not share record-level data or derived identifying information outside your approved research project.</p>
+</div>
+</section>
+</section>
+<section id="schema">
+<span id="equifax-dictionary"></span><h2>Schema<a class="headerlink" href="#schema" title="Link to this heading">#</a></h2>
+<p>In Athena, the Equifax data is a single table, <code class="docutils literal notranslate"><span class="pre">equifax.equifax</span></code>, partitioned by <code class="docutils literal notranslate"><span class="pre">year</span></code> and <code class="docutils literal notranslate"><span class="pre">month</span></code>. On KLC, the same data is stored as Parquet files under <code class="docutils literal notranslate"><span class="pre">/kellogg/data/equifax/parquet/equifax/year={YYYY}/month={M}/</span></code>, with many files per month. Each row is <strong>one account (tradeline) held by one consumer in one monthly archive</strong>, and every month has the same 84-column schema.</p>
+<p>Field definitions and value codes are provided in Equifax’s layout files:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#LINK-TO-ADS-3.0"><span class="xref myst">Analytic Dataset Layout ADS 3.0</span></a> (describes the Athena and KLC Parquet data)</p></li>
+<li><p><a class="reference internal" href="#LINK-TO-ADS-1.1"><span class="xref myst">Analytic Dataset Layout ADS 1.1, Ver. 4</span></a> (describes the older 2021 CSV files)<a class="footnote-reference brackets" href="#notdelivered" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p></li>
+</ul>
+<section id="key-field-groups">
+<h3>Key Field Groups<a class="headerlink" href="#key-field-groups" title="Link to this heading">#</a></h3>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Identifiers and record tracking</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p class="sd-card-text">Field</p></th>
+<th class="head"><p class="sd-card-text">Type</p></th>
+<th class="head"><p class="sd-card-text">Description</p></th>
+<th class="head"><p class="sd-card-text">Notes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">consumer_id</span></code></p></td>
+<td><p class="sd-card-text">bigint</p></td>
+<td><p class="sd-card-text">Anonymous consumer ID</p></td>
+<td><p class="sd-card-text"></p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">trade_id</span></code></p></td>
+<td><p class="sd-card-text">bigint</p></td>
+<td><p class="sd-card-text">Anonymous account ID; links an account across archives</p></td>
+<td><p class="sd-card-text"></p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">archive_date</span></code></p></td>
+<td><p class="sd-card-text">bigint</p></td>
+<td><p class="sd-card-text">Date Equifax pulled the archive</p></td>
+<td><p class="sd-card-text">Nanoseconds<a class="footnote-reference brackets" href="#dates" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">year</span></code>, <code class="docutils literal notranslate"><span class="pre">month</span></code></p></td>
+<td><p class="sd-card-text">varchar</p></td>
+<td><p class="sd-card-text">Partition keys</p></td>
+<td><p class="sd-card-text">Unpadded strings: <code class="docutils literal notranslate"><span class="pre">'2008'</span></code>, <code class="docutils literal notranslate"><span class="pre">'5'</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">weight</span></code></p></td>
+<td><p class="sd-card-text">real</p></td>
+<td><p class="sd-card-text">0.5 for joint accounts, 1 otherwise</p></td>
+<td><p class="sd-card-text">Not a sampling weight<a class="footnote-reference brackets" href="#weight" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">joint_holders_in_set</span></code></p></td>
+<td><p class="sd-card-text">bigint</p></td>
+<td><p class="sd-card-text">1 = account also appears under another consumer</p></td>
+<td><p class="sd-card-text"></p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">archive</span></code>, <code class="docutils literal notranslate"><span class="pre">meta_filename</span></code>, <code class="docutils literal notranslate"><span class="pre">meta_file_row_number</span></code>, <code class="docutils literal notranslate"><span class="pre">revision</span></code>, <code class="docutils literal notranslate"><span class="pre">asset</span></code></p></td>
+<td><p class="sd-card-text">mixed</p></td>
+<td><p class="sd-card-text">Delivery and source-file tracking</p></td>
+<td><p class="sd-card-text">Keep one <code class="docutils literal notranslate"><span class="pre">revision</span></code> per month (see <a class="reference internal" href="#equifax-notes">Important Notes</a>)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Consumer (repeats on each account row)</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p class="sd-card-text">Field</p></th>
+<th class="head"><p class="sd-card-text">Type</p></th>
+<th class="head"><p class="sd-card-text">Description</p></th>
+<th class="head"><p class="sd-card-text">Notes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">zip_code</span></code>, <code class="docutils literal notranslate"><span class="pre">state</span></code></p></td>
+<td><p class="sd-card-text">varchar</p></td>
+<td><p class="sd-card-text">Current address</p></td>
+<td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">state</span></code> includes territories, military codes (AA, AE, AP), and a few blanks</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">consumer_age_archive</span></code></p></td>
+<td><p class="sd-card-text">bigint</p></td>
+<td><p class="sd-card-text">Age range at archive</p></td>
+<td><p class="sd-card-text">Code 0–7, not years</p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">deceased_consumer</span></code></p></td>
+<td><p class="sd-card-text">bigint</p></td>
+<td><p class="sd-card-text">1 = deceased</p></td>
+<td><p class="sd-card-text"></p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">vantage_score_3</span></code>, <code class="docutils literal notranslate"><span class="pre">vantage_score_4</span></code></p></td>
+<td><p class="sd-card-text">bigint</p></td>
+<td><p class="sd-card-text">Credit risk scores</p></td>
+<td><p class="sd-card-text">Valid 300–850; lower values are codes</p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">bankruptcy_navigator_index</span></code></p></td>
+<td><p class="sd-card-text">bigint</p></td>
+<td><p class="sd-card-text">Bankruptcy risk; higher = riskier</p></td>
+<td><p class="sd-card-text"></p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">consumer_income_score</span></code></p></td>
+<td><p class="sd-card-text">bigint</p></td>
+<td><p class="sd-card-text">Estimated annual income (Consumer IncomeView)</p></td>
+<td><p class="sd-card-text"></p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">inquiries_12_months</span></code></p></td>
+<td><p class="sd-card-text">bigint</p></td>
+<td><p class="sd-card-text">Credit inquiries, last 12 months</p></td>
+<td><p class="sd-card-text">Exception codes<a class="footnote-reference brackets" href="#exceptions" id="id4" role="doc-noteref"><span class="fn-bracket">[</span>4<span class="fn-bracket">]</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">age_oldest_account</span></code>, <code class="docutils literal notranslate"><span class="pre">age_newest_account</span></code>, <code class="docutils literal notranslate"><span class="pre">age_oldest_mortgage_account</span></code></p></td>
+<td><p class="sd-card-text">bigint</p></td>
+<td><p class="sd-card-text">Months since accounts opened</p></td>
+<td><p class="sd-card-text">Exception codes<a class="footnote-reference brackets" href="#exceptions" id="id5" role="doc-noteref"><span class="fn-bracket">[</span>4<span class="fn-bracket">]</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">number_of_accounts</span></code> and other <code class="docutils literal notranslate"><span class="pre">number_*</span></code> counts</p></td>
+<td><p class="sd-card-text">bigint</p></td>
+<td><p class="sd-card-text">Counts of accounts by type and status</p></td>
+<td><p class="sd-card-text">Exception codes<a class="footnote-reference brackets" href="#exceptions" id="id6" role="doc-noteref"><span class="fn-bracket">[</span>4<span class="fn-bracket">]</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">number_revolving_accts_greater_than_or_equal_to_50_percent_utilization</span></code>, <code class="docutils literal notranslate"><span class="pre">bankcard_accts_over_75_percent_utilization</span></code></p></td>
+<td><p class="sd-card-text">bigint</p></td>
+<td><p class="sd-card-text">High-utilization account counts</p></td>
+<td><p class="sd-card-text">Exception codes<a class="footnote-reference brackets" href="#exceptions" id="id7" role="doc-noteref"><span class="fn-bracket">[</span>4<span class="fn-bracket">]</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">total_past_due_amount</span></code>, <code class="docutils literal notranslate"><span class="pre">total_amount_3rd_party_collections</span></code></p></td>
+<td><p class="sd-card-text">bigint</p></td>
+<td><p class="sd-card-text">Dollar totals</p></td>
+<td><p class="sd-card-text">Exception codes<a class="footnote-reference brackets" href="#exceptions" id="id8" role="doc-noteref"><span class="fn-bracket">[</span>4<span class="fn-bracket">]</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">bankruptcy_flag</span></code>, <code class="docutils literal notranslate"><span class="pre">foreclosure_flag</span></code></p></td>
+<td><p class="sd-card-text">bigint</p></td>
+<td><p class="sd-card-text">1 = current bankruptcy / foreclosure</p></td>
+<td><p class="sd-card-text">Treat values other than 0/1 as missing</p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">revolver_transactor_behavior_last_{6,12,24}_months</span></code></p></td>
+<td><p class="sd-card-text">bigint</p></td>
+<td><p class="sd-card-text">1 = revolver, 2 = transactor</p></td>
+<td><p class="sd-card-text">7–9 = not available</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">percent_actual_payment_to_scheduled_payment_{auto,mortage}_last_{6,12,24}_months</span></code></p></td>
+<td><p class="sd-card-text">bigint</p></td>
+<td><p class="sd-card-text">Share of scheduled payments actually paid</p></td>
+<td><p class="sd-card-text">Exception codes<a class="footnote-reference brackets" href="#exceptions" id="id9" role="doc-noteref"><span class="fn-bracket">[</span>4<span class="fn-bracket">]</span></a>; “mortage” spelling is Equifax’s</p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">mortgage_inquiries_last_1_month</span></code>, <code class="docutils literal notranslate"><span class="pre">potential_mortgage_inquiries_last_1_month</span></code></p></td>
+<td><p class="sd-card-text">bigint</p></td>
+<td><p class="sd-card-text">Recent mortgage shopping</p></td>
+<td><p class="sd-card-text"></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Consumer at account origination (can differ across a consumer’s accounts)</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p class="sd-card-text">Field</p></th>
+<th class="head"><p class="sd-card-text">Type</p></th>
+<th class="head"><p class="sd-card-text">Description</p></th>
+<th class="head"><p class="sd-card-text">Notes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">origination_vantage_score3</span></code>, <code class="docutils literal notranslate"><span class="pre">origination_vantage_score4</span></code></p></td>
+<td><p class="sd-card-text">bigint</p></td>
+<td><p class="sd-card-text">Scores from the month before the account opened</p></td>
+<td><p class="sd-card-text"></p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">origination_bankruptcy_navigator_index</span></code>, <code class="docutils literal notranslate"><span class="pre">origination_consumer_income_score</span></code></p></td>
+<td><p class="sd-card-text">bigint</p></td>
+<td><p class="sd-card-text">Risk and income at origination</p></td>
+<td><p class="sd-card-text"></p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">pim_score</span></code></p></td>
+<td><p class="sd-card-text">bigint</p></td>
+<td><p class="sd-card-text">Estimated income at origination ($ thousands)</p></td>
+<td><p class="sd-card-text">Predecessor to <code class="docutils literal notranslate"><span class="pre">consumer_income_score</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">consumer_age</span></code></p></td>
+<td><p class="sd-card-text">bigint</p></td>
+<td><p class="sd-card-text">Age range at origination</p></td>
+<td><p class="sd-card-text">Code 0–7, not years</p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">mortgage_indicator</span></code></p></td>
+<td><p class="sd-card-text">bigint</p></td>
+<td><p class="sd-card-text">1 = had a mortgage when account opened</p></td>
+<td><p class="sd-card-text"></p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">small_business_owner_flag</span></code></p></td>
+<td><p class="sd-card-text">bigint</p></td>
+<td><p class="sd-card-text">1 = small business owner</p></td>
+<td><p class="sd-card-text">Near zero before 2014, then rises gradually</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Account</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p class="sd-card-text">Field</p></th>
+<th class="head"><p class="sd-card-text">Type</p></th>
+<th class="head"><p class="sd-card-text">Description</p></th>
+<th class="head"><p class="sd-card-text">Notes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">product_category</span></code>, <code class="docutils literal notranslate"><span class="pre">portfolio_type</span></code>, <code class="docutils literal notranslate"><span class="pre">account_type</span></code>, <code class="docutils literal notranslate"><span class="pre">industry_code</span></code></p></td>
+<td><p class="sd-card-text">varchar</p></td>
+<td><p class="sd-card-text">What kind of account and lender</p></td>
+<td><p class="sd-card-text">Codes in dictionary</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">origination_product_category</span></code>, <code class="docutils literal notranslate"><span class="pre">origination_portfolio_type</span></code>, <code class="docutils literal notranslate"><span class="pre">origination_industry_code</span></code></p></td>
+<td><p class="sd-card-text">varchar</p></td>
+<td><p class="sd-card-text">Same, at origination</p></td>
+<td><p class="sd-card-text"></p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">origination_date_open</span></code></p></td>
+<td><p class="sd-card-text">varchar</p></td>
+<td><p class="sd-card-text">Month opened, <code class="docutils literal notranslate"><span class="pre">YYYYMM</span></code></p></td>
+<td><p class="sd-card-text">String, unlike other dates<a class="footnote-reference brackets" href="#dates" id="id10" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">balance</span></code>, <code class="docutils literal notranslate"><span class="pre">high_credit</span></code></p></td>
+<td><p class="sd-card-text">bigint</p></td>
+<td><p class="sd-card-text">Balance; credit limit or highest balance</p></td>
+<td><p class="sd-card-text"></p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">monthly_payment</span></code>, <code class="docutils literal notranslate"><span class="pre">scheduled_payment_amount</span></code>, <code class="docutils literal notranslate"><span class="pre">actual_payment_amount</span></code></p></td>
+<td><p class="sd-card-text">bigint</p></td>
+<td><p class="sd-card-text">Equifax-calculated, lender-scheduled, and actual payments</p></td>
+<td><p class="sd-card-text">Actual is reported on about a third of accounts overall, but on most mortgages</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">terms</span></code></p></td>
+<td><p class="sd-card-text">bigint</p></td>
+<td><p class="sd-card-text">Term in months (installment loans)</p></td>
+<td><p class="sd-card-text">Mostly null</p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">status_category</span></code></p></td>
+<td><p class="sd-card-text">bigint</p></td>
+<td><p class="sd-card-text">Standardized status: current, 30/60/90/120+ DPD, closed, etc.</p></td>
+<td><p class="sd-card-text">Easiest field for delinquency</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">rate_status</span></code>, <code class="docutils literal notranslate"><span class="pre">activity_designator</span></code>, <code class="docutils literal notranslate"><span class="pre">narrcode_1</span></code>–<code class="docutils literal notranslate"><span class="pre">narrcode_4</span></code></p></td>
+<td><p class="sd-card-text">mixed</p></td>
+<td><p class="sd-card-text">Lender-reported status and remarks</p></td>
+<td><p class="sd-card-text">Codes in dictionary</p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">ecoa</span></code></p></td>
+<td><p class="sd-card-text">varchar</p></td>
+<td><p class="sd-card-text">Ownership (individual, joint, etc.)</p></td>
+<td><p class="sd-card-text"></p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">new_origination_flag</span></code></p></td>
+<td><p class="sd-card-text">bigint</p></td>
+<td><p class="sd-card-text">1 = account first appears in this archive</p></td>
+<td><p class="sd-card-text">Often opened months or years earlier; use <code class="docutils literal notranslate"><span class="pre">origination_date_open</span></code> to find new loans</p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">date_reported</span></code>, <code class="docutils literal notranslate"><span class="pre">date_of_last_activity</span></code>, <code class="docutils literal notranslate"><span class="pre">date_of_last_payment</span></code></p></td>
+<td><p class="sd-card-text">bigint</p></td>
+<td><p class="sd-card-text">Account dates</p></td>
+<td><p class="sd-card-text">Nanoseconds<a class="footnote-reference brackets" href="#dates" id="id11" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</details></section>
+</section>
+<section id="important-notes">
+<span id="equifax-notes"></span><h2>Important Notes<a class="headerlink" href="#important-notes" title="Link to this heading">#</a></h2>
+<p>Most mistakes with this data come from a handful of structural features. Read these before your first query.</p>
+<p><strong>Each row is an account, not a person.</strong> Consumer fields such as <code class="docutils literal notranslate"><span class="pre">vantage_score_3</span></code> repeat on every account row, so an average over rows over-weights people with many accounts. Reduce to one row per <code class="docutils literal notranslate"><span class="pre">consumer_id</span></code> per month before analyzing consumers. Some “consumer” fields describe the person <em>when a given account was opened</em> (<code class="docutils literal notranslate"><span class="pre">origination_*</span></code>, <code class="docutils literal notranslate"><span class="pre">pim_score</span></code>, <code class="docutils literal notranslate"><span class="pre">consumer_age</span></code>) and can differ across one person’s accounts.</p>
+<p><strong>Joint accounts appear under each holder.</strong> Multiply account amounts by <code class="docutils literal notranslate"><span class="pre">weight</span></code> (0.5 for joint accounts) when summing across consumers.</p>
+<p><strong>Some months appear under more than one revision.</strong> Each delivery is tagged with a <code class="docutils literal notranslate"><span class="pre">revision</span></code> timestamp, and the table keeps every delivery as received. When a month was delivered more than once, its accounts appear once per revision, so counts and totals for that month are multiplied. In the cases we checked, the copies were identical. Keep one revision per month, the latest:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">WITH</span><span class="w"> </span><span class="n">latest</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="k">year</span><span class="p">,</span><span class="w"> </span><span class="k">month</span><span class="p">,</span><span class="w"> </span><span class="k">MAX</span><span class="p">(</span><span class="n">revision</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">revision</span>
+<span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">equifax</span><span class="p">.</span><span class="n">equifax</span>
+<span class="w">    </span><span class="k">WHERE</span><span class="w"> </span><span class="k">year</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'2020'</span>
+<span class="w">    </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="k">year</span><span class="p">,</span><span class="w"> </span><span class="k">month</span>
+<span class="p">)</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="k">month</span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">n_accounts</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">equifax</span><span class="p">.</span><span class="n">equifax</span><span class="w"> </span><span class="n">e</span>
+<span class="k">JOIN</span><span class="w"> </span><span class="n">latest</span><span class="w"> </span><span class="n">l</span>
+<span class="w">  </span><span class="k">ON</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="k">year</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">l</span><span class="p">.</span><span class="k">year</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="k">month</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">l</span><span class="p">.</span><span class="k">month</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">revision</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">l</span><span class="p">.</span><span class="n">revision</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="k">month</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>In DuckDB, the sample queries set this up once as a view, so later queries need no extra step. The <code class="docutils literal notranslate"><span class="pre">revision</span></code> column is small, so the extra step adds little to an Athena scan. To check a single month, run <code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">revision,</span> <span class="pre">COUNT(*)</span> <span class="pre">...</span> <span class="pre">GROUP</span> <span class="pre">BY</span> <span class="pre">revision</span></code> for it.</p>
+<p><strong>Credit attributes contain exception codes.</strong> Values such as 98 or 9998 mean “no account of this type,” not a real count or age. Clean them before computing statistics; see the <a class="reference internal" href="#equifax-dictionary">Schema</a>.</p>
+<p><strong>Partition keys are unpadded strings in Athena.</strong> Filter with <code class="docutils literal notranslate"><span class="pre">WHERE</span> <span class="pre">year</span> <span class="pre">=</span> <span class="pre">'2008'</span> <span class="pre">AND</span> <span class="pre">month</span> <span class="pre">=</span> <span class="pre">'5'</span></code>. <code class="docutils literal notranslate"><span class="pre">month</span> <span class="pre">=</span> <span class="pre">'05'</span></code> matches nothing, and <code class="docutils literal notranslate"><span class="pre">year</span> <span class="pre">=</span> <span class="pre">2008</span></code> forces a cast that defeats partition pruning.</p>
+<p><strong>Dates are nanoseconds since 1970 in Athena.</strong> Convert with <code class="docutils literal notranslate"><span class="pre">CAST(from_unixtime(archive_date</span> <span class="pre">/</span> <span class="pre">1e9)</span> <span class="pre">AS</span> <span class="pre">date)</span></code>. <code class="docutils literal notranslate"><span class="pre">origination_date_open</span></code> is the exception: a <code class="docutils literal notranslate"><span class="pre">YYYYMM</span></code> string. DuckDB on KLC reads the same columns as ordinary dates, so no conversion is needed there.</p>
+<p><strong>Some fields have limited coverage.</strong> <code class="docutils literal notranslate"><span class="pre">small_business_owner_flag</span></code> starts in January 2013. <code class="docutils literal notranslate"><span class="pre">date_reported</span></code> can lag the archive by a year or more, so some rows reflect stale lender reports.</p>
+<p><strong>Two Equifax deliveries exist.</strong> Athena and the KLC Parquet files come from a 2023 delivery (ADS 3.0). Older 2021 CSV files on KLC use an earlier layout (ADS 1.1) with fewer columns. Don’t mix them.</p>
+</section>
+<section id="sample-queries">
+<span id="equifax-queries"></span><h2>Sample Queries<a class="headerlink" href="#sample-queries" title="Link to this heading">#</a></h2>
+<p>The first examples show how each tool reads the monthly partitions. The toy projects that follow show how you might pull data for a real research question, with one cut of the data from Athena and another from the KLC files. Each project query is kept small, with a single month, <code class="docutils literal notranslate"><span class="pre">LIMIT</span> <span class="pre">10</span></code>, or one state, which you can remove for your own work.</p>
+<p>Every query keeps one revision per month, the latest, so months delivered more than once are not double counted (see <a class="reference internal" href="#equifax-notes">Important Notes</a>).</p>
+<section id="basics">
+<h3>Basics<a class="headerlink" href="#basics" title="Link to this heading">#</a></h3>
+<section id="athena-build-up-from-one-month">
+<h4>Athena: build up from one month<a class="headerlink" href="#athena-build-up-from-one-month" title="Link to this heading">#</a></h4>
+<p>Start small and grow the query one step at a time, checking <strong>data scanned</strong> in the console after each step. Because the scan grows with the months you touch, the first step tells you roughly what the full query will cost.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Step 1: one month</span>
+<span class="k">WITH</span><span class="w"> </span><span class="n">latest</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="k">year</span><span class="p">,</span><span class="w"> </span><span class="k">month</span><span class="p">,</span><span class="w"> </span><span class="k">MAX</span><span class="p">(</span><span class="n">revision</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">revision</span>
+<span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">equifax</span><span class="p">.</span><span class="n">equifax</span>
+<span class="w">    </span><span class="k">WHERE</span><span class="w"> </span><span class="k">year</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'2020'</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="k">month</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'1'</span>
+<span class="w">    </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="k">year</span><span class="p">,</span><span class="w"> </span><span class="k">month</span>
+<span class="p">)</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">product_category</span><span class="p">,</span>
+<span class="w">       </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w">                                </span><span class="k">AS</span><span class="w"> </span><span class="n">n_accounts</span><span class="p">,</span>
+<span class="w">       </span><span class="k">SUM</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">balance</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">CAST</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">weight</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">double</span><span class="p">))</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">total_balance</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">equifax</span><span class="p">.</span><span class="n">equifax</span><span class="w"> </span><span class="n">e</span>
+<span class="k">JOIN</span><span class="w"> </span><span class="n">latest</span><span class="w"> </span><span class="n">l</span>
+<span class="w">  </span><span class="k">ON</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="k">year</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">l</span><span class="p">.</span><span class="k">year</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="k">month</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">l</span><span class="p">.</span><span class="k">month</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">revision</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">l</span><span class="p">.</span><span class="n">revision</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">product_category</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">product_category</span><span class="p">;</span>
+
+<span class="c1">-- Step 2: three months (expect about three times the scan of step 1)</span>
+<span class="k">WITH</span><span class="w"> </span><span class="n">latest</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="k">year</span><span class="p">,</span><span class="w"> </span><span class="k">month</span><span class="p">,</span><span class="w"> </span><span class="k">MAX</span><span class="p">(</span><span class="n">revision</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">revision</span>
+<span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">equifax</span><span class="p">.</span><span class="n">equifax</span>
+<span class="w">    </span><span class="k">WHERE</span><span class="w"> </span><span class="k">year</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'2020'</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="k">month</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="s1">'1'</span><span class="p">,</span><span class="w"> </span><span class="s1">'2'</span><span class="p">,</span><span class="w"> </span><span class="s1">'3'</span><span class="p">)</span>
+<span class="w">    </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="k">year</span><span class="p">,</span><span class="w"> </span><span class="k">month</span>
+<span class="p">)</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="k">CAST</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="k">month</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="nb">integer</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">mo</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">product_category</span><span class="p">,</span>
+<span class="w">       </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w">                                </span><span class="k">AS</span><span class="w"> </span><span class="n">n_accounts</span><span class="p">,</span>
+<span class="w">       </span><span class="k">SUM</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">balance</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">CAST</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">weight</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">double</span><span class="p">))</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">total_balance</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">equifax</span><span class="p">.</span><span class="n">equifax</span><span class="w"> </span><span class="n">e</span>
+<span class="k">JOIN</span><span class="w"> </span><span class="n">latest</span><span class="w"> </span><span class="n">l</span>
+<span class="w">  </span><span class="k">ON</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="k">year</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">l</span><span class="p">.</span><span class="k">year</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="k">month</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">l</span><span class="p">.</span><span class="k">month</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">revision</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">l</span><span class="p">.</span><span class="n">revision</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="k">CAST</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="k">month</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="nb">integer</span><span class="p">),</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">product_category</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="k">CAST</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="k">month</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="nb">integer</span><span class="p">),</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">product_category</span><span class="p">;</span>
+
+<span class="c1">-- Step 3: a full year</span>
+<span class="k">WITH</span><span class="w"> </span><span class="n">latest</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="k">year</span><span class="p">,</span><span class="w"> </span><span class="k">month</span><span class="p">,</span><span class="w"> </span><span class="k">MAX</span><span class="p">(</span><span class="n">revision</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">revision</span>
+<span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">equifax</span><span class="p">.</span><span class="n">equifax</span>
+<span class="w">    </span><span class="k">WHERE</span><span class="w"> </span><span class="k">year</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'2020'</span>
+<span class="w">    </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="k">year</span><span class="p">,</span><span class="w"> </span><span class="k">month</span>
+<span class="p">)</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="k">CAST</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="k">month</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="nb">integer</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">mo</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">product_category</span><span class="p">,</span>
+<span class="w">       </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w">                                </span><span class="k">AS</span><span class="w"> </span><span class="n">n_accounts</span><span class="p">,</span>
+<span class="w">       </span><span class="k">SUM</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">balance</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">CAST</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">weight</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">double</span><span class="p">))</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">total_balance</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">equifax</span><span class="p">.</span><span class="n">equifax</span><span class="w"> </span><span class="n">e</span>
+<span class="k">JOIN</span><span class="w"> </span><span class="n">latest</span><span class="w"> </span><span class="n">l</span>
+<span class="w">  </span><span class="k">ON</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="k">year</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">l</span><span class="p">.</span><span class="k">year</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="k">month</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">l</span><span class="p">.</span><span class="k">month</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">revision</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">l</span><span class="p">.</span><span class="n">revision</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="k">CAST</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="k">month</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="nb">integer</span><span class="p">),</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">product_category</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="k">CAST</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="k">month</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="nb">integer</span><span class="p">),</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">product_category</span><span class="p">;</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">total_balance</span></code> counts each joint account’s dollars once. For an average balance per account, use <code class="docutils literal notranslate"><span class="pre">SUM(balance</span> <span class="pre">*</span> <span class="pre">CAST(weight</span> <span class="pre">AS</span> <span class="pre">double))</span> <span class="pre">/</span> <span class="pre">SUM(CAST(weight</span> <span class="pre">AS</span> <span class="pre">double))</span></code>, not <code class="docutils literal notranslate"><span class="pre">total_balance</span> <span class="pre">/</span> <span class="pre">n_accounts</span></code>.</p>
+</section>
+<section id="duckdb-read-and-summarize-months">
+<h4>DuckDB: read and summarize months<a class="headerlink" href="#duckdb-read-and-summarize-months" title="Link to this heading">#</a></h4>
+<p>Each DuckDB example starts with the same setup: a view named <code class="docutils literal notranslate"><span class="pre">equifax</span></code> over all the files that keeps the latest revision of each month. After that, you filter on <code class="docutils literal notranslate"><span class="pre">year</span></code> and <code class="docutils literal notranslate"><span class="pre">month</span></code> just as in Athena, and DuckDB reads only the months and columns your query uses.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-2" name="sd-tab-set-1" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="python" for="sd-tab-item-2">
+Python</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">duckdb</span>
+
+<span class="n">ALL_MONTHS</span> <span class="o">=</span> <span class="s2">"/kellogg/data/equifax/parquet/equifax/year=*/month=*/*.parquet"</span>
+
+<span class="n">con</span> <span class="o">=</span> <span class="n">duckdb</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+
+<span class="c1"># Setup: keep the latest revision of each month</span>
+<span class="n">con</span><span class="o">.</span><span class="n">sql</span><span class="p">(</span><span class="sa">f</span><span class="s2">"""</span>
+<span class="s2">    CREATE VIEW equifax AS</span>
+<span class="s2">    SELECT * FROM read_parquet('</span><span class="si">{</span><span class="n">ALL_MONTHS</span><span class="si">}</span><span class="s2">', hive_partitioning = true)</span>
+<span class="s2">    QUALIFY revision = MAX(revision) OVER (PARTITION BY year, month)</span>
+<span class="s2">"""</span><span class="p">)</span>
+
+<span class="c1"># One month</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">con</span><span class="o">.</span><span class="n">sql</span><span class="p">(</span><span class="s2">"""</span>
+<span class="s2">    SELECT product_category,</span>
+<span class="s2">           COUNT(*)                              AS n_accounts,</span>
+<span class="s2">           SUM(balance * CAST(weight AS double)) AS total_balance</span>
+<span class="s2">    FROM equifax</span>
+<span class="s2">    WHERE year = 2020 AND month = 1</span>
+<span class="s2">    GROUP BY product_category</span>
+<span class="s2">    ORDER BY product_category</span>
+<span class="s2">"""</span><span class="p">)</span><span class="o">.</span><span class="n">df</span><span class="p">())</span>
+
+<span class="c1"># One year</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">con</span><span class="o">.</span><span class="n">sql</span><span class="p">(</span><span class="s2">"""</span>
+<span class="s2">    SELECT month, product_category,</span>
+<span class="s2">           COUNT(*)                              AS n_accounts,</span>
+<span class="s2">           SUM(balance * CAST(weight AS double)) AS total_balance</span>
+<span class="s2">    FROM equifax</span>
+<span class="s2">    WHERE year = 2020</span>
+<span class="s2">    GROUP BY month, product_category</span>
+<span class="s2">    ORDER BY month, product_category</span>
+<span class="s2">"""</span><span class="p">)</span><span class="o">.</span><span class="n">df</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-3" name="sd-tab-set-1" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="r" for="sd-tab-item-3">
+R</label><div class="sd-tab-content docutils">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">duckdb</span><span class="p">)</span>
+
+<span class="n">all_months</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">"/kellogg/data/equifax/parquet/equifax/year=*/month=*/*.parquet"</span>
+
+<span class="n">con</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">dbConnect</span><span class="p">(</span><span class="nf">duckdb</span><span class="p">())</span>
+
+<span class="c1"># Setup: keep the latest revision of each month</span>
+<span class="nf">dbExecute</span><span class="p">(</span><span class="n">con</span><span class="p">,</span><span class="w"> </span><span class="nf">sprintf</span><span class="p">(</span><span class="s">"</span>
+<span class="s">    CREATE VIEW equifax AS</span>
+<span class="s">    SELECT * FROM read_parquet('%s', hive_partitioning = true)</span>
+<span class="s">    QUALIFY revision = MAX(revision) OVER (PARTITION BY year, month)</span>
+<span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">all_months</span><span class="p">))</span>
+
+<span class="c1"># One month</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">dbGetQuery</span><span class="p">(</span><span class="n">con</span><span class="p">,</span><span class="w"> </span><span class="s">"</span>
+<span class="s">    SELECT product_category,</span>
+<span class="s">           COUNT(*)                              AS n_accounts,</span>
+<span class="s">           SUM(balance * CAST(weight AS double)) AS total_balance</span>
+<span class="s">    FROM equifax</span>
+<span class="s">    WHERE year = 2020 AND month = 1</span>
+<span class="s">    GROUP BY product_category</span>
+<span class="s">    ORDER BY product_category</span>
+<span class="s">"</span><span class="p">))</span>
+
+<span class="c1"># One year</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">dbGetQuery</span><span class="p">(</span><span class="n">con</span><span class="p">,</span><span class="w"> </span><span class="s">"</span>
+<span class="s">    SELECT month, product_category,</span>
+<span class="s">           COUNT(*)                              AS n_accounts,</span>
+<span class="s">           SUM(balance * CAST(weight AS double)) AS total_balance</span>
+<span class="s">    FROM equifax</span>
+<span class="s">    WHERE year = 2020</span>
+<span class="s">    GROUP BY month, product_category</span>
+<span class="s">    ORDER BY month, product_category</span>
+<span class="s">"</span><span class="p">))</span>
+
+<span class="nf">dbDisconnect</span><span class="p">(</span><span class="n">con</span><span class="p">,</span><span class="w"> </span><span class="n">shutdown</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="toy-project-1-auto-loan-performance">
+<h3>Toy Project 1: Auto Loan Performance<a class="headerlink" href="#toy-project-1-auto-loan-performance" title="Link to this heading">#</a></h3>
+<p><em>Suppose your research project asks how a borrower’s credit score at origination relates to how their auto loan performs afterward.</em></p>
+<section id="athena-the-starting-cohort">
+<h4>Athena: the starting cohort<a class="headerlink" href="#athena-the-starting-cohort" title="Link to this heading">#</a></h4>
+<p>Auto loans opened in December 2018, with what the lender knew at origination. The cohort is taken from the March 2019 archive because lenders often take weeks to report a new loan. Define new loans by <code class="docutils literal notranslate"><span class="pre">origination_date_open</span></code>, not <code class="docutils literal notranslate"><span class="pre">new_origination_flag</span></code>: the flag marks accounts that first appear in an archive, many of which were opened years earlier. Remove <code class="docutils literal notranslate"><span class="pre">LIMIT</span> <span class="pre">10</span></code> to pull the full cohort, and run it with <code class="docutils literal notranslate"><span class="pre">kdcutils</span></code> to save the results on KLC.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">consumer_id</span><span class="p">,</span><span class="w"> </span><span class="n">trade_id</span><span class="p">,</span><span class="w"> </span><span class="n">origination_date_open</span><span class="p">,</span><span class="w"> </span><span class="n">product_category</span><span class="p">,</span>
+<span class="w">       </span><span class="n">origination_vantage_score3</span><span class="p">,</span><span class="w"> </span><span class="n">origination_consumer_income_score</span><span class="p">,</span>
+<span class="w">       </span><span class="n">high_credit</span><span class="p">,</span><span class="w"> </span><span class="n">terms</span><span class="p">,</span><span class="w"> </span><span class="n">monthly_payment</span><span class="p">,</span><span class="w"> </span><span class="n">weight</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">equifax</span><span class="p">.</span><span class="n">equifax</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="k">year</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'2019'</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="k">month</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'3'</span>
+<span class="w">  </span><span class="k">AND</span><span class="w"> </span><span class="n">revision</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="k">MAX</span><span class="p">(</span><span class="n">revision</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">equifax</span><span class="p">.</span><span class="n">equifax</span>
+<span class="w">                  </span><span class="k">WHERE</span><span class="w"> </span><span class="k">year</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'2019'</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="k">month</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'3'</span><span class="p">)</span>
+<span class="w">  </span><span class="k">AND</span><span class="w"> </span><span class="n">origination_date_open</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'201812'</span>
+<span class="w">  </span><span class="k">AND</span><span class="w"> </span><span class="n">product_category</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="s1">'AB2'</span><span class="p">,</span><span class="w"> </span><span class="s1">'AF2'</span><span class="p">)</span><span class="w">   </span><span class="c1">-- auto bank and finance loans</span>
+<span class="k">LIMIT</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="duckdb-follow-the-cohort-for-12-months">
+<h4>DuckDB: follow the cohort for 12 months<a class="headerlink" href="#duckdb-follow-the-cohort-for-12-months" title="Link to this heading">#</a></h4>
+<p>The same cohort, here limited to Illinois, followed month by month from March 2019 through March 2020. Linking accounts across 13 monthly archives is where the KLC files are the better fit. Each row is one holder of one loan in one month: joint loans appear once per holder, so count loans with <code class="docutils literal notranslate"><span class="pre">COUNT(DISTINCT</span> <span class="pre">trade_id)</span></code>. Accounts that close drop out of later archives. The Illinois version took under two minutes in testing.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-4" name="sd-tab-set-2" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="python" for="sd-tab-item-4">
+Python</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">duckdb</span>
+
+<span class="n">ALL_MONTHS</span> <span class="o">=</span> <span class="s2">"/kellogg/data/equifax/parquet/equifax/year=*/month=*/*.parquet"</span>
+
+<span class="n">con</span> <span class="o">=</span> <span class="n">duckdb</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+
+<span class="c1"># Setup: keep the latest revision of each month</span>
+<span class="n">con</span><span class="o">.</span><span class="n">sql</span><span class="p">(</span><span class="sa">f</span><span class="s2">"""</span>
+<span class="s2">    CREATE VIEW equifax AS</span>
+<span class="s2">    SELECT * FROM read_parquet('</span><span class="si">{</span><span class="n">ALL_MONTHS</span><span class="si">}</span><span class="s2">', hive_partitioning = true)</span>
+<span class="s2">    QUALIFY revision = MAX(revision) OVER (PARTITION BY year, month)</span>
+<span class="s2">"""</span><span class="p">)</span>
+
+<span class="c1"># Follow December 2018 auto loans (Illinois) for 13 months</span>
+<span class="n">con</span><span class="o">.</span><span class="n">sql</span><span class="p">(</span><span class="s2">"""</span>
+<span class="s2">    COPY (</span>
+<span class="s2">        WITH cohort AS (</span>
+<span class="s2">            SELECT trade_id, consumer_id</span>
+<span class="s2">            FROM equifax</span>
+<span class="s2">            WHERE year = 2019 AND month = 3</span>
+<span class="s2">              AND origination_date_open = '201812'</span>
+<span class="s2">              AND product_category IN ('AB2', 'AF2')   -- auto bank and finance loans</span>
+<span class="s2">              AND state = 'IL'                         -- remove to follow all states</span>
+<span class="s2">        )</span>
+<span class="s2">        SELECT e.consumer_id, e.trade_id, e.year, e.month,</span>
+<span class="s2">               e.balance, e.status_category</span>
+<span class="s2">        FROM equifax e</span>
+<span class="s2">        JOIN cohort USING (trade_id, consumer_id)</span>
+<span class="s2">        WHERE (e.year = 2019 AND e.month &gt;= 3) OR (e.year = 2020 AND e.month &lt;= 3)</span>
+<span class="s2">        ORDER BY e.trade_id, e.year, e.month</span>
+<span class="s2">    ) TO '/scratch/&lt;netid&gt;/auto_cohort_panel.parquet' (FORMAT parquet)</span>
+<span class="s2">"""</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-5" name="sd-tab-set-2" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="r" for="sd-tab-item-5">
+R</label><div class="sd-tab-content docutils">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">duckdb</span><span class="p">)</span>
+
+<span class="n">all_months</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">"/kellogg/data/equifax/parquet/equifax/year=*/month=*/*.parquet"</span>
+
+<span class="n">con</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">dbConnect</span><span class="p">(</span><span class="nf">duckdb</span><span class="p">())</span>
+
+<span class="c1"># Setup: keep the latest revision of each month</span>
+<span class="nf">dbExecute</span><span class="p">(</span><span class="n">con</span><span class="p">,</span><span class="w"> </span><span class="nf">sprintf</span><span class="p">(</span><span class="s">"</span>
+<span class="s">    CREATE VIEW equifax AS</span>
+<span class="s">    SELECT * FROM read_parquet('%s', hive_partitioning = true)</span>
+<span class="s">    QUALIFY revision = MAX(revision) OVER (PARTITION BY year, month)</span>
+<span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">all_months</span><span class="p">))</span>
+
+<span class="c1"># Follow December 2018 auto loans (Illinois) for 13 months</span>
+<span class="nf">dbExecute</span><span class="p">(</span><span class="n">con</span><span class="p">,</span><span class="w"> </span><span class="s">"</span>
+<span class="s">    COPY (</span>
+<span class="s">        WITH cohort AS (</span>
+<span class="s">            SELECT trade_id, consumer_id</span>
+<span class="s">            FROM equifax</span>
+<span class="s">            WHERE year = 2019 AND month = 3</span>
+<span class="s">              AND origination_date_open = '201812'</span>
+<span class="s">              AND product_category IN ('AB2', 'AF2')   -- auto bank and finance loans</span>
+<span class="s">              AND state = 'IL'                         -- remove to follow all states</span>
+<span class="s">        )</span>
+<span class="s">        SELECT e.consumer_id, e.trade_id, e.year, e.month,</span>
+<span class="s">               e.balance, e.status_category</span>
+<span class="s">        FROM equifax e</span>
+<span class="s">        JOIN cohort USING (trade_id, consumer_id)</span>
+<span class="s">        WHERE (e.year = 2019 AND e.month &gt;= 3) OR (e.year = 2020 AND e.month &lt;= 3)</span>
+<span class="s">        ORDER BY e.trade_id, e.year, e.month</span>
+<span class="s">    ) TO '/scratch/&lt;netid&gt;/auto_cohort_panel.parquet' (FORMAT parquet)</span>
+<span class="s">"</span><span class="p">)</span>
+
+<span class="nf">dbDisconnect</span><span class="p">(</span><span class="n">con</span><span class="p">,</span><span class="w"> </span><span class="n">shutdown</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="toy-project-2-mortgage-payment-behavior-across-zip-codes">
+<h3>Toy Project 2: Mortgage Payment Behavior Across ZIP Codes<a class="headerlink" href="#toy-project-2-mortgage-payment-behavior-across-zip-codes" title="Link to this heading">#</a></h3>
+<p><em>Suppose your research project studies how mortgage borrowers’ payment behavior varies across ZIP codes.</em></p>
+<section id="athena-one-month-of-mortgage-accounts">
+<h4>Athena: one month of mortgage accounts<a class="headerlink" href="#athena-one-month-of-mortgage-accounts" title="Link to this heading">#</a></h4>
+<p>First mortgages in January 2020, with location, balances, status, and the consumer’s recent mortgage payment record. Remove <code class="docutils literal notranslate"><span class="pre">LIMIT</span> <span class="pre">10</span></code> for the full month.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">consumer_id</span><span class="p">,</span><span class="w"> </span><span class="n">trade_id</span><span class="p">,</span><span class="w"> </span><span class="n">zip_code</span><span class="p">,</span><span class="w"> </span><span class="k">state</span><span class="p">,</span>
+<span class="w">       </span><span class="n">balance</span><span class="p">,</span><span class="w"> </span><span class="n">high_credit</span><span class="p">,</span><span class="w"> </span><span class="n">monthly_payment</span><span class="p">,</span>
+<span class="w">       </span><span class="n">scheduled_payment_amount</span><span class="p">,</span><span class="w"> </span><span class="n">actual_payment_amount</span><span class="p">,</span><span class="w"> </span><span class="n">status_category</span><span class="p">,</span>
+<span class="w">       </span><span class="n">percent_actual_payment_to_scheduled_payment_mortage_last_6_months</span><span class="p">,</span>
+<span class="w">       </span><span class="n">weight</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">equifax</span><span class="p">.</span><span class="n">equifax</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="k">year</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'2020'</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="k">month</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'1'</span>
+<span class="w">  </span><span class="k">AND</span><span class="w"> </span><span class="n">revision</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="k">MAX</span><span class="p">(</span><span class="n">revision</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">equifax</span><span class="p">.</span><span class="n">equifax</span>
+<span class="w">                  </span><span class="k">WHERE</span><span class="w"> </span><span class="k">year</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'2020'</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="k">month</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'1'</span><span class="p">)</span>
+<span class="w">  </span><span class="k">AND</span><span class="w"> </span><span class="n">product_category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'FM'</span><span class="w">              </span><span class="c1">-- first mortgages</span>
+<span class="k">LIMIT</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>The payment-ratio field describes the consumer’s mortgage payments overall, not this one account, and uses exception codes such as 9998 and 9999.</p>
+</section>
+<section id="duckdb-a-year-long-mortgage-panel-for-one-state">
+<h4>DuckDB: a year-long mortgage panel for one state<a class="headerlink" href="#duckdb-a-year-long-mortgage-panel-for-one-state" title="Link to this heading">#</a></h4>
+<p>Every Illinois first mortgage in every month of 2020, written to your scratch folder. A full year of account-level rows is a pull, not a summary, so it belongs on KLC. The Illinois version took about a minute and a half in testing and returns about 4 million rows.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-6" name="sd-tab-set-3" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="python" for="sd-tab-item-6">
+Python</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">duckdb</span>
+
+<span class="n">ALL_MONTHS</span> <span class="o">=</span> <span class="s2">"/kellogg/data/equifax/parquet/equifax/year=*/month=*/*.parquet"</span>
+
+<span class="n">con</span> <span class="o">=</span> <span class="n">duckdb</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+
+<span class="c1"># Setup: keep the latest revision of each month</span>
+<span class="n">con</span><span class="o">.</span><span class="n">sql</span><span class="p">(</span><span class="sa">f</span><span class="s2">"""</span>
+<span class="s2">    CREATE VIEW equifax AS</span>
+<span class="s2">    SELECT * FROM read_parquet('</span><span class="si">{</span><span class="n">ALL_MONTHS</span><span class="si">}</span><span class="s2">', hive_partitioning = true)</span>
+<span class="s2">    QUALIFY revision = MAX(revision) OVER (PARTITION BY year, month)</span>
+<span class="s2">"""</span><span class="p">)</span>
+
+<span class="c1"># Illinois first mortgages, every month of 2020</span>
+<span class="n">con</span><span class="o">.</span><span class="n">sql</span><span class="p">(</span><span class="s2">"""</span>
+<span class="s2">    COPY (</span>
+<span class="s2">        SELECT year, month, consumer_id, trade_id, zip_code,</span>
+<span class="s2">               balance, scheduled_payment_amount, actual_payment_amount,</span>
+<span class="s2">               status_category, weight</span>
+<span class="s2">        FROM equifax</span>
+<span class="s2">        WHERE year = 2020</span>
+<span class="s2">          AND product_category = 'FM'   -- first mortgages</span>
+<span class="s2">          AND state = 'IL'              -- remove to cover all states</span>
+<span class="s2">    ) TO '/scratch/&lt;netid&gt;/il_mortgage_panel_2020.parquet' (FORMAT parquet)</span>
+<span class="s2">"""</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-7" name="sd-tab-set-3" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="r" for="sd-tab-item-7">
+R</label><div class="sd-tab-content docutils">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">duckdb</span><span class="p">)</span>
+
+<span class="n">all_months</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">"/kellogg/data/equifax/parquet/equifax/year=*/month=*/*.parquet"</span>
+
+<span class="n">con</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">dbConnect</span><span class="p">(</span><span class="nf">duckdb</span><span class="p">())</span>
+
+<span class="c1"># Setup: keep the latest revision of each month</span>
+<span class="nf">dbExecute</span><span class="p">(</span><span class="n">con</span><span class="p">,</span><span class="w"> </span><span class="nf">sprintf</span><span class="p">(</span><span class="s">"</span>
+<span class="s">    CREATE VIEW equifax AS</span>
+<span class="s">    SELECT * FROM read_parquet('%s', hive_partitioning = true)</span>
+<span class="s">    QUALIFY revision = MAX(revision) OVER (PARTITION BY year, month)</span>
+<span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">all_months</span><span class="p">))</span>
+
+<span class="c1"># Illinois first mortgages, every month of 2020</span>
+<span class="nf">dbExecute</span><span class="p">(</span><span class="n">con</span><span class="p">,</span><span class="w"> </span><span class="s">"</span>
+<span class="s">    COPY (</span>
+<span class="s">        SELECT year, month, consumer_id, trade_id, zip_code,</span>
+<span class="s">               balance, scheduled_payment_amount, actual_payment_amount,</span>
+<span class="s">               status_category, weight</span>
+<span class="s">        FROM equifax</span>
+<span class="s">        WHERE year = 2020</span>
+<span class="s">          AND product_category = 'FM'   -- first mortgages</span>
+<span class="s">          AND state = 'IL'              -- remove to cover all states</span>
+<span class="s">    ) TO '/scratch/&lt;netid&gt;/il_mortgage_panel_2020.parquet' (FORMAT parquet)</span>
+<span class="s">"</span><span class="p">)</span>
+
+<span class="nf">dbDisconnect</span><span class="p">(</span><span class="n">con</span><span class="p">,</span><span class="w"> </span><span class="n">shutdown</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="linking-to-other-datasets">
+<h2>Linking to Other Datasets<a class="headerlink" href="#linking-to-other-datasets" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Dataset</p></th>
+<th class="head"><p>Linkage approach</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Census / ACS</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">zip_code</span></code> to ZIP Code Tabulation Areas (ZCTAs); ZIPs and ZCTAs are close but not identical</p></td>
+</tr>
+<tr class="row-odd"><td><p>State-level data</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">state</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>For linkage assistance, contact <a class="reference external" href="mailto:rs&#37;&#52;&#48;kellogg&#46;northwestern&#46;edu" target="_blank">rs<span>&#64;</span>kellogg<span>&#46;</span>northwestern<span>&#46;</span>edu <svg version="1.1" width="1.0em" height="1.0em" viewBox="0 0 16 16" aria-hidden="true" style="display: inline-block; vertical-align: middle; fill: currentColor;"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a>.</p>
+</section>
+<section id="citing-this-data">
+<h2>Citing This Data<a class="headerlink" href="#citing-this-data" title="Link to this heading">#</a></h2>
+<p><span style="color:red; font-weight:bold">[TO CONFIRM: acknowledgment required by the Equifax data use agreement]</span></p>
+</section>
+<section id="team-discussion-not-for-users">
+<h2><span style="color:red">Team Discussion (not for users)</span><a class="headerlink" href="#team-discussion-not-for-users" title="Link to this heading">#</a></h2>
+<p><span style="color:red">Remove this section before publishing. Findings from testing that may need action from the team or Equifax.</span></p>
+<p><strong>1. Four months are stored twice.</strong> Each has two revisions with identical row counts, in both Athena and the KLC files. Every other month has one revision.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Month</p></th>
+<th class="head"><p>Revisions</p></th>
+<th class="head"><p>Rows per copy</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>June 2012</p></td>
+<td><p>2022-03-28T19:28:38.123Z, 2023-05-19T15:09:48.104Z</p></td>
+<td><p>136,596,364</p></td>
+</tr>
+<tr class="row-odd"><td><p>July 2020</p></td>
+<td><p>2023-05-18T13:27:24.314Z, 2023-05-18T13:30:17.297Z</p></td>
+<td><p>133,427,842</p></td>
+</tr>
+<tr class="row-even"><td><p>September 2021</p></td>
+<td><p>2022-03-28T19:28:38.123Z, 2023-05-17T21:04:44.968Z</p></td>
+<td><p>132,322,469</p></td>
+</tr>
+<tr class="row-odd"><td><p>April 2022</p></td>
+<td><p>2022-06-27T18:00:26.792Z, 2023-05-17T20:35:48.687Z</p></td>
+<td><p>134,306,761</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>For April 2022, a fingerprint over seven columns (IDs, balance, status, VantageScore 3 and 4, income score) matched across both revisions, so the copies are identical. June 2012 and September 2021 have not been fingerprinted. The page currently tells users to keep the latest revision per month; if the duplicates are removed, that note and the revision filters in the sample queries can be simplified. To reproduce the list from KLC at no Athena cost:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">duckdb</span>
+<span class="n">FILES</span> <span class="o">=</span> <span class="s2">"/kellogg/data/equifax/parquet/equifax/year=*/month=*/*.parquet"</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">duckdb</span><span class="o">.</span><span class="n">sql</span><span class="p">(</span><span class="sa">f</span><span class="s2">"""</span>
+<span class="s2">    SELECT CAST(regexp_extract(file_name, 'year=(</span><span class="se">\\</span><span class="s2">d+)', 1)  AS INTEGER) AS yr,</span>
+<span class="s2">           CAST(regexp_extract(file_name, 'month=(</span><span class="se">\\</span><span class="s2">d+)', 1) AS INTEGER) AS mo,</span>
+<span class="s2">           list(DISTINCT stats_min_value) AS revisions</span>
+<span class="s2">    FROM parquet_metadata('</span><span class="si">{</span><span class="n">FILES</span><span class="si">}</span><span class="s2">')</span>
+<span class="s2">    WHERE path_in_schema = 'revision'</span>
+<span class="s2">    GROUP BY 1, 2</span>
+<span class="s2">    HAVING COUNT(DISTINCT stats_min_value) &gt; 1</span>
+<span class="s2">    ORDER BY 1, 2</span>
+<span class="s2">"""</span><span class="p">)</span><span class="o">.</span><span class="n">df</span><span class="p">()</span><span class="o">.</span><span class="n">to_string</span><span class="p">())</span>
+</pre></div>
+</div>
+<p><strong>2. About 5.7 million accounts disappear between April and May 2020.</strong> Using one revision per month, 2020 counts hold at 141–142 million through April, then drop and stay near 133 million:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Month</p></th>
+<th class="head"><p>Accounts</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>March 2020</p></td>
+<td><p>141,629,692</p></td>
+</tr>
+<tr class="row-odd"><td><p>April 2020</p></td>
+<td><p>140,475,158</p></td>
+</tr>
+<tr class="row-even"><td><p>May 2020</p></td>
+<td><p>134,803,341</p></td>
+</tr>
+<tr class="row-odd"><td><p>June 2020</p></td>
+<td><p>133,691,060</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The drop is concentrated in a few product categories (April → May): retail cards 27,659,884 → 24,700,457; bankcards 55,096,242 → 53,133,846; deferred student loans 6,581,896 → 4,689,290, while non-deferred student loans rose 11,153,209 → 12,937,760. The student loan shift may be reclassification under pandemic relief; the retail and bankcard drop is abrupt for real account closures. Worth asking Equifax whether reporting or sampling changed.</p>
+<p><strong>3. <code class="docutils literal notranslate"><span class="pre">new_origination_flag</span></code> marks accounts new to the archive, not new loans.</strong> Of 423,195 auto loans flagged in January 2019, by opening month:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Opened</p></th>
+<th class="head"><p>Loans</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Dec 2018 – Jan 2019</p></td>
+<td><p>180,275</p></td>
+</tr>
+<tr class="row-odd"><td><p>Jul–Nov 2018</p></td>
+<td><p>62,360</p></td>
+</tr>
+<tr class="row-even"><td><p>Jan–Jun 2018</p></td>
+<td><p>2,435</p></td>
+</tr>
+<tr class="row-odd"><td><p>2015–2017</p></td>
+<td><p>109,003</p></td>
+</tr>
+<tr class="row-even"><td><p>Before 2015</p></td>
+<td><p>68,514</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The page now defines new loans by <code class="docutils literal notranslate"><span class="pre">origination_date_open</span></code> instead. The near-absence of January–June 2018 loans between larger groups on either side is unexplained.</p>
+<p><strong>4. Full population or sample?</strong> Monthly archives hold about 133–142 million accounts, and about 240,000 auto loans opened in December 2018 appear by March 2019. Both look small relative to all U.S. credit accounts and auto lending, suggesting a sample, but this is a rough comparison. Needs confirmation from the Equifax contract or contact.</p>
+<p><strong>5. Geographic scope is unverified.</strong> At a Glance says “United States, including territories and military addresses,” which no test has confirmed. To check, list the distinct <code class="docutils literal notranslate"><span class="pre">state</span></code> values in one month:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="k">state</span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">n_accounts</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">equifax</span><span class="p">.</span><span class="n">equifax</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="k">year</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'2020'</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="k">month</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'1'</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="k">state</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="k">state</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="footnotes docutils" />
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="notdelivered" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p><code class="docutils literal notranslate"><span class="pre">transferred_sold_flag</span></code> and the FICO scores appear in the ADS 3.0 layout but are not in the data.</p>
+</aside>
+<aside class="footnote brackets" id="dates" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></span>
+<span class="backrefs">(<a role="doc-backlink" href="#id2">1</a>,<a role="doc-backlink" href="#id10">2</a>,<a role="doc-backlink" href="#id11">3</a>)</span>
+<p>In Athena, these dates are stored as nanoseconds since 1970, not as <code class="docutils literal notranslate"><span class="pre">YYYYMMDD</span></code>. <code class="docutils literal notranslate"><span class="pre">origination_date_open</span></code> is the exception: a <code class="docutils literal notranslate"><span class="pre">YYYYMM</span></code> string.</p>
+</aside>
+<aside class="footnote brackets" id="weight" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">3</a><span class="fn-bracket">]</span></span>
+<p>Joint accounts appear once under each holder, so multiply account amounts by <code class="docutils literal notranslate"><span class="pre">weight</span></code> when summing across consumers. <code class="docutils literal notranslate"><span class="pre">weight</span></code> is stored in single precision, so cast it first (<code class="docutils literal notranslate"><span class="pre">CAST(weight</span> <span class="pre">AS</span> <span class="pre">double)</span></code>) to keep sums accurate.</p>
+</aside>
+<aside class="footnote brackets" id="exceptions" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span>4<span class="fn-bracket">]</span></span>
+<span class="backrefs">(<a role="doc-backlink" href="#id4">1</a>,<a role="doc-backlink" href="#id5">2</a>,<a role="doc-backlink" href="#id6">3</a>,<a role="doc-backlink" href="#id7">4</a>,<a role="doc-backlink" href="#id8">5</a>,<a role="doc-backlink" href="#id9">6</a>)</span>
+<p>Many credit attributes reserve the top of their range for codes. In 2-digit fields: 99 = no data, 98 = no account of this type, 93–97 = indeterminate, 92 = at or above maximum. Ages and payment ratios (4 digits) use 9999, 9998, 9993–9997, and 9992; dollar totals (7 digits) use 9999999, 9999998, 9999993–9999997, and 9999992. For counts, Equifax recommends mapping “no account of this type” to zero; for ages and payment ratios, treat it as missing.</p>
+</aside>
+</aside>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="cotality.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Cotality (formerly CoreLogic)</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="patstat.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">PATSTAT</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#at-a-glance">At a Glance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#description">Description</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#access">Access</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#klc-parquet-files">KLC Parquet Files</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#athena">Athena</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#schema">Schema</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-field-groups">Key Field Groups</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#important-notes">Important Notes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sample-queries">Sample Queries</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basics">Basics</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#athena-build-up-from-one-month">Athena: build up from one month</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#duckdb-read-and-summarize-months">DuckDB: read and summarize months</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#toy-project-1-auto-loan-performance">Toy Project 1: Auto Loan Performance</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#athena-the-starting-cohort">Athena: the starting cohort</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#duckdb-follow-the-cohort-for-12-months">DuckDB: follow the cohort for 12 months</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#toy-project-2-mortgage-payment-behavior-across-zip-codes">Toy Project 2: Mortgage Payment Behavior Across ZIP Codes</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#athena-one-month-of-mortgage-accounts">Athena: one month of mortgage accounts</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#duckdb-a-year-long-mortgage-panel-for-one-state">DuckDB: a year-long mortgage panel for one state</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linking-to-other-datasets">Linking to Other Datasets</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#citing-this-data">Citing This Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#team-discussion-not-for-users"><span style="color:red">Team Discussion (not for users)</span></a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+
+
+<div id="footer-bottom">
+<div class="contain-1120">
+<span class="copyright" style="color:white">©
+<script>// <![CDATA[
+document.write(new Date().getFullYear())
+// ]]></script>
+Kellogg School of Management | <a href="https://www.kellogg.northwestern.edu/academics-research/research-support/">Kellogg Research Support</a></span>
+<!--
+<ul>
+<li><a href="https://www.facebook.com/NorthwesternU"> <span class="social facebook">Facebook</span> </a></li>
+<li><a href="https://www.twitter.com/northwesternu"> <span class="social twitter">Twitter</span> </a></li>
+<li><a href="https://www.instagram.com/northwesternu"> <span class="social instagram">Instagram</span> </a></li>
+<li><a href="https://www.youtube.com/user/NorthwesternU"> <span class="social youtube">YouTube</span> </a></li>
+<li><a href="https://www.tiktok.com/@northwestern.u"> <span class="social tiktok">TikTok</span> </a></li>
+<li><a href="https://www.linkedin.com/school/northwestern-university/"> <span class="social linkedin">LinkedIn</span> </a></li>
+</ul>
+-->
+<span class="right" style="color:white"><a style="color:white" href="https://www.northwestern.edu/disclaimer.html">Disclaimer</a></span>
+</div>
+</div>
+  </footer>
+  </body>
+</html>
