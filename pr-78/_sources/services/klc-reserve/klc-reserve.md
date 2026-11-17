@@ -27,7 +27,7 @@ The [AI Inference Using KLC Reserve](https://rs-kellogg.github.io/krs-intro-klc-
 | GPU — H100 | 2 | 64 cores, 1 TB RAM, 4 × 80 GB GPUs per node | Large-scale LLM training/inference, deep learning |
 | GPU — A100 | 1 | 64 cores, 2 TB RAM, 1 × 80 GB GPU per node | GPU-accelerated ML training and inference |
 | GPU — L40S | 1 | 64 cores, 2 × 48 GB GPUs per node | LLM inference, rendering, general GPU workloads |
-| High-core CPU (Emerald Rapids) | 2 | 128 cores, 503 GB RAM, no GPU | Parallel CPU jobs that fit in 503 GB |
+| High-core CPU (Emerald Rapids) | 2 | 128 cores, 503 GB RAM (473 GB requestable), no GPU | Parallel CPU jobs that fit in 473 GB |
 | High-memory CPU | 1 | 64 cores, 2 TB RAM | Very large in-memory datasets, parallel CPU jobs |
 
 Check the **KLC Slurm Node Availability** table on [KLC Node Resources](/services/klc-node-resources) for current GPU and high-memory capacity. Contact [rs@kellogg.northwestern.edu](mailto:rs@kellogg.northwestern.edu) for capacity planning questions.

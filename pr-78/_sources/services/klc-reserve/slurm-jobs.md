@@ -83,13 +83,13 @@ Run `groups` after logging into any KLC node to see the SLURM account names you 
 (high-core-cpu-nodes)=
 ## High-Core CPU Nodes
 
-`qnode4043` and `qnode4044` are Intel Xeon Emerald Rapids nodes for parallel CPU jobs. Each node has 128 cores (one thread per core) and 503 GB of RAM, and no GPU. Add `--constraint=quest14` and SLURM chooses either node.
+`qnode4043` and `qnode4044` are Intel Xeon Emerald Rapids nodes for parallel CPU jobs. Each node has 128 cores (one thread per core) and 503 GB of RAM, and no GPU. A job can request at most 473 GB. Add `--constraint=quest14` and SLURM chooses either node.
 
 | Node | Count | CPUs | Host RAM | RAM per core | GPUs | Feature |
 |---|---|---|---|---|---|---|
 | `qnode4043`, `qnode4044` | 2 | 128 | 503 GB | ~4 GB | None | `quest14` |
 
-Other jobs may share a node. 30 GB of RAM is reserved for the operating system, so request only the cores and memory the job needs and keep `--mem` under 503 GB. A 128-core job that omits `--mem` receives the partition default of 3 GB per core (384 GB), which fits on these nodes.
+Other jobs may share a node. 30 GB of RAM is reserved for the operating system and GPFS, so request only the cores and memory the job needs and keep `--mem` at or below 473 GB. A 128-core job that omits `--mem` receives the partition default of 3 GB per core (384 GB), which fits on these nodes.
 
 Add these directives to the batch script above:
 
@@ -97,10 +97,10 @@ Add these directives to the batch script above:
 #SBATCH --constraint=quest14    # either Emerald Rapids node
 #SBATCH --nodes=1
 #SBATCH --ntasks=32             # up to 128; increase only if your code parallelizes
-#SBATCH --mem=128G              # keep under 503G
+#SBATCH --mem=128G              # at most 473G
 ```
 
-Jobs that need more than 503 GB belong on the high-memory node. See [High-Memory Jobs](highmem-jobs).
+Jobs that need more than 473 GB belong on the high-memory node. See [High-Memory Jobs](highmem-jobs).
 
 ```{warning}
 These nodes have no GPUs. A job that sets both `--constraint=quest14` and `--gres` stays pending, because no node can satisfy both requests.

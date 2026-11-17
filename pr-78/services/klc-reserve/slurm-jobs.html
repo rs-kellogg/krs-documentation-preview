@@ -508,7 +508,7 @@ python<span class="w"> </span>analysis.py
 </section>
 <section id="high-core-cpu-nodes">
 <span id="id1"></span><h2>High-Core CPU Nodes<a class="headerlink" href="#high-core-cpu-nodes" title="Link to this heading">#</a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">qnode4043</span></code> and <code class="docutils literal notranslate"><span class="pre">qnode4044</span></code> are Intel Xeon Emerald Rapids nodes for parallel CPU jobs. Each node has 128 cores (one thread per core) and 503 GB of RAM, and no GPU. Add <code class="docutils literal notranslate"><span class="pre">--constraint=quest14</span></code> and SLURM chooses either node.</p>
+<p><code class="docutils literal notranslate"><span class="pre">qnode4043</span></code> and <code class="docutils literal notranslate"><span class="pre">qnode4044</span></code> are Intel Xeon Emerald Rapids nodes for parallel CPU jobs. Each node has 128 cores (one thread per core) and 503 GB of RAM, and no GPU. A job can request at most 473 GB. Add <code class="docutils literal notranslate"><span class="pre">--constraint=quest14</span></code> and SLURM chooses either node.</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Node</p></th>
@@ -532,15 +532,15 @@ python<span class="w"> </span>analysis.py
 </tbody>
 </table>
 </div>
-<p>Other jobs may share a node. 30 GB of RAM is reserved for the operating system, so request only the cores and memory the job needs and keep <code class="docutils literal notranslate"><span class="pre">--mem</span></code> under 503 GB. A 128-core job that omits <code class="docutils literal notranslate"><span class="pre">--mem</span></code> receives the partition default of 3 GB per core (384 GB), which fits on these nodes.</p>
+<p>Other jobs may share a node. 30 GB of RAM is reserved for the operating system and GPFS, so request only the cores and memory the job needs and keep <code class="docutils literal notranslate"><span class="pre">--mem</span></code> at or below 473 GB. A 128-core job that omits <code class="docutils literal notranslate"><span class="pre">--mem</span></code> receives the partition default of 3 GB per core (384 GB), which fits on these nodes.</p>
 <p>Add these directives to the batch script above:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1">#SBATCH --constraint=quest14    # either Emerald Rapids node</span>
 <span class="c1">#SBATCH --nodes=1</span>
 <span class="c1">#SBATCH --ntasks=32             # up to 128; increase only if your code parallelizes</span>
-<span class="c1">#SBATCH --mem=128G              # keep under 503G</span>
+<span class="c1">#SBATCH --mem=128G              # at most 473G</span>
 </pre></div>
 </div>
-<p>Jobs that need more than 503 GB belong on the high-memory node. See <a class="reference internal" href="highmem-jobs.html"><span class="doc std std-doc">High-Memory Jobs</span></a>.</p>
+<p>Jobs that need more than 473 GB belong on the high-memory node. See <a class="reference internal" href="highmem-jobs.html"><span class="doc std std-doc">High-Memory Jobs</span></a>.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>These nodes have no GPUs. A job that sets both <code class="docutils literal notranslate"><span class="pre">--constraint=quest14</span></code> and <code class="docutils literal notranslate"><span class="pre">--gres</span></code> stays pending, because no node can satisfy both requests.</p>

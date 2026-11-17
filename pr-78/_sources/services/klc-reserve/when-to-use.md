@@ -84,7 +84,7 @@ When the workflow is proven and you need more GPUs than Kellogg Reserve can prov
 
 **Why KLC main falls short:** Each user is limited to 24 cores at normal priority across all KLC nodes, and memory is shared — another user's process can consume RAM you expected to use.
 
-**What to request:** For up to 128 cores and up to 503 GB, add `--constraint=quest14`. For more than 503 GB, pin the job with `--nodelist=qhimem0501`. Set `--ntasks` up to the node capacity and `--mem` to your expected peak plus headroom (~110%).
+**What to request:** For up to 128 cores and up to 473 GB, add `--constraint=quest14`. For more than 473 GB, pin the job with `--nodelist=qhimem0501`. Set `--ntasks` up to the node capacity and `--mem` to your expected peak plus headroom (~110%).
 
 **Example:** A finance researcher bootstraps a simulation across 48 cores on an Emerald Rapids node (`--constraint=quest14`) instead of throttling to the 24-core login limit. [Scaling on High-Core Nodes](high-core-scaling) shows the matching thread, worker, and job-array submissions.
 
@@ -139,8 +139,8 @@ When the workflow is proven and you need more GPUs than Kellogg Reserve can prov
 - [Kellogg Linux Cluster Reserve](/services/klc-reserve/klc-reserve) — overview and first-job path
 - [Submitting SLURM Jobs](slurm-jobs) — batch scripts and job arrays
 - [GPU Jobs](gpu-jobs) — GPU requests on the `kellogg` partition
-- [High-Core CPU Nodes](high-core-cpu-nodes) — 128-core Emerald Rapids nodes, up to 503 GB
-- [High-Memory Jobs](highmem-jobs) — case studies for jobs above 503 GB
+- [High-Core CPU Nodes](high-core-cpu-nodes) — 128-core Emerald Rapids nodes, up to 473 GB
+- [High-Memory Jobs](highmem-jobs) — case studies for jobs above 473 GB
 - [Launching Jobs on KLC](/services/klc/user-guide/klc-software) — scripts, logging, and `tmux` on KLC main
 
 The [AI Inference Using KLC Reserve](https://rs-kellogg.github.io/krs-intro-klc-reserve/) workshop (October 2026) makes this choice on one research task:

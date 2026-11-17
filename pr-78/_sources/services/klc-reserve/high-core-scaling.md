@@ -43,7 +43,7 @@ These scripts build the random matrix without a matrix product, then the worker 
 
 Each run solves the same problem: 128 bootstrap replicates of an OLS fit. The design matrix is `n_obs = 20000` by `n_pred = 500` (80 MB as float64), drawn once from a fixed seed. Wall time is the time to finish the replicates. Building the matrix sits outside the timer.
 
-The core counts are 1, 2, 4, 8, 16, 32, 64, and 128, for threads and for workers, in Python and in R. One extra job on each language runs 16 workers with the thread variables set to 16, so the allocation is 16 cores and the libraries ask for 256 threads. One job array on each language runs 128 tasks, one replicate each, with the thread variables set to 1.
+Threads and workers in this example use 1, 2, 4, 8, 16, and 32 cores, in Python and in R. One extra job on each language runs 16 workers with the thread variables set to 16, so the allocation is 16 cores and the libraries ask for 256 threads. One job array on each language runs 128 tasks, one replicate each, with the thread variables set to 1. The array stays at 128 tasks because that is the replicate count, separate from the core sweep.
 
 If the 1-core run finishes in only a few seconds, increase `n_obs` in both scripts and resubmit the whole grid at that new size. Keep the size fixed across languages and modes.
 
@@ -53,9 +53,25 @@ Every job writes one CSV row:
 
 For a thread or worker job, `elapsed_seconds` is the time for all 128 replicates. For an array task, `elapsed_seconds` is the time for that one replicate. The array number to compare against a single job is the clock span from the earliest task start to the latest task end, from `sacct`, not the sum of the task rows.
 
-## Python Script
+Save these three files under `/kellogg/proj/<your-netid>/scaling/`:
 
-Save this as `/kellogg/proj/<your-netid>/scaling/bootstrap_scale.py`. The environment needs `numpy` and the base library `multiprocessing`.
+- Python script, `bootstrap_scale.py`. The environment needs `numpy` and `multiprocessing`.
+- R script, `bootstrap_scale.R`. It uses base R and `parallel::mclapply` only.
+- Batch script, `scale_study.sh`. It sets the four thread variables, then starts Python or R.
+
+| Mode | Command-line overrides | Memory |
+|---|---|---|
+| Threads | `--cpus-per-task=N --mem=16G --constraint=quest14`, with `N` from 1 to 32 | One shared copy of the matrix |
+| Workers | `--cpus-per-task=N --mem=64G --constraint=quest14`, with `N` from 1 to 32 | Each worker allocates its own resampled matrix, about 80 MB at the default size |
+| Oversubscription | `--cpus-per-task=16 --mem=64G --constraint=quest14` | Same worker layout, with the thread variables set to 16 |
+| Job array | `--array=1-128 --cpus-per-task=1 --mem=8G --time=00:30:00` | One replicate per task, and no `--constraint=quest14` |
+
+## Analysis Scripts
+
+::::{tab-set}
+
+:::{tab-item} Python
+:sync: python
 
 ```python
 #!/usr/bin/env python
@@ -85,20 +101,7 @@ _Y = None
 
 
 def build_data(seed):
-    """Draw the shared design matrix and outcome without calling BLAS.
-
-    Parameters
-    ----------
-    seed : int
-        Seed for the random draw. Every mode uses the same matrix.
-
-    Returns
-    -------
-    tuple of numpy.ndarray
-        ``x`` with shape ``(N_OBS, N_PRED)`` and ``y`` with shape ``(N_OBS,)``.
-        The first column of ``x`` is an intercept. Skipping the matrix product
-        leaves BLAS uninitialized so worker processes can fork safely.
-    """
+    """Draw the shared design matrix and outcome without calling BLAS."""
     rng = np.random.default_rng(seed)
     x = rng.standard_normal((N_OBS, N_PRED))
     x[:, 0] = 1.0
@@ -107,23 +110,7 @@ def build_data(seed):
 
 
 def one_replicate(x, y, seed):
-    """Fit OLS on one bootstrap resample.
-
-    Parameters
-    ----------
-    x : numpy.ndarray
-        Design matrix, including the intercept column.
-    y : numpy.ndarray
-        Outcome vector.
-    seed : int
-        Seed for the row resample.
-
-    Returns
-    -------
-    numpy.ndarray
-        Coefficient vector from ``numpy.linalg.lstsq``. This call is the
-        timed BLAS work.
-    """
+    """Fit OLS on one bootstrap resample."""
     rng = np.random.default_rng(seed)
     idx = rng.integers(0, x.shape[0], size=x.shape[0])
     coef, *_ = np.linalg.lstsq(x[idx], y[idx], rcond=None)
@@ -131,61 +118,17 @@ def one_replicate(x, y, seed):
 
 
 def replicate_seeds(n_reps, seed):
-    """Return one integer seed per replicate.
-
-    Parameters
-    ----------
-    n_reps : int
-        Number of bootstrap replicates.
-    seed : int
-        Root seed. Threads, workers, and the job array share this list so
-        they fit the same replicates.
-
-    Returns
-    -------
-    list of int
-        Length ``n_reps``. Array task ``k`` uses entry ``k - 1``.
-    """
+    """Return one integer seed per replicate, shared by every mode."""
     return np.random.SeedSequence(seed).generate_state(n_reps).tolist()
 
 
 def _fit_seed(seed):
-    """Fit one replicate inside a forked worker.
-
-    Parameters
-    ----------
-    seed : int
-        One value from :func:`replicate_seeds`.
-
-    Returns
-    -------
-    numpy.ndarray
-        Coefficient vector. The worker reads the design matrix from the
-        module-level ``_X`` and ``_Y`` inherited at fork time.
-    """
+    """Fit one replicate inside a forked worker."""
     return one_replicate(_X, _Y, int(seed))
 
 
 def run(mode, n_workers, seeds):
-    """Run every replicate and return the coefficient rows.
-
-    Parameters
-    ----------
-    mode : {"threads", "workers", "workers-oversubscribed", "array"}
-        ``threads`` and ``array`` loop in this process. ``workers`` and
-        ``workers-oversubscribed`` use a pool of ``n_workers`` processes.
-        The BLAS thread count is not an argument. The shell exports it
-        before this process starts.
-    n_workers : int
-        Pool size for the worker modes. Ignored for ``threads`` and ``array``.
-    seeds : sequence of int
-        Replicate seeds. An array task passes a one-element sequence.
-
-    Returns
-    -------
-    list of numpy.ndarray
-        One coefficient vector per seed.
-    """
+    """Run every replicate and return the coefficient rows."""
     if mode in ("threads", "array"):
         return [one_replicate(_X, _Y, int(seed)) for seed in seeds]
     if mode in ("workers", "workers-oversubscribed"):
@@ -195,14 +138,7 @@ def run(mode, n_workers, seeds):
 
 
 def main():
-    """Time the requested mode and write one CSV row.
-
-    Reads ``--mode``, ``--workers``, ``--threads``, and ``--output``.
-    ``--threads`` is recorded in the CSV. It does not change the BLAS pool.
-    In ``array`` mode, ``SLURM_ARRAY_TASK_ID`` selects one seed. The row
-    records language, mode, ``SLURM_CPUS_PER_TASK``, worker count, thread
-    count, elapsed seconds, and the SLURM job and array ids.
-    """
+    """Time the requested mode and write one CSV row."""
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "--mode",
@@ -270,9 +206,10 @@ if __name__ == "__main__":
     main()
 ```
 
-## R Script
+:::
 
-Save this as `/kellogg/proj/<your-netid>/scaling/bootstrap_scale.R`. It uses base R and `parallel::mclapply` only.
+:::{tab-item} R
+:sync: r
 
 ```r
 #!/usr/bin/env Rscript
@@ -373,6 +310,10 @@ writeLines(
 )
 ```
 
+:::
+
+::::
+
 ## Batch Script
 
 Save this as `/kellogg/proj/<your-netid>/scaling/scale_study.sh`. The submit commands pass the mode, the language, and the core request. The script sets the four thread variables from that mode before it starts Python or R.
@@ -458,14 +399,7 @@ fi
 
 Replace `<your-netid>` and `my-env` before submitting. The environment needs Python `numpy` and a base R install that provides `parallel`.
 
-| Mode | Command-line overrides | Memory |
-|---|---|---|
-| Threads | `--cpus-per-task=N --mem=16G --constraint=quest14` | One shared copy of the matrix |
-| Workers | `--cpus-per-task=N --mem=64G --constraint=quest14` | Each worker allocates its own resampled matrix, about 80 MB at the default size |
-| Oversubscription | `--cpus-per-task=16 --mem=64G --constraint=quest14` | Same worker layout, with the thread variables set to 16 |
-| Job array | `--array=1-128 --cpus-per-task=1 --mem=8G --time=00:30:00` | One replicate per task, and no `--constraint=quest14` |
-
-Keep `--mem` under 503 GB. After a job finishes, `seff <job-id>` reports the memory it actually used. Lower the next request when the peak is far below the grant, and raise it when the job is killed for memory.
+Keep `--mem` at or below 473 GB. After a job finishes, `seff <job-id>` reports the memory it actually used. Lower the next request when the peak is far below the grant, and raise it when the job is killed for memory.
 
 ## Submit the Grid
 
@@ -484,9 +418,13 @@ sbatch --export=ALL,SCALING_LANG=python,SCALING_MODE=threads \
 
 Submit the full grid once that row looks right. The loop includes another 1-core thread job.
 
+```{note}
+In practice you can run 64 and 128 cores on these nodes. This example stops at 32. Add `64` and `128` to the `for n` list for those runs.
+```
+
 ```bash
 for lang in python r; do
-  for n in 1 2 4 8 16 32 64 128; do
+  for n in 1 2 4 8 16 32; do
     sbatch --export=ALL,SCALING_LANG=$lang,SCALING_MODE=threads \
       --cpus-per-task=$n --mem=16G --constraint=quest14 \
       --job-name=${lang}-threads-$n \
@@ -537,7 +475,7 @@ Use the earliest `Start` and the latest `End` across the array tasks. That span 
 
 <!-- TODO(KRS): fill wall times and takeaways after the cluster runs -->
 
-Wall-clock times go in the table after the grid has been run on KLC Reserve. Leave the cells blank until then. Fill one row from each CSV file. For each job array, fill one additional row whose elapsed time is the `sacct` span, and leave CPUs at 1.
+Wall-clock times go in the table after the grid has been run on KLC Reserve. Leave the cells blank until then. Fill one row from each CSV file. For each job array, fill one additional row whose elapsed time is the `sacct` span, and leave CPUs at 1. The worked example stops at 32 cores. Add rows for 64 and 128 cores after you run those jobs.
 
 | Language | Mode | CPUs | Workers | Threads | Elapsed seconds | SLURM job ID |
 |---|---|---|---|---|---|---|
@@ -553,5 +491,5 @@ Use the filled table to compare:
 
 - [High-Core CPU Nodes](high-core-cpu-nodes) — 128-core Emerald Rapids nodes (`qnode4043`, `qnode4044`)
 - [Submitting SLURM Jobs](slurm-jobs) — batch scripts, job arrays, and `seff`
-- [High-Memory Jobs](highmem-jobs) — jobs that need more than 503 GB
+- [High-Memory Jobs](highmem-jobs) — jobs that need more than 473 GB
 - [Deep Dive: Scaling Studies](https://rs-kellogg.github.io/krs-intro-klc-reserve/deep-dive-scaling-studies) — turn a short test job into a wall-time request, from the AI Inference Using KLC Reserve workshop (October 2026)

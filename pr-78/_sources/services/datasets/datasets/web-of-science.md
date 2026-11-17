@@ -144,7 +144,7 @@ print(df)
 | KLC main | 16 | `128GB` |
 | KLC Reserve | The `--ntasks` value you request | About 90% of the `--mem` value you request |
 
-When a query exceeds `memory_limit`, DuckDB spills to `temp_directory` and keeps running. When the spill would pass `max_temp_directory_size`, raise that cap. Loading the entire table into memory is covered in [When to Use KLC Reserve](/services/klc-reserve/when-to-use). Above the 128 GB login-node budget, use KLC Reserve: the [Emerald Rapids nodes](high-core-cpu-nodes) cover up to 503 GB, and [High-Memory Jobs](/services/klc-reserve/highmem-jobs) covers more than 503 GB.
+When a query exceeds `memory_limit`, DuckDB spills to `temp_directory` and keeps running. When the spill would pass `max_temp_directory_size`, raise that cap. Loading the entire table into memory is covered in [When to Use KLC Reserve](/services/klc-reserve/when-to-use). Above the 128 GB login-node budget, use KLC Reserve: the [Emerald Rapids nodes](high-core-cpu-nodes) cover up to 473 GB, and [High-Memory Jobs](/services/klc-reserve/highmem-jobs) covers more than 473 GB.
 
 ```{note}
 `memory_limit` applies to DuckDB's own buffers. Converting a result to pandas with `.df()` allocates additional memory outside the limit. Return an aggregate or a small extract on KLC main.
@@ -547,7 +547,7 @@ Column types are `string` or `int32`. JSON columns are text. Open **Authors and 
 - [Conda Environments on KLC](/services/klc/user-guide/klc-conda): create the DuckDB environment under `/kellogg/proj/`
 - [KLC Node Resources](/services/klc-node-resources): live CPU and RAM availability
 - [When to Use KLC Reserve](/services/klc-reserve/when-to-use): choose a Reserve job when `papers` or `paper_references` must be loaded into memory
-- [High-Core CPU Nodes](high-core-cpu-nodes): Reserve jobs up to 128 cores and 503 GB
-- [High-Memory Jobs](/services/klc-reserve/highmem-jobs): Reserve jobs that need more than 503 GB
+- [High-Core CPU Nodes](high-core-cpu-nodes): Reserve jobs up to 128 cores and 473 GB
+- [High-Memory Jobs](/services/klc-reserve/highmem-jobs): Reserve jobs that need more than 473 GB
 - [Datasets on KLC](/services/klc/klc-datasets): other datasets stored under `/kellogg/data/`
 - [DuckDB Documentation](https://duckdb.org/docs/): configuration and SQL reference

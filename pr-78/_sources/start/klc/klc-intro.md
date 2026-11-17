@@ -34,7 +34,7 @@ All nodes share the same file systems, so a file saved on one node is accessible
 | GPU — H100 | Large-scale LLM training and inference, deep learning |
 | GPU — A100 | GPU-accelerated computation, ML training |
 | GPU — L40S | LLM inference, rendering, general GPU workloads |
-| [High-core CPU (Emerald Rapids)](high-core-cpu-nodes) | Parallel CPU jobs, up to 128 cores and 503 GB |
+| [High-core CPU (Emerald Rapids)](high-core-cpu-nodes) | Parallel CPU jobs, up to 128 cores and 473 GB |
 | [High-memory CPU](/services/klc-reserve/highmem-jobs) | Very large in-memory datasets, parallel batch jobs |
 
 Jobs are submitted to the `kellogg` SLURM partition and run exclusively on allocated resources for the duration of your job. No additional account setup is needed if you already have KLC access. Full details: [KLC Reserve](/services/klc-reserve/klc-reserve)

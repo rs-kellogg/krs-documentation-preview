@@ -278,7 +278,7 @@ SELECT current_setting('threads') AS threads,
 | KLC main | 16 | `128GB` |
 | KLC Reserve | The `--ntasks` value you request | About 90% of the `--mem` value you request |
 
-When a query exceeds `memory_limit`, DuckDB spills to `temp_directory` and keeps running. When the spill would pass `max_temp_directory_size`, raise that cap. Loading an entire table into memory is covered in [Use KLC Reserve Above This Budget](revelio-reserve). Above the 128 GB login-node budget, use KLC Reserve: the [Emerald Rapids nodes](high-core-cpu-nodes) cover up to 503 GB, and [High-Memory Jobs](/services/klc-reserve/highmem-jobs) covers more than 503 GB.
+When a query exceeds `memory_limit`, DuckDB spills to `temp_directory` and keeps running. When the spill would pass `max_temp_directory_size`, raise that cap. Loading an entire table into memory is covered in [Use KLC Reserve Above This Budget](revelio-reserve). Above the 128 GB login-node budget, use KLC Reserve: the [Emerald Rapids nodes](high-core-cpu-nodes) cover up to 473 GB, and [High-Memory Jobs](/services/klc-reserve/highmem-jobs) covers more than 473 GB.
 
 :::{note}
 `memory_limit` applies to DuckDB's own buffers. Converting a result to pandas or R with `.df()` or `dbGetQuery()` allocates additional memory outside the limit. Return an aggregate or a small extract on KLC main.
@@ -691,7 +691,7 @@ chunks = conn.raw_sql(
 
 Filtered scans, aggregates, and extracts stay on KLC main, including the country-year join against `postings_cosmos_raw`. Use [KLC Reserve](/services/klc-reserve/when-to-use) when you will read the entire contents of one or more tables into memory with `.df()`, Polars, or `dbGetQuery()`.
 
-The script below reads `SLURM_NTASKS` and `SLURM_MEM_PER_NODE` (megabytes, set by `--mem`) and sets `memory_limit` to about 90% of that grant. Outside a SLURM job it uses the KLC main cap of 16 threads and 128 GB. Raise `--ntasks` and `--mem` when the in-memory table needs more than that. The Emerald Rapids nodes cover up to 503 GB; see [High-Core CPU Nodes](high-core-cpu-nodes). For more than 503 GB, see [High-Memory Jobs](/services/klc-reserve/highmem-jobs).
+The script below reads `SLURM_NTASKS` and `SLURM_MEM_PER_NODE` (megabytes, set by `--mem`) and sets `memory_limit` to about 90% of that grant. Outside a SLURM job it uses the KLC main cap of 16 threads and 128 GB. Raise `--ntasks` and `--mem` when the in-memory table needs more than that. The Emerald Rapids nodes cover up to 473 GB; see [High-Core CPU Nodes](high-core-cpu-nodes). For more than 473 GB, see [High-Memory Jobs](/services/klc-reserve/highmem-jobs).
 
 :::{warning}
 Do not load `individual_user_skills`, `postings_cosmos`, or `individual_positions` in full.
@@ -1155,6 +1155,6 @@ Column definitions come from the WRDS `revelio` library. Select a table to expan
 - [KLC Node Resources](/services/klc-node-resources): live CPU and RAM availability
 - [When to Use KLC Reserve](/services/klc-reserve/when-to-use): choose a Reserve job when a full table must be loaded into memory
 - [Submitting SLURM Jobs](/services/klc-reserve/slurm-jobs): batch job reference for KLC Reserve
-- [High-Core CPU Nodes](high-core-cpu-nodes): Reserve jobs up to 128 cores and 503 GB
-- [High-Memory Jobs](/services/klc-reserve/highmem-jobs): Reserve jobs that need more than 503 GB
+- [High-Core CPU Nodes](high-core-cpu-nodes): Reserve jobs up to 128 cores and 473 GB
+- [High-Memory Jobs](/services/klc-reserve/highmem-jobs): Reserve jobs that need more than 473 GB
 - [DuckDB Documentation](https://duckdb.org/docs/): configuration and SQL reference

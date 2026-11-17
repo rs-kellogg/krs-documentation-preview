@@ -8,7 +8,7 @@ This page explains **concepts and options**. For submission scripts and `--gres`
 
 ### CPU (Central Processing Unit)
 
-A CPU handles mathematical and logical calculations on a node. CPU cores are powerful but run tasks **sequentially** — one at a time per core. KLC login nodes have up to 64 CPU cores and up to 2 TB of shared RAM. On KLC Reserve, the [Emerald Rapids nodes](high-core-cpu-nodes) have 128 cores and 503 GB of RAM, so one job can run up to 128 parallel processes. The high-memory node, `qhimem0501`, has 64 cores and 2 TB of RAM.
+A CPU handles mathematical and logical calculations on a node. CPU cores are powerful but run tasks **sequentially** — one at a time per core. KLC login nodes have up to 64 CPU cores and up to 2 TB of shared RAM. On KLC Reserve, the [Emerald Rapids nodes](high-core-cpu-nodes) have 128 cores and 503 GB of RAM, so one job can run up to 128 parallel processes. A job can request at most 473 GB of that RAM. The high-memory node, `qhimem0501`, has 64 cores and 2 TB of RAM.
 
 ### GPU (Graphics Processing Unit)
 

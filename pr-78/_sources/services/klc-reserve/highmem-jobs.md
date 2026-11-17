@@ -10,7 +10,7 @@ For GPU concepts and when a GPU helps, see [GPU Concepts and Options](/services/
 |---|---|---|---|---|---|
 | qhimem0501 | 1 | 64 | 2 TB | ~32 GB | Large in-memory matrices, big panel merges, graph/network analysis |
 
-Parallel CPU jobs that fit in 503 GB belong on the Emerald Rapids nodes (`qnode4043` and `qnode4044`). Request them with `--partition=kellogg` and `--constraint=quest14`. See [High-Core CPU Nodes](high-core-cpu-nodes). Keep `--nodelist=qhimem0501` for jobs that need more than 503 GB.
+Parallel CPU jobs that fit in 473 GB belong on the Emerald Rapids nodes (`qnode4043` and `qnode4044`). Request them with `--partition=kellogg` and `--constraint=quest14`. See [High-Core CPU Nodes](high-core-cpu-nodes). Keep `--nodelist=qhimem0501` for jobs that need more than 473 GB.
 
 ## Requesting the High-Memory Node with `--nodelist`
 

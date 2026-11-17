@@ -366,8 +366,7 @@ Northwestern University - Home"/>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#choose-how-the-cores-are-used">Choose How the Cores Are Used</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#set-the-thread-variables-in-the-shell">Set the Thread Variables in the Shell</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-scaling-study">The Scaling Study</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-script">Python Script</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#r-script">R Script</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-scripts">Analysis Scripts</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#batch-script">Batch Script</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#submit-the-grid">Submit the Grid</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#collect-the-results">Collect the Results</a></li>
@@ -459,15 +458,51 @@ Northwestern University - Home"/>
 <section id="the-scaling-study">
 <h2>The Scaling Study<a class="headerlink" href="#the-scaling-study" title="Link to this heading">#</a></h2>
 <p>Each run solves the same problem: 128 bootstrap replicates of an OLS fit. The design matrix is <code class="docutils literal notranslate"><span class="pre">n_obs</span> <span class="pre">=</span> <span class="pre">20000</span></code> by <code class="docutils literal notranslate"><span class="pre">n_pred</span> <span class="pre">=</span> <span class="pre">500</span></code> (80 MB as float64), drawn once from a fixed seed. Wall time is the time to finish the replicates. Building the matrix sits outside the timer.</p>
-<p>The core counts are 1, 2, 4, 8, 16, 32, 64, and 128, for threads and for workers, in Python and in R. One extra job on each language runs 16 workers with the thread variables set to 16, so the allocation is 16 cores and the libraries ask for 256 threads. One job array on each language runs 128 tasks, one replicate each, with the thread variables set to 1.</p>
+<p>Threads and workers in this example use 1, 2, 4, 8, 16, and 32 cores, in Python and in R. One extra job on each language runs 16 workers with the thread variables set to 16, so the allocation is 16 cores and the libraries ask for 256 threads. One job array on each language runs 128 tasks, one replicate each, with the thread variables set to 1. The array stays at 128 tasks because that is the replicate count, separate from the core sweep.</p>
 <p>If the 1-core run finishes in only a few seconds, increase <code class="docutils literal notranslate"><span class="pre">n_obs</span></code> in both scripts and resubmit the whole grid at that new size. Keep the size fixed across languages and modes.</p>
 <p>Every job writes one CSV row:</p>
 <p><code class="docutils literal notranslate"><span class="pre">language,mode,cpus,workers,threads,elapsed_seconds,slurm_job_id,array_task_id</span></code></p>
 <p>For a thread or worker job, <code class="docutils literal notranslate"><span class="pre">elapsed_seconds</span></code> is the time for all 128 replicates. For an array task, <code class="docutils literal notranslate"><span class="pre">elapsed_seconds</span></code> is the time for that one replicate. The array number to compare against a single job is the clock span from the earliest task start to the latest task end, from <code class="docutils literal notranslate"><span class="pre">sacct</span></code>, not the sum of the task rows.</p>
+<p>Save these three files under <code class="docutils literal notranslate"><span class="pre">/kellogg/proj/&lt;your-netid&gt;/scaling/</span></code>:</p>
+<ul class="simple">
+<li><p>Python script, <code class="docutils literal notranslate"><span class="pre">bootstrap_scale.py</span></code>. The environment needs <code class="docutils literal notranslate"><span class="pre">numpy</span></code> and <code class="docutils literal notranslate"><span class="pre">multiprocessing</span></code>.</p></li>
+<li><p>R script, <code class="docutils literal notranslate"><span class="pre">bootstrap_scale.R</span></code>. It uses base R and <code class="docutils literal notranslate"><span class="pre">parallel::mclapply</span></code> only.</p></li>
+<li><p>Batch script, <code class="docutils literal notranslate"><span class="pre">scale_study.sh</span></code>. It sets the four thread variables, then starts Python or R.</p></li>
+</ul>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Mode</p></th>
+<th class="head"><p>Command-line overrides</p></th>
+<th class="head"><p>Memory</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Threads</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">--cpus-per-task=N</span> <span class="pre">--mem=16G</span> <span class="pre">--constraint=quest14</span></code>, with <code class="docutils literal notranslate"><span class="pre">N</span></code> from 1 to 32</p></td>
+<td><p>One shared copy of the matrix</p></td>
+</tr>
+<tr class="row-odd"><td><p>Workers</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">--cpus-per-task=N</span> <span class="pre">--mem=64G</span> <span class="pre">--constraint=quest14</span></code>, with <code class="docutils literal notranslate"><span class="pre">N</span></code> from 1 to 32</p></td>
+<td><p>Each worker allocates its own resampled matrix, about 80 MB at the default size</p></td>
+</tr>
+<tr class="row-even"><td><p>Oversubscription</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">--cpus-per-task=16</span> <span class="pre">--mem=64G</span> <span class="pre">--constraint=quest14</span></code></p></td>
+<td><p>Same worker layout, with the thread variables set to 16</p></td>
+</tr>
+<tr class="row-odd"><td><p>Job array</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">--array=1-128</span> <span class="pre">--cpus-per-task=1</span> <span class="pre">--mem=8G</span> <span class="pre">--time=00:30:00</span></code></p></td>
+<td><p>One replicate per task, and no <code class="docutils literal notranslate"><span class="pre">--constraint=quest14</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
 </section>
-<section id="python-script">
-<h2>Python Script<a class="headerlink" href="#python-script" title="Link to this heading">#</a></h2>
-<p>Save this as <code class="docutils literal notranslate"><span class="pre">/kellogg/proj/&lt;your-netid&gt;/scaling/bootstrap_scale.py</span></code>. The environment needs <code class="docutils literal notranslate"><span class="pre">numpy</span></code> and the base library <code class="docutils literal notranslate"><span class="pre">multiprocessing</span></code>.</p>
+<section id="analysis-scripts">
+<h2>Analysis Scripts<a class="headerlink" href="#analysis-scripts" title="Link to this heading">#</a></h2>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="python" for="sd-tab-item-0">
+Python</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
 <span class="sd">"""OLS bootstrap scaling study for the KLC Reserve high-core nodes.</span>
 
@@ -495,20 +530,7 @@ Northwestern University - Home"/>
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">build_data</span><span class="p">(</span><span class="n">seed</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">"""Draw the shared design matrix and outcome without calling BLAS.</span>
-
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    seed : int</span>
-<span class="sd">        Seed for the random draw. Every mode uses the same matrix.</span>
-
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    tuple of numpy.ndarray</span>
-<span class="sd">        ``x`` with shape ``(N_OBS, N_PRED)`` and ``y`` with shape ``(N_OBS,)``.</span>
-<span class="sd">        The first column of ``x`` is an intercept. Skipping the matrix product</span>
-<span class="sd">        leaves BLAS uninitialized so worker processes can fork safely.</span>
-<span class="sd">    """</span>
+<span class="w">    </span><span class="sd">"""Draw the shared design matrix and outcome without calling BLAS."""</span>
     <span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">standard_normal</span><span class="p">((</span><span class="n">N_OBS</span><span class="p">,</span> <span class="n">N_PRED</span><span class="p">))</span>
     <span class="n">x</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span>
@@ -517,23 +539,7 @@ Northwestern University - Home"/>
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">one_replicate</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">seed</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">"""Fit OLS on one bootstrap resample.</span>
-
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    x : numpy.ndarray</span>
-<span class="sd">        Design matrix, including the intercept column.</span>
-<span class="sd">    y : numpy.ndarray</span>
-<span class="sd">        Outcome vector.</span>
-<span class="sd">    seed : int</span>
-<span class="sd">        Seed for the row resample.</span>
-
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    numpy.ndarray</span>
-<span class="sd">        Coefficient vector from ``numpy.linalg.lstsq``. This call is the</span>
-<span class="sd">        timed BLAS work.</span>
-<span class="sd">    """</span>
+<span class="w">    </span><span class="sd">"""Fit OLS on one bootstrap resample."""</span>
     <span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
     <span class="n">idx</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">integers</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
     <span class="n">coef</span><span class="p">,</span> <span class="o">*</span><span class="n">_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">lstsq</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span> <span class="n">rcond</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
@@ -541,61 +547,17 @@ Northwestern University - Home"/>
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">replicate_seeds</span><span class="p">(</span><span class="n">n_reps</span><span class="p">,</span> <span class="n">seed</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">"""Return one integer seed per replicate.</span>
-
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    n_reps : int</span>
-<span class="sd">        Number of bootstrap replicates.</span>
-<span class="sd">    seed : int</span>
-<span class="sd">        Root seed. Threads, workers, and the job array share this list so</span>
-<span class="sd">        they fit the same replicates.</span>
-
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    list of int</span>
-<span class="sd">        Length ``n_reps``. Array task ``k`` uses entry ``k - 1``.</span>
-<span class="sd">    """</span>
+<span class="w">    </span><span class="sd">"""Return one integer seed per replicate, shared by every mode."""</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">SeedSequence</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span><span class="o">.</span><span class="n">generate_state</span><span class="p">(</span><span class="n">n_reps</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">_fit_seed</span><span class="p">(</span><span class="n">seed</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">"""Fit one replicate inside a forked worker.</span>
-
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    seed : int</span>
-<span class="sd">        One value from :func:`replicate_seeds`.</span>
-
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    numpy.ndarray</span>
-<span class="sd">        Coefficient vector. The worker reads the design matrix from the</span>
-<span class="sd">        module-level ``_X`` and ``_Y`` inherited at fork time.</span>
-<span class="sd">    """</span>
+<span class="w">    </span><span class="sd">"""Fit one replicate inside a forked worker."""</span>
     <span class="k">return</span> <span class="n">one_replicate</span><span class="p">(</span><span class="n">_X</span><span class="p">,</span> <span class="n">_Y</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">seed</span><span class="p">))</span>
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="n">mode</span><span class="p">,</span> <span class="n">n_workers</span><span class="p">,</span> <span class="n">seeds</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">"""Run every replicate and return the coefficient rows.</span>
-
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    mode : {"threads", "workers", "workers-oversubscribed", "array"}</span>
-<span class="sd">        ``threads`` and ``array`` loop in this process. ``workers`` and</span>
-<span class="sd">        ``workers-oversubscribed`` use a pool of ``n_workers`` processes.</span>
-<span class="sd">        The BLAS thread count is not an argument. The shell exports it</span>
-<span class="sd">        before this process starts.</span>
-<span class="sd">    n_workers : int</span>
-<span class="sd">        Pool size for the worker modes. Ignored for ``threads`` and ``array``.</span>
-<span class="sd">    seeds : sequence of int</span>
-<span class="sd">        Replicate seeds. An array task passes a one-element sequence.</span>
-
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    list of numpy.ndarray</span>
-<span class="sd">        One coefficient vector per seed.</span>
-<span class="sd">    """</span>
+<span class="w">    </span><span class="sd">"""Run every replicate and return the coefficient rows."""</span>
     <span class="k">if</span> <span class="n">mode</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">"threads"</span><span class="p">,</span> <span class="s2">"array"</span><span class="p">):</span>
         <span class="k">return</span> <span class="p">[</span><span class="n">one_replicate</span><span class="p">(</span><span class="n">_X</span><span class="p">,</span> <span class="n">_Y</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">seed</span><span class="p">))</span> <span class="k">for</span> <span class="n">seed</span> <span class="ow">in</span> <span class="n">seeds</span><span class="p">]</span>
     <span class="k">if</span> <span class="n">mode</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">"workers"</span><span class="p">,</span> <span class="s2">"workers-oversubscribed"</span><span class="p">):</span>
@@ -605,14 +567,7 @@ Northwestern University - Home"/>
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
-<span class="w">    </span><span class="sd">"""Time the requested mode and write one CSV row.</span>
-
-<span class="sd">    Reads ``--mode``, ``--workers``, ``--threads``, and ``--output``.</span>
-<span class="sd">    ``--threads`` is recorded in the CSV. It does not change the BLAS pool.</span>
-<span class="sd">    In ``array`` mode, ``SLURM_ARRAY_TASK_ID`` selects one seed. The row</span>
-<span class="sd">    records language, mode, ``SLURM_CPUS_PER_TASK``, worker count, thread</span>
-<span class="sd">    count, elapsed seconds, and the SLURM job and array ids.</span>
-<span class="sd">    """</span>
+<span class="w">    </span><span class="sd">"""Time the requested mode and write one CSV row."""</span>
     <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">()</span>
     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
         <span class="s2">"--mode"</span><span class="p">,</span>
@@ -680,10 +635,10 @@ Northwestern University - Home"/>
     <span class="n">main</span><span class="p">()</span>
 </pre></div>
 </div>
-</section>
-<section id="r-script">
-<h2>R Script<a class="headerlink" href="#r-script" title="Link to this heading">#</a></h2>
-<p>Save this as <code class="docutils literal notranslate"><span class="pre">/kellogg/proj/&lt;your-netid&gt;/scaling/bootstrap_scale.R</span></code>. It uses base R and <code class="docutils literal notranslate"><span class="pre">parallel::mclapply</span></code> only.</p>
+</div>
+<input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="r" for="sd-tab-item-1">
+R</label><div class="sd-tab-content docutils">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">#!/usr/bin/env Rscript</span>
 
 <span class="n">n_obs</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">20000L</span>
@@ -782,6 +737,8 @@ Northwestern University - Home"/>
 <span class="p">)</span>
 </pre></div>
 </div>
+</div>
+</div>
 </section>
 <section id="batch-script">
 <h2>Batch Script<a class="headerlink" href="#batch-script" title="Link to this heading">#</a></h2>
@@ -865,34 +822,7 @@ mkdir<span class="w"> </span>-p<span class="w"> </span>results
 </pre></div>
 </div>
 <p>Replace <code class="docutils literal notranslate"><span class="pre">&lt;your-netid&gt;</span></code> and <code class="docutils literal notranslate"><span class="pre">my-env</span></code> before submitting. The environment needs Python <code class="docutils literal notranslate"><span class="pre">numpy</span></code> and a base R install that provides <code class="docutils literal notranslate"><span class="pre">parallel</span></code>.</p>
-<div class="pst-scrollable-table-container"><table class="table">
-<thead>
-<tr class="row-odd"><th class="head"><p>Mode</p></th>
-<th class="head"><p>Command-line overrides</p></th>
-<th class="head"><p>Memory</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>Threads</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">--cpus-per-task=N</span> <span class="pre">--mem=16G</span> <span class="pre">--constraint=quest14</span></code></p></td>
-<td><p>One shared copy of the matrix</p></td>
-</tr>
-<tr class="row-odd"><td><p>Workers</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">--cpus-per-task=N</span> <span class="pre">--mem=64G</span> <span class="pre">--constraint=quest14</span></code></p></td>
-<td><p>Each worker allocates its own resampled matrix, about 80 MB at the default size</p></td>
-</tr>
-<tr class="row-even"><td><p>Oversubscription</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">--cpus-per-task=16</span> <span class="pre">--mem=64G</span> <span class="pre">--constraint=quest14</span></code></p></td>
-<td><p>Same worker layout, with the thread variables set to 16</p></td>
-</tr>
-<tr class="row-odd"><td><p>Job array</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">--array=1-128</span> <span class="pre">--cpus-per-task=1</span> <span class="pre">--mem=8G</span> <span class="pre">--time=00:30:00</span></code></p></td>
-<td><p>One replicate per task, and no <code class="docutils literal notranslate"><span class="pre">--constraint=quest14</span></code></p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>Keep <code class="docutils literal notranslate"><span class="pre">--mem</span></code> under 503 GB. After a job finishes, <code class="docutils literal notranslate"><span class="pre">seff</span> <span class="pre">&lt;job-id&gt;</span></code> reports the memory it actually used. Lower the next request when the peak is far below the grant, and raise it when the job is killed for memory.</p>
+<p>Keep <code class="docutils literal notranslate"><span class="pre">--mem</span></code> at or below 473 GB. After a job finishes, <code class="docutils literal notranslate"><span class="pre">seff</span> <span class="pre">&lt;job-id&gt;</span></code> reports the memory it actually used. Lower the next request when the peak is far below the grant, and raise it when the job is killed for memory.</p>
 </section>
 <section id="submit-the-grid">
 <h2>Submit the Grid<a class="headerlink" href="#submit-the-grid" title="Link to this heading">#</a></h2>
@@ -908,8 +838,12 @@ sbatch<span class="w"> </span>--export<span class="o">=</span>ALL,SCALING_LANG<s
 </pre></div>
 </div>
 <p>Submit the full grid once that row looks right. The loop includes another 1-core thread job.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In practice you can run 64 and 128 cores on these nodes. This example stops at 32. Add <code class="docutils literal notranslate"><span class="pre">64</span></code> and <code class="docutils literal notranslate"><span class="pre">128</span></code> to the <code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">n</span></code> list for those runs.</p>
+</div>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="w"> </span>lang<span class="w"> </span><span class="k">in</span><span class="w"> </span>python<span class="w"> </span>r<span class="p">;</span><span class="w"> </span><span class="k">do</span>
-<span class="w">  </span><span class="k">for</span><span class="w"> </span>n<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">8</span><span class="w"> </span><span class="m">16</span><span class="w"> </span><span class="m">32</span><span class="w"> </span><span class="m">64</span><span class="w"> </span><span class="m">128</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span>n<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">8</span><span class="w"> </span><span class="m">16</span><span class="w"> </span><span class="m">32</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
 <span class="w">    </span>sbatch<span class="w"> </span>--export<span class="o">=</span>ALL,SCALING_LANG<span class="o">=</span><span class="nv">$lang</span>,SCALING_MODE<span class="o">=</span>threads<span class="w"> </span><span class="se">\</span>
 <span class="w">      </span>--cpus-per-task<span class="o">=</span><span class="nv">$n</span><span class="w"> </span>--mem<span class="o">=</span>16G<span class="w"> </span>--constraint<span class="o">=</span>quest14<span class="w"> </span><span class="se">\</span>
 <span class="w">      </span>--job-name<span class="o">=</span><span class="si">${</span><span class="nv">lang</span><span class="si">}</span>-threads-<span class="nv">$n</span><span class="w"> </span><span class="se">\</span>
@@ -954,7 +888,7 @@ awk<span class="w"> </span><span class="s1">'FNR==1 &amp;&amp; NR!=1 { next } { 
 <section id="key-takeaways">
 <span id="high-core-scaling-takeaways"></span><h2>Key Takeaways<a class="headerlink" href="#key-takeaways" title="Link to this heading">#</a></h2>
 <!-- TODO(KRS): fill wall times and takeaways after the cluster runs -->
-<p>Wall-clock times go in the table after the grid has been run on KLC Reserve. Leave the cells blank until then. Fill one row from each CSV file. For each job array, fill one additional row whose elapsed time is the <code class="docutils literal notranslate"><span class="pre">sacct</span></code> span, and leave CPUs at 1.</p>
+<p>Wall-clock times go in the table after the grid has been run on KLC Reserve. Leave the cells blank until then. Fill one row from each CSV file. For each job array, fill one additional row whose elapsed time is the <code class="docutils literal notranslate"><span class="pre">sacct</span></code> span, and leave CPUs at 1. The worked example stops at 32 cores. Add rows for 64 and 128 cores after you run those jobs.</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Language</p></th>
@@ -990,7 +924,7 @@ awk<span class="w"> </span><span class="s1">'FNR==1 &amp;&amp; NR!=1 { next } { 
 <ul class="simple">
 <li><p><a class="reference internal" href="slurm-jobs.html#high-core-cpu-nodes"><span class="std std-ref">High-Core CPU Nodes</span></a> — 128-core Emerald Rapids nodes (<code class="docutils literal notranslate"><span class="pre">qnode4043</span></code>, <code class="docutils literal notranslate"><span class="pre">qnode4044</span></code>)</p></li>
 <li><p><a class="reference internal" href="slurm-jobs.html"><span class="doc std std-doc">Submitting SLURM Jobs</span></a> — batch scripts, job arrays, and <code class="docutils literal notranslate"><span class="pre">seff</span></code></p></li>
-<li><p><a class="reference internal" href="highmem-jobs.html"><span class="doc std std-doc">High-Memory Jobs</span></a> — jobs that need more than 503 GB</p></li>
+<li><p><a class="reference internal" href="highmem-jobs.html"><span class="doc std std-doc">High-Memory Jobs</span></a> — jobs that need more than 473 GB</p></li>
 <li><p><a class="reference external" href="https://rs-kellogg.github.io/krs-intro-klc-reserve/deep-dive-scaling-studies" target="_blank">Deep Dive: Scaling Studies <svg version="1.1" width="1.0em" height="1.0em" viewBox="0 0 16 16" aria-hidden="true" style="display: inline-block; vertical-align: middle; fill: currentColor;"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a> — turn a short test job into a wall-time request, from the AI Inference Using KLC Reserve workshop (October 2026)</p></li>
 </ul>
 </section>
@@ -1046,8 +980,7 @@ awk<span class="w"> </span><span class="s1">'FNR==1 &amp;&amp; NR!=1 { next } { 
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#choose-how-the-cores-are-used">Choose How the Cores Are Used</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#set-the-thread-variables-in-the-shell">Set the Thread Variables in the Shell</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-scaling-study">The Scaling Study</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-script">Python Script</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#r-script">R Script</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-scripts">Analysis Scripts</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#batch-script">Batch Script</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#submit-the-grid">Submit the Grid</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#collect-the-results">Collect the Results</a></li>
