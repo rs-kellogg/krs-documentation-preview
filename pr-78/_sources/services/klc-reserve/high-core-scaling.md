@@ -2,7 +2,7 @@
 
 Parallel CPU jobs on the Emerald Rapids nodes (`qnode4043` and `qnode4044`) finish faster when the SLURM request matches how the program uses cores. The same 128 ordinary-least-squares (OLS) bootstrap replicates can run as threads inside one process, as worker processes on one node, or as a SLURM job array of independent tasks. Node limits and the `--constraint=quest14` feature are in [High-Core CPU Nodes](high-core-cpu-nodes).
 
-Run the jobs below on the cluster, then bring the timing files back. The [Key Takeaways](high-core-scaling-takeaways) section is reserved for those measurements.
+The [Key Takeaways](high-core-scaling-takeaways) section reports one Python run of this grid on KLC Reserve. The commands below reproduce that grid in Python and in R.
 
 ## Choose How the Cores Are Used
 
@@ -473,19 +473,29 @@ Use the earliest `Start` and the latest `End` across the array tasks. That span 
 (high-core-scaling-takeaways)=
 ## Key Takeaways
 
-<!-- TODO(KRS): fill wall times and takeaways after the cluster runs -->
-
-Wall-clock times go in the table after the grid has been run on KLC Reserve. Leave the cells blank until then. Fill one row from each CSV file. For each job array, fill one additional row whose elapsed time is the `sacct` span, and leave CPUs at 1. The worked example stops at 32 cores. Add rows for 64 and 128 cores after you run those jobs.
+Worker processes scale on this OLS bootstrap. BLAS threads inside one process do not. These times are one Python run of the default problem (128 replicates, 20,000 by 500) on KLC Reserve.
 
 | Language | Mode | CPUs | Workers | Threads | Elapsed seconds | SLURM job ID |
 |---|---|---|---|---|---|---|
-|  |  |  |  |  |  |  |
+| python | threads | 1 | 1 | 1 | 68.19 | 9268517 |
+| python | threads | 2 | 1 | 2 | 48.30 | 9268520 |
+| python | threads | 4 | 1 | 4 | 37.38 | 9268522 |
+| python | threads | 8 | 1 | 8 | 33.17 | 9268524 |
+| python | threads | 16 | 1 | 16 | 31.60 | 9268526 |
+| python | threads | 32 | 1 | 32 | 29.32 | 9268529 |
+| python | workers | 1 | 1 | 1 | 69.64 | 9268519 |
+| python | workers | 2 | 2 | 1 | 36.41 | 9268521 |
+| python | workers | 4 | 4 | 1 | 19.15 | 9268523 |
+| python | workers | 8 | 8 | 1 | 10.28 | 9268525 |
+| python | workers | 16 | 16 | 1 | 5.36 | 9268527 |
+| python | workers | 32 | 32 | 1 | 2.89 | 9268542 |
+| python | array | 1 | 1 | 1 | 10 | 9268544 |
 
-Use the filled table to compare:
+At 32 cores, the worker run finished in 2.89 seconds and the thread run finished in 29.32 seconds. The 1-core runs took 68.19 seconds (threads) and 69.64 seconds (workers). From 4 cores to 32, the thread run moved from 37.38 seconds to 29.32 seconds.
 
-- Thread runs and worker runs at the same core count, in each language
-- The fastest single-node run and the job-array span
-- The 16-core worker run with thread variables set to 1, and the 16-worker run with thread variables set to 16
+The job-array span was 10 seconds (job 9268544), longer than the 16-worker run (5.36 seconds) and the 32-worker run (2.89 seconds). Thread and worker cells are the in-script timer for all 128 replicates. The array cell is the `sacct` span, with CPUs left at 1. Each task's in-script time was 0.53–0.98 seconds, and `sacct` recorded 7–10 seconds for the task, so startup sets the span on a replicate this short.
+
+This grid has no R rows, no 16-worker oversubscription job, and no 64- or 128-core jobs.
 
 ## Further Reading
 
